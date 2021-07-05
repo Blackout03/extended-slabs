@@ -46,7 +46,7 @@ minecraft {
             workingDirectory project.file("run")
             property "forge.logging.markers", "SCAN,REGISTRIES,REGISTRYDUMP"
             property "forge.logging.console.level", "debug"
-            args "--mod", "extendedslabs", "--all", "--output", file("src/generated/resources/")
+            args '--mod', 'extendedslabs', '--all', '--output', file('src/main/generated/'), '--existing', file('src/main/resources/')
             mods {
                 extendedslabs {
                     source sourceSets.main
@@ -58,11 +58,12 @@ minecraft {
 
 dependencies {
     minecraft "net.minecraftforge:forge:${project.minecraft}-${project.forge}"
-    implementation fg.deobf("curse.maven:biomes_o_plenty-220318:${project.biomesOPlenty}")
+    implementation fg.deobf("curse.maven:biomes_o_plenty-220318:${project.bop}")
 
-    compileOnly fg.deobf("mezz.jei:jei-1.16.5:${project.jei}:api")
     runtimeOnly fg.deobf("mezz.jei:jei-1.16.5:${project.jei}")
+    implementation fg.deobf("curse.maven:just-enough-resources-jer-240630:${project.jer}")
 
+    runtimeOnly fg.deobf("curse.maven:the-one-probe-245211:${project.top}")
 }
 
 repositories {
