@@ -2,8 +2,8 @@
 	"textures": {
 		"particle": "minecraft:block/dirt",
 		"bottom": "minecraft:block/dirt",
-		"top": "minecraft:block/grass_path_top",
-		"side": "minecraft:block/grass_path_side"
+		"top": "minecraft:block/dirt_path_top",
+		"side": "minecraft:block/dirt_path_side"
 	},
 	"elements": [
 		{ "name": "base",

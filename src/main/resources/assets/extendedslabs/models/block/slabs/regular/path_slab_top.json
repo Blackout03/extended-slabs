@@ -2,8 +2,8 @@
 	"credit": "Made with Blockbench",
 	"parent": "minecraft:block/block",
 	"textures": {
-		"top": "block/grass_path_top",
-		"side": "block/grass_path_side",
+		"top": "block/dirt_path_top",
+		"side": "block/dirt_path_side",
 		"bottom": "block/dirt",
 		"particle": "block/dirt"
 	},

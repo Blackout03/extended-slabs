@@ -1,8 +1,8 @@
 package com.blackout.extendedslabs.blocks.shapes;
 
-import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.StringRepresentable;
 
-public enum VerticalSlabShape implements IStringSerializable {
+public enum VerticalSlabShape implements StringRepresentable {
     STRAIGHT("straight"),
     INNER_LEFT("inner_left"),
     INNER_RIGHT("inner_right"),
@@ -24,7 +24,7 @@ public enum VerticalSlabShape implements IStringSerializable {
     }
 
     @Override
-    public String getString() {
+    public String getSerializedName() {
         return this.name;
     }
 }

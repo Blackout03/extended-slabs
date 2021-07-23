@@ -1,14 +1,14 @@
 package com.blackout.extendedslabs.blocks.grass;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.SlabBlock;
+import net.minecraft.world.level.block.SlabBlock;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.ToolType;
 
 import javax.annotation.Nullable;
 
 public class BlockGrassSlab extends SlabBlock {
-    public BlockGrassSlab(Block.Properties builder) {
+    public BlockGrassSlab(BlockBehaviour.Properties builder) {
         super(builder);
     }
 
