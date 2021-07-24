@@ -1,6 +1,6 @@
 package com.blackout.extendedslabs.util;
 
-import com.blackout.extendedslabs.init.ModVerticalSlabs;
+import com.blackout.extendedslabs.init.ESPVerticalSlabs;
 import com.blackout.extendedslabs.ExtendedSlabs;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
@@ -15,9 +15,9 @@ public class CreativeTab extends CreativeModeTab {
     @Override
     public ItemStack makeIcon() {
         if (ModList.get().isLoaded("biomesoplenty")) {
-            return new ItemStack(ModVerticalSlabs.MAGIC_VERTICAL.get());
+            return new ItemStack(ESPVerticalSlabs.MAGIC_VERTICAL.get());
         } else {
-            return new ItemStack(ModVerticalSlabs.PRISMARINE_BRICKS_VERTICAL.get());
+            return new ItemStack(ESPVerticalSlabs.PRISMARINE_BRICKS_VERTICAL.get());
         }
     }
 

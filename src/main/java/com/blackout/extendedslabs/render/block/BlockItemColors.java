@@ -1,8 +1,8 @@
 package com.blackout.extendedslabs.render.block;
 
 import com.blackout.extendedslabs.ExtendedSlabs;
-import com.blackout.extendedslabs.init.ModSlabs;
-import com.blackout.extendedslabs.init.ModVerticalSlabs;
+import com.blackout.extendedslabs.init.ESPSlabs;
+import com.blackout.extendedslabs.init.ESPVerticalSlabs;
 import net.minecraft.client.color.block.BlockColor;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.world.item.BlockItem;
@@ -19,12 +19,12 @@ public class BlockItemColors {
     @SubscribeEvent
     public static void registerBlockColors(ColorHandlerEvent.Block event) {
         event.getBlockColors().register(GRASS_BLOCK_COLOR,
-                ModVerticalSlabs.GRASS_VERTICAL.get(), ModSlabs.GRASS_SLAB.get());
+                ESPVerticalSlabs.GRASS_VERTICAL.get(), ESPSlabs.GRASS_SLAB.get());
     }
 
     @SubscribeEvent
     public static void registerItemColors(ColorHandlerEvent.Item event) {
         event.getItemColors().register((stack, color) -> event.getBlockColors().getColor(((BlockItem) stack.getItem()).getBlock().defaultBlockState(), null, null, color),
-                ModVerticalSlabs.GRASS_VERTICAL.get(), ModSlabs.GRASS_SLAB.get());
+                ESPVerticalSlabs.GRASS_VERTICAL.get(), ESPSlabs.GRASS_SLAB.get());
     }
 }

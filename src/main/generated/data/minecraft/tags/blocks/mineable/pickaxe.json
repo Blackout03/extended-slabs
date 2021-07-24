@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "extendedslabs:end_stone_slab",
+    "extendedslabs:netherrack_slab",
+    "extendedslabs:end_stone_stairs",
+    "extendedslabs:netherrack_stairs"
+  ]
+}

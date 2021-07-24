@@ -1,10 +1,10 @@
 package com.blackout.extendedslabs.datagen;
 
 import com.blackout.extendedslabs.ExtendedSlabs;
-import com.blackout.extendedslabs.init.ModCorners;
-import com.blackout.extendedslabs.init.ModSlabs;
-import com.blackout.extendedslabs.init.ModStairs;
-import com.blackout.extendedslabs.init.ModVerticalSlabs;
+import com.blackout.extendedslabs.init.ESPCorners;
+import com.blackout.extendedslabs.init.ESPSlabs;
+import com.blackout.extendedslabs.init.ESPStairs;
+import com.blackout.extendedslabs.init.ESPVerticalSlabs;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
@@ -23,10 +23,10 @@ public class ESPItemModelGenerator extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        generateCornerBlockItems(ModCorners.ITEMS.getEntries());
-        generateSlabBlockItems(ModSlabs.ITEMS.getEntries());
-        generatStairBlockItems(ModStairs.ITEMS.getEntries());
-        generateVerticalSlabBlockItems(ModVerticalSlabs.ITEMS.getEntries());
+        generateCornerBlockItems(ESPCorners.ITEMS.getEntries());
+        generateSlabBlockItems(ESPSlabs.ITEMS.getEntries());
+        generateStairBlockItems(ESPStairs.ITEMS.getEntries());
+        generateVerticalSlabBlockItems(ESPVerticalSlabs.ITEMS.getEntries());
     }
 
     @Nonnull
@@ -63,7 +63,7 @@ public class ESPItemModelGenerator extends ItemModelProvider {
         }
     }
 
-    private void generatStairBlockItems(final Collection<RegistryObject<Item>> itemBlocks) {
+    private void generateStairBlockItems(final Collection<RegistryObject<Item>> itemBlocks) {
         for (RegistryObject<Item> item : itemBlocks) {
             String name = item.getId().getPath();
 

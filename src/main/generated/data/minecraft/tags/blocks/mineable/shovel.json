@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "extendedslabs:dirt_slab",
+    "extendedslabs:grass_slab",
+    "extendedslabs:gravel_slab",
+    "extendedslabs:path_slab",
+    "extendedslabs:podzol_slab",
+    "extendedslabs:red_sand_slab",
+    "extendedslabs:sand_slab",
+    "extendedslabs:dirt_stairs"
+  ]
+}
