@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "extendedslabs:cobblestone_corner"
+    }
+  ],
+  "result": {
+    "item": "extendedslabs:cobblestone_corner"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "extendedslabs:acacia_corner"
+    }
+  ],
+  "result": {
+    "item": "extendedslabs:acacia_corner"
+  }
+}

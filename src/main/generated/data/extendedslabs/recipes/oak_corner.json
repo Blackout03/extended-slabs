@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "extendedslabs:oak_corner"
+    }
+  ],
+  "result": {
+    "item": "extendedslabs:oak_corner"
+  }
+}

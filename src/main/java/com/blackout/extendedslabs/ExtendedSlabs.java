@@ -3,6 +3,7 @@ package com.blackout.extendedslabs;
 import com.blackout.extendedslabs.datagen.ESPBlockTagsProvider;
 import com.blackout.extendedslabs.datagen.ESPItemModelGenerator;
 import com.blackout.extendedslabs.datagen.ESPLootTableProvider;
+import com.blackout.extendedslabs.datagen.ESPRecipeProvider;
 import com.blackout.extendedslabs.init.ESPCorners;
 import com.blackout.extendedslabs.init.ESPSlabs;
 import com.blackout.extendedslabs.init.ESPStairs;
@@ -69,6 +70,7 @@ public class ExtendedSlabs {
             dataGenerator.addProvider(new ESPLootTableProvider(dataGenerator));
             dataGenerator.addProvider(new ESPItemModelGenerator(dataGenerator, existing));
             dataGenerator.addProvider(new ESPBlockTagsProvider(dataGenerator, existing));
+            dataGenerator.addProvider(new ESPRecipeProvider(dataGenerator));
         }
     }
 

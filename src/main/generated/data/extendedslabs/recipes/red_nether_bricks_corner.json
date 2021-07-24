@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "extendedslabs:red_nether_bricks_corner"
+    }
+  ],
+  "result": {
+    "item": "extendedslabs:red_nether_bricks_corner"
+  }
+}

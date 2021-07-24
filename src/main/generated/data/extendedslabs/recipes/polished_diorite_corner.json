@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "extendedslabs:polished_diorite_corner"
+    }
+  ],
+  "result": {
+    "item": "extendedslabs:polished_diorite_corner"
+  }
+}

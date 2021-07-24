@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "extendedslabs:granite_corner"
+    }
+  ],
+  "result": {
+    "item": "extendedslabs:granite_corner"
+  }
+}
