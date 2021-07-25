@@ -15,6 +15,7 @@
     "extendedslabs:vertical_cut_white_sandstone_slab",
     "extendedslabs:vertical_smooth_white_sandstone_slab",
     "extendedslabs:vertical_andesite_slab",
+    "extendedslabs:vertical_mud_brick_slab",
     "extendedslabs:vertical_polished_andesite_slab",
     "extendedslabs:vertical_diorite_slab",
     "extendedslabs:vertical_polished_diorite_slab",
@@ -65,7 +66,6 @@
     "extendedslabs:red_nether_bricks_corner",
     "extendedslabs:end_stone_corner",
     "extendedslabs:end_stone_bricks_corner",
-    "extendedslabs:purpur_corner",
-    "extendedslabs:vertical_mud_brick_slab"
+    "extendedslabs:purpur_corner"
   ]
 }
