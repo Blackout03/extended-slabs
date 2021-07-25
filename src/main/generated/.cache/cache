@@ -308,5 +308,5 @@ ee146b2baf3751839d7c06e9ca174f7518874317 data/minecraft/recipes/stone_stairs_to_
 28396aec612390c53a540571341830f6673f356f data/minecraft/recipes/warped_corner_to_warped_stairs.json
 53c8a1b47f9d563f53a632c084f9b5686dec2051 data/minecraft/recipes/warped_stairs_to_warped_corner.json
 086538fd300386711aed0e832d439ee459478aa0 data/minecraft/tags/blocks/mineable/axe.json
-ad7ffccade50bd25394ff4f8afd731efddd2df41 data/minecraft/tags/blocks/mineable/pickaxe.json
+d600908827acd9524a97fa65308423c3dad2c2b7 data/minecraft/tags/blocks/mineable/pickaxe.json
 ec7f2df14526aa72e9c8d05465b2bab340d2c8aa data/minecraft/tags/blocks/mineable/shovel.json
