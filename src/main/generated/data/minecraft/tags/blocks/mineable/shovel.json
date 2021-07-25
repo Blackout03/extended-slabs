@@ -8,6 +8,13 @@
     "extendedslabs:podzol_slab",
     "extendedslabs:red_sand_slab",
     "extendedslabs:sand_slab",
-    "extendedslabs:dirt_stairs"
+    "extendedslabs:dirt_stairs",
+    "extendedslabs:vertical_dirt_slab",
+    "extendedslabs:vertical_grass_slab",
+    "extendedslabs:vertical_gravel_slab",
+    "extendedslabs:vertical_path_slab",
+    "extendedslabs:vertical_podzol_slab",
+    "extendedslabs:vertical_sand_slab",
+    "extendedslabs:vertical_red_sand_slab"
   ]
 }

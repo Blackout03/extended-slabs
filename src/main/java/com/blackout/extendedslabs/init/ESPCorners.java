@@ -2,13 +2,11 @@ package com.blackout.extendedslabs.init;
 
 import com.blackout.extendedslabs.blocks.BlockCorners;
 import com.blackout.extendedslabs.ExtendedSlabs;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fmllegacy.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -54,58 +52,6 @@ public class ESPCorners {
     public static final RegistryObject<Block> OAK_CORNER = registerBlock("oak_corner",() -> new BlockCorners(Block.Properties.copy(Blocks.OAK_SLAB)), ExtendedSlabs.GROUP);
     public static final RegistryObject<Block> SPRUCE_CORNER = registerBlock("spruce_corner",() -> new BlockCorners(Block.Properties.copy(Blocks.SPRUCE_SLAB)), ExtendedSlabs.GROUP);
     public static final RegistryObject<Block> WARPED_CORNER = registerBlock("warped_corner",() -> new BlockCorners(Block.Properties.copy(Blocks.WARPED_SLAB)), ExtendedSlabs.GROUP);
-
-    // Modded Woods
-    public static RegistryObject<Block> CHERRY_CORNER = null;
-    public static RegistryObject<Block> DEAD_CORNER = null;
-    public static RegistryObject<Block> FIR_CORNER = null;
-    public static RegistryObject<Block> HELLBARK_CORNER = null;
-    public static RegistryObject<Block> JACARANDA_CORNER = null;
-    public static RegistryObject<Block> MAGIC_CORNER = null;
-    public static RegistryObject<Block> MAHOGANY_CORNER = null;
-    public static RegistryObject<Block> PALM_CORNER = null;
-    public static RegistryObject<Block> REDWOORD_CORNER = null;
-    public static RegistryObject<Block> UMBRAN_CORNER = null;
-    public static RegistryObject<Block> WILLOW_CORNER = null;
-//    public static RegistryObject<Block> MICHROSIA_CORNER = null;
-
-    // Modded Woods Compat
-    public static final Block CHERRY_SLAB = ForgeRegistries.BLOCKS.getValue(new ResourceLocation("biomesoplenty", "cherry_slab"));
-    public static final Block DEAD_SLAB = ForgeRegistries.BLOCKS.getValue(new ResourceLocation("biomesoplenty", "dead_slab"));
-    public static final Block FIR_SLAB = ForgeRegistries.BLOCKS.getValue(new ResourceLocation("biomesoplenty", "fir_slab"));
-    public static final Block HELLBARK_SLAB = ForgeRegistries.BLOCKS.getValue(new ResourceLocation("biomesoplenty", "hellbark_slab"));
-    public static final Block JACARANDA_SLAB = ForgeRegistries.BLOCKS.getValue(new ResourceLocation("biomesoplenty", "jacaranda_slab"));
-    public static final Block MAGIC_SLAB = ForgeRegistries.BLOCKS.getValue(new ResourceLocation("biomesoplenty", "magic_slab"));
-    public static final Block MAHOGANY_SLAB = ForgeRegistries.BLOCKS.getValue(new ResourceLocation("biomesoplenty", "mahogany_slab"));
-    public static final Block PALM_SLAB = ForgeRegistries.BLOCKS.getValue(new ResourceLocation("biomesoplenty", "palm_slab"));
-    public static final Block REDWOOD_SLAB = ForgeRegistries.BLOCKS.getValue(new ResourceLocation("biomesoplenty", "redwood_slab"));
-    public static final Block UMBRAN_SLAB = ForgeRegistries.BLOCKS.getValue(new ResourceLocation("biomesoplenty", "umbran_slab"));
-    public static final Block WILLOW_SLAB = ForgeRegistries.BLOCKS.getValue(new ResourceLocation("biomesoplenty", "willow_slab"));
-//    public static final Block MICHROSIA_SLAB = ForgeRegistries.BLOCKS.getValue(new ResourceLocation("michrosia", "michrosia_slab"));
-
-    public static void registerBOPCompat() {
-        if (ModList.get().isLoaded("biomesoplenty")) {
-            // Biomes O' Plenty Woods
-            CHERRY_CORNER = registerBlock("cherry_corner",() -> new BlockCorners(Block.Properties.copy(Blocks.OAK_SLAB)), ExtendedSlabs.GROUP);
-            DEAD_CORNER = registerBlock("dead_corner",() -> new BlockCorners(Block.Properties.copy(Blocks.OAK_SLAB)), ExtendedSlabs.GROUP);
-            FIR_CORNER = registerBlock("fir_corner",() -> new BlockCorners(Block.Properties.copy(Blocks.OAK_SLAB)), ExtendedSlabs.GROUP);
-            HELLBARK_CORNER = registerBlock("hellbark_corner",() -> new BlockCorners(Block.Properties.copy(Blocks.OAK_SLAB)), ExtendedSlabs.GROUP);
-            JACARANDA_CORNER = registerBlock("jacaranda_corner",() -> new BlockCorners(Block.Properties.copy(Blocks.OAK_SLAB)), ExtendedSlabs.GROUP);
-            MAGIC_CORNER = registerBlock("magic_corner",() -> new BlockCorners(Block.Properties.copy(Blocks.OAK_SLAB)), ExtendedSlabs.GROUP);
-            MAHOGANY_CORNER = registerBlock("mahogany_corner",() -> new BlockCorners(Block.Properties.copy(Blocks.OAK_SLAB)), ExtendedSlabs.GROUP);
-            PALM_CORNER = registerBlock("palm_corner",() -> new BlockCorners(Block.Properties.copy(Blocks.OAK_SLAB)), ExtendedSlabs.GROUP);
-            REDWOORD_CORNER = registerBlock("redwood_corner",() -> new BlockCorners(Block.Properties.copy(Blocks.OAK_SLAB)), ExtendedSlabs.GROUP);
-            UMBRAN_CORNER = registerBlock("umbran_corner",() -> new BlockCorners(Block.Properties.copy(Blocks.OAK_SLAB)), ExtendedSlabs.GROUP);
-            WILLOW_CORNER = registerBlock("willow_corner",() -> new BlockCorners(Block.Properties.copy(Blocks.OAK_SLAB)), ExtendedSlabs.GROUP);
-        }
-    }
-
-//    public static void registerMichrosiaCompat() {
-//        if (ModList.get().isLoaded("michrosia")) {
-//            // Michrosia Woods
-//            MICHROSIA_CORNER = registerBlock("michrosia_corner",() -> new BlockCorners(Block.Properties.copy(Blocks.OAK_SLAB)), ExtendedSlabs.GROUP);
-//        }
-//    }
 
     public static <B extends Block> RegistryObject<B> registerBlock(String name, Supplier<? extends B> supplier, CreativeModeTab itemGroup) {
         RegistryObject<B> block = ESPCorners.BLOCKS.register(name, supplier);

@@ -24,9 +24,9 @@ public class ESPLootTableProvider extends LootTableProvider {
 
     @Override
     protected List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootContextParamSet>> getTables() {
-        return ImmutableList.of(Pair.of(ESPCornersLootTables::new, LootContextParamSets.BLOCK),
-                Pair.of(ESPSlabsLootTables::new, LootContextParamSets.BLOCK),
+        return ImmutableList.of(Pair.of(ESPSlabsLootTables::new, LootContextParamSets.BLOCK),
                 Pair.of(ESPStairsLootTables::new, LootContextParamSets.BLOCK),
+                Pair.of(ESPCornersLootTables::new, LootContextParamSets.BLOCK),
                 Pair.of(ESPVerticalSlabsLootTables::new, LootContextParamSets.BLOCK));
     }
 

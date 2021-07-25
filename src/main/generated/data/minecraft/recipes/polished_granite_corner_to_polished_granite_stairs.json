@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "extendedslabs:polished_granite_corner"
+    }
+  ],
+  "result": {
+    "item": "minecraft:polished_granite_stairs"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:warped_stairs"
+    }
+  ],
+  "result": {
+    "item": "extendedslabs:warped_corner"
+  }
+}

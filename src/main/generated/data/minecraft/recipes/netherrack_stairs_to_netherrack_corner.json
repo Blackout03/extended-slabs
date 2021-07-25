@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "extendedslabs:netherrack_stairs"
+    }
+  ],
+  "result": {
+    "item": "extendedslabs:netherrack_corner"
+  }
+}

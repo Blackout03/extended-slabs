@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "extendedslabs:purpur_corner"
+    }
+  ],
+  "result": {
+    "item": "minecraft:purpur_stairs"
+  }
+}

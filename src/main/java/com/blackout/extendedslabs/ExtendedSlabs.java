@@ -1,13 +1,12 @@
 package com.blackout.extendedslabs;
 
-import com.blackout.extendedslabs.datagen.ESPBlockTagsProvider;
-import com.blackout.extendedslabs.datagen.ESPItemModelGenerator;
-import com.blackout.extendedslabs.datagen.ESPLootTableProvider;
-import com.blackout.extendedslabs.datagen.ESPRecipeProvider;
+import com.blackout.extendedslabs.datagen.*;
 import com.blackout.extendedslabs.init.ESPCorners;
 import com.blackout.extendedslabs.init.ESPSlabs;
 import com.blackout.extendedslabs.init.ESPStairs;
 import com.blackout.extendedslabs.init.ESPVerticalSlabs;
+import com.blackout.extendedslabs.init.modded.BOPCorners;
+import com.blackout.extendedslabs.init.modded.BOPVerticalSlabs;
 import com.blackout.extendedslabs.render.block.BlockRenderLayer;
 import com.blackout.extendedslabs.util.CreativeTab;
 import net.minecraft.data.DataGenerator;
@@ -38,25 +37,25 @@ public class ExtendedSlabs {
     public ExtendedSlabs() {
         INSTANCE = this;
 
-        if (ModList.get().isLoaded("biomesoplenty")) ESPVerticalSlabs.registerBOPCompat();
-        if (ModList.get().isLoaded("biomesoplenty")) ESPCorners.registerBOPCompat();
-        if (ModList.get().isLoaded("biomesoplenty")) LOGGER.debug(ExtendedSlabs.MODID + ": Biomes O' Plenty Compat Loaded");
-//        if (ModList.get().isLoaded("michrosia")) ESPVerticalSlabs.registerMichrosiaCompat();
-//        if (ModList.get().isLoaded("michrosia")) ESPCorners.registerMichrosiaCompat();
-//        if (ModList.get().isLoaded("michrosia")) LOGGER.debug(ExtendedSlabs.MODID + ": Michrosia Compat Loaded");
-
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         eventBus.addListener(this::gatherData);
 
-        ESPCorners.ITEMS.register(eventBus);
-        ESPCorners.BLOCKS.register(eventBus);
         ESPSlabs.ITEMS.register(eventBus);
         ESPSlabs.BLOCKS.register(eventBus);
         ESPStairs.ITEMS.register(eventBus);
         ESPStairs.BLOCKS.register(eventBus);
+        ESPCorners.ITEMS.register(eventBus);
+        ESPCorners.BLOCKS.register(eventBus);
         ESPVerticalSlabs.ITEMS.register(eventBus);
         ESPVerticalSlabs.BLOCKS.register(eventBus);
+        if (ModList.get().isLoaded("biomesoplenty")) {
+            BOPCorners.ITEMS.register(eventBus);
+            BOPCorners.BLOCKS.register(eventBus);
+            BOPVerticalSlabs.ITEMS.register(eventBus);
+            BOPVerticalSlabs.BLOCKS.register(eventBus);
+            LOGGER.debug(ExtendedSlabs.MODID + ": Biomes O' Plenty Compat Loaded");
+        }
         MinecraftForge.EVENT_BUS.register(this);
 
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientSetup);
@@ -70,7 +69,8 @@ public class ExtendedSlabs {
             dataGenerator.addProvider(new ESPLootTableProvider(dataGenerator));
             dataGenerator.addProvider(new ESPItemModelGenerator(dataGenerator, existing));
             dataGenerator.addProvider(new ESPBlockTagsProvider(dataGenerator, existing));
-            dataGenerator.addProvider(new ESPRecipeProvider(dataGenerator));
+            dataGenerator.addProvider(new ESPStairRecipeProvider(dataGenerator));
+            dataGenerator.addProvider(new ESPCornerRecipeProvider(dataGenerator));
         }
     }
 

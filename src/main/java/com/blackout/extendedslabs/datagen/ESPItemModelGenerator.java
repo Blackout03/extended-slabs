@@ -5,6 +5,8 @@ import com.blackout.extendedslabs.init.ESPCorners;
 import com.blackout.extendedslabs.init.ESPSlabs;
 import com.blackout.extendedslabs.init.ESPStairs;
 import com.blackout.extendedslabs.init.ESPVerticalSlabs;
+import com.blackout.extendedslabs.init.modded.BOPCorners;
+import com.blackout.extendedslabs.init.modded.BOPVerticalSlabs;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
@@ -23,30 +25,18 @@ public class ESPItemModelGenerator extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        generateCornerBlockItems(ESPCorners.ITEMS.getEntries());
         generateSlabBlockItems(ESPSlabs.ITEMS.getEntries());
         generateStairBlockItems(ESPStairs.ITEMS.getEntries());
+        generateCornerBlockItems(ESPCorners.ITEMS.getEntries());
         generateVerticalSlabBlockItems(ESPVerticalSlabs.ITEMS.getEntries());
+        generateBOPCornerBlockItems(BOPCorners.ITEMS.getEntries());
+        generateBOPVerticalSlabBlockItems(BOPVerticalSlabs.ITEMS.getEntries());
     }
 
     @Nonnull
     @Override
     public String getName() {
         return ExtendedSlabs.MODNAME + " Item models";
-    }
-
-    private void generateCornerBlockItems(final Collection<RegistryObject<Item>> itemBlocks) {
-        for (RegistryObject<Item> item : itemBlocks) {
-            String name = item.getId().getPath();
-
-            if (!existingFileHelper.exists(new ResourceLocation(ExtendedSlabs.MODID, "block/corners/" + name), MODEL) || existingFileHelper.exists(new ResourceLocation(ExtendedSlabs.MODID, "item/" + name), MODEL))
-                continue;
-
-            ExtendedSlabs.LOGGER.info(item.getId());
-
-            withExistingParent(name, new ResourceLocation(ExtendedSlabs.MODID, "block/corners/" + name));
-
-        }
     }
 
     private void generateSlabBlockItems(final Collection<RegistryObject<Item>> itemBlocks) {
@@ -77,7 +67,49 @@ public class ESPItemModelGenerator extends ItemModelProvider {
         }
     }
 
+    private void generateCornerBlockItems(final Collection<RegistryObject<Item>> itemBlocks) {
+        for (RegistryObject<Item> item : itemBlocks) {
+            String name = item.getId().getPath();
+
+            if (!existingFileHelper.exists(new ResourceLocation(ExtendedSlabs.MODID, "block/corners/" + name), MODEL) || existingFileHelper.exists(new ResourceLocation(ExtendedSlabs.MODID, "item/" + name), MODEL))
+                continue;
+
+            ExtendedSlabs.LOGGER.info(item.getId());
+
+            withExistingParent(name, new ResourceLocation(ExtendedSlabs.MODID, "block/corners/" + name));
+
+        }
+    }
+
     private void generateVerticalSlabBlockItems(final Collection<RegistryObject<Item>> itemBlocks) {
+        for (RegistryObject<Item> item : itemBlocks) {
+            String name = item.getId().getPath();
+
+            if (!existingFileHelper.exists(new ResourceLocation(ExtendedSlabs.MODID, "block/slabs/vertical/" + name), MODEL) || existingFileHelper.exists(new ResourceLocation(ExtendedSlabs.MODID, "item/" + name), MODEL))
+                continue;
+
+            ExtendedSlabs.LOGGER.info(item.getId());
+
+            withExistingParent(name, new ResourceLocation(ExtendedSlabs.MODID, "block/slabs/vertical/" + name));
+
+        }
+    }
+
+    private void generateBOPCornerBlockItems(final Collection<RegistryObject<Item>> itemBlocks) {
+        for (RegistryObject<Item> item : itemBlocks) {
+            String name = item.getId().getPath();
+
+            if (!existingFileHelper.exists(new ResourceLocation(ExtendedSlabs.MODID, "block/corners/" + name), MODEL) || existingFileHelper.exists(new ResourceLocation(ExtendedSlabs.MODID, "item/" + name), MODEL))
+                continue;
+
+            ExtendedSlabs.LOGGER.info(item.getId());
+
+            withExistingParent(name, new ResourceLocation(ExtendedSlabs.MODID, "block/corners/" + name));
+
+        }
+    }
+
+    private void generateBOPVerticalSlabBlockItems(final Collection<RegistryObject<Item>> itemBlocks) {
         for (RegistryObject<Item> item : itemBlocks) {
             String name = item.getId().getPath();
 

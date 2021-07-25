@@ -17,8 +17,6 @@ version = "${project.minecraft}-${project.modVersion}"
 group = 'com.blackout.extendedslabs'
 archivesBaseName = project.modId
 
-sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '16'
-
 minecraft {
     mappings channel: "official", version: "1.17.1"
     runs {
@@ -62,6 +60,8 @@ sourceSets {
 
 dependencies {
     minecraft "net.minecraftforge:forge:${project.minecraft}-${project.forge}"
+
+    implementation fg.deobf("curse.maven:biomes_o_plenty-220318:${project.bop}")
 }
 
 repositories {
