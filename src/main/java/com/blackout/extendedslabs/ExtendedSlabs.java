@@ -71,6 +71,8 @@ public class ExtendedSlabs {
             dataGenerator.addProvider(new ESPBlockTagsProvider(dataGenerator, existing));
             dataGenerator.addProvider(new ESPStairRecipeProvider(dataGenerator));
             dataGenerator.addProvider(new ESPCornerRecipeProvider(dataGenerator));
+            dataGenerator.addProvider(new ESPSlabRecipeProvider(dataGenerator));
+            dataGenerator.addProvider(new ESPVerticalSlabRecipeProvider(dataGenerator));
         }
     }
 

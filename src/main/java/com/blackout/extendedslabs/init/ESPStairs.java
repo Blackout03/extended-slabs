@@ -1,7 +1,7 @@
 package com.blackout.extendedslabs.init;
 
 import com.blackout.extendedslabs.ExtendedSlabs;
-import com.blackout.extendedslabs.blocks.BlockCustomStairs;
+import com.blackout.extendedslabs.blocks.ESPStairBlock;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
@@ -20,13 +20,13 @@ public class ESPStairs {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, ExtendedSlabs.MODID);
 
     // Dirt
-    public static final RegistryObject<Block> DIRT_STAIRS = registerBlock("dirt_stairs",() -> new BlockCustomStairs(Block.stateById(1), Block.Properties.copy(Blocks.DIRT)), ExtendedSlabs.GROUP);
+    public static final RegistryObject<Block> DIRT_STAIRS = registerBlock("dirt_stairs",() -> new ESPStairBlock(Block.stateById(1), Block.Properties.copy(Blocks.DIRT)), ExtendedSlabs.GROUP);
 
     // Nether
-    public static final RegistryObject<Block> NETHERRACK_STAIRS = registerBlock("netherrack_stairs",() -> new BlockCustomStairs(Block.stateById(1), Block.Properties.copy(Blocks.NETHERRACK)), ExtendedSlabs.GROUP);
+    public static final RegistryObject<Block> NETHERRACK_STAIRS = registerBlock("netherrack_stairs",() -> new ESPStairBlock(Block.stateById(1), Block.Properties.copy(Blocks.NETHERRACK)), ExtendedSlabs.GROUP);
 
     // End
-    public static final RegistryObject<Block> END_STONE_STAIRS = registerBlock("end_stone_stairs",() -> new BlockCustomStairs(Block.stateById(1), Block.Properties.copy(Blocks.END_STONE)), ExtendedSlabs.GROUP);
+    public static final RegistryObject<Block> END_STONE_STAIRS = registerBlock("end_stone_stairs",() -> new ESPStairBlock(Block.stateById(1), Block.Properties.copy(Blocks.END_STONE)), ExtendedSlabs.GROUP);
 
 
     public static <B extends Block> RegistryObject<B> registerBlock(String name, Supplier<? extends B> supplier, CreativeModeTab itemGroup) {

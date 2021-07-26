@@ -19,6 +19,7 @@ public class ESPVerticalSlabsLootTables extends BlockLoot {
             dropSelf(block.get());
         }
     }
+
     @Override
     protected Iterable<Block> getKnownBlocks() {
         return ESPVerticalSlabs.BLOCKS.getEntries().stream().map(RegistryObject::get)::iterator;

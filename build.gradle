@@ -60,8 +60,6 @@ sourceSets {
 
 dependencies {
     minecraft "net.minecraftforge:forge:${project.minecraft}-${project.forge}"
-
-    implementation fg.deobf("curse.maven:biomes_o_plenty-220318:${project.bop}")
 }
 
 repositories {

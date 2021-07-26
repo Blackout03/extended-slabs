@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "extendedslabs:vertical_cobbled_deepslate_slab"
+    }
+  ],
+  "result": {
+    "item": "minecraft:cobbled_deepslate_slab"
+  }
+}

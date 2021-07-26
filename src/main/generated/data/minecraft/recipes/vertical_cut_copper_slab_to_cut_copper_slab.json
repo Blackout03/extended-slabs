@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "extendedslabs:vertical_cut_copper_slab"
+    }
+  ],
+  "result": {
+    "item": "minecraft:cut_copper_slab"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "extendedslabs:sand_slab"
+    }
+  ],
+  "result": {
+    "item": "extendedslabs:vertical_sand_slab"
+  }
+}
