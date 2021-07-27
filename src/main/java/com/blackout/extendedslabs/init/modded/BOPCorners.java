@@ -33,7 +33,7 @@ public class BOPCorners {
     public static RegistryObject<Block> WILLOW_CORNER = registerBlock("willow_corner",() -> new CornerBlock(Block.Properties.copy(Blocks.OAK_SLAB)), ExtendedSlabs.GROUP);
 
     public static <B extends Block> RegistryObject<B> registerBlock(String name, Supplier<? extends B> supplier, CreativeModeTab itemGroup) {
-        RegistryObject<B> block = com.blackout.extendedslabs.init.ESPCorners.BLOCKS.register(name, supplier);
+        RegistryObject<B> block = BOPCorners.BLOCKS.register(name, supplier);
         ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties().tab(itemGroup)));
         return block;
     }

@@ -47,7 +47,7 @@ public class BOPVerticalSlabs {
     public static RegistryObject<Block> WILLOW_VERTICAL = registerBlock("vertical_willow_slab", () -> new VerticalSlabBlock(Block.Properties.copy(Blocks.OAK_SLAB)), ExtendedSlabs.GROUP);
 
     public static <B extends Block> RegistryObject<B> registerBlock(String name, Supplier<? extends B> supplier, CreativeModeTab itemGroup) {
-        RegistryObject<B> block = com.blackout.extendedslabs.init.ESPVerticalSlabs.BLOCKS.register(name, supplier);
+        RegistryObject<B> block = BOPVerticalSlabs.BLOCKS.register(name, supplier);
         ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties().tab(itemGroup)));
         return block;
     }

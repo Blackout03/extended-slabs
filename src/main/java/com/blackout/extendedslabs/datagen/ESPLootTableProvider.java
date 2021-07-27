@@ -17,8 +17,7 @@ import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public class ESPLootTableProvider extends LootTableProvider {
-    public ESPLootTableProvider(DataGenerator dataGeneratorIn)
-    {
+    public ESPLootTableProvider(DataGenerator dataGeneratorIn) {
         super(dataGeneratorIn);
     }
 
