@@ -7,6 +7,7 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.StairBlock;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fmllegacy.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -20,13 +21,13 @@ public class ESPStairs {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, ExtendedSlabs.MODID);
 
     // Dirt
-    public static final RegistryObject<Block> DIRT_STAIRS = registerBlock("dirt_stairs",() -> new ESPStairBlock(Block.stateById(1), Block.Properties.copy(Blocks.DIRT)), ExtendedSlabs.GROUP);
+    public static final RegistryObject<Block> DIRT_STAIRS = registerBlock("dirt_stairs",() -> new StairBlock(Block.stateById(1), Block.Properties.copy(Blocks.DIRT)), ExtendedSlabs.GROUP);
 
     // Nether
-    public static final RegistryObject<Block> NETHERRACK_STAIRS = registerBlock("netherrack_stairs",() -> new ESPStairBlock(Block.stateById(1), Block.Properties.copy(Blocks.NETHERRACK)), ExtendedSlabs.GROUP);
+    public static final RegistryObject<Block> NETHERRACK_STAIRS = registerBlock("netherrack_stairs",() -> new StairBlock(Block.stateById(1), Block.Properties.copy(Blocks.NETHERRACK)), ExtendedSlabs.GROUP);
 
     // End
-    public static final RegistryObject<Block> END_STONE_STAIRS = registerBlock("end_stone_stairs",() -> new ESPStairBlock(Block.stateById(1), Block.Properties.copy(Blocks.END_STONE)), ExtendedSlabs.GROUP);
+    public static final RegistryObject<Block> END_STONE_STAIRS = registerBlock("end_stone_stairs",() -> new StairBlock(Block.stateById(1), Block.Properties.copy(Blocks.END_STONE)), ExtendedSlabs.GROUP);
 
 
     public static <B extends Block> RegistryObject<B> registerBlock(String name, Supplier<? extends B> supplier, CreativeModeTab itemGroup) {

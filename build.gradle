@@ -17,6 +17,8 @@ version = "${project.minecraft}-${project.modVersion}"
 group = 'com.blackout.extendedslabs'
 archivesBaseName = project.modId
 
+java.toolchain.languageVersion = JavaLanguageVersion.of(16)
+
 minecraft {
     mappings channel: "official", version: "1.17.1"
     runs {
