@@ -7,8 +7,8 @@ import net.minecraftforge.common.ToolType;
 
 import javax.annotation.Nullable;
 
-public class BlockGrassSlab extends SlabBlock {
-    public BlockGrassSlab(Block.Properties builder) {
+public class GrassSlabBlock extends SlabBlock {
+    public GrassSlabBlock(Block.Properties builder) {
         super(builder);
     }
 

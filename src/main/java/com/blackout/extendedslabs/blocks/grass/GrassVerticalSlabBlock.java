@@ -1,6 +1,6 @@
 package com.blackout.extendedslabs.blocks.grass;
 
-import com.blackout.extendedslabs.blocks.BlockVerticalSlab;
+import com.blackout.extendedslabs.blocks.VerticalSlabBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.fluid.FluidState;
@@ -10,8 +10,8 @@ import net.minecraftforge.common.ToolType;
 
 import javax.annotation.Nullable;
 
-public class BlockVerticalGrassSlab extends BlockVerticalSlab {
-    public BlockVerticalGrassSlab(Block.Properties builder) {
+public class GrassVerticalSlabBlock extends VerticalSlabBlock {
+    public GrassVerticalSlabBlock(Block.Properties builder) {
         super(builder);
     }
 

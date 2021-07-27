@@ -1,10 +1,8 @@
-package com.blackout.extendedslabs.blocks;
+package com.blackout.extendedslabs.blocks.falling;
 
+import com.blackout.extendedslabs.blocks.VerticalSlabBlock;
 import com.blackout.extendedslabs.blocks.shapes.VerticalSlabShape;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.HorizontalBlock;
-import net.minecraft.block.IWaterLoggable;
+import net.minecraft.block.*;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
@@ -24,37 +22,37 @@ import net.minecraft.world.IWorld;
 
 import javax.annotation.Nullable;
 
-public class BlockVerticalSlab extends Block implements IWaterLoggable {
+public class FallingVerticalSlabBlock extends FallingBlock implements IWaterLoggable {
 
-    public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
+    public static final DirectionProperty FACING = HorizontalBlock.FACING;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public static final EnumProperty<VerticalSlabShape> SHAPE = EnumProperty.create("shape", VerticalSlabShape.class);
 
-    protected static final VoxelShape NORTH_SHAPE = Block.makeCuboidShape(0.0D, 16.0D, 0.0D, 16.0D, 0.0D, 8.0D);
-    protected static final VoxelShape EAST_SHAPE = Block.makeCuboidShape(8.0D, 16.0D, 0.0D, 16.0D, 0.0D, 16.0D);
-    protected static final VoxelShape SOUTH_SHAPE = Block.makeCuboidShape(0.0D, 16.0D, 16.0D, 16.0D, 0.0D, 8.0D);
-    protected static final VoxelShape WEST_SHAPE = Block.makeCuboidShape(0.0D, 16.0D, 0.0D, 8.0D, 0.0D, 16.0D);
+    protected static final VoxelShape NORTH_SHAPE = Block.box(0.0D, 16.0D, 0.0D, 16.0D, 0.0D, 8.0D);
+    protected static final VoxelShape EAST_SHAPE = Block.box(8.0D, 16.0D, 0.0D, 16.0D, 0.0D, 16.0D);
+    protected static final VoxelShape SOUTH_SHAPE = Block.box(0.0D, 16.0D, 16.0D, 16.0D, 0.0D, 8.0D);
+    protected static final VoxelShape WEST_SHAPE = Block.box(0.0D, 16.0D, 0.0D, 8.0D, 0.0D, 16.0D);
 
-    protected static final VoxelShape NORTH_OUTER_SHAPE = Block.makeCuboidShape(0.0D, 16.0D, 0.0D, 8.0D, 0.0D, 8.0D);
-    protected static final VoxelShape EAST_OUTER_SHAPE = Block.makeCuboidShape(8.0D, 16.0D, 0.0D, 16.0D, 0.0D, 8.0D);
-    protected static final VoxelShape SOUTH_OUTER_SHAPE = Block.makeCuboidShape(8.0D, 16.0D, 16.0D, 16.0D, 0.0D, 8.0D);
-    protected static final VoxelShape WEST_OUTER_SHAPE = Block.makeCuboidShape(0.0D, 16.0D, 8.0D, 8.0D, 0.0D, 16.0D);
+    protected static final VoxelShape NORTH_OUTER_SHAPE = Block.box(0.0D, 16.0D, 0.0D, 8.0D, 0.0D, 8.0D);
+    protected static final VoxelShape EAST_OUTER_SHAPE = Block.box(8.0D, 16.0D, 0.0D, 16.0D, 0.0D, 8.0D);
+    protected static final VoxelShape SOUTH_OUTER_SHAPE = Block.box(8.0D, 16.0D, 16.0D, 16.0D, 0.0D, 8.0D);
+    protected static final VoxelShape WEST_OUTER_SHAPE = Block.box(0.0D, 16.0D, 8.0D, 8.0D, 0.0D, 16.0D);
 
-    public BlockVerticalSlab(Block.Properties builder) {
+    public FallingVerticalSlabBlock(Block.Properties builder) {
         super(builder);
-        this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH).with(SHAPE, VerticalSlabShape.STRAIGHT).with(WATERLOGGED, Boolean.FALSE));
+        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(SHAPE, VerticalSlabShape.STRAIGHT).setValue(WATERLOGGED, Boolean.FALSE));
     }
 
     @Override
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(FACING, SHAPE, WATERLOGGED);
     }
 
     @Override
     @SuppressWarnings("deprecation")
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        VerticalSlabShape verticalslabshape = state.get(SHAPE);
-        Direction enumfacing = state.get(FACING);
+        VerticalSlabShape verticalslabshape = state.getValue(SHAPE);
+        Direction enumfacing = state.getValue(FACING);
 
         if (verticalslabshape != VerticalSlabShape.STRAIGHT) {
             switch (verticalslabshape) {
@@ -142,19 +140,18 @@ public class BlockVerticalSlab extends Block implements IWaterLoggable {
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        Direction enumfacing = context.getFace();
-        FluidState ifluidstate = context.getWorld().getFluidState(context.getPos());
-        BlockState iblockstate = this.getDefaultState().with(FACING, context.getPlacementHorizontalFacing()).with(WATERLOGGED, ifluidstate.getFluid() == Fluids.WATER);
-        return iblockstate.with(SHAPE, getSlabShape(iblockstate, context.getWorld(), context.getPos()));
+        Direction enumfacing = context.getClickedFace();
+        FluidState ifluidstate = context.getLevel().getFluidState(context.getClickedPos());
+        BlockState iblockstate = this.defaultBlockState().setValue(FACING, context.getHorizontalDirection()).setValue(WATERLOGGED, ifluidstate.getType() == Fluids.WATER);
+        return iblockstate.setValue(SHAPE, getSlabShape(iblockstate, context.getLevel(), context.getClickedPos()));
     }
 
     private static VerticalSlabShape getSlabShape(BlockState state, IBlockReader worldIn, BlockPos pos) {
-        Direction enumfacing = state.get(FACING);
-        BlockState iblockstate = worldIn.getBlockState(pos.offset(enumfacing));
-        if (isBlockVerticalSlab(iblockstate)) {
-            Direction enumfacing1 = iblockstate.get(FACING);
-            if (enumfacing1.getAxis() != state.get(FACING).getAxis() && isDifferentVerticalSlab(state, worldIn, pos, enumfacing1.getOpposite())) {
-                if (enumfacing1 == enumfacing.rotateYCCW()) {
+        Direction enumfacing = state.getValue(FACING);
+        if (isBlockVerticalSlab(state)) {
+            Direction enumfacing1 = state.getValue(FACING);
+            if (enumfacing1.getAxis() != state.getValue(FACING).getAxis() && isDifferentVerticalSlab(state, worldIn, pos, enumfacing1.getOpposite())) {
+                if (enumfacing1 == enumfacing.getCounterClockWise()) {
                     return VerticalSlabShape.OUTER_LEFT;
                 }
 
@@ -162,11 +159,10 @@ public class BlockVerticalSlab extends Block implements IWaterLoggable {
             }
         }
 
-        BlockState iblockstate1 = worldIn.getBlockState(pos.offset(enumfacing.getOpposite()));
-        if (isBlockVerticalSlab(iblockstate1)) {
-            Direction enumfacing2 = iblockstate1.get(FACING);
-            if (enumfacing2.getAxis() != state.get(FACING).getAxis() && isDifferentVerticalSlab(state, worldIn, pos, enumfacing2)) {
-                if (enumfacing2 == enumfacing.rotateYCCW()) {
+        if (isBlockVerticalSlab(state)) {
+            Direction enumfacing2 = state.getValue(FACING);
+            if (enumfacing2.getAxis() != state.getValue(FACING).getAxis() && isDifferentVerticalSlab(state, worldIn, pos, enumfacing2)) {
+                if (enumfacing2 == enumfacing.getCounterClockWise()) {
                     return VerticalSlabShape.INNER_LEFT;
                 }
 
@@ -178,39 +174,36 @@ public class BlockVerticalSlab extends Block implements IWaterLoggable {
     }
 
     private static boolean isDifferentVerticalSlab(BlockState state, IBlockReader worldIn, BlockPos pos, Direction enumFacing) {
-        BlockState iblockstate = worldIn.getBlockState(pos.offset(enumFacing));
-        return !isBlockVerticalSlab(iblockstate) || iblockstate.get(FACING) != state.get(FACING);
+        return !isBlockVerticalSlab(state) || state.getValue(FACING) != state.getValue(FACING);
     }
 
     public static boolean isBlockVerticalSlab(BlockState state) {
-        return state.getBlock() instanceof BlockVerticalSlab;
+        return state.getBlock() instanceof VerticalSlabBlock;
     }
 
     @Override
-    @SuppressWarnings("deprecation")
-    public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-        if (stateIn.get(WATERLOGGED)) {
-            worldIn.getPendingFluidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickRate(worldIn));
+    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+        if (stateIn.getValue(WATERLOGGED)) {
+            worldIn.getLiquidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(worldIn));
         }
 
         /* First round of updatePostPlacement */
-        return facing.getAxis().isHorizontal() ? stateIn.with(SHAPE, getSlabShape(stateIn, worldIn, currentPos)) : super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+        return facing.getAxis().isHorizontal() ? stateIn.setValue(SHAPE, getSlabShape(stateIn, worldIn, currentPos)) : super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
     }
 
     @Override
     @SuppressWarnings("deprecation")
     public FluidState getFluidState(BlockState state) {
-        return state.get(WATERLOGGED) ? Fluids.WATER.getStillFluidState(false) : super.getFluidState(state);
+        return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
     }
 
     @Override
-    public boolean canContainFluid(IBlockReader worldIn, BlockPos pos, BlockState state, Fluid fluidIn) {
-        return IWaterLoggable.super.canContainFluid(worldIn, pos, state, fluidIn);
+    public boolean canPlaceLiquid(IBlockReader worldIn, BlockPos pos, BlockState state, Fluid fluidIn) {
+        return IWaterLoggable.super.canPlaceLiquid(worldIn, pos, state, fluidIn);
     }
 
     @Override
-    public boolean receiveFluid(IWorld worldIn, BlockPos pos, BlockState state, FluidState fluidStateIn) {
-        return IWaterLoggable.super.receiveFluid(worldIn, pos, state, fluidStateIn);
+    public boolean placeLiquid(IWorld worldIn, BlockPos pos, BlockState state, FluidState fluidStateIn) {
+        return IWaterLoggable.super.placeLiquid(worldIn, pos, state, fluidStateIn);
     }
-
 }

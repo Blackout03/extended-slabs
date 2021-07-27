@@ -1,0 +1,62 @@
+package com.blackout.extendedslabs.datagen;
+
+import com.blackout.extendedslabs.ExtendedSlabs;
+import com.blackout.extendedslabs.init.ESPCorners;
+import com.blackout.extendedslabs.init.ESPStairs;
+import net.minecraft.block.Blocks;
+import net.minecraft.data.DataGenerator;
+import net.minecraft.data.IFinishedRecipe;
+import net.minecraft.data.RecipeProvider;
+import net.minecraft.data.ShapelessRecipeBuilder;
+import net.minecraft.item.Item;
+
+import java.util.function.Consumer;
+
+public class ESPStairRecipeProvider extends RecipeProvider {
+
+    public ESPStairRecipeProvider(DataGenerator generator) {
+        super(generator);
+    }
+
+    @Override
+    public void buildShapelessRecipes(Consumer<IFinishedRecipe> consumer) {
+        generateStairRecipes(ESPCorners.STONE_CORNER.get().asItem(), Blocks.STONE_STAIRS.asItem(), consumer);
+        generateStairRecipes(ESPCorners.COBBLESTONE_CORNER.get().asItem(), Blocks.COBBLESTONE_STAIRS.asItem(), consumer);
+        generateStairRecipes(ESPCorners.STONE_BRICKS_CORNER.get().asItem(), Blocks.STONE_BRICK_STAIRS.asItem(), consumer);
+        generateStairRecipes(ESPCorners.ANDESITE_CORNER.get().asItem(), Blocks.ANDESITE_STAIRS.asItem(), consumer);
+        generateStairRecipes(ESPCorners.POLISHED_ANDESITE_CORNER.get().asItem(), Blocks.POLISHED_ANDESITE_STAIRS.asItem(), consumer);
+        generateStairRecipes(ESPCorners.DIORITE_CORNER.get().asItem(), Blocks.DIORITE_STAIRS.asItem(), consumer);
+        generateStairRecipes(ESPCorners.POLISHED_DIORITE_CORNER.get().asItem(), Blocks.POLISHED_DIORITE_STAIRS.asItem(), consumer);
+        generateStairRecipes(ESPCorners.GRANITE_CORNER.get().asItem(), Blocks.GRANITE_STAIRS.asItem(), consumer);
+        generateStairRecipes(ESPCorners.POLISHED_GRANITE_CORNER.get().asItem(), Blocks.POLISHED_GRANITE_STAIRS.asItem(), consumer);
+
+        generateStairRecipes(ESPCorners.NETHERRACK_CORNER.get().asItem(), ESPStairs.NETHERRACK_STAIRS.get().asItem(), consumer);
+        generateStairRecipes(ESPCorners.NETHER_BRICKS_CORNER.get().asItem(), Blocks.NETHER_BRICK_STAIRS.asItem(), consumer);
+        generateStairRecipes(ESPCorners.RED_NETHER_BRICKS_CORNER.get().asItem(), Blocks.RED_NETHER_BRICK_STAIRS.asItem(), consumer);
+        generateStairRecipes(ESPCorners.BLACKSTONE_CORNER.get().asItem(), Blocks.BLACKSTONE_STAIRS.asItem(), consumer);
+        generateStairRecipes(ESPCorners.POLISHED_BLACKSTONE_CORNER.get().asItem(), Blocks.POLISHED_BLACKSTONE_STAIRS.asItem(), consumer);
+        generateStairRecipes(ESPCorners.POLISHED_BLACKSTONE_BRICKS_CORNER.get().asItem(), Blocks.POLISHED_BLACKSTONE_BRICK_STAIRS.asItem(), consumer);
+
+        generateStairRecipes(ESPCorners.END_STONE_CORNER.get().asItem(), ESPStairs.END_STONE_STAIRS.get().asItem(), consumer);
+        generateStairRecipes(ESPCorners.END_STONE_BRICKS_CORNER.get().asItem(), Blocks.END_STONE_BRICK_STAIRS.asItem(), consumer);
+        generateStairRecipes(ESPCorners.PURPUR_CORNER.get().asItem(), Blocks.PURPUR_STAIRS.asItem(), consumer);
+
+        generateStairRecipes(ESPCorners.ACACIA_CORNER.get().asItem(), Blocks.ACACIA_STAIRS.asItem(), consumer);
+        generateStairRecipes(ESPCorners.BIRCH_CORNER.get().asItem(), Blocks.BIRCH_STAIRS.asItem(), consumer);
+        generateStairRecipes(ESPCorners.CRIMSON_CORNER.get().asItem(), Blocks.CRIMSON_STAIRS.asItem(), consumer);
+        generateStairRecipes(ESPCorners.DARK_OAK_CORNER.get().asItem(), Blocks.DARK_OAK_STAIRS.asItem(), consumer);
+        generateStairRecipes(ESPCorners.JUNGLE_CORNER.get().asItem(), Blocks.JUNGLE_STAIRS.asItem(), consumer);
+        generateStairRecipes(ESPCorners.OAK_CORNER.get().asItem(), Blocks.OAK_STAIRS.asItem(), consumer);
+        generateStairRecipes(ESPCorners.SPRUCE_CORNER.get().asItem(), Blocks.SPRUCE_STAIRS.asItem(), consumer);
+        generateStairRecipes(ESPCorners.WARPED_CORNER.get().asItem(), Blocks.WARPED_STAIRS.asItem(), consumer);
+    }
+
+    public void generateStairRecipes(Item output, Item input, Consumer<IFinishedRecipe> consumer) {
+        ExtendedSlabs.LOGGER.info(input.getRegistryName());
+
+        ShapelessRecipeBuilder.shapeless(output)
+                .requires(input)
+                .unlockedBy("has_item", has(output))
+                .save(consumer, input + "_to_" + output);
+    }
+}

@@ -1,0 +1,87 @@
+package com.blackout.extendedslabs;
+
+import com.blackout.extendedslabs.datagen.*;
+import com.blackout.extendedslabs.init.ESPCorners;
+import com.blackout.extendedslabs.init.ESPSlabs;
+import com.blackout.extendedslabs.init.ESPStairs;
+import com.blackout.extendedslabs.init.ESPVerticalSlabs;
+import com.blackout.extendedslabs.init.modded.BOPCorners;
+import com.blackout.extendedslabs.init.modded.BOPVerticalSlabs;
+import com.blackout.extendedslabs.render.block.BlockRenderLayer;
+import com.blackout.extendedslabs.util.CreativeTab;
+import net.minecraft.data.DataGenerator;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.ModList;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+@Mod(ExtendedSlabs.MODID)
+public class ExtendedSlabs {
+    public static final String MODID = "extendedslabs";
+    public static final String MODNAME = "Extended Slabs";
+    public static final String VERSION = "1.5.1";
+
+    public static ExtendedSlabs INSTANCE;
+
+    public static final Logger LOGGER = LogManager.getLogger(MODID);
+    public static final ItemGroup GROUP = new CreativeTab();
+
+    public ExtendedSlabs() {
+        INSTANCE = this;
+
+        IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
+
+        eventBus.addListener(this::gatherData);
+
+        ESPSlabs.ITEMS.register(eventBus);
+        ESPSlabs.BLOCKS.register(eventBus);
+        ESPStairs.ITEMS.register(eventBus);
+        ESPStairs.BLOCKS.register(eventBus);
+        ESPCorners.ITEMS.register(eventBus);
+        ESPCorners.BLOCKS.register(eventBus);
+        ESPVerticalSlabs.ITEMS.register(eventBus);
+        ESPVerticalSlabs.BLOCKS.register(eventBus);
+        if (ModList.get().isLoaded("biomesoplenty")) {
+            BOPCorners.ITEMS.register(eventBus);
+            BOPCorners.BLOCKS.register(eventBus);
+            BOPVerticalSlabs.ITEMS.register(eventBus);
+            BOPVerticalSlabs.BLOCKS.register(eventBus);
+            LOGGER.debug(ExtendedSlabs.MODID + ": Biomes O' Plenty Compat Loaded");
+        }
+        MinecraftForge.EVENT_BUS.register(this);
+
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientSetup);
+    }
+
+    private void gatherData(final GatherDataEvent event) {
+        DataGenerator dataGenerator = event.getGenerator();
+        final ExistingFileHelper existing = event.getExistingFileHelper();
+
+        if (event.includeServer()) {
+            dataGenerator.addProvider(new ESPLootTableProvider(dataGenerator));
+            dataGenerator.addProvider(new ESPItemModelGenerator(dataGenerator, existing));
+            dataGenerator.addProvider(new ESPStairRecipeProvider(dataGenerator));
+            dataGenerator.addProvider(new ESPCornerRecipeProvider(dataGenerator));
+            dataGenerator.addProvider(new ESPSlabRecipeProvider(dataGenerator));
+            dataGenerator.addProvider(new ESPVerticalSlabRecipeProvider(dataGenerator));
+        }
+    }
+
+    private void clientSetup(final FMLClientSetupEvent event)
+    {
+        BlockRenderLayer.renderBlock();
+        LOGGER.info("renderBlock");
+    }
+
+    public static ResourceLocation location(String name) {
+        return new ResourceLocation(MODID, name);
+    }
+}
