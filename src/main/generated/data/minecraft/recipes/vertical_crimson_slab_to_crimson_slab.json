@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "extendedslabs:vertical_crimson_slab"
+    }
+  ],
+  "result": {
+    "item": "minecraft:crimson_slab"
+  }
+}

@@ -1,8 +1,0 @@
-{ "type": "minecraft:crafting_shapeless",
-  "ingredients": [
-    { "item": "extendedslabs:vertical_podzol_slab" }
-  ],
-  "result": {
-    "item": "extendedslabs:podzol_slab"
-  }
-}

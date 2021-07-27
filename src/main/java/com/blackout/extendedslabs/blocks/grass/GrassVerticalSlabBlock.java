@@ -22,7 +22,7 @@ public class GrassVerticalSlabBlock extends VerticalSlabBlock {
     }
 
     @Override
-    public boolean receiveFluid(IWorld worldIn, BlockPos pos, BlockState state, FluidState fluidStateIn) {
+    public boolean placeLiquid(IWorld worldIn, BlockPos pos, BlockState state, FluidState fluidStateIn) {
         return false;
     }
 }

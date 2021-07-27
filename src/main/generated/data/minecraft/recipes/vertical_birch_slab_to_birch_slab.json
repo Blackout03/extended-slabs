@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "extendedslabs:vertical_birch_slab"
+    }
+  ],
+  "result": {
+    "item": "minecraft:birch_slab"
+  }
+}
