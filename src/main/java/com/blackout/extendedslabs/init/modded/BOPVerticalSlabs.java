@@ -21,7 +21,7 @@ public class BOPVerticalSlabs {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, ExtendedSlabs.MODID);
 
     // Biomes O' Plenty Stone
-    public static RegistryObject<Block> MUD_BRICK_VERTICAL = registerBlock("vertical_mud_brick_slab", () -> new VerticalSlabBlock(Block.Properties.copy(Blocks.BRICK_SLAB)), ExtendedSlabs.GROUP);
+    public static RegistryObject<Block> MUD_BRICK_VERTICAL = registerBlock("vertical_mud_brick_slab", () -> new VerticalSlabBlock(Block.Properties.copy(Blocks.BRICK_SLAB).harvestTool(ToolType.PICKAXE).requiresCorrectToolForDrops()), ExtendedSlabs.GROUP);
 
     // Biomes O' Plenty Sandstone
     public static RegistryObject<Block> WHITE_SANDSTONE_VERTICAL = registerBlock("vertical_white_sandstone_slab", () -> new VerticalSlabBlock(Block.Properties.copy(Blocks.SANDSTONE_SLAB).harvestTool(ToolType.PICKAXE).requiresCorrectToolForDrops()), ExtendedSlabs.GROUP);
