@@ -2,11 +2,9 @@ package com.blackout.extendedslabs.util;
 
 import com.blackout.extendedslabs.init.ESPVerticalSlabs;
 import com.blackout.extendedslabs.ExtendedSlabs;
-import com.blackout.extendedslabs.init.modded.BOPVerticalSlabs;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.fml.ModList;
 
 public class CreativeTab extends CreativeModeTab {
     public CreativeTab() {
@@ -15,11 +13,7 @@ public class CreativeTab extends CreativeModeTab {
 
     @Override
     public ItemStack makeIcon() {
-        if (ModList.get().isLoaded("biomesoplenty")) {
-            return new ItemStack(BOPVerticalSlabs.MAGIC_VERTICAL.get());
-        } else {
-            return new ItemStack(ESPVerticalSlabs.PRISMARINE_BRICKS_VERTICAL.get());
-        }
+        return new ItemStack(ESPVerticalSlabs.PRISMARINE_BRICKS_VERTICAL.get());
     }
 
     @Override

@@ -3,7 +3,6 @@ package com.blackout.extendedslabs.init;
 import com.blackout.extendedslabs.blocks.VerticalSlabBlock;
 import com.blackout.extendedslabs.blocks.copper.WeatheringCopperVerticalSlabBlock;
 import com.blackout.extendedslabs.blocks.falling.FallingVerticalSlabBlock;
-import com.blackout.extendedslabs.blocks.grass.GrassVerticalSlabBlock;
 import com.blackout.extendedslabs.blocks.path.PathVerticalSlabBlock;
 import com.blackout.extendedslabs.ExtendedSlabs;
 import net.minecraft.world.item.BlockItem;
@@ -24,7 +23,7 @@ public class ESPVerticalSlabs {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, ExtendedSlabs.MODID);
 
     // Dirt
-    public static final RegistryObject<Block> GRASS_VERTICAL = registerBlock("vertical_grass_slab", () -> new GrassVerticalSlabBlock(Block.Properties.copy(Blocks.GRASS_BLOCK)), ExtendedSlabs.GROUP);
+    public static final RegistryObject<Block> GRASS_VERTICAL = registerBlock("vertical_grass_slab", () -> new VerticalSlabBlock(Block.Properties.copy(Blocks.GRASS_BLOCK)), ExtendedSlabs.GROUP);
     public static final RegistryObject<Block> DIRT_VERTICAL = registerBlock("vertical_dirt_slab", () -> new VerticalSlabBlock(Block.Properties.copy(Blocks.DIRT)), ExtendedSlabs.GROUP);
     public static final RegistryObject<Block> PODZOL_VERTICAL = registerBlock("vertical_podzol_slab", () -> new VerticalSlabBlock(Block.Properties.copy(Blocks.PODZOL)), ExtendedSlabs.GROUP);
     public static final RegistryObject<Block> PATH_VERTICAL = registerBlock("vertical_path_slab", () -> new PathVerticalSlabBlock(BlockBehaviour.Properties.copy(Blocks.DIRT_PATH)), ExtendedSlabs.GROUP);

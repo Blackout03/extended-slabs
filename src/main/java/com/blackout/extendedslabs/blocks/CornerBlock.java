@@ -51,7 +51,6 @@ public class CornerBlock extends HorizontalDirectionalBlock implements SimpleWat
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        Direction direction = context.getClickedFace();
         FluidState iFluidState = context.getLevel().getFluidState(context.getClickedPos());
         return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection()).setValue(WATERLOGGED, iFluidState.getType() == Fluids.WATER);
     }
@@ -60,17 +59,12 @@ public class CornerBlock extends HorizontalDirectionalBlock implements SimpleWat
     @SuppressWarnings("deprecation")
     public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
         Direction direction = state.getValue(FACING);
-        switch (direction) {
-            case NORTH:
-            default:
-                return Shapes.or(NORTH_SHAPE, WEST_OUTER_SHAPE);
-            case SOUTH:
-                return Shapes.or(SOUTH_SHAPE, EAST_OUTER_SHAPE);
-            case WEST:
-                return Shapes.or(WEST_SHAPE, SOUTH_OUTER_SHAPE);
-            case EAST:
-                return Shapes.or(EAST_SHAPE, NORTH_OUTER_SHAPE);
-        }
+        return switch (direction) {
+            case WEST -> Shapes.or(WEST_SHAPE, SOUTH_OUTER_SHAPE);
+            case EAST -> Shapes.or(EAST_SHAPE, NORTH_OUTER_SHAPE);
+            case SOUTH -> Shapes.or(SOUTH_SHAPE, EAST_OUTER_SHAPE);
+            default -> Shapes.or(NORTH_SHAPE, WEST_OUTER_SHAPE);
+        };
     }
 
     @Override

@@ -13,9 +13,7 @@ public class ESPCornersLootTables extends BlockLoot {
     protected void addTables() {
         final Collection<RegistryObject<Block>> blocks = ESPCorners.BLOCKS.getEntries();
         for (RegistryObject<Block> block : blocks) {
-
             ExtendedSlabs.LOGGER.info(block.getId());
-
             dropSelf(block.get());
         }
     }

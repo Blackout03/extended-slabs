@@ -5,8 +5,6 @@ import com.blackout.extendedslabs.init.ESPCorners;
 import com.blackout.extendedslabs.init.ESPSlabs;
 import com.blackout.extendedslabs.init.ESPStairs;
 import com.blackout.extendedslabs.init.ESPVerticalSlabs;
-import com.blackout.extendedslabs.init.modded.BOPCorners;
-import com.blackout.extendedslabs.init.modded.BOPVerticalSlabs;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.tags.BlockTags;

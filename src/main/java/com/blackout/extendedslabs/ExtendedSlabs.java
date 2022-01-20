@@ -5,17 +5,13 @@ import com.blackout.extendedslabs.init.ESPCorners;
 import com.blackout.extendedslabs.init.ESPSlabs;
 import com.blackout.extendedslabs.init.ESPStairs;
 import com.blackout.extendedslabs.init.ESPVerticalSlabs;
-import com.blackout.extendedslabs.init.modded.BOPCorners;
-import com.blackout.extendedslabs.init.modded.BOPVerticalSlabs;
 import com.blackout.extendedslabs.render.block.BlockRenderLayer;
 import com.blackout.extendedslabs.util.CreativeTab;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -29,13 +25,11 @@ public class ExtendedSlabs {
     public static final String MODNAME = "Extended Slabs";
     public static final String VERSION = "1.5.0";
 
-    public static ExtendedSlabs INSTANCE;
-
     public static final Logger LOGGER = LogManager.getLogger(MODID);
     public static final CreativeModeTab GROUP = new CreativeTab();
 
     public ExtendedSlabs() {
-        INSTANCE = this;
+        LOGGER.debug(MODNAME + " Version is:" + VERSION);
 
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
@@ -49,13 +43,6 @@ public class ExtendedSlabs {
         ESPCorners.BLOCKS.register(eventBus);
         ESPVerticalSlabs.ITEMS.register(eventBus);
         ESPVerticalSlabs.BLOCKS.register(eventBus);
-        if (ModList.get().isLoaded("biomesoplenty")) {
-            BOPCorners.ITEMS.register(eventBus);
-            BOPCorners.BLOCKS.register(eventBus);
-            BOPVerticalSlabs.ITEMS.register(eventBus);
-            BOPVerticalSlabs.BLOCKS.register(eventBus);
-            LOGGER.debug(ExtendedSlabs.MODID + ": Biomes O' Plenty Compat Loaded");
-        }
         MinecraftForge.EVENT_BUS.register(this);
 
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientSetup);
@@ -79,9 +66,5 @@ public class ExtendedSlabs {
     private void clientSetup(final FMLClientSetupEvent event) {
         BlockRenderLayer.renderBlock();
         LOGGER.info("renderBlock");
-    }
-
-    public static ResourceLocation location(String name) {
-        return new ResourceLocation(MODID, name);
     }
 }

@@ -13,9 +13,7 @@ public class ESPVerticalSlabsLootTables extends BlockLoot {
     protected void addTables() {
         final Collection<RegistryObject<Block>> blocks = ESPVerticalSlabs.BLOCKS.getEntries();
         for (RegistryObject<Block> block : blocks) {
-
             ExtendedSlabs.LOGGER.info(block.getId());
-
             dropSelf(block.get());
         }
     }

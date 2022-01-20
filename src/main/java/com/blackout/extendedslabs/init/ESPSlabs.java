@@ -2,7 +2,6 @@ package com.blackout.extendedslabs.init;
 
 import com.blackout.extendedslabs.ExtendedSlabs;
 import com.blackout.extendedslabs.blocks.falling.FallingSlabBlock;
-import com.blackout.extendedslabs.blocks.grass.GrassSlabBlock;
 import com.blackout.extendedslabs.blocks.path.PathSlabBlock;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
@@ -23,7 +22,7 @@ public class ESPSlabs {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, ExtendedSlabs.MODID);
 
     // Dirt
-    public static final RegistryObject<Block> GRASS_SLAB = registerBlock("grass_slab",() -> new GrassSlabBlock(Block.Properties.copy(Blocks.GRASS_BLOCK)), ExtendedSlabs.GROUP);
+    public static final RegistryObject<Block> GRASS_SLAB = registerBlock("grass_slab",() -> new SlabBlock(Block.Properties.copy(Blocks.GRASS_BLOCK)), ExtendedSlabs.GROUP);
     public static final RegistryObject<Block> DIRT_SLAB = registerBlock("dirt_slab",() -> new SlabBlock(Block.Properties.copy(Blocks.DIRT)), ExtendedSlabs.GROUP);
     public static final RegistryObject<Block> PODZOL_SLAB = registerBlock("podzol_slab",() -> new SlabBlock(Block.Properties.copy(Blocks.PODZOL)), ExtendedSlabs.GROUP);
     public static final RegistryObject<Block> PATH_SLAB = registerBlock("path_slab",() -> new PathSlabBlock(Block.Properties.copy(Blocks.DIRT_PATH)), ExtendedSlabs.GROUP);
@@ -126,7 +125,6 @@ public class ESPSlabs {
 
     // End
     public static final RegistryObject<Block> END_STONE_SLAB = registerBlock("end_stone_slab",() -> new SlabBlock(Block.Properties.copy(Blocks.END_STONE)), ExtendedSlabs.GROUP);
-
 
     public static <B extends Block> RegistryObject<B> registerBlock(String name, Supplier<? extends B> supplier, CreativeModeTab itemGroup) {
         RegistryObject<B> block = ESPSlabs.BLOCKS.register(name, supplier);

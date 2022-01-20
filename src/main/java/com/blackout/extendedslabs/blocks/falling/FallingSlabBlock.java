@@ -35,7 +35,7 @@ public class FallingSlabBlock extends FallingBlock implements SimpleWaterloggedB
 
     public FallingSlabBlock(BlockBehaviour.Properties properties) {
         super(properties);
-        this.registerDefaultState(this.defaultBlockState().setValue(TYPE, SlabType.BOTTOM).setValue(WATERLOGGED, Boolean.valueOf(false)));
+        this.registerDefaultState(this.defaultBlockState().setValue(TYPE, SlabType.BOTTOM).setValue(WATERLOGGED, Boolean.FALSE));
     }
 
     public boolean useShapeForLightOcclusion(BlockState state) {
@@ -48,14 +48,11 @@ public class FallingSlabBlock extends FallingBlock implements SimpleWaterloggedB
 
     public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
         SlabType slabtype = state.getValue(TYPE);
-        switch(slabtype) {
-            case DOUBLE:
-                return Shapes.block();
-            case TOP:
-                return TOP_SHAPE;
-            default:
-                return BOTTOM_SHAPE;
-        }
+        return switch (slabtype) {
+            case DOUBLE -> Shapes.block();
+            case TOP -> TOP_SHAPE;
+            default -> BOTTOM_SHAPE;
+        };
     }
 
     @Nullable
@@ -114,20 +111,13 @@ public class FallingSlabBlock extends FallingBlock implements SimpleWaterloggedB
         if (stateIn.getValue(WATERLOGGED)) {
             worldIn.getLiquidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(worldIn));
         }
-
         return super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
     }
 
     public boolean isPathfindable(BlockState state, BlockGetter worldIn, BlockPos pos, PathComputationType type) {
-        switch (type) {
-            case LAND:
-                return false;
-            case WATER:
-                return worldIn.getFluidState(pos).is(FluidTags.WATER);
-            case AIR:
-                return false;
-            default:
-                return false;
+        if (type == PathComputationType.WATER) {
+            return worldIn.getFluidState(pos).is(FluidTags.WATER);
         }
+        return false;
     }
 }

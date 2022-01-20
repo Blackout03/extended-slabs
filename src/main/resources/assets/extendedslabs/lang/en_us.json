@@ -31,20 +31,6 @@
   "block.extendedslabs.end_stone_bricks_corner": "End Stone Bricks Corner",
   "block.extendedslabs.purpur_corner": "Purpur Corner",
 
-  "block.extendedslabs.cherry_corner": "Cherry Corner",
-  "block.extendedslabs.dead_corner": "Dead Corner",
-  "block.extendedslabs.fir_corner": "Fir Corner",
-  "block.extendedslabs.hellbark_corner": "Hellbark Corner",
-  "block.extendedslabs.jacaranda_corner": "Jacaranda Corner",
-  "block.extendedslabs.magic_corner": "Magic Corner",
-  "block.extendedslabs.mahogany_corner": "Mahogany Corner",
-  "block.extendedslabs.palm_corner": "Palm Corner",
-  "block.extendedslabs.redwood_corner": "Redwood Corner",
-  "block.extendedslabs.umbran_corner": "Umbran Corner",
-  "block.extendedslabs.willow_corner": "Willow Corner",
-
-  "block.extendedslabs.michrosia_corner": "Michrosia Corner",
-
   "block.extendedslabs.polished_andesite_stairs": "Polished Andesite Stairs",
   "block.extendedslabs.polished_diorite_stairs": "Polished Diorite Stairs",
   "block.extendedslabs.polished_granite_stairs": "Polished Granite Stairs",
@@ -151,29 +137,5 @@
   "block.extendedslabs.vertical_cobbled_deepslate_slab": "Vertical Cobbled Deepslate Slab",
   "block.extendedslabs.vertical_polished_deepslate_slab": "Vertical Polished Deepslate Slab",
   "block.extendedslabs.vertical_deepslate_brick_slab": "Vertical Deepslate Brick Slab",
-  "block.extendedslabs.vertical_deepslate_tile_slab": "Vertical Deepslate Tile Slab",
-
-  "block.extendedslabs.vertical_mud_brick_slab": "Vertical Mud Brick Slab",
-  "block.extendedslabs.vertical_white_sandstone_slab": "Vertical White Sandstone Slab",
-  "block.extendedslabs.vertical_smooth_white_sandstone_slab": "Vertical Smooth White Sandstone Slab",
-  "block.extendedslabs.vertical_cut_white_sandstone_slab": "Vertical Cut White Sandstone Slab",
-  "block.extendedslabs.vertical_orange_sandstone_slab": "Vertical Orange Sandstone Slab",
-  "block.extendedslabs.vertical_smooth_orange_sandstone_slab": "Vertical Smooth Orange Sandstone Slab",
-  "block.extendedslabs.vertical_cut_orange_sandstone_slab": "Vertical Cut Orange Sandstone Slab",
-  "block.extendedslabs.vertical_black_sandstone_slab": "Vertical Black Sandstone Slab",
-  "block.extendedslabs.vertical_smooth_black_sandstone_slab": "Vertical Smooth Black Sandstone Slab",
-  "block.extendedslabs.vertical_cut_black_sandstone_slab": "Vertical Cut Black Sandstone Slab",
-  "block.extendedslabs.vertical_cherry_slab": "Vertical Cherry Slab",
-  "block.extendedslabs.vertical_dead_slab": "Vertical Dead Slab",
-  "block.extendedslabs.vertical_fir_slab": "Vertical Fir Slab",
-  "block.extendedslabs.vertical_hellbark_slab": "Vertical Hellbark Slab",
-  "block.extendedslabs.vertical_jacaranda_slab": "Vertical Jacaranda Slab",
-  "block.extendedslabs.vertical_magic_slab": "Vertical Magic Slab",
-  "block.extendedslabs.vertical_mahogany_slab": "Vertical Mahogany Slab",
-  "block.extendedslabs.vertical_palm_slab": "Vertical Palm Slab",
-  "block.extendedslabs.vertical_redwood_slab": "Vertical Redwood Slab",
-  "block.extendedslabs.vertical_umbran_slab": "Vertical Umbran Slab",
-  "block.extendedslabs.vertical_willow_slab": "Vertical Willow Slab",
-
-  "block.extendedslabs.vertical_michrosia_slab": "Vertical Michrosia Slab"
+  "block.extendedslabs.vertical_deepslate_tile_slab": "Vertical Deepslate Tile Slab"
 }
