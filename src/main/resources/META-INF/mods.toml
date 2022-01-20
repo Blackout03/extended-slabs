@@ -1,8 +1,8 @@
 modLoader="javafml"
-loaderVersion="[37,)"
+loaderVersion="[39,)"
 issueTrackerURL="https://github.com/Blackout03/extended-slabs/issues"
 displayURL="https://www.curseforge.com/minecraft/mc-mods/extended-slabs-plus"
-license="MIT License"
+license="All Rights Reserved"
 
 [[mods]]
 modId="extendedslabs"
@@ -18,13 +18,13 @@ description='''This mod adds vertical slabs and more to Minecraft.'''
 [[dependencies.extendedslabs]]
 modId="forge"
 mandatory=true
-versionRange="[37,)"
+versionRange="[39,)"
 ordering="NONE"
 side="BOTH"
 
 [[dependencies.extendedslabs]]
 modId="minecraft"
 mandatory=true
-versionRange="[1.17.1,1.18]"
+versionRange="[1.18.1,1.19)"
 ordering="NONE"
 side="BOTH"

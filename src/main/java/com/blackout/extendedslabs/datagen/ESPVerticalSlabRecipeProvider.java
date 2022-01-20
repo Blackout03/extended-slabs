@@ -1,7 +1,6 @@
 package com.blackout.extendedslabs.datagen;
 
 import com.blackout.extendedslabs.ExtendedSlabs;
-import com.blackout.extendedslabs.blocks.VerticalSlabBlock;
 import com.blackout.extendedslabs.init.ESPVerticalSlabs;
 import com.blackout.extendedslabs.init.ESPSlabs;
 import net.minecraft.data.DataGenerator;
@@ -9,9 +8,8 @@ import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraftforge.fmllegacy.RegistryObject;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Consumer;
 
@@ -22,7 +20,7 @@ public class ESPVerticalSlabRecipeProvider extends RecipeProvider {
     }
 
     @Override
-    public void buildCraftingRecipes(Consumer<FinishedRecipe> consumer) {
+    public void buildCraftingRecipes(@NotNull Consumer<FinishedRecipe> consumer) {
         generateVerticalSlabRecipes(ESPVerticalSlabs.GRASS_VERTICAL.get().asItem(), ESPSlabs.GRASS_SLAB.get().asItem(), consumer);
         generateVerticalSlabRecipes(ESPVerticalSlabs.DIRT_VERTICAL.get().asItem(), ESPSlabs.DIRT_SLAB.get().asItem(), consumer);
         generateVerticalSlabRecipes(ESPVerticalSlabs.PODZOL_VERTICAL.get().asItem(), ESPSlabs.PODZOL_SLAB.get().asItem(), consumer);

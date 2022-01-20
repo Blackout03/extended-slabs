@@ -1,6 +1,7 @@
 package com.blackout.extendedslabs.blocks.shapes;
 
 import net.minecraft.util.StringRepresentable;
+import org.jetbrains.annotations.NotNull;
 
 public enum VerticalSlabShape implements StringRepresentable {
     STRAIGHT("straight"),
@@ -24,7 +25,7 @@ public enum VerticalSlabShape implements StringRepresentable {
     }
 
     @Override
-    public String getSerializedName() {
+    public @NotNull String getSerializedName() {
         return this.name;
     }
 }

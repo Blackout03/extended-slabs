@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "wooden_vertical_slab",
+  "ingredients": [
+    {
+      "item": "biomesoplenty:cherry_slab"
+    }
+  ],
+  "result": {
+    "item": "extendedslabs:vertical_cherry_slab"
+  },
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "biomesoplenty"
+    }
+  ]
+}

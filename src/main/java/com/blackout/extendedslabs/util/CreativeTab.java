@@ -5,6 +5,7 @@ import com.blackout.extendedslabs.ExtendedSlabs;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 public class CreativeTab extends CreativeModeTab {
     public CreativeTab() {
@@ -12,7 +13,7 @@ public class CreativeTab extends CreativeModeTab {
     }
 
     @Override
-    public ItemStack makeIcon() {
+    public @NotNull ItemStack makeIcon() {
         return new ItemStack(ESPVerticalSlabs.PRISMARINE_BRICKS_VERTICAL.get());
     }
 
@@ -25,11 +26,11 @@ public class CreativeTab extends CreativeModeTab {
         return 75;
     }
 
-    public ResourceLocation getBackgroundImage() {
+    public @NotNull ResourceLocation getBackgroundImage() {
         return new ResourceLocation("extendedslabs:textures/gui/container/creative_inventory/tab_extendedslabs.png");
     }
 
-    public ResourceLocation getTabsImage() {
+    public @NotNull ResourceLocation getTabsImage() {
         return new ResourceLocation("extendedslabs:textures/gui/container/creative_inventory/tabs.png");
     }
 }

@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "extendedslabs:vertical_brick_slab"
+    }
+  ],
+  "result": {
+    "item": "biomesoplenty:mud_brick_slab"
+  }
+}

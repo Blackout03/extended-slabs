@@ -4,7 +4,8 @@ import com.blackout.extendedslabs.ExtendedSlabs;
 import com.blackout.extendedslabs.init.ESPCorners;
 import net.minecraft.data.loot.BlockLoot;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.fmllegacy.RegistryObject;
+import net.minecraftforge.registries.RegistryObject;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Collection;
 
@@ -19,7 +20,7 @@ public class ESPCornersLootTables extends BlockLoot {
     }
 
     @Override
-    protected Iterable<Block> getKnownBlocks() {
+    protected @NotNull Iterable<Block> getKnownBlocks() {
         return ESPCorners.BLOCKS.getEntries().stream().map(RegistryObject::get)::iterator;
     }
 }

@@ -9,6 +9,7 @@ import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Blocks;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Consumer;
 
@@ -19,7 +20,7 @@ public class ESPStairRecipeProvider extends RecipeProvider {
     }
 
     @Override
-    public void buildCraftingRecipes(Consumer<FinishedRecipe> consumer) {
+    public void buildCraftingRecipes(@NotNull Consumer<FinishedRecipe> consumer) {
         generateStairRecipes(ESPCorners.STONE_CORNER.get().asItem(), Blocks.STONE_STAIRS.asItem(), consumer);
         generateStairRecipes(ESPCorners.COBBLESTONE_CORNER.get().asItem(), Blocks.COBBLESTONE_STAIRS.asItem(), consumer);
         generateStairRecipes(ESPCorners.STONE_BRICKS_CORNER.get().asItem(), Blocks.STONE_BRICK_STAIRS.asItem(), consumer);

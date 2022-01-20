@@ -1,5 +1,6 @@
-{ "pack": {
+{
+  "pack": {
     "description": "Extended Slab Resources",
-    "pack_format": 6
+    "pack_format": 8
   }
 }

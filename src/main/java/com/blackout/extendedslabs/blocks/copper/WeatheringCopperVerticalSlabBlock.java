@@ -6,6 +6,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.WeatheringCopper;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 
@@ -17,7 +18,8 @@ public class WeatheringCopperVerticalSlabBlock extends VerticalSlabBlock impleme
         this.weatherState = weatherState;
     }
 
-    public void randomTick(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, Random random) {
+    @SuppressWarnings("deprecation")
+    public void randomTick(@NotNull BlockState blockState, @NotNull ServerLevel serverLevel, @NotNull BlockPos blockPos, @NotNull Random random) {
         this.onRandomTick(blockState, serverLevel, blockPos, random);
     }
 
@@ -25,7 +27,7 @@ public class WeatheringCopperVerticalSlabBlock extends VerticalSlabBlock impleme
         return WeatheringCopper.getNext(state.getBlock()).isPresent();
     }
 
-    public WeatheringCopper.WeatherState getAge() {
+    public WeatheringCopper.@NotNull WeatherState getAge() {
         return this.weatherState;
     }
 }

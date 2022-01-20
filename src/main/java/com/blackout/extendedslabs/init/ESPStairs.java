@@ -8,9 +8,9 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.StairBlock;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fmllegacy.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 import java.util.function.Supplier;
 
@@ -20,13 +20,16 @@ public class ESPStairs {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, ExtendedSlabs.MODID);
 
     // Dirt
+    @SuppressWarnings("deprecation")
     public static final RegistryObject<Block> DIRT_STAIRS = registerBlock("dirt_stairs",() -> new StairBlock(Block.stateById(1), Block.Properties.copy(Blocks.DIRT)), ExtendedSlabs.GROUP);
 
     // Nether
-    public static final RegistryObject<Block> NETHERRACK_STAIRS = registerBlock("netherrack_stairs",() -> new StairBlock(Block.stateById(1), Block.Properties.copy(Blocks.NETHERRACK)), ExtendedSlabs.GROUP);
+    @SuppressWarnings("deprecation")
+    public static final RegistryObject<Block> NETHERRACK_STAIRS = registerBlock("netherrack_stairs",() -> new StairBlock(Block.stateById(1), Block.Properties.copy(Blocks.NETHERRACK).requiresCorrectToolForDrops()), ExtendedSlabs.GROUP);
 
     // End
-    public static final RegistryObject<Block> END_STONE_STAIRS = registerBlock("end_stone_stairs",() -> new StairBlock(Block.stateById(1), Block.Properties.copy(Blocks.END_STONE)), ExtendedSlabs.GROUP);
+    @SuppressWarnings("deprecation")
+    public static final RegistryObject<Block> END_STONE_STAIRS = registerBlock("end_stone_stairs",() -> new StairBlock(Block.stateById(1), Block.Properties.copy(Blocks.END_STONE).requiresCorrectToolForDrops()), ExtendedSlabs.GROUP);
 
     public static <B extends Block> RegistryObject<B> registerBlock(String name, Supplier<? extends B> supplier, CreativeModeTab itemGroup) {
         RegistryObject<B> block = ESPStairs.BLOCKS.register(name, supplier);

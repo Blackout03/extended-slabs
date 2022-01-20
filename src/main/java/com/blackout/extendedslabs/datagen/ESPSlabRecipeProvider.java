@@ -9,6 +9,7 @@ import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Blocks;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Consumer;
 
@@ -19,7 +20,7 @@ public class ESPSlabRecipeProvider extends RecipeProvider {
     }
 
     @Override
-    public void buildCraftingRecipes(Consumer<FinishedRecipe> consumer) {
+    public void buildCraftingRecipes(@NotNull Consumer<FinishedRecipe> consumer) {
         generateSlabRecipes(ESPVerticalSlabs.GRASS_VERTICAL.get().asItem(), ESPSlabs.GRASS_SLAB.get().asItem(), consumer);
         generateSlabRecipes(ESPVerticalSlabs.DIRT_VERTICAL.get().asItem(), ESPSlabs.DIRT_SLAB.get().asItem(), consumer);
         generateSlabRecipes(ESPVerticalSlabs.PODZOL_VERTICAL.get().asItem(), ESPSlabs.PODZOL_SLAB.get().asItem(), consumer);
