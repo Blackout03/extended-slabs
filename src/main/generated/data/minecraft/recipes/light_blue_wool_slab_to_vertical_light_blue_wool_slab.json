@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "extendedslabs:light_blue_wool_slab"
+    }
+  ],
+  "result": {
+    "item": "extendedslabs:vertical_light_blue_wool_slab"
+  }
+}

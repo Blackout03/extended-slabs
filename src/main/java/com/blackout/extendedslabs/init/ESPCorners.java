@@ -22,7 +22,7 @@ public class ESPCorners {
     // Stone
     public static final RegistryObject<Block> STONE_CORNER = registerBlock("stone_corner",() -> new CornerBlock(Block.Properties.copy(Blocks.STONE_SLAB)), ExtendedSlabs.GROUP);
     public static final RegistryObject<Block> COBBLESTONE_CORNER = registerBlock("cobblestone_corner",() -> new CornerBlock(Block.Properties.copy(Blocks.COBBLESTONE_SLAB)), ExtendedSlabs.GROUP);
-    public static final RegistryObject<Block> STONE_BRICKS_CORNER = registerBlock("stone_bricks_corner",() -> new CornerBlock(Block.Properties.copy(Blocks.STONE_BRICK_SLAB)), ExtendedSlabs.GROUP);
+    public static final RegistryObject<Block> STONE_BRICK_CORNER = registerBlock("stone_brick_corner",() -> new CornerBlock(Block.Properties.copy(Blocks.STONE_BRICK_SLAB)), ExtendedSlabs.GROUP);
     public static final RegistryObject<Block> ANDESITE_CORNER = registerBlock("andesite_corner",() -> new CornerBlock(Block.Properties.copy(Blocks.ANDESITE_SLAB)), ExtendedSlabs.GROUP);
     public static final RegistryObject<Block> POLISHED_ANDESITE_CORNER = registerBlock("polished_andesite_corner",() -> new CornerBlock(Block.Properties.copy(Blocks.POLISHED_ANDESITE_SLAB)), ExtendedSlabs.GROUP);
     public static final RegistryObject<Block> DIORITE_CORNER = registerBlock("diorite_corner",() -> new CornerBlock(Block.Properties.copy(Blocks.DIORITE_SLAB)), ExtendedSlabs.GROUP);
@@ -32,15 +32,15 @@ public class ESPCorners {
 
     // Nether
     public static final RegistryObject<Block> NETHERRACK_CORNER = registerBlock("netherrack_corner",() -> new CornerBlock(Block.Properties.copy(Blocks.NETHERRACK)), ExtendedSlabs.GROUP);
-    public static final RegistryObject<Block> NETHER_BRICKS_CORNER = registerBlock("nether_bricks_corner",() -> new CornerBlock(Block.Properties.copy(Blocks.NETHER_BRICK_SLAB)), ExtendedSlabs.GROUP);
-    public static final RegistryObject<Block> RED_NETHER_BRICKS_CORNER = registerBlock("red_nether_bricks_corner",() -> new CornerBlock(Block.Properties.copy(Blocks.RED_NETHER_BRICK_SLAB)), ExtendedSlabs.GROUP);
+    public static final RegistryObject<Block> NETHER_BRICK_CORNER = registerBlock("nether_brick_corner",() -> new CornerBlock(Block.Properties.copy(Blocks.NETHER_BRICK_SLAB)), ExtendedSlabs.GROUP);
+    public static final RegistryObject<Block> RED_NETHER_BRICK_CORNER = registerBlock("red_nether_brick_corner",() -> new CornerBlock(Block.Properties.copy(Blocks.RED_NETHER_BRICK_SLAB)), ExtendedSlabs.GROUP);
     public static final RegistryObject<Block> BLACKSTONE_CORNER = registerBlock("blackstone_corner",() -> new CornerBlock(Block.Properties.copy(Blocks.BLACKSTONE_SLAB)), ExtendedSlabs.GROUP);
     public static final RegistryObject<Block> POLISHED_BLACKSTONE_CORNER = registerBlock("polished_blackstone_corner",() -> new CornerBlock(Block.Properties.copy(Blocks.POLISHED_BLACKSTONE_SLAB)), ExtendedSlabs.GROUP);
-    public static final RegistryObject<Block> POLISHED_BLACKSTONE_BRICKS_CORNER = registerBlock("polished_blackstone_bricks_corner",() -> new CornerBlock(Block.Properties.copy(Blocks.POLISHED_BLACKSTONE_BRICK_SLAB)), ExtendedSlabs.GROUP);
+    public static final RegistryObject<Block> POLISHED_BLACKSTONE_BRICK_CORNER = registerBlock("polished_blackstone_brick_corner",() -> new CornerBlock(Block.Properties.copy(Blocks.POLISHED_BLACKSTONE_BRICK_SLAB)), ExtendedSlabs.GROUP);
 
     // End
     public static final RegistryObject<Block> END_STONE_CORNER = registerBlock("end_stone_corner",() -> new CornerBlock(Block.Properties.copy(Blocks.END_STONE)), ExtendedSlabs.GROUP);
-    public static final RegistryObject<Block> END_STONE_BRICKS_CORNER = registerBlock("end_stone_bricks_corner",() -> new CornerBlock(Block.Properties.copy(Blocks.END_STONE_BRICK_SLAB)), ExtendedSlabs.GROUP);
+    public static final RegistryObject<Block> END_STONE_BRICK_CORNER = registerBlock("end_stone_brick_corner",() -> new CornerBlock(Block.Properties.copy(Blocks.END_STONE_BRICK_SLAB)), ExtendedSlabs.GROUP);
     public static final RegistryObject<Block> PURPUR_CORNER = registerBlock("purpur_corner",() -> new CornerBlock(Block.Properties.copy(Blocks.PURPUR_SLAB)), ExtendedSlabs.GROUP);
 
     // Woods

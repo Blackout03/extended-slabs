@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:gravel"
+    }
+  },
+  "result": {
+    "item": "extendedslabs:vertical_gravel_slab",
+    "count": 6
+  }
+}

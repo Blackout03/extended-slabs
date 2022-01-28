@@ -23,7 +23,7 @@ import org.apache.logging.log4j.Logger;
 public class ExtendedSlabs {
     public static final String MODID = "extendedslabs";
     public static final String MODNAME = "Extended Slabs";
-    public static final String VERSION = "1.5.0";
+    public static final String VERSION = "2.0.0";
 
     public static final Logger LOGGER = LogManager.getLogger(MODID);
     public static final CreativeModeTab GROUP = new CreativeTab();
@@ -54,7 +54,9 @@ public class ExtendedSlabs {
 
         if (event.includeServer()) {
             dataGenerator.addProvider(new ESPLootTableProvider(dataGenerator));
+            dataGenerator.addProvider(new ESPBlockModelProvider(dataGenerator, MODID, existing));
             dataGenerator.addProvider(new ESPItemModelGenerator(dataGenerator, existing));
+            dataGenerator.addProvider(new ESPBlockStateProvider(dataGenerator, MODID, existing));
             dataGenerator.addProvider(new ESPBlockTagsProvider(dataGenerator, existing));
             dataGenerator.addProvider(new ESPStairRecipeProvider(dataGenerator));
             dataGenerator.addProvider(new ESPCornerRecipeProvider(dataGenerator));

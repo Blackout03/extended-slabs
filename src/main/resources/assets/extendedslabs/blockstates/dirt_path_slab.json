@@ -1,0 +1,25 @@
+{ 
+  "variants": {
+    "type=bottom":
+    [
+      { "model": "extendedslabs:block/dirt_path_slab" },
+      { "model": "extendedslabs:block/dirt_path_slab", "y": 90 },
+      { "model": "extendedslabs:block/dirt_path_slab", "y": 180 },
+      { "model": "extendedslabs:block/dirt_path_slab", "y": 270 }
+    ],
+    "type=top":
+    [
+      { "model": "extendedslabs:block/dirt_path_slab_top" },
+      { "model": "extendedslabs:block/dirt_path_slab_top", "y": 90 },
+      { "model": "extendedslabs:block/dirt_path_slab_top", "y": 180 },
+      { "model": "extendedslabs:block/dirt_path_slab_top", "y": 270 }
+    ],
+    "type=double":
+    [
+      { "model": "minecraft:block/dirt_path" },
+      { "model": "minecraft:block/dirt_path", "y": 90 },
+      { "model": "minecraft:block/dirt_path", "y": 180 },
+      { "model": "minecraft:block/dirt_path", "y": 270 }
+    ]
+  }
+}

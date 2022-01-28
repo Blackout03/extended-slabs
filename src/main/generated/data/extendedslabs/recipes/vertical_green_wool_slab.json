@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:green_wool"
+    }
+  },
+  "result": {
+    "item": "extendedslabs:vertical_green_wool_slab",
+    "count": 6
+  }
+}

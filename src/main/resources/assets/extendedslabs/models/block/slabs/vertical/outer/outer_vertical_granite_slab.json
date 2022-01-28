@@ -1,8 +1,0 @@
-{
-  "parent": "extendedslabs:block/slabs/vertical/outer/outer_vertical_slab",
-  "textures": {
-    "bottom": "minecraft:block/granite",
-    "top": "minecraft:block/granite",
-    "side": "minecraft:block/granite"
-  }
-}

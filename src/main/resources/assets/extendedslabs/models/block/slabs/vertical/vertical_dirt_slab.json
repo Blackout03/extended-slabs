@@ -1,8 +1,0 @@
-{
-  "parent": "extendedslabs:block/slabs/vertical/vertical_slab",
-  "textures": {
-    "bottom": "minecraft:block/dirt",
-    "top": "minecraft:block/dirt",
-    "side": "minecraft:block/dirt"
-  }
-}

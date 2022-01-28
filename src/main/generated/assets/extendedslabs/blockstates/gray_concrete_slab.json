@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=top": {
+      "model": "extendedslabs:block/gray_concrete_slab_top"
+    },
+    "type=bottom": {
+      "model": "extendedslabs:block/gray_concrete_slab"
+    },
+    "type=double": {
+      "model": "minecraft:block/gray_concrete"
+    }
+  }
+}

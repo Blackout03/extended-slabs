@@ -1,0 +1,22 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "extendedslabs:block/corners/nether_brick_corner"
+    },
+    "facing=east": {
+      "model": "extendedslabs:block/corners/nether_brick_corner",
+      "y": 90,
+      "uvlock": true
+    },
+    "facing=south": {
+      "model": "extendedslabs:block/corners/nether_brick_corner",
+      "y": 180,
+      "uvlock": true
+    },
+    "facing=west": {
+      "model": "extendedslabs:block/corners/nether_brick_corner",
+      "y": 270,
+      "uvlock": true
+    }
+  }
+}
