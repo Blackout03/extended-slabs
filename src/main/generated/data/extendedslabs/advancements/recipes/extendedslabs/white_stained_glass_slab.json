@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "extendedslabs:white_stained_glass_slab"
+    ]
+  },
+  "criteria": {
+    "has_white_stained_glass": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:white_stained_glass"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "extendedslabs:white_stained_glass_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_white_stained_glass",
+      "has_the_recipe"
+    ]
+  ]
+}

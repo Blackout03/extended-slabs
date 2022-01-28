@@ -43,12 +43,12 @@ public class ESPItemModelGenerator extends ItemModelProvider {
         for (RegistryObject<Item> item : itemBlocks) {
             String name = item.getId().getPath();
 
-            if (!existingFileHelper.exists(new ResourceLocation(ExtendedSlabs.MODID, "block/slabs/regular/" + name), MODEL) || existingFileHelper.exists(new ResourceLocation(ExtendedSlabs.MODID, "item/" + name), MODEL))
+            if (!existingFileHelper.exists(new ResourceLocation(ExtendedSlabs.MODID, "block/" + name), MODEL) || existingFileHelper.exists(new ResourceLocation(ExtendedSlabs.MODID, "item/" + name), MODEL))
                 continue;
 
             ExtendedSlabs.LOGGER.info(item.getId());
 
-            withExistingParent(name, new ResourceLocation(ExtendedSlabs.MODID, "block/slabs/regular/" + name));
+            withExistingParent(name, new ResourceLocation(ExtendedSlabs.MODID, "block/" + name));
 
         }
     }
@@ -85,12 +85,12 @@ public class ESPItemModelGenerator extends ItemModelProvider {
         for (RegistryObject<Item> item : itemBlocks) {
             String name = item.getId().getPath();
 
-            if (!existingFileHelper.exists(new ResourceLocation(ExtendedSlabs.MODID, "block/slabs/vertical/" + name), MODEL) || existingFileHelper.exists(new ResourceLocation(ExtendedSlabs.MODID, "item/" + name), MODEL))
+            if (!existingFileHelper.exists(new ResourceLocation(ExtendedSlabs.MODID, "block/" + name), MODEL) || existingFileHelper.exists(new ResourceLocation(ExtendedSlabs.MODID, "item/" + name), MODEL))
                 continue;
 
             ExtendedSlabs.LOGGER.info(item.getId());
 
-            withExistingParent(name, new ResourceLocation(ExtendedSlabs.MODID, "block/slabs/vertical/" + name));
+            withExistingParent(name, new ResourceLocation(ExtendedSlabs.MODID, "block/" + name));
 
         }
     }
@@ -113,12 +113,12 @@ public class ESPItemModelGenerator extends ItemModelProvider {
         for (RegistryObject<Item> item : itemBlocks) {
             String name = item.getId().getPath();
 
-            if (!existingFileHelper.exists(new ResourceLocation(ExtendedSlabs.MODID, "block/slabs/vertical/" + name), MODEL) || existingFileHelper.exists(new ResourceLocation(ExtendedSlabs.MODID, "item/" + name), MODEL))
+            if (!existingFileHelper.exists(new ResourceLocation(ExtendedSlabs.MODID, "block/" + name), MODEL) || existingFileHelper.exists(new ResourceLocation(ExtendedSlabs.MODID, "item/" + name), MODEL))
                 continue;
 
             ExtendedSlabs.LOGGER.info(item.getId());
 
-            withExistingParent(name, new ResourceLocation(ExtendedSlabs.MODID, "block/slabs/vertical/" + name));
+            withExistingParent(name, new ResourceLocation(ExtendedSlabs.MODID, "block/" + name));
 
         }
     }

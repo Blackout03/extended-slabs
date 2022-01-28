@@ -7,23 +7,23 @@ license="MIT License"
 [[mods]]
 modId="extendedslabs"
 version="${file.jarVersion}"
-displayName="Extended Slabs"
+displayName="Extended Slabs +"
 authors="Blackout03"
 description='''This mod adds vertical slabs and more to Minecraft.'''
-itemIcon="extendedslabs:vertical_path_slab"
+itemIcon="extendedslabs:vertical_grass_path_slab"
 logoFile="icon.png"
 credits="Thinkverse"
 
 [[dependencies.extendedslabs]]
 modId="forge"
 mandatory=true
-versionRange="[36,)"
+versionRange="[36.2.20,)"
 ordering="NONE"
 side="BOTH"
 
 [[dependencies.extendedslabs]]
 modId="minecraft"
 mandatory=true
-versionRange="[1.16.5]"
+versionRange="[1.16.5,1.17]"
 ordering="NONE"
 side="BOTH"

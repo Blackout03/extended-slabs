@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "extendedslabs:vertical_end_stone_brick_slab"
+    }
+  ],
+  "result": {
+    "item": "minecraft:end_stone_brick_slab"
+  }
+}

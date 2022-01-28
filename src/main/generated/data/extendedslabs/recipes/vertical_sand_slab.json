@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:sand"
+    }
+  },
+  "result": {
+    "item": "extendedslabs:vertical_sand_slab",
+    "count": 6
+  }
+}

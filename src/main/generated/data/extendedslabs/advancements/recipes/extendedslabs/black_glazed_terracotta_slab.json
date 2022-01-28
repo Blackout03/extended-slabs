@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "extendedslabs:black_glazed_terracotta_slab"
+    ]
+  },
+  "criteria": {
+    "has_black_glazed_terracotta": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:black_glazed_terracotta"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "extendedslabs:black_glazed_terracotta_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_black_glazed_terracotta",
+      "has_the_recipe"
+    ]
+  ]
+}

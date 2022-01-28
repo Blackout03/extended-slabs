@@ -19,10 +19,6 @@ public enum VerticalSlabShape implements IStringSerializable {
         return this.name;
     }
 
-    public String getName() {
-        return this.name;
-    }
-
     @Override
     public String getSerializedName() {
         return this.name;

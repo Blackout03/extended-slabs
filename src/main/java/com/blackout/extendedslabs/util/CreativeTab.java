@@ -17,24 +17,7 @@ public class CreativeTab extends ItemGroup {
         if (ModList.get().isLoaded("biomesoplenty")) {
             return new ItemStack(BOPVerticalSlabs.MAGIC_VERTICAL.get());
         } else {
-            return new ItemStack(ESPVerticalSlabs.PRISMARINE_BRICKS_VERTICAL.get());
+            return new ItemStack(ESPVerticalSlabs.PRISMARINE_BRICK_VERTICAL.get());
         }
-    }
-
-    @Override
-    public boolean hasSearchBar() {
-        return true;
-    }
-
-    public int getSearchbarWidth() {
-        return 75;
-    }
-
-    public net.minecraft.util.ResourceLocation getBackgroundImage() {
-        return new net.minecraft.util.ResourceLocation("extendedslabs:textures/gui/container/creative_inventory/tab_extendedslabs.png");
-    }
-
-    public net.minecraft.util.ResourceLocation getTabsImage() {
-        return new net.minecraft.util.ResourceLocation("extendedslabs:textures/gui/container/creative_inventory/tabs.png");
     }
 }

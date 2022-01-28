@@ -27,15 +27,13 @@ import org.apache.logging.log4j.Logger;
 public class ExtendedSlabs {
     public static final String MODID = "extendedslabs";
     public static final String MODNAME = "Extended Slabs";
-    public static final String VERSION = "1.5.0";
-
-    public static ExtendedSlabs INSTANCE;
+    public static final String VERSION = "2.0.0";
 
     public static final Logger LOGGER = LogManager.getLogger(MODID);
     public static final ItemGroup GROUP = new CreativeTab();
 
     public ExtendedSlabs() {
-        INSTANCE = this;
+        LOGGER.debug(MODNAME + " Version is:" + VERSION);
 
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
@@ -67,7 +65,10 @@ public class ExtendedSlabs {
 
         if (event.includeServer()) {
             dataGenerator.addProvider(new ESPLootTableProvider(dataGenerator));
+            dataGenerator.addProvider(new ESPBlockModelProvider(dataGenerator, MODID, existing));
             dataGenerator.addProvider(new ESPItemModelGenerator(dataGenerator, existing));
+            dataGenerator.addProvider(new ESPBlockStateProvider(dataGenerator, MODID, existing));
+            dataGenerator.addProvider(new ESPBlockTagsProvider(dataGenerator, existing));
             dataGenerator.addProvider(new ESPStairRecipeProvider(dataGenerator));
             dataGenerator.addProvider(new ESPCornerRecipeProvider(dataGenerator));
             dataGenerator.addProvider(new ESPSlabRecipeProvider(dataGenerator));
@@ -79,9 +80,5 @@ public class ExtendedSlabs {
     {
         BlockRenderLayer.renderBlock();
         LOGGER.info("renderBlock");
-    }
-
-    public static ResourceLocation location(String name) {
-        return new ResourceLocation(MODID, name);
     }
 }

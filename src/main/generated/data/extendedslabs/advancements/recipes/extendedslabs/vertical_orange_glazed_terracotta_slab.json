@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "extendedslabs:vertical_orange_glazed_terracotta_slab"
+    ]
+  },
+  "criteria": {
+    "has_orange_glazed_terracotta": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:orange_glazed_terracotta"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "extendedslabs:vertical_orange_glazed_terracotta_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_orange_glazed_terracotta",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,5 +1,7 @@
 package com.blackout.extendedslabs.blocks;
 
+import com.blackout.extendedslabs.blocks.falling.FallingVerticalSlabBlock;
+import com.blackout.extendedslabs.blocks.path.PathVerticalSlabBlock;
 import com.blackout.extendedslabs.blocks.shapes.VerticalSlabShape;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -142,54 +144,57 @@ public class VerticalSlabBlock extends Block implements IWaterLoggable {
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        Direction enumfacing = context.getClickedFace();
         FluidState ifluidstate = context.getLevel().getFluidState(context.getClickedPos());
         BlockState iblockstate = this.defaultBlockState().setValue(FACING, context.getHorizontalDirection()).setValue(WATERLOGGED, ifluidstate.getType() == Fluids.WATER);
         return iblockstate.setValue(SHAPE, getSlabShape(iblockstate, context.getLevel(), context.getClickedPos()));
     }
 
-    private static VerticalSlabShape getSlabShape(BlockState state, IBlockReader worldIn, BlockPos pos) {
-        Direction enumfacing = state.getValue(FACING);
-        if (isBlockVerticalSlab(state)) {
-            Direction enumfacing1 = state.getValue(FACING);
-            if (enumfacing1.getAxis() != state.getValue(FACING).getAxis() && isDifferentVerticalSlab(state, worldIn, pos, enumfacing1.getOpposite())) {
-                if (enumfacing1 == enumfacing.getCounterClockWise()) {
+    private static VerticalSlabShape getSlabShape(BlockState state, IWorld worldIn, BlockPos pos) {
+        Direction direction = state.getValue(FACING);
+        BlockState iblockstate = worldIn.getBlockState(pos.relative(direction));
+        if (isBlockVerticalSlab(iblockstate)) {
+            Direction direction1 = iblockstate.getValue(FACING);
+            if (direction1.getAxis() != state.getValue(FACING).getAxis() && isDifferentVerticalSlab(state, worldIn, pos, direction1.getOpposite())) {
+                if (direction1 == direction.getCounterClockWise()) {
                     return VerticalSlabShape.OUTER_LEFT;
                 }
-
                 return VerticalSlabShape.OUTER_RIGHT;
             }
         }
-
-        if (isBlockVerticalSlab(state)) {
-            Direction enumfacing2 = state.getValue(FACING);
-            if (enumfacing2.getAxis() != state.getValue(FACING).getAxis() && isDifferentVerticalSlab(state, worldIn, pos, enumfacing2)) {
-                if (enumfacing2 == enumfacing.getCounterClockWise()) {
+        BlockState iblockstate1 = worldIn.getBlockState(pos.relative(direction.getOpposite()));
+        if (isBlockVerticalSlab(iblockstate1)) {
+            Direction direction2 = iblockstate1.getValue(FACING);
+            if (direction2.getAxis() != state.getValue(FACING).getAxis() && isDifferentVerticalSlab(state, worldIn, pos, direction2)) {
+                if (direction2 == direction.getCounterClockWise()) {
                     return VerticalSlabShape.INNER_LEFT;
                 }
-
                 return VerticalSlabShape.INNER_RIGHT;
             }
         }
-
         return VerticalSlabShape.STRAIGHT;
     }
 
-    private static boolean isDifferentVerticalSlab(BlockState state, IBlockReader worldIn, BlockPos pos, Direction enumFacing) {
-        return !isBlockVerticalSlab(state) || state.getValue(FACING) != state.getValue(FACING);
+    private static boolean isDifferentVerticalSlab(BlockState state, IWorld worldIn, BlockPos pos, Direction direction) {
+        BlockState iblockstate = worldIn.getBlockState(pos.relative(direction));
+        return !isBlockVerticalSlab(iblockstate) || iblockstate.getValue(FACING) != state.getValue(FACING);
     }
 
     public static boolean isBlockVerticalSlab(BlockState state) {
-        return state.getBlock() instanceof VerticalSlabBlock;
+        return state.getBlock() instanceof VerticalSlabBlock || state.getBlock() instanceof FallingVerticalSlabBlock || state.getBlock() instanceof PathVerticalSlabBlock;
     }
 
+    /**
+     * Update the provided state given the provided neighbor facing and neighbor state, returning a new state.
+     * For example, fences make their connections to the passed in state if possible, and wet concrete powder immediately
+     * returns its solidified counterpart.
+     * Note that this method should ideally consider only the specific face passed in.
+     */
     @Override
+    @SuppressWarnings("deprecation")
     public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
         if (stateIn.getValue(WATERLOGGED)) {
-            worldIn.getLiquidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(worldIn));
+            worldIn.getLiquidTicks().willTickThisTick(currentPos, Fluids.WATER);
         }
-
-        /* First round of updatePostPlacement */
         return facing.getAxis().isHorizontal() ? stateIn.setValue(SHAPE, getSlabShape(stateIn, worldIn, currentPos)) : super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
     }
 

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:purple_concrete_powder"
+    }
+  },
+  "result": {
+    "item": "extendedslabs:vertical_purple_concrete_powder_slab",
+    "count": 6
+  }
+}

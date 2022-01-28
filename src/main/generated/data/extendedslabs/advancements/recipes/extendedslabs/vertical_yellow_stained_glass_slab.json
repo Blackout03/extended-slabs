@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "extendedslabs:vertical_yellow_stained_glass_slab"
+    ]
+  },
+  "criteria": {
+    "has_yellow_stained_glass": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:yellow_stained_glass"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "extendedslabs:vertical_yellow_stained_glass_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_yellow_stained_glass",
+      "has_the_recipe"
+    ]
+  ]
+}

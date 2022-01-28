@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "extendedslabs:vertical_lime_glazed_terracotta_slab"
+    ]
+  },
+  "criteria": {
+    "has_lime_glazed_terracotta": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:lime_glazed_terracotta"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "extendedslabs:vertical_lime_glazed_terracotta_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_lime_glazed_terracotta",
+      "has_the_recipe"
+    ]
+  ]
+}
