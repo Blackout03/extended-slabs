@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "extendedslabs:vertical_light_gray_stained_glass_slab"
+    }
+  ],
+  "result": {
+    "item": "extendedslabs:light_gray_stained_glass_slab"
+  }
+}

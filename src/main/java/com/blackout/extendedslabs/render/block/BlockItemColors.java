@@ -19,12 +19,12 @@ public class BlockItemColors {
     @SubscribeEvent
     public static void registerBlockColors(ColorHandlerEvent.Block event) {
         event.getBlockColors().register(GRASS_BLOCK_COLOR,
-                ESPVerticalSlabs.GRASS_VERTICAL.get(), ESPSlabs.GRASS_SLAB.get());
+                ESPVerticalSlabs.GRASS_BLOCK_VERTICAL.get(), ESPSlabs.GRASS_BLOCK_SLAB.get());
     }
 
     @SubscribeEvent
     public static void registerItemColors(ColorHandlerEvent.Item event) {
         event.getItemColors().register((stack, color) -> event.getBlockColors().getColor(((BlockItem) stack.getItem()).getBlock().defaultBlockState(), null, null, color),
-                ESPVerticalSlabs.GRASS_VERTICAL.get(), ESPSlabs.GRASS_SLAB.get());
+                ESPVerticalSlabs.GRASS_BLOCK_VERTICAL.get(), ESPSlabs.GRASS_BLOCK_SLAB.get());
     }
 }

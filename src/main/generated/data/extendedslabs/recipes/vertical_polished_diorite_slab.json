@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:polished_diorite"
+    }
+  },
+  "result": {
+    "item": "extendedslabs:vertical_polished_diorite_slab",
+    "count": 6
+  }
+}

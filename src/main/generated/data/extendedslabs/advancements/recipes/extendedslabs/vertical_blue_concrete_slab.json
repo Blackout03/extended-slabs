@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "extendedslabs:vertical_blue_concrete_slab"
+    ]
+  },
+  "criteria": {
+    "has_blue_concrete": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:blue_concrete"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "extendedslabs:vertical_blue_concrete_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_blue_concrete",
+      "has_the_recipe"
+    ]
+  ]
+}

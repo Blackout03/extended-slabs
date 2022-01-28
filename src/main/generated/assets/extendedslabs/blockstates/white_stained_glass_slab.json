@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=top": {
+      "model": "extendedslabs:block/white_stained_glass_slab_top"
+    },
+    "type=bottom": {
+      "model": "extendedslabs:block/white_stained_glass_slab"
+    },
+    "type=double": {
+      "model": "minecraft:block/white_stained_glass"
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "extendedslabs:vertical_white_concrete_powder_slab"
+    }
+  ],
+  "result": {
+    "item": "extendedslabs:white_concrete_powder_slab"
+  }
+}

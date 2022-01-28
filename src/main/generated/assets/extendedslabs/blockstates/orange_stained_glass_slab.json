@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=top": {
+      "model": "extendedslabs:block/orange_stained_glass_slab_top"
+    },
+    "type=bottom": {
+      "model": "extendedslabs:block/orange_stained_glass_slab"
+    },
+    "type=double": {
+      "model": "minecraft:block/orange_stained_glass"
+    }
+  }
+}

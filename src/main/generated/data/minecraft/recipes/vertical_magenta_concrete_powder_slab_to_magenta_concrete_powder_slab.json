@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "extendedslabs:vertical_magenta_concrete_powder_slab"
+    }
+  ],
+  "result": {
+    "item": "extendedslabs:magenta_concrete_powder_slab"
+  }
+}

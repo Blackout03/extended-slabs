@@ -1,8 +1,0 @@
-{
-  "parent": "extendedslabs:block/slabs/vertical/inner/inner_vertical_slab",
-  "textures": {
-    "bottom": "biomesoplenty:block/willow_planks",
-    "top": "biomesoplenty:block/willow_planks",
-    "side": "biomesoplenty:block/willow_planks"
-  }
-}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:grass_block"
+    }
+  },
+  "result": {
+    "item": "extendedslabs:vertical_grass_block_slab",
+    "count": 6
+  }
+}

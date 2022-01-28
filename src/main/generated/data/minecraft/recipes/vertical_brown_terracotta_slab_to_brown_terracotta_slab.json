@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "extendedslabs:vertical_brown_terracotta_slab"
+    }
+  ],
+  "result": {
+    "item": "extendedslabs:brown_terracotta_slab"
+  }
+}

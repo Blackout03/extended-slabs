@@ -54,7 +54,9 @@ public class ExtendedSlabs {
 
         if (event.includeServer()) {
             dataGenerator.addProvider(new ESPLootTableProvider(dataGenerator));
+            dataGenerator.addProvider(new ESPBlockModelProvider(dataGenerator, MODID, existing));
             dataGenerator.addProvider(new ESPItemModelGenerator(dataGenerator, existing));
+            dataGenerator.addProvider(new ESPBlockStateProvider(dataGenerator, MODID, existing));
             dataGenerator.addProvider(new ESPBlockTagsProvider(dataGenerator, existing));
             dataGenerator.addProvider(new ESPStairRecipeProvider(dataGenerator));
             dataGenerator.addProvider(new ESPCornerRecipeProvider(dataGenerator));

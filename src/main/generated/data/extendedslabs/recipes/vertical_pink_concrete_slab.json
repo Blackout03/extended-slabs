@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:pink_concrete"
+    }
+  },
+  "result": {
+    "item": "extendedslabs:vertical_pink_concrete_slab",
+    "count": 6
+  }
+}
