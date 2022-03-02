@@ -67,13 +67,13 @@ dependencies {
     minecraft "net.minecraftforge:forge:${project.minecraftVersion}-${project.forgeVersion}"
 //    implementation fg.deobf("curse.maven:biomes_o_plenty-220318:${project.bop}")
 
-    implementation fg.deobf("curse.maven:configured-457570:${project.configured}")
-    implementation fg.deobf("curse.maven:catalogue-459701:${project.catalogue}")
+//    implementation fg.deobf("curse.maven:configured-457570:${project.configured}")
+//    implementation fg.deobf("curse.maven:catalogue-459701:${project.catalogue}")
 
-    runtimeOnly fg.deobf("mezz.jei:jei-1.18.1:${project.jei}")
-    implementation fg.deobf("curse.maven:just-enough-resources-jer-240630:${project.jer}")
+//    runtimeOnly fg.deobf("mezz.jei:jei-1.18.1:${project.jei}")
+//    implementation fg.deobf("curse.maven:just-enough-resources-jer-240630:${project.jer}")
 
-    runtimeOnly fg.deobf("curse.maven:the-one-probe-245211:${project.top}")
+//    runtimeOnly fg.deobf("curse.maven:the-one-probe-245211:${project.top}")
 }
 
 repositories {

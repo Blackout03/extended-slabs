@@ -17,7 +17,7 @@ public class ESPBlockTagsProvider extends BlockTagsProvider {
 
     @Override
     protected void addTags() {
-        tag(BlockTags.MINEABLE_WITH_PICKAXE).add(ESPSlabs.END_STONE_SLAB.get(), ESPSlabs.NETHERRACK_SLAB.get(),
+        m_206424_(BlockTags.MINEABLE_WITH_PICKAXE).add(ESPSlabs.END_STONE_SLAB.get(), ESPSlabs.NETHERRACK_SLAB.get(),
                 ESPSlabs.WHITE_CONCRETE_SLAB.get(), ESPSlabs.ORANGE_CONCRETE_SLAB.get(),
                 ESPSlabs.MAGENTA_CONCRETE_SLAB.get(), ESPSlabs.LIGHT_BLUE_CONCRETE_SLAB.get(),
                 ESPSlabs.YELLOW_CONCRETE_SLAB.get(), ESPSlabs.LIME_CONCRETE_SLAB.get(),
@@ -100,7 +100,7 @@ public class ESPBlockTagsProvider extends BlockTagsProvider {
                 ESPCorners.NETHERRACK_CORNER.get(), ESPCorners.NETHER_BRICK_CORNER.get(),
                 ESPCorners.RED_NETHER_BRICK_CORNER.get(), ESPCorners.END_STONE_CORNER.get(),
                 ESPCorners.END_STONE_BRICK_CORNER.get(), ESPCorners.PURPUR_CORNER.get());
-        tag(BlockTags.MINEABLE_WITH_SHOVEL).add(ESPSlabs.DIRT_SLAB.get(), ESPSlabs.GRASS_BLOCK_SLAB.get(),
+        m_206424_(BlockTags.MINEABLE_WITH_SHOVEL).add(ESPSlabs.DIRT_SLAB.get(), ESPSlabs.GRASS_BLOCK_SLAB.get(),
                 ESPSlabs.PODZOL_SLAB.get(), ESPSlabs.DIRT_PATH_SLAB.get(),
                 ESPSlabs.WHITE_CONCRETE_POWDER_SLAB.get(), ESPSlabs.ORANGE_CONCRETE_POWDER_SLAB.get(),
                 ESPSlabs.MAGENTA_CONCRETE_POWDER_SLAB.get(), ESPSlabs.LIGHT_BLUE_CONCRETE_POWDER_SLAB.get(),
@@ -125,7 +125,7 @@ public class ESPBlockTagsProvider extends BlockTagsProvider {
                 ESPVerticalSlabs.RED_CONCRETE_POWDER_VERTICAL.get(), ESPVerticalSlabs.BLACK_CONCRETE_POWDER_VERTICAL.get(),
                 ESPVerticalSlabs.GRAVEL_VERTICAL.get(), ESPVerticalSlabs.SAND_VERTICAL.get(),
                 ESPVerticalSlabs.RED_SAND_VERTICAL.get());
-        tag(BlockTags.MINEABLE_WITH_AXE).add(ESPVerticalSlabs.OAK_VERTICAL.get(), ESPVerticalSlabs.BIRCH_VERTICAL.get(),
+        m_206424_(BlockTags.MINEABLE_WITH_AXE).add(ESPVerticalSlabs.OAK_VERTICAL.get(), ESPVerticalSlabs.BIRCH_VERTICAL.get(),
                 ESPVerticalSlabs.SPRUCE_VERTICAL.get(), ESPVerticalSlabs.JUNGLE_VERTICAL.get(),
                 ESPVerticalSlabs.DARK_OAK_VERTICAL.get(), ESPVerticalSlabs.ACACIA_VERTICAL.get(),
                 ESPVerticalSlabs.CRIMSON_VERTICAL.get(), ESPVerticalSlabs.WARPED_VERTICAL.get(),
@@ -133,7 +133,7 @@ public class ESPBlockTagsProvider extends BlockTagsProvider {
                 ESPCorners.SPRUCE_CORNER.get(), ESPCorners.JUNGLE_CORNER.get(),
                 ESPCorners.DARK_OAK_CORNER.get(), ESPCorners.ACACIA_CORNER.get(),
                 ESPCorners.CRIMSON_CORNER.get(), ESPCorners.WARPED_CORNER.get());
-        tag(BlockTags.WOOL).add(ESPSlabs.WHITE_WOOL_SLAB.get(), ESPSlabs.ORANGE_WOOL_SLAB.get(),
+        m_206424_(BlockTags.WOOL).add(ESPSlabs.WHITE_WOOL_SLAB.get(), ESPSlabs.ORANGE_WOOL_SLAB.get(),
                 ESPSlabs.MAGENTA_WOOL_SLAB.get(), ESPSlabs.LIGHT_BLUE_WOOL_SLAB.get(),
                 ESPSlabs.YELLOW_WOOL_SLAB.get(), ESPSlabs.LIME_WOOL_SLAB.get(),
                 ESPSlabs.PINK_WOOL_SLAB.get(), ESPSlabs.GRAY_WOOL_SLAB.get(),

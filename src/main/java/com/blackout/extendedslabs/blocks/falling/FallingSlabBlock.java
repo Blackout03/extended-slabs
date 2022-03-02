@@ -2,7 +2,6 @@ package com.blackout.extendedslabs.blocks.falling;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.tags.FluidTags;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -123,7 +122,7 @@ public class FallingSlabBlock extends FallingBlock implements SimpleWaterloggedB
     @SuppressWarnings("deprecation")
     public boolean isPathfindable(@NotNull BlockState state, @NotNull BlockGetter worldIn, @NotNull BlockPos pos, @NotNull PathComputationType type) {
         if (type == PathComputationType.WATER) {
-            return worldIn.getFluidState(pos).is(FluidTags.WATER);
+            return worldIn.getFluidState(pos).is(Fluids.WATER);
         }
         return false;
     }
