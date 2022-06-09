@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "extendedslabs:mahogany_corner"
+    }
+  ],
+  "result": {
+    "item": "biomesoplenty:mahogany_stairs"
+  }
+}

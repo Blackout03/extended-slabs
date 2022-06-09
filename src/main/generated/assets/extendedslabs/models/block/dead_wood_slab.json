@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "side": "biomesoplenty:block/dead_log",
+    "bottom": "biomesoplenty:block/dead_log",
+    "top": "biomesoplenty:block/dead_log"
+  }
+}

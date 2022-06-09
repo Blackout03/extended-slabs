@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=top": {
+      "model": "extendedslabs:block/magic_wood_slab_top"
+    },
+    "type=bottom": {
+      "model": "extendedslabs:block/magic_wood_slab"
+    },
+    "type=double": {
+      "model": "biomesoplenty:block/magic_log"
+    }
+  }
+}

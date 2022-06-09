@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "extendedslabs:hellbark_wood_stairs"
+    }
+  ],
+  "result": {
+    "item": "extendedslabs:hellbark_wood_corner"
+  }
+}

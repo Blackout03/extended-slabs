@@ -1,8 +1,0 @@
-{
-  "parent": "extendedslabs:block/outer_vertical_slab",
-  "textures": {
-    "bottom": "biomesoplenty:block/redwood_planks",
-    "top": "biomesoplenty:block/redwood_planks",
-    "side": "biomesoplenty:block/redwood_planks"
-  }
-}

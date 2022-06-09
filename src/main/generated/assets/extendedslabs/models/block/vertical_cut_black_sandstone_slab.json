@@ -1,0 +1,8 @@
+{
+  "parent": "extendedslabs:block/vertical_slab",
+  "textures": {
+    "side": "biomesoplenty:block/cut_black_sandstone",
+    "bottom": "biomesoplenty:block/black_sandstone_top",
+    "top": "biomesoplenty:block/black_sandstone_top"
+  }
+}

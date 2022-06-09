@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "biomesoplenty:redwood_stairs"
+    }
+  ],
+  "result": {
+    "item": "extendedslabs:redwood_corner"
+  }
+}

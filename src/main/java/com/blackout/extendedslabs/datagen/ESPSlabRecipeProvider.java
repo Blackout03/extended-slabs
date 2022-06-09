@@ -1,8 +1,15 @@
 package com.blackout.extendedslabs.datagen;
 
+import biomesoplenty.api.block.BOPBlocks;
 import com.blackout.extendedslabs.ExtendedSlabs;
+import com.blackout.extendedslabs.init.ESPCorners;
 import com.blackout.extendedslabs.init.ESPSlabs;
+import com.blackout.extendedslabs.init.ESPStairs;
 import com.blackout.extendedslabs.init.ESPVerticalSlabs;
+import com.blackout.extendedslabs.init.modded.BOPCorners;
+import com.blackout.extendedslabs.init.modded.BOPSlabs;
+import com.blackout.extendedslabs.init.modded.BOPStairs;
+import com.blackout.extendedslabs.init.modded.BOPVerticalSlabs;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.*;
 import net.minecraft.item.Item;
@@ -178,6 +185,39 @@ public class ESPSlabRecipeProvider extends RecipeProvider {
         generateSlabRecipes(ESPVerticalSlabs.SPRUCE_VERTICAL.get().asItem(), Blocks.SPRUCE_SLAB.asItem(), consumer);
         generateSlabRecipes(ESPVerticalSlabs.WARPED_VERTICAL.get().asItem(), Blocks.WARPED_SLAB.asItem(), consumer);
         generateSlabRecipes(ESPVerticalSlabs.PETRIFIED_OAK_VERTICAL.get().asItem(), Blocks.PETRIFIED_OAK_SLAB.asItem(), consumer);
+
+        generateSlabRecipes(ESPVerticalSlabs.ACACIA_WOOD_VERTICAL.get().asItem(), ESPSlabs.ACACIA_WOOD_SLAB.get().asItem(), consumer);
+        generateSlabRecipes(ESPVerticalSlabs.BIRCH_WOOD_VERTICAL.get().asItem(), ESPSlabs.BIRCH_WOOD_SLAB.get().asItem(), consumer);
+        generateSlabRecipes(ESPVerticalSlabs.CRIMSON_HYPHAE_VERTICAL.get().asItem(), ESPSlabs.CRIMSON_HYPHAE_SLAB.get().asItem(), consumer);
+        generateSlabRecipes(ESPVerticalSlabs.DARK_OAK_WOOD_VERTICAL.get().asItem(), ESPSlabs.DARK_OAK_WOOD_SLAB.get().asItem(), consumer);
+        generateSlabRecipes(ESPVerticalSlabs.JUNGLE_WOOD_VERTICAL.get().asItem(), ESPSlabs.JUNGLE_WOOD_SLAB.get().asItem(), consumer);
+        generateSlabRecipes(ESPVerticalSlabs.OAK_WOOD_VERTICAL.get().asItem(), ESPSlabs.OAK_WOOD_SLAB.get().asItem(), consumer);
+        generateSlabRecipes(ESPVerticalSlabs.SPRUCE_WOOD_VERTICAL.get().asItem(), ESPSlabs.SPRUCE_WOOD_SLAB.get().asItem(), consumer);
+        generateSlabRecipes(ESPVerticalSlabs.WARPED_HYPHAE_VERTICAL.get().asItem(), ESPSlabs.WARPED_HYPHAE_SLAB.get().asItem(), consumer);
+
+        generateSlabRecipes(BOPVerticalSlabs.CHERRY_VERTICAL.get().asItem(), BOPBlocks.cherry_slab.asItem(), consumer);
+        generateSlabRecipes(BOPVerticalSlabs.DEAD_VERTICAL.get().asItem(), BOPBlocks.dead_slab.asItem(), consumer);
+        generateSlabRecipes(BOPVerticalSlabs.FIR_VERTICAL.get().asItem(), BOPBlocks.fir_slab.asItem(), consumer);
+        generateSlabRecipes(BOPVerticalSlabs.HELLBARK_VERTICAL.get().asItem(), BOPBlocks.hellbark_slab.asItem(), consumer);
+        generateSlabRecipes(BOPVerticalSlabs.JACARANDA_VERTICAL.get().asItem(), BOPBlocks.jacaranda_slab.asItem(), consumer);
+        generateSlabRecipes(BOPVerticalSlabs.MAGIC_VERTICAL.get().asItem(), BOPBlocks.magic_slab.asItem(), consumer);
+        generateSlabRecipes(BOPVerticalSlabs.MAHOGANY_VERTICAL.get().asItem(), BOPBlocks.mahogany_slab.asItem(), consumer);
+        generateSlabRecipes(BOPVerticalSlabs.PALM_VERTICAL.get().asItem(), BOPBlocks.palm_slab.asItem(), consumer);
+        generateSlabRecipes(BOPVerticalSlabs.REDWOOD_VERTICAL.get().asItem(), BOPBlocks.redwood_slab.asItem(), consumer);
+        generateSlabRecipes(BOPVerticalSlabs.UMBRAN_VERTICAL.get().asItem(), BOPBlocks.umbran_slab.asItem(), consumer);
+        generateSlabRecipes(BOPVerticalSlabs.WILLOW_VERTICAL.get().asItem(), BOPBlocks.willow_slab.asItem(), consumer);
+
+        generateSlabRecipes(BOPVerticalSlabs.CHERRY_WOOD_VERTICAL.get().asItem(), BOPSlabs.CHERRY_WOOD_SLAB.get().asItem(), consumer);
+        generateSlabRecipes(BOPVerticalSlabs.DEAD_WOOD_VERTICAL.get().asItem(), BOPSlabs.DEAD_WOOD_SLAB.get().asItem(), consumer);
+        generateSlabRecipes(BOPVerticalSlabs.FIR_WOOD_VERTICAL.get().asItem(), BOPSlabs.FIR_WOOD_SLAB.get().asItem(), consumer);
+        generateSlabRecipes(BOPVerticalSlabs.HELLBARK_WOOD_VERTICAL.get().asItem(), BOPSlabs.HELLBARK_WOOD_SLAB.get().asItem(), consumer);
+        generateSlabRecipes(BOPVerticalSlabs.JACARANDA_WOOD_VERTICAL.get().asItem(), BOPSlabs.JACARANDA_WOOD_SLAB.get().asItem(), consumer);
+        generateSlabRecipes(BOPVerticalSlabs.MAGIC_WOOD_VERTICAL.get().asItem(), BOPSlabs.MAGIC_WOOD_SLAB.get().asItem(), consumer);
+        generateSlabRecipes(BOPVerticalSlabs.MAHOGANY_WOOD_VERTICAL.get().asItem(), BOPSlabs.MAHOGANY_WOOD_SLAB.get().asItem(), consumer);
+        generateSlabRecipes(BOPVerticalSlabs.PALM_WOOD_VERTICAL.get().asItem(), BOPSlabs.PALM_WOOD_SLAB.get().asItem(), consumer);
+        generateSlabRecipes(BOPVerticalSlabs.REDWOOD_WOOD_VERTICAL.get().asItem(), BOPSlabs.REDWOOD_WOOD_SLAB.get().asItem(), consumer);
+        generateSlabRecipes(BOPVerticalSlabs.UMBRAN_WOOD_VERTICAL.get().asItem(), BOPSlabs.UMBRAN_WOOD_SLAB.get().asItem(), consumer);
+        generateSlabRecipes(BOPVerticalSlabs.WILLOW_WOOD_VERTICAL.get().asItem(), BOPSlabs.WILLOW_WOOD_SLAB.get().asItem(), consumer);
 
         ShapedRecipeBuilder.shaped(ESPSlabs.GRASS_BLOCK_SLAB.get(), 6).define('#', Blocks.GRASS_BLOCK).pattern("###").unlockedBy("has_grass_block", has(Blocks.GRASS_BLOCK)).save(consumer);
         ShapedRecipeBuilder.shaped(ESPSlabs.DIRT_SLAB.get(), 6).define('#', Blocks.DIRT).pattern("###").unlockedBy("has_dirt", has(Blocks.DIRT)).save(consumer);

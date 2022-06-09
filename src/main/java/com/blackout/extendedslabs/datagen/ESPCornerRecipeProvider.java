@@ -1,8 +1,11 @@
 package com.blackout.extendedslabs.datagen;
 
+import biomesoplenty.api.block.BOPBlocks;
 import com.blackout.extendedslabs.ExtendedSlabs;
 import com.blackout.extendedslabs.init.ESPCorners;
 import com.blackout.extendedslabs.init.ESPStairs;
+import com.blackout.extendedslabs.init.modded.BOPCorners;
+import com.blackout.extendedslabs.init.modded.BOPStairs;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
@@ -49,6 +52,39 @@ public class ESPCornerRecipeProvider extends RecipeProvider {
         generateCornerRecipes(ESPCorners.OAK_CORNER.get().asItem(), Blocks.OAK_STAIRS.asItem(), consumer);
         generateCornerRecipes(ESPCorners.SPRUCE_CORNER.get().asItem(), Blocks.SPRUCE_STAIRS.asItem(), consumer);
         generateCornerRecipes(ESPCorners.WARPED_CORNER.get().asItem(), Blocks.WARPED_STAIRS.asItem(), consumer);
+
+        generateCornerRecipes(ESPCorners.ACACIA_WOOD_CORNER.get().asItem(), ESPStairs.ACACIA_WOOD_STAIRS.get().asItem(), consumer);
+        generateCornerRecipes(ESPCorners.BIRCH_WOOD_CORNER.get().asItem(), ESPStairs.BIRCH_WOOD_STAIRS.get().asItem(), consumer);
+        generateCornerRecipes(ESPCorners.CRIMSON_HYPHAE_CORNER.get().asItem(), ESPStairs.CRIMSON_HYPHAE_STAIRS.get().asItem(), consumer);
+        generateCornerRecipes(ESPCorners.DARK_OAK_WOOD_CORNER.get().asItem(), ESPStairs.DARK_OAK_WOOD_STAIRS.get().asItem(), consumer);
+        generateCornerRecipes(ESPCorners.JUNGLE_WOOD_CORNER.get().asItem(), ESPStairs.JUNGLE_WOOD_STAIRS.get().asItem(), consumer);
+        generateCornerRecipes(ESPCorners.OAK_WOOD_CORNER.get().asItem(), ESPStairs.OAK_WOOD_STAIRS.get().asItem(), consumer);
+        generateCornerRecipes(ESPCorners.SPRUCE_WOOD_CORNER.get().asItem(), ESPStairs.SPRUCE_WOOD_STAIRS.get().asItem(), consumer);
+        generateCornerRecipes(ESPCorners.WARPED_HYPHAE_CORNER.get().asItem(), ESPStairs.WARPED_HYPHAE_STAIRS.get().asItem(), consumer);
+
+        generateCornerRecipes(BOPCorners.CHERRY_CORNER.get().asItem(), BOPBlocks.cherry_stairs.asItem(), consumer);
+        generateCornerRecipes(BOPCorners.DEAD_CORNER.get().asItem(), BOPBlocks.dead_stairs.asItem(), consumer);
+        generateCornerRecipes(BOPCorners.FIR_CORNER.get().asItem(), BOPBlocks.fir_stairs.asItem(), consumer);
+        generateCornerRecipes(BOPCorners.HELLBARK_CORNER.get().asItem(), BOPBlocks.hellbark_stairs.asItem(), consumer);
+        generateCornerRecipes(BOPCorners.JACARANDA_CORNER.get().asItem(), BOPBlocks.jacaranda_stairs.asItem(), consumer);
+        generateCornerRecipes(BOPCorners.MAGIC_CORNER.get().asItem(), BOPBlocks.magic_stairs.asItem(), consumer);
+        generateCornerRecipes(BOPCorners.MAHOGANY_CORNER.get().asItem(), BOPBlocks.mahogany_stairs.asItem(), consumer);
+        generateCornerRecipes(BOPCorners.PALM_CORNER.get().asItem(), BOPBlocks.palm_stairs.asItem(), consumer);
+        generateCornerRecipes(BOPCorners.REDWOOD_CORNER.get().asItem(), BOPBlocks.redwood_stairs.asItem(), consumer);
+        generateCornerRecipes(BOPCorners.UMBRAN_CORNER.get().asItem(), BOPBlocks.umbran_stairs.asItem(), consumer);
+        generateCornerRecipes(BOPCorners.WILLOW_CORNER.get().asItem(), BOPBlocks.willow_stairs.asItem(), consumer);
+
+        generateCornerRecipes(BOPCorners.CHERRY_WOOD_CORNER.get().asItem(), BOPStairs.CHERRY_WOOD_STAIRS.get().asItem(), consumer);
+        generateCornerRecipes(BOPCorners.DEAD_WOOD_CORNER.get().asItem(), BOPStairs.DEAD_WOOD_STAIRS.get().asItem(), consumer);
+        generateCornerRecipes(BOPCorners.FIR_WOOD_CORNER.get().asItem(), BOPStairs.FIR_WOOD_STAIRS.get().asItem(), consumer);
+        generateCornerRecipes(BOPCorners.HELLBARK_WOOD_CORNER.get().asItem(), BOPStairs.HELLBARK_WOOD_STAIRS.get().asItem(), consumer);
+        generateCornerRecipes(BOPCorners.JACARANDA_WOOD_CORNER.get().asItem(), BOPStairs.JACARANDA_WOOD_STAIRS.get().asItem(), consumer);
+        generateCornerRecipes(BOPCorners.MAGIC_WOOD_CORNER.get().asItem(), BOPStairs.MAGIC_WOOD_STAIRS.get().asItem(), consumer);
+        generateCornerRecipes(BOPCorners.MAHOGANY_WOOD_CORNER.get().asItem(), BOPStairs.MAHOGANY_WOOD_STAIRS.get().asItem(), consumer);
+        generateCornerRecipes(BOPCorners.PALM_WOOD_CORNER.get().asItem(), BOPStairs.PALM_WOOD_STAIRS.get().asItem(), consumer);
+        generateCornerRecipes(BOPCorners.REDWOOD_WOOD_CORNER.get().asItem(), BOPStairs.REDWOOD_WOOD_STAIRS.get().asItem(), consumer);
+        generateCornerRecipes(BOPCorners.UMBRAN_WOOD_CORNER.get().asItem(), BOPStairs.UMBRAN_WOOD_STAIRS.get().asItem(), consumer);
+        generateCornerRecipes(BOPCorners.WILLOW_WOOD_CORNER.get().asItem(), BOPStairs.WILLOW_WOOD_STAIRS.get().asItem(), consumer);
     }
 
     public void generateCornerRecipes(Item input, Item output, Consumer<IFinishedRecipe> consumer) {

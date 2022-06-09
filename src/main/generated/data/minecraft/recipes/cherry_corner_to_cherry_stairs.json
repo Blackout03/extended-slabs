@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "extendedslabs:cherry_corner"
+    }
+  ],
+  "result": {
+    "item": "biomesoplenty:cherry_stairs"
+  }
+}

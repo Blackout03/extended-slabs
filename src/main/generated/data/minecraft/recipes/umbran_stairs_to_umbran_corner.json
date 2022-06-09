@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "biomesoplenty:umbran_stairs"
+    }
+  ],
+  "result": {
+    "item": "extendedslabs:umbran_corner"
+  }
+}

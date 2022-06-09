@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "biomesoplenty:palm_slab"
+    }
+  ],
+  "result": {
+    "item": "extendedslabs:vertical_palm_slab"
+  }
+}

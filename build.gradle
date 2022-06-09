@@ -45,7 +45,11 @@ minecraft {
             workingDirectory project.file("run")
             property "forge.logging.markers", "SCAN,REGISTRIES,REGISTRYDUMP"
             property "forge.logging.console.level", "debug"
-            args '--mod', 'extendedslabs', '--all', '--output', file('src/main/generated/'), '--existing', file('src/main/resources/')
+            args '--mod', 'extendedslabs',
+                    '--all',
+                    '--output', file('src/main/generated/'),
+                    '--existing', file('src/main/resources/'),
+                    '--existing-mod', 'biomesoplenty'
             mods {
                 extendedslabs {
                     source sourceSets.main

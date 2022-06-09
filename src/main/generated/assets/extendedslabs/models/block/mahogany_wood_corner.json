@@ -1,0 +1,6 @@
+{
+  "parent": "extendedslabs:block/corner",
+  "textures": {
+    "block": "biomesoplenty:block/mahogany_log"
+  }
+}

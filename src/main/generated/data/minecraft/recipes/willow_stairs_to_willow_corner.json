@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "biomesoplenty:willow_stairs"
+    }
+  ],
+  "result": {
+    "item": "extendedslabs:willow_corner"
+  }
+}

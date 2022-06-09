@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "side": "biomesoplenty:block/palm_log",
+    "bottom": "biomesoplenty:block/palm_log",
+    "top": "biomesoplenty:block/palm_log"
+  }
+}

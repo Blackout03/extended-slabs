@@ -1,0 +1,6 @@
+{
+  "parent": "extendedslabs:block/corner",
+  "textures": {
+    "block": "biomesoplenty:block/umbran_planks"
+  }
+}

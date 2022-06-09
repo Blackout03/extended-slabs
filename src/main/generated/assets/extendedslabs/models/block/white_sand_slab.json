@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "side": "biomesoplenty:block/white_sand",
+    "bottom": "biomesoplenty:block/white_sand",
+    "top": "biomesoplenty:block/white_sand"
+  }
+}

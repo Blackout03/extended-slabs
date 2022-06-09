@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "extendedslabs:vertical_dead_slab"
+    }
+  ],
+  "result": {
+    "item": "biomesoplenty:dead_slab"
+  }
+}

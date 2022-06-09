@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "extendedslabs:vertical_jacaranda_slab"
+    }
+  ],
+  "result": {
+    "item": "biomesoplenty:jacaranda_slab"
+  }
+}

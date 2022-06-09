@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=top": {
+      "model": "extendedslabs:block/black_sand_slab_top"
+    },
+    "type=bottom": {
+      "model": "extendedslabs:block/black_sand_slab"
+    },
+    "type=double": {
+      "model": "biomesoplenty:block/black_sand"
+    }
+  }
+}

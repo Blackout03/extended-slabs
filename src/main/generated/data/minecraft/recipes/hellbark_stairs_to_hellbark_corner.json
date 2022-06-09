@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "biomesoplenty:hellbark_stairs"
+    }
+  ],
+  "result": {
+    "item": "extendedslabs:hellbark_corner"
+  }
+}

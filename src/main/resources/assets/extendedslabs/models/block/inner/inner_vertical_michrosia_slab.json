@@ -1,8 +1,0 @@
-{
-  "parent": "extendedslabs:block/inner_vertical_slab",
-  "textures": {
-    "bottom": "michrosia:block/michrosia_planks",
-    "top": "michrosia:block/michrosia_planks",
-    "side": "michrosia:block/michrosia_planks"
-  }
-}

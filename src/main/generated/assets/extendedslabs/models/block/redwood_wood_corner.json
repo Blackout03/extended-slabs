@@ -1,0 +1,6 @@
+{
+  "parent": "extendedslabs:block/corner",
+  "textures": {
+    "block": "biomesoplenty:block/redwood_log"
+  }
+}

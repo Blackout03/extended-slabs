@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "side": "biomesoplenty:block/cherry_log",
+    "bottom": "biomesoplenty:block/cherry_log",
+    "top": "biomesoplenty:block/cherry_log"
+  }
+}

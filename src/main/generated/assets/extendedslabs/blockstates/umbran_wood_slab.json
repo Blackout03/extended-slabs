@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=top": {
+      "model": "extendedslabs:block/umbran_wood_slab_top"
+    },
+    "type=bottom": {
+      "model": "extendedslabs:block/umbran_wood_slab"
+    },
+    "type=double": {
+      "model": "biomesoplenty:block/umbran_log"
+    }
+  }
+}

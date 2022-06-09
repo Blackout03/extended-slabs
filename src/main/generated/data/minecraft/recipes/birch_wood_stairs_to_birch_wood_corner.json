@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "extendedslabs:birch_wood_stairs"
+    }
+  ],
+  "result": {
+    "item": "extendedslabs:birch_wood_corner"
+  }
+}

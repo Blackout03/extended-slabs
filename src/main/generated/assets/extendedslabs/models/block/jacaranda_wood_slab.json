@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "side": "biomesoplenty:block/jacaranda_log",
+    "bottom": "biomesoplenty:block/jacaranda_log",
+    "top": "biomesoplenty:block/jacaranda_log"
+  }
+}

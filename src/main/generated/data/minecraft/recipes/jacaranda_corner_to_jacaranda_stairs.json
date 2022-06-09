@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "extendedslabs:jacaranda_corner"
+    }
+  ],
+  "result": {
+    "item": "biomesoplenty:jacaranda_stairs"
+  }
+}

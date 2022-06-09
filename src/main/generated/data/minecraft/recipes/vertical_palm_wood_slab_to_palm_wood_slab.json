@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "extendedslabs:vertical_palm_wood_slab"
+    }
+  ],
+  "result": {
+    "item": "extendedslabs:palm_wood_slab"
+  }
+}

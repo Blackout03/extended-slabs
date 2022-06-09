@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "extendedslabs:fir_wood_corner"
+    }
+  ],
+  "result": {
+    "item": "extendedslabs:fir_wood_stairs"
+  }
+}

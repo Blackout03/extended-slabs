@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "extendedslabs:vertical_willow_slab"
+    }
+  ],
+  "result": {
+    "item": "biomesoplenty:willow_slab"
+  }
+}
