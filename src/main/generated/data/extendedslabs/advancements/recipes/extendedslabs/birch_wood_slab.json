@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "extendedslabs:birch_wood_slab"
+    ]
+  },
+  "criteria": {
+    "has_birch_wood": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:birch_wood"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "extendedslabs:birch_wood_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_birch_wood",
+      "has_the_recipe"
+    ]
+  ]
+}

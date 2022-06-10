@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "extendedslabs:vertical_dead_wood_slab"
+    ]
+  },
+  "criteria": {
+    "has_dead_wood": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "biomesoplenty:dead_wood"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "extendedslabs:vertical_dead_wood_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_dead_wood",
+      "has_the_recipe"
+    ]
+  ]
+}

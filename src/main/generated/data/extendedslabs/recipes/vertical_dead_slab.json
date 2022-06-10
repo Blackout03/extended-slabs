@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "biomesoplenty:dead_planks"
+    }
+  },
+  "result": {
+    "item": "extendedslabs:vertical_dead_slab",
+    "count": 6
+  }
+}

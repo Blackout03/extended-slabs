@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "biomesoplenty:willow_wood"
+    }
+  },
+  "result": {
+    "item": "extendedslabs:willow_wood_stairs",
+    "count": 4
+  }
+}

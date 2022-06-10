@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "biomesoplenty:dead_wood"
+    }
+  },
+  "result": {
+    "item": "extendedslabs:dead_wood_slab",
+    "count": 6
+  }
+}

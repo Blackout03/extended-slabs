@@ -18,8 +18,6 @@ public class ESPBlockModelProvider extends BlockModelProvider {
         this.slabTop("dirt_slab", mcRL("dirt"), mcRL("dirt"), mcRL("dirt"));
         this.slab("coarse_dirt_slab", mcRL("coarse_dirt"), mcRL("coarse_dirt"), mcRL("coarse_dirt"));
         this.slabTop("coarse_dirt_slab", mcRL("coarse_dirt"), mcRL("coarse_dirt"), mcRL("coarse_dirt"));
-        this.slab("podzol_slab", mcRL("podzol_side"), mcRL("dirt"), mcRL("podzol_top"));
-        this.slabTop("podzol_slab", mcRL("podzol_side"), mcRL("dirt"), mcRL("podzol_top"));
         this.slab("sand_slab", mcRL("sand"), mcRL("sand"), mcRL("sand"));
         this.slabTop("sand_slab", mcRL("sand"), mcRL("sand"), mcRL("sand"));
         this.slab("red_sand_slab", mcRL("red_sand"), mcRL("red_sand"), mcRL("red_sand"));
@@ -281,6 +279,9 @@ public class ESPBlockModelProvider extends BlockModelProvider {
         this.verticalSlab("vertical_podzol_slab", mcRL("podzol_side"), mcRL("dirt"), mcRL("podzol_top"));
         this.innerVerticalSlab("vertical_podzol_slab", mcRL("podzol_side"), mcRL("dirt"), mcRL("podzol_top"));
         this.outerVerticalSlab("vertical_podzol_slab", mcRL("podzol_side"), mcRL("dirt"), mcRL("podzol_top"));
+        this.verticalSlab("vertical_mycelium_slab", mcRL("mycelium_side"), mcRL("dirt"), mcRL("mycelium_top"));
+        this.innerVerticalSlab("vertical_mycelium_slab", mcRL("mycelium_side"), mcRL("dirt"), mcRL("mycelium_top"));
+        this.outerVerticalSlab("vertical_mycelium_slab", mcRL("mycelium_side"), mcRL("dirt"), mcRL("mycelium_top"));
         this.verticalSlab("vertical_sand_slab", mcRL("sand"), mcRL("sand"), mcRL("sand"));
         this.innerVerticalSlab("vertical_sand_slab", mcRL("sand"), mcRL("sand"), mcRL("sand"));
         this.outerVerticalSlab("vertical_sand_slab", mcRL("sand"), mcRL("sand"), mcRL("sand"));
@@ -656,6 +657,12 @@ public class ESPBlockModelProvider extends BlockModelProvider {
         this.verticalSlab("vertical_netherrack_slab", mcRL("netherrack"), mcRL("netherrack"), mcRL("netherrack"));
         this.innerVerticalSlab("vertical_netherrack_slab", mcRL("netherrack"), mcRL("netherrack"), mcRL("netherrack"));
         this.outerVerticalSlab("vertical_netherrack_slab", mcRL("netherrack"), mcRL("netherrack"), mcRL("netherrack"));
+        this.verticalSlab("vertical_crimson_nylium_slab", mcRL("crimson_nylium_side"), mcRL("netherrack"), mcRL("crimson_nylium"));
+        this.innerVerticalSlab("vertical_crimson_nylium_slab", mcRL("crimson_nylium_side"), mcRL("netherrack"), mcRL("crimson_nylium"));
+        this.outerVerticalSlab("vertical_crimson_nylium_slab", mcRL("crimson_nylium_side"), mcRL("netherrack"), mcRL("crimson_nylium"));
+        this.verticalSlab("vertical_warped_nylium_slab", mcRL("warped_nylium_side"), mcRL("netherrack"), mcRL("warped_nylium"));
+        this.innerVerticalSlab("vertical_warped_nylium_slab", mcRL("warped_nylium_side"), mcRL("netherrack"), mcRL("warped_nylium"));
+        this.outerVerticalSlab("vertical_warped_nylium_slab", mcRL("warped_nylium_side"), mcRL("netherrack"), mcRL("warped_nylium"));
         this.verticalSlab("vertical_nether_brick_slab", mcRL("nether_bricks"), mcRL("nether_bricks"), mcRL("nether_bricks"));
         this.innerVerticalSlab("vertical_nether_brick_slab", mcRL("nether_bricks"), mcRL("nether_bricks"), mcRL("nether_bricks"));
         this.outerVerticalSlab("vertical_nether_brick_slab", mcRL("nether_bricks"), mcRL("nether_bricks"), mcRL("nether_bricks"));

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "biomesoplenty:mahogany_wood"
+    }
+  },
+  "result": {
+    "item": "extendedslabs:vertical_mahogany_wood_slab",
+    "count": 6
+  }
+}

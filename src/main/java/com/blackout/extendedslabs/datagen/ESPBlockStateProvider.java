@@ -43,7 +43,8 @@ public class ESPBlockStateProvider extends BlockStateProvider {
 	protected void registerStatesAndModels() {
 		this.slabBlock(ESPSlabs.DIRT_SLAB.get(), mcRL("dirt"), mcRL("dirt"), mcRL("dirt"), mcRL("dirt"));
 		this.slabBlock(ESPSlabs.COARSE_DIRT_SLAB.get(), mcRL("coarse_dirt"), mcRL("coarse_dirt"), mcRL("coarse_dirt"), mcRL("coarse_dirt"));
-		this.slabBlock(ESPSlabs.PODZOL_SLAB.get(), mcRL("podzol"), mcRL("podzol_side"), mcRL("dirt"), mcRL("podzol_top"));
+		this.slabBlock(ESPSlabs.PODZOL_SLAB.get(), mcRL("podzol"), espRL("podzol_slab_top"), espRL("podzol_slab"));
+		this.slabBlock(ESPSlabs.MYCELIUM_SLAB.get(), mcRL("mycelium"), espRL("mycelium_slab_top"), espRL("mycelium_slab"));
 		this.fallingSlabBlock(ESPSlabs.SAND_SLAB.get(), mcRL("sand"), mcRL("sand"), mcRL("sand"), mcRL("sand"));
 		this.fallingSlabBlock(ESPSlabs.RED_SAND_SLAB.get(), mcRL("red_sand"), mcRL("red_sand"), mcRL("red_sand"), mcRL("red_sand"));
 		this.fallingSlabBlock(ESPSlabs.GRAVEL_SLAB.get(), mcRL("gravel"), mcRL("gravel"), mcRL("gravel"), mcRL("gravel"));
@@ -169,10 +170,13 @@ public class ESPBlockStateProvider extends BlockStateProvider {
 		this.slabBlock(ESPSlabs.RED_STAINED_GLASS_SLAB.get(), mcRL("red_stained_glass"), mcRL("red_stained_glass"), mcRL("red_stained_glass"), mcRL("red_stained_glass"));
 		this.slabBlock(ESPSlabs.BLACK_STAINED_GLASS_SLAB.get(), mcRL("black_stained_glass"), mcRL("black_stained_glass"), mcRL("black_stained_glass"), mcRL("black_stained_glass"));
 		this.slabBlock(ESPSlabs.NETHERRACK_SLAB.get(), mcRL("netherrack"), mcRL("netherrack"), mcRL("netherrack"), mcRL("netherrack"));
+		this.slabBlock(ESPSlabs.CRIMSON_NYLIUM_SLAB.get(), mcRL("crimson_nylium"), espRL("crimson_nylium_slab_top"), espRL("crimson_nylium_slab"));
+		this.slabBlock(ESPSlabs.WARPED_NYLIUM_SLAB.get(), mcRL("warped_nylium"), espRL("warped_nylium_slab_top"), espRL("warped_nylium_slab"));
 		this.slabBlock(ESPSlabs.END_STONE_SLAB.get(), mcRL("end_stone"), mcRL("end_stone"), mcRL("end_stone"), mcRL("end_stone"));
 		this.verticalSlabBlock(ESPVerticalSlabs.DIRT_VERTICAL.get(), "vertical_dirt_slab", mcRL("dirt"), mcRL("dirt"), mcRL("dirt"));
 		this.verticalSlabBlock(ESPVerticalSlabs.COARSE_DIRT_VERTICAL.get(), "vertical_coarse_dirt_slab", mcRL("coarse_dirt"), mcRL("coarse_dirt"), mcRL("coarse_dirt"));
 		this.verticalSlabBlock(ESPVerticalSlabs.PODZOL_VERTICAL.get(), "vertical_podzol_slab", mcRL("podzol_side"), mcRL("dirt"), mcRL("podzol_top"));
+		this.verticalSlabBlock(ESPVerticalSlabs.MYCELIUM_VERTICAL.get(), "vertical_mycelium_slab", mcRL("mycelium_side"), mcRL("dirt"), mcRL("mycelium_top"));
 		this.fallingVerticalSlabBlock(ESPVerticalSlabs.SAND_VERTICAL.get(), "vertical_sand_slab", mcRL("sand"), mcRL("sand"), mcRL("sand"));
 		this.fallingVerticalSlabBlock(ESPVerticalSlabs.RED_SAND_VERTICAL.get(), "vertical_red_sand_slab", mcRL("red_sand"), mcRL("red_sand"), mcRL("red_sand"));
 		this.fallingVerticalSlabBlock(ESPVerticalSlabs.GRAVEL_VERTICAL.get(), "vertical_gravel_slab", mcRL("gravel"), mcRL("gravel"), mcRL("gravel"));
@@ -298,6 +302,8 @@ public class ESPBlockStateProvider extends BlockStateProvider {
 		this.verticalSlabBlock(ESPVerticalSlabs.POLISHED_BLACKSTONE_VERTICAL.get(), "vertical_polished_blackstone_slab", mcRL("polished_blackstone"), mcRL("polished_blackstone"), mcRL("polished_blackstone"));
 		this.verticalSlabBlock(ESPVerticalSlabs.POLISHED_BLACKSTONE_BRICK_VERTICAL.get(), "vertical_polished_blackstone_brick_slab", mcRL("polished_blackstone_bricks"), mcRL("polished_blackstone_bricks"), mcRL("polished_blackstone_bricks"));
 		this.verticalSlabBlock(ESPVerticalSlabs.NETHERRACK_VERTICAL.get(), "vertical_netherrack_slab", mcRL("netherrack"), mcRL("netherrack"), mcRL("netherrack"));
+		this.verticalSlabBlock(ESPVerticalSlabs.CRIMSON_NYLIUM_VERTICAL.get(), "vertical_crimson_nylium_slab", mcRL("crimson_nylium_side"), mcRL("netherrack"), mcRL("crimson_nylium"));
+		this.verticalSlabBlock(ESPVerticalSlabs.WARPED_NYLIUM_VERTICAL.get(), "vertical_warped_nylium_slab", mcRL("warped_nylium_side"), mcRL("netherrack"), mcRL("warped_nylium"));
 		this.verticalSlabBlock(ESPVerticalSlabs.NETHER_BRICK_VERTICAL.get(), "vertical_nether_brick_slab", mcRL("nether_bricks"), mcRL("nether_bricks"), mcRL("nether_bricks"));
 		this.verticalSlabBlock(ESPVerticalSlabs.RED_NETHER_BRICK_VERTICAL.get(), "vertical_red_nether_brick_slab", mcRL("red_nether_bricks"), mcRL("red_nether_bricks"), mcRL("red_nether_bricks"));
 		this.verticalSlabBlock(ESPVerticalSlabs.QUARTZ_VERTICAL.get(), "vertical_quartz_slab", mcRL("quartz_block_side"), mcRL("quartz_block_top"), mcRL("quartz_block_top"));
@@ -443,6 +449,10 @@ public class ESPBlockStateProvider extends BlockStateProvider {
 
 	public ESPBlockModelProvider models() {
 		return espBlockModels;
+	}
+
+	public void slabBlock(SlabBlock block, ResourceLocation doubleslab, ResourceLocation slabTop, ResourceLocation slabBottom) {
+		slabBlock(block, models().getExistingFile(slabBottom), models().getExistingFile(slabTop), models().getExistingFile(doubleslab));
 	}
 
 	public void cornerBlock(Block block, String name, ResourceLocation texture) {

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "extendedslabs:fir_wood_slab"
+    ]
+  },
+  "criteria": {
+    "has_fir_wood": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "biomesoplenty:fir_wood"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "extendedslabs:fir_wood_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_fir_wood",
+      "has_the_recipe"
+    ]
+  ]
+}

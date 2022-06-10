@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "extendedslabs:vertical_willow_wood_slab"
+    ]
+  },
+  "criteria": {
+    "has_willow_wood": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "biomesoplenty:willow_wood"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "extendedslabs:vertical_willow_wood_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_willow_wood",
+      "has_the_recipe"
+    ]
+  ]
+}

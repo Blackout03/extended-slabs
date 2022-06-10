@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "extendedslabs:mahogany_wood_stairs"
+    ]
+  },
+  "criteria": {
+    "has_mahogany_wood": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "biomesoplenty:mahogany_wood"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "extendedslabs:mahogany_wood_stairs"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_mahogany_wood",
+      "has_the_recipe"
+    ]
+  ]
+}

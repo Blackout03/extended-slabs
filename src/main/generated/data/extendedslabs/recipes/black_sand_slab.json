@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "biomesoplenty:black_sand"
+    }
+  },
+  "result": {
+    "item": "extendedslabs:black_sand_slab",
+    "count": 6
+  }
+}

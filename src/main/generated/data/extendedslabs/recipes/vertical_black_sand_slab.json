@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "biomesoplenty:black_sand"
+    }
+  },
+  "result": {
+    "item": "extendedslabs:vertical_black_sand_slab",
+    "count": 6
+  }
+}

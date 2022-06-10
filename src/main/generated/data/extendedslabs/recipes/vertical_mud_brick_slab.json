@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "biomesoplenty:mud_bricks"
+    }
+  },
+  "result": {
+    "item": "extendedslabs:vertical_mud_brick_slab",
+    "count": 6
+  }
+}

@@ -30,6 +30,7 @@ public class ESPSlabs {
 	public static final RegistryObject<SlabBlock> DIRT_SLAB = registerBlock("dirt_slab", () -> new SlabBlock(Block.Properties.copy(Blocks.DIRT)), ExtendedSlabs.GROUP);
 	public static final RegistryObject<SlabBlock> COARSE_DIRT_SLAB = registerBlock("coarse_dirt_slab", () -> new SlabBlock(AbstractBlock.Properties.copy(Blocks.COARSE_DIRT)), ExtendedSlabs.GROUP);
 	public static final RegistryObject<SlabBlock> PODZOL_SLAB = registerBlock("podzol_slab", () -> new SlabBlock(Block.Properties.copy(Blocks.PODZOL)), ExtendedSlabs.GROUP);
+	public static final RegistryObject<SlabBlock> MYCELIUM_SLAB = registerBlock("mycelium_slab", () -> new SlabBlock(Block.Properties.copy(Blocks.MYCELIUM)), ExtendedSlabs.GROUP);
 	public static final RegistryObject<SlabBlock> GRASS_PATH_SLAB = registerBlock("grass_path_slab", () -> new PathSlabBlock(Block.Properties.copy(Blocks.GRASS_PATH)), ExtendedSlabs.GROUP);
 	public static final RegistryObject<FallingSlabBlock> SAND_SLAB = registerBlock("sand_slab", () -> new FallingSlabBlock(Block.Properties.copy(Blocks.SAND)), ExtendedSlabs.GROUP);
 	public static final RegistryObject<FallingSlabBlock> RED_SAND_SLAB = registerBlock("red_sand_slab", () -> new FallingSlabBlock(Block.Properties.copy(Blocks.RED_SAND)), ExtendedSlabs.GROUP);
@@ -158,6 +159,8 @@ public class ESPSlabs {
 
 	// NETHER
 	public static final RegistryObject<SlabBlock> NETHERRACK_SLAB = registerBlock("netherrack_slab", () -> new SlabBlock(Block.Properties.copy(Blocks.NETHERRACK)), ExtendedSlabs.GROUP);
+	public static final RegistryObject<SlabBlock> CRIMSON_NYLIUM_SLAB = registerBlock("crimson_nylium_slab", () -> new SlabBlock(Block.Properties.copy(Blocks.CRIMSON_NYLIUM)), ExtendedSlabs.GROUP);
+	public static final RegistryObject<SlabBlock> WARPED_NYLIUM_SLAB = registerBlock("warped_nylium_slab", () -> new SlabBlock(Block.Properties.copy(Blocks.WARPED_NYLIUM)), ExtendedSlabs.GROUP);
 
 	// END
 	public static final RegistryObject<SlabBlock> END_STONE_SLAB = registerBlock("end_stone_slab", () -> new SlabBlock(Block.Properties.copy(Blocks.END_STONE)), ExtendedSlabs.GROUP);

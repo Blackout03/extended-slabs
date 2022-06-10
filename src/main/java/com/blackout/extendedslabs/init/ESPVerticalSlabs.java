@@ -30,6 +30,7 @@ public class ESPVerticalSlabs {
 	public static final RegistryObject<VerticalSlabBlock> DIRT_VERTICAL = registerBlock("vertical_dirt_slab", () -> new VerticalSlabBlock(Properties.copy(Blocks.DIRT)), ExtendedSlabs.GROUP);
 	public static final RegistryObject<VerticalSlabBlock> COARSE_DIRT_VERTICAL = registerBlock("vertical_coarse_dirt_slab", () -> new VerticalSlabBlock(Properties.copy(Blocks.COARSE_DIRT)), ExtendedSlabs.GROUP);
 	public static final RegistryObject<VerticalSlabBlock> PODZOL_VERTICAL = registerBlock("vertical_podzol_slab", () -> new VerticalSlabBlock(Properties.copy(Blocks.PODZOL)), ExtendedSlabs.GROUP);
+	public static final RegistryObject<VerticalSlabBlock> MYCELIUM_VERTICAL = registerBlock("vertical_mycelium_slab", () -> new VerticalSlabBlock(Properties.copy(Blocks.MYCELIUM)), ExtendedSlabs.GROUP);
 	public static final RegistryObject<PathVerticalSlabBlock> GRASS_PATH_VERTICAL = registerBlock("vertical_grass_path_slab", () -> new PathVerticalSlabBlock(Properties.copy(Blocks.GRASS_PATH)), ExtendedSlabs.GROUP);
 	public static final RegistryObject<FallingVerticalSlabBlock> SAND_VERTICAL = registerBlock("vertical_sand_slab", () -> new FallingVerticalSlabBlock(Properties.copy(Blocks.SAND)), ExtendedSlabs.GROUP);
 	public static final RegistryObject<FallingVerticalSlabBlock> RED_SAND_VERTICAL = registerBlock("vertical_red_sand_slab", () -> new FallingVerticalSlabBlock(Properties.copy(Blocks.RED_SAND)), ExtendedSlabs.GROUP);
@@ -174,6 +175,8 @@ public class ESPVerticalSlabs {
 	public static final RegistryObject<VerticalSlabBlock> POLISHED_BLACKSTONE_VERTICAL = registerBlock("vertical_polished_blackstone_slab", () -> new VerticalSlabBlock(Properties.copy(Blocks.POLISHED_BLACKSTONE_SLAB)), ExtendedSlabs.GROUP);
 	public static final RegistryObject<VerticalSlabBlock> POLISHED_BLACKSTONE_BRICK_VERTICAL = registerBlock("vertical_polished_blackstone_brick_slab", () -> new VerticalSlabBlock(Properties.copy(Blocks.POLISHED_BLACKSTONE_BRICK_SLAB)), ExtendedSlabs.GROUP);
 	public static final RegistryObject<VerticalSlabBlock> NETHERRACK_VERTICAL = registerBlock("vertical_netherrack_slab", () -> new VerticalSlabBlock(Properties.copy(Blocks.NETHERRACK)), ExtendedSlabs.GROUP);
+	public static final RegistryObject<VerticalSlabBlock> CRIMSON_NYLIUM_VERTICAL = registerBlock("vertical_crimson_nylium_slab", () -> new VerticalSlabBlock(Properties.copy(Blocks.CRIMSON_NYLIUM)), ExtendedSlabs.GROUP);
+	public static final RegistryObject<VerticalSlabBlock> WARPED_NYLIUM_VERTICAL = registerBlock("vertical_warped_nylium_slab", () -> new VerticalSlabBlock(Properties.copy(Blocks.WARPED_NYLIUM)), ExtendedSlabs.GROUP);
 	public static final RegistryObject<VerticalSlabBlock> NETHER_BRICK_VERTICAL = registerBlock("vertical_nether_brick_slab", () -> new VerticalSlabBlock(Properties.copy(Blocks.NETHER_BRICK_SLAB)), ExtendedSlabs.GROUP);
 	public static final RegistryObject<VerticalSlabBlock> RED_NETHER_BRICK_VERTICAL = registerBlock("vertical_red_nether_brick_slab", () -> new VerticalSlabBlock(Properties.copy(Blocks.RED_NETHER_BRICK_SLAB)), ExtendedSlabs.GROUP);
 	public static final RegistryObject<VerticalSlabBlock> QUARTZ_VERTICAL = registerBlock("vertical_quartz_slab", () -> new VerticalSlabBlock(Properties.copy(Blocks.QUARTZ_SLAB)), ExtendedSlabs.GROUP);

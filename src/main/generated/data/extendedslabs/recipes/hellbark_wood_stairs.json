@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "biomesoplenty:hellbark_wood"
+    }
+  },
+  "result": {
+    "item": "extendedslabs:hellbark_wood_stairs",
+    "count": 4
+  }
+}

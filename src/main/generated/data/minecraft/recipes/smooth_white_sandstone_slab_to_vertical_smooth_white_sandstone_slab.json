@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "biomesoplenty:smooth_white_sandstone_slab"
+    }
+  ],
+  "result": {
+    "item": "extendedslabs:vertical_smooth_white_sandstone_slab"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "biomesoplenty:cut_black_sandstone_slab"
+    }
+  ],
+  "result": {
+    "item": "extendedslabs:vertical_cut_black_sandstone_slab"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "extendedslabs:jacaranda_wood_stairs"
+    ]
+  },
+  "criteria": {
+    "has_jacaranda_wood": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "biomesoplenty:jacaranda_wood"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "extendedslabs:jacaranda_wood_stairs"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_jacaranda_wood",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "biomesoplenty:willow_planks"
+    }
+  },
+  "result": {
+    "item": "extendedslabs:vertical_willow_slab",
+    "count": 6
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=top": {
+      "model": "extendedslabs:block/crimson_nylium_slab_top"
+    },
+    "type=bottom": {
+      "model": "extendedslabs:block/crimson_nylium_slab"
+    },
+    "type=double": {
+      "model": "minecraft:block/crimson_nylium"
+    }
+  }
+}
