@@ -456,10 +456,6 @@ public class ESPBlockStateProvider extends BlockStateProvider {
 	}
 
 	public void cornerBlock(Block block, String name, ResourceLocation texture) {
-		ExtendedSlabs.LOGGER.debug(block.getRegistryName());
-		ExtendedSlabs.LOGGER.debug(Objects.requireNonNull(block.getRegistryName()).getPath());
-		ExtendedSlabs.LOGGER.debug(block.getRegistryName().getPath());
-		ExtendedSlabs.LOGGER.debug(name);
 		cornerBlock(block, models().corner(name, texture));
 	}
 
