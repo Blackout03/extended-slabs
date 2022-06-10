@@ -9,6 +9,7 @@ import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Consumer;
@@ -65,7 +66,7 @@ public class ESPCornerRecipeProvider extends RecipeProvider {
     }
 
     public void generateCornerRecipes(Item input, Item output, Consumer<FinishedRecipe> consumer) {
-        ExtendedSlabs.LOGGER.info(input.getRegistryName());
+        ExtendedSlabs.LOGGER.info(ForgeRegistries.ITEMS.getKey(input.asItem()));
 
         ShapelessRecipeBuilder.shapeless(output)
                 .requires(input)

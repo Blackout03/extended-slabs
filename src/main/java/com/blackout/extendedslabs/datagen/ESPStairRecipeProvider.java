@@ -10,6 +10,7 @@ import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Consumer;
@@ -87,7 +88,7 @@ public class ESPStairRecipeProvider extends RecipeProvider {
 	}
 
 	public void generateStairRecipes(Item output, Item input, Consumer<FinishedRecipe> consumer) {
-		ExtendedSlabs.LOGGER.info(input.getRegistryName());
+		ExtendedSlabs.LOGGER.info(ForgeRegistries.ITEMS.getKey(input.asItem()));
 
 		ShapelessRecipeBuilder.shapeless(output)
 				.requires(input)

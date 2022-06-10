@@ -8,6 +8,7 @@ import net.minecraft.data.recipes.*;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Consumer;
@@ -342,7 +343,7 @@ public class ESPSlabRecipeProvider extends RecipeProvider {
 	}
 
 	public void generateSlabRecipes(Item input, Item output, Consumer<FinishedRecipe> consumer) {
-		ExtendedSlabs.LOGGER.info(input.getRegistryName());
+		ExtendedSlabs.LOGGER.info(ForgeRegistries.ITEMS.getKey(input.asItem()));
 
 		ShapelessRecipeBuilder.shapeless(output)
 				.requires(input)
