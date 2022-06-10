@@ -32,6 +32,9 @@ public class ESPCorners {
 	public static final RegistryObject<Block> TUFF_CORNER = registerBlock("tuff_corner",() -> new CornerBlock(Block.Properties.copy(Blocks.TUFF).requiresCorrectToolForDrops()), ExtendedSlabs.GROUP);
 	public static final RegistryObject<Block> CALCITE_CORNER = registerBlock("calcite_corner",() -> new CornerBlock(Block.Properties.copy(Blocks.CALCITE).requiresCorrectToolForDrops()), ExtendedSlabs.GROUP);
 	public static final RegistryObject<Block> DRIPSTONE_CORNER = registerBlock("dripstone_corner",() -> new CornerBlock(Block.Properties.copy(Blocks.DRIPSTONE_BLOCK).requiresCorrectToolForDrops()), ExtendedSlabs.GROUP);
+	public static final RegistryObject<Block> MUD_CORNER = registerBlock("mud_corner",() -> new CornerBlock(Block.Properties.copy(Blocks.MUD).requiresCorrectToolForDrops()), ExtendedSlabs.GROUP);
+	public static final RegistryObject<Block> PACKED_MUD_CORNER = registerBlock("packed_mud_corner",() -> new CornerBlock(Block.Properties.copy(Blocks.PACKED_MUD).requiresCorrectToolForDrops()), ExtendedSlabs.GROUP);
+	public static final RegistryObject<Block> MUD_BRICK_CORNER = registerBlock("mud_brick_corner",() -> new CornerBlock(Block.Properties.copy(Blocks.MUD_BRICK_SLAB).requiresCorrectToolForDrops()), ExtendedSlabs.GROUP);
 
 	// PLANKS
 	public static final RegistryObject<Block> OAK_CORNER = registerBlock("oak_corner",() -> new CornerBlock(Block.Properties.copy(Blocks.OAK_SLAB)), ExtendedSlabs.GROUP);
@@ -40,6 +43,7 @@ public class ESPCorners {
 	public static final RegistryObject<Block> JUNGLE_CORNER = registerBlock("jungle_corner",() -> new CornerBlock(Block.Properties.copy(Blocks.JUNGLE_SLAB)), ExtendedSlabs.GROUP);
 	public static final RegistryObject<Block> ACACIA_CORNER = registerBlock("acacia_corner",() -> new CornerBlock(Block.Properties.copy(Blocks.OAK_SLAB)), ExtendedSlabs.GROUP);
 	public static final RegistryObject<Block> DARK_OAK_CORNER = registerBlock("dark_oak_corner",() -> new CornerBlock(Block.Properties.copy(Blocks.DARK_OAK_SLAB)), ExtendedSlabs.GROUP);
+	public static final RegistryObject<Block> MANGROVE_CORNER = registerBlock("mangrove_corner",() -> new CornerBlock(Block.Properties.copy(Blocks.MANGROVE_SLAB)), ExtendedSlabs.GROUP);
 	public static final RegistryObject<Block> CRIMSON_CORNER = registerBlock("crimson_corner",() -> new CornerBlock(Block.Properties.copy(Blocks.CRIMSON_SLAB)), ExtendedSlabs.GROUP);
 	public static final RegistryObject<Block> WARPED_CORNER = registerBlock("warped_corner",() -> new CornerBlock(Block.Properties.copy(Blocks.WARPED_SLAB)), ExtendedSlabs.GROUP);
 
@@ -50,6 +54,7 @@ public class ESPCorners {
 	public static final RegistryObject<CornerBlock> JUNGLE_WOOD_CORNER = registerBlock("jungle_wood_corner", () -> new CornerBlock(Block.Properties.copy(Blocks.JUNGLE_WOOD)), ExtendedSlabs.GROUP);
 	public static final RegistryObject<CornerBlock> ACACIA_WOOD_CORNER = registerBlock("acacia_wood_corner", () -> new CornerBlock(Block.Properties.copy(Blocks.ACACIA_WOOD)), ExtendedSlabs.GROUP);
 	public static final RegistryObject<CornerBlock> DARK_OAK_WOOD_CORNER = registerBlock("dark_oak_wood_corner", () -> new CornerBlock(Block.Properties.copy(Blocks.DARK_OAK_WOOD)), ExtendedSlabs.GROUP);
+	public static final RegistryObject<CornerBlock> MANGROVE_WOOD_CORNER = registerBlock("mangrove_wood_corner", () -> new CornerBlock(Block.Properties.copy(Blocks.MANGROVE_WOOD)), ExtendedSlabs.GROUP);
 	public static final RegistryObject<CornerBlock> CRIMSON_HYPHAE_CORNER = registerBlock("crimson_hyphae_corner", () -> new CornerBlock(Block.Properties.copy(Blocks.CRIMSON_HYPHAE)), ExtendedSlabs.GROUP);
 	public static final RegistryObject<CornerBlock> WARPED_HYPHAE_CORNER = registerBlock("warped_hyphae_corner", () -> new CornerBlock(Block.Properties.copy(Blocks.WARPED_HYPHAE)), ExtendedSlabs.GROUP);
 

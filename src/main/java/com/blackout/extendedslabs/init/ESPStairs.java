@@ -24,6 +24,8 @@ public class ESPStairs {
 	public static final RegistryObject<StairBlock> TUFF_STAIRS = registerBlock("tuff_stairs", () -> new StairBlock(Block.stateById(1), BlockBehaviour.Properties.copy(Blocks.TUFF)), ExtendedSlabs.GROUP);
 	public static final RegistryObject<StairBlock> CALCITE_STAIRS = registerBlock("calcite_stairs", () -> new StairBlock(Block.stateById(1), BlockBehaviour.Properties.copy(Blocks.CALCITE)), ExtendedSlabs.GROUP);
 	public static final RegistryObject<StairBlock> DRIPSTONE_STAIRS = registerBlock("dripstone_stairs", () -> new StairBlock(Block.stateById(1), BlockBehaviour.Properties.copy(Blocks.DRIPSTONE_BLOCK)), ExtendedSlabs.GROUP);
+	public static final RegistryObject<StairBlock> MUD_STAIRS = registerBlock("mud_stairs", () -> new StairBlock(Block.stateById(1), BlockBehaviour.Properties.copy(Blocks.MUD)), ExtendedSlabs.GROUP);
+	public static final RegistryObject<StairBlock> PACKED_MUD_STAIRS = registerBlock("packed_mud_stairs", () -> new StairBlock(Block.stateById(1), BlockBehaviour.Properties.copy(Blocks.PACKED_MUD)), ExtendedSlabs.GROUP);
 
 	// WOOD
 	public static final RegistryObject<StairBlock> OAK_WOOD_STAIRS = registerBlock("oak_wood_stairs", () -> new StairBlock(Block.stateById(1), Block.Properties.copy(Blocks.OAK_WOOD)), ExtendedSlabs.GROUP);
@@ -32,6 +34,7 @@ public class ESPStairs {
 	public static final RegistryObject<StairBlock> JUNGLE_WOOD_STAIRS = registerBlock("jungle_wood_stairs", () -> new StairBlock(Block.stateById(1), Block.Properties.copy(Blocks.JUNGLE_WOOD)), ExtendedSlabs.GROUP);
 	public static final RegistryObject<StairBlock> ACACIA_WOOD_STAIRS = registerBlock("acacia_wood_stairs", () -> new StairBlock(Block.stateById(1), Block.Properties.copy(Blocks.ACACIA_WOOD)), ExtendedSlabs.GROUP);
 	public static final RegistryObject<StairBlock> DARK_OAK_WOOD_STAIRS = registerBlock("dark_oak_wood_stairs", () -> new StairBlock(Block.stateById(1), Block.Properties.copy(Blocks.DARK_OAK_WOOD)), ExtendedSlabs.GROUP);
+	public static final RegistryObject<StairBlock> MANGROVE_WOOD_STAIRS = registerBlock("mangrove_wood_stairs", () -> new StairBlock(Block.stateById(1), Block.Properties.copy(Blocks.MANGROVE_WOOD)), ExtendedSlabs.GROUP);
 	public static final RegistryObject<StairBlock> CRIMSON_HYPHAE_STAIRS = registerBlock("crimson_hyphae_stairs", () -> new StairBlock(Block.stateById(1), Block.Properties.copy(Blocks.CRIMSON_HYPHAE)), ExtendedSlabs.GROUP);
 	public static final RegistryObject<StairBlock> WARPED_HYPHAE_STAIRS = registerBlock("warped_hyphae_stairs", () -> new StairBlock(Block.stateById(1), Block.Properties.copy(Blocks.WARPED_HYPHAE)), ExtendedSlabs.GROUP);
 

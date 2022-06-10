@@ -40,6 +40,8 @@ public class ESPSlabs {
 	public static final RegistryObject<SlabBlock> TUFF_SLAB = registerBlock("tuff_slab", () -> new SlabBlock(Block.Properties.copy(Blocks.TUFF)), ExtendedSlabs.GROUP);
 	public static final RegistryObject<SlabBlock> CALCITE_SLAB = registerBlock("calcite_slab", () -> new SlabBlock(Block.Properties.copy(Blocks.CALCITE)), ExtendedSlabs.GROUP);
 	public static final RegistryObject<SlabBlock> DRIPSTONE_SLAB = registerBlock("dripstone_slab", () -> new SlabBlock(Block.Properties.copy(Blocks.DRIPSTONE_BLOCK)), ExtendedSlabs.GROUP);
+	public static final RegistryObject<SlabBlock> MUD_SLAB = registerBlock("mud_slab", () -> new SlabBlock(Block.Properties.copy(Blocks.MUD)), ExtendedSlabs.GROUP);
+	public static final RegistryObject<SlabBlock> PACKED_MUD_SLAB = registerBlock("packed_mud_slab", () -> new SlabBlock(Block.Properties.copy(Blocks.PACKED_MUD)), ExtendedSlabs.GROUP);
 
 	// WOOL
 	public static final RegistryObject<SlabBlock> WHITE_WOOL_SLAB = registerBlock("white_wool_slab",() -> new SlabBlock(Block.Properties.copy(Blocks.WHITE_WOOL)), ExtendedSlabs.GROUP);
@@ -159,6 +161,7 @@ public class ESPSlabs {
 	public static final RegistryObject<SlabBlock> JUNGLE_WOOD_SLAB = registerBlock("jungle_wood_slab", () -> new SlabBlock(Block.Properties.copy(Blocks.JUNGLE_WOOD)), ExtendedSlabs.GROUP);
 	public static final RegistryObject<SlabBlock> ACACIA_WOOD_SLAB = registerBlock("acacia_wood_slab", () -> new SlabBlock(Block.Properties.copy(Blocks.ACACIA_WOOD)), ExtendedSlabs.GROUP);
 	public static final RegistryObject<SlabBlock> DARK_OAK_WOOD_SLAB = registerBlock("dark_oak_wood_slab", () -> new SlabBlock(Block.Properties.copy(Blocks.DARK_OAK_WOOD)), ExtendedSlabs.GROUP);
+	public static final RegistryObject<SlabBlock> MANGROVE_WOOD_SLAB = registerBlock("mangrove_wood_slab", () -> new SlabBlock(Block.Properties.copy(Blocks.MANGROVE_WOOD)), ExtendedSlabs.GROUP);
 	public static final RegistryObject<SlabBlock> CRIMSON_HYPHAE_SLAB = registerBlock("crimson_hyphae_slab", () -> new SlabBlock(Block.Properties.copy(Blocks.CRIMSON_HYPHAE)), ExtendedSlabs.GROUP);
 	public static final RegistryObject<SlabBlock> WARPED_HYPHAE_SLAB = registerBlock("warped_hyphae_slab", () -> new SlabBlock(Block.Properties.copy(Blocks.WARPED_HYPHAE)), ExtendedSlabs.GROUP);
 

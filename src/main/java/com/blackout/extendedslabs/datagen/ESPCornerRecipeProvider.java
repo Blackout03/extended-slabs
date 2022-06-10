@@ -8,7 +8,9 @@ import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Consumer;
@@ -33,6 +35,9 @@ public class ESPCornerRecipeProvider extends RecipeProvider {
         generateCornerRecipes(ESPCorners.TUFF_CORNER.get().asItem(), ESPStairs.TUFF_STAIRS.get().asItem(), consumer);
         generateCornerRecipes(ESPCorners.CALCITE_CORNER.get().asItem(), ESPStairs.CALCITE_STAIRS.get().asItem(), consumer);
         generateCornerRecipes(ESPCorners.DRIPSTONE_CORNER.get().asItem(), ESPStairs.DRIPSTONE_STAIRS.get().asItem(), consumer);
+        generateCornerRecipes(ESPCorners.MUD_CORNER.get().asItem(), ESPStairs.MUD_STAIRS.get().asItem(), consumer);
+        generateCornerRecipes(ESPCorners.PACKED_MUD_CORNER.get().asItem(), ESPStairs.PACKED_MUD_STAIRS.get().asItem(), consumer);
+        generateCornerRecipes(ESPCorners.MUD_BRICK_CORNER.get().asItem(), Blocks.MUD_BRICK_STAIRS.asItem(), consumer);
 
         generateCornerRecipes(ESPCorners.NETHERRACK_CORNER.get().asItem(), ESPStairs.NETHERRACK_STAIRS.get().asItem(), consumer);
         generateCornerRecipes(ESPCorners.NETHER_BRICK_CORNER.get().asItem(), Blocks.NETHER_BRICK_STAIRS.asItem(), consumer);
@@ -50,6 +55,7 @@ public class ESPCornerRecipeProvider extends RecipeProvider {
         generateCornerRecipes(ESPCorners.CRIMSON_CORNER.get().asItem(), Blocks.CRIMSON_STAIRS.asItem(), consumer);
         generateCornerRecipes(ESPCorners.DARK_OAK_CORNER.get().asItem(), Blocks.DARK_OAK_STAIRS.asItem(), consumer);
         generateCornerRecipes(ESPCorners.JUNGLE_CORNER.get().asItem(), Blocks.JUNGLE_STAIRS.asItem(), consumer);
+        generateCornerRecipes(ESPCorners.MANGROVE_CORNER.get().asItem(), Blocks.MANGROVE_STAIRS.asItem(), consumer);
         generateCornerRecipes(ESPCorners.OAK_CORNER.get().asItem(), Blocks.OAK_STAIRS.asItem(), consumer);
         generateCornerRecipes(ESPCorners.SPRUCE_CORNER.get().asItem(), Blocks.SPRUCE_STAIRS.asItem(), consumer);
         generateCornerRecipes(ESPCorners.WARPED_CORNER.get().asItem(), Blocks.WARPED_STAIRS.asItem(), consumer);
@@ -59,13 +65,14 @@ public class ESPCornerRecipeProvider extends RecipeProvider {
         generateCornerRecipes(ESPCorners.CRIMSON_HYPHAE_CORNER.get().asItem(), ESPStairs.CRIMSON_HYPHAE_STAIRS.get().asItem(), consumer);
         generateCornerRecipes(ESPCorners.DARK_OAK_WOOD_CORNER.get().asItem(), ESPStairs.DARK_OAK_WOOD_STAIRS.get().asItem(), consumer);
         generateCornerRecipes(ESPCorners.JUNGLE_WOOD_CORNER.get().asItem(), ESPStairs.JUNGLE_WOOD_STAIRS.get().asItem(), consumer);
+        generateCornerRecipes(ESPCorners.MANGROVE_WOOD_CORNER.get().asItem(), ESPStairs.MANGROVE_WOOD_STAIRS.get().asItem(), consumer);
         generateCornerRecipes(ESPCorners.OAK_WOOD_CORNER.get().asItem(), ESPStairs.OAK_WOOD_STAIRS.get().asItem(), consumer);
         generateCornerRecipes(ESPCorners.SPRUCE_WOOD_CORNER.get().asItem(), ESPStairs.SPRUCE_WOOD_STAIRS.get().asItem(), consumer);
         generateCornerRecipes(ESPCorners.WARPED_HYPHAE_CORNER.get().asItem(), ESPStairs.WARPED_HYPHAE_STAIRS.get().asItem(), consumer);
     }
 
     public void generateCornerRecipes(Item input, Item output, Consumer<FinishedRecipe> consumer) {
-        ExtendedSlabs.LOGGER.info(input.asItem());
+        ExtendedSlabs.LOGGER.info(ForgeRegistries.ITEMS.getKey(input.asItem()));
 
         ShapelessRecipeBuilder.shapeless(output)
                 .requires(input)

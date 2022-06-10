@@ -56,11 +56,13 @@
     "extendedslabs:green_glazed_terracotta_slab",
     "extendedslabs:red_glazed_terracotta_slab",
     "extendedslabs:black_glazed_terracotta_slab",
+    "extendedslabs:packed_mud_slab",
     "extendedslabs:tuff_stairs",
     "extendedslabs:calcite_stairs",
     "extendedslabs:dripstone_stairs",
     "extendedslabs:end_stone_stairs",
     "extendedslabs:netherrack_stairs",
+    "extendedslabs:packed_mud_stairs",
     "extendedslabs:vertical_andesite_slab",
     "extendedslabs:vertical_polished_andesite_slab",
     "extendedslabs:vertical_diorite_slab",
@@ -161,6 +163,8 @@
     "extendedslabs:vertical_polished_deepslate_slab",
     "extendedslabs:vertical_deepslate_brick_slab",
     "extendedslabs:vertical_deepslate_tile_slab",
+    "extendedslabs:vertical_packed_mud_slab",
+    "extendedslabs:vertical_mud_brick_slab",
     "extendedslabs:stone_corner",
     "extendedslabs:cobblestone_corner",
     "extendedslabs:stone_brick_corner",
@@ -181,6 +185,8 @@
     "extendedslabs:red_nether_brick_corner",
     "extendedslabs:end_stone_corner",
     "extendedslabs:end_stone_brick_corner",
-    "extendedslabs:purpur_corner"
+    "extendedslabs:purpur_corner",
+    "extendedslabs:packed_mud_corner",
+    "extendedslabs:mud_brick_corner"
   ]
 }

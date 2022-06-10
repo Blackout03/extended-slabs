@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "extendedslabs:packed_mud_slab"
+    }
+  ],
+  "result": {
+    "item": "extendedslabs:vertical_packed_mud_slab"
+  }
+}

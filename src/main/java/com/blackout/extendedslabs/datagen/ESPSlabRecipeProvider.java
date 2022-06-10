@@ -7,7 +7,9 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.*;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Consumer;
@@ -47,6 +49,9 @@ public class ESPSlabRecipeProvider extends RecipeProvider {
 		generateSlabRecipes(ESPVerticalSlabs.TUFF_VERTICAL.get().asItem(), ESPSlabs.TUFF_SLAB.get().asItem(), consumer);
 		generateSlabRecipes(ESPVerticalSlabs.CALCITE_VERTICAL.get().asItem(), ESPSlabs.CALCITE_SLAB.get().asItem(), consumer);
 		generateSlabRecipes(ESPVerticalSlabs.DRIPSTONE_VERTICAL.get().asItem(), ESPSlabs.DRIPSTONE_SLAB.get().asItem(), consumer);
+		generateSlabRecipes(ESPVerticalSlabs.MUD_VERTICAL.get().asItem(), ESPSlabs.MUD_SLAB.get().asItem(), consumer);
+		generateSlabRecipes(ESPVerticalSlabs.PACKED_MUD_VERTICAL.get().asItem(), ESPSlabs.PACKED_MUD_SLAB.get().asItem(), consumer);
+		generateSlabRecipes(ESPVerticalSlabs.MUD_BRICK_VERTICAL.get().asItem(), Blocks.MUD_BRICK_SLAB.asItem(), consumer);
 
 		generateSlabRecipes(ESPVerticalSlabs.WHITE_WOOL_VERTICAL.get().asItem(), ESPSlabs.WHITE_WOOL_SLAB.get().asItem(), consumer);
 		generateSlabRecipes(ESPVerticalSlabs.ORANGE_WOOL_VERTICAL.get().asItem(), ESPSlabs.ORANGE_WOOL_SLAB.get().asItem(), consumer);
@@ -189,6 +194,7 @@ public class ESPSlabRecipeProvider extends RecipeProvider {
 		generateSlabRecipes(ESPVerticalSlabs.CRIMSON_VERTICAL.get().asItem(), Blocks.CRIMSON_SLAB.asItem(), consumer);
 		generateSlabRecipes(ESPVerticalSlabs.DARK_OAK_VERTICAL.get().asItem(), Blocks.DARK_OAK_SLAB.asItem(), consumer);
 		generateSlabRecipes(ESPVerticalSlabs.JUNGLE_VERTICAL.get().asItem(), Blocks.JUNGLE_SLAB.asItem(), consumer);
+		generateSlabRecipes(ESPVerticalSlabs.MANGROVE_VERTICAL.get().asItem(), Blocks.MANGROVE_SLAB.asItem(), consumer);
 		generateSlabRecipes(ESPVerticalSlabs.OAK_VERTICAL.get().asItem(), Blocks.OAK_SLAB.asItem(), consumer);
 		generateSlabRecipes(ESPVerticalSlabs.SPRUCE_VERTICAL.get().asItem(), Blocks.SPRUCE_SLAB.asItem(), consumer);
 		generateSlabRecipes(ESPVerticalSlabs.WARPED_VERTICAL.get().asItem(), Blocks.WARPED_SLAB.asItem(), consumer);
@@ -199,6 +205,7 @@ public class ESPSlabRecipeProvider extends RecipeProvider {
 		generateSlabRecipes(ESPVerticalSlabs.CRIMSON_HYPHAE_VERTICAL.get().asItem(), ESPSlabs.CRIMSON_HYPHAE_SLAB.get().asItem(), consumer);
 		generateSlabRecipes(ESPVerticalSlabs.DARK_OAK_WOOD_VERTICAL.get().asItem(), ESPSlabs.DARK_OAK_WOOD_SLAB.get().asItem(), consumer);
 		generateSlabRecipes(ESPVerticalSlabs.JUNGLE_WOOD_VERTICAL.get().asItem(), ESPSlabs.JUNGLE_WOOD_SLAB.get().asItem(), consumer);
+		generateSlabRecipes(ESPVerticalSlabs.MANGROVE_WOOD_VERTICAL.get().asItem(), ESPSlabs.MANGROVE_WOOD_SLAB.get().asItem(), consumer);
 		generateSlabRecipes(ESPVerticalSlabs.OAK_WOOD_VERTICAL.get().asItem(), ESPSlabs.OAK_WOOD_SLAB.get().asItem(), consumer);
 		generateSlabRecipes(ESPVerticalSlabs.SPRUCE_WOOD_VERTICAL.get().asItem(), ESPSlabs.SPRUCE_WOOD_SLAB.get().asItem(), consumer);
 		generateSlabRecipes(ESPVerticalSlabs.WARPED_HYPHAE_VERTICAL.get().asItem(), ESPSlabs.WARPED_HYPHAE_SLAB.get().asItem(), consumer);
@@ -225,6 +232,8 @@ public class ESPSlabRecipeProvider extends RecipeProvider {
 		ShapedRecipeBuilder.shaped(ESPSlabs.TUFF_SLAB.get(), 6).define('#', Blocks.TUFF).pattern("###").unlockedBy("has_tuff", has(Blocks.TUFF)).save(consumer);
 		ShapedRecipeBuilder.shaped(ESPSlabs.CALCITE_SLAB.get(), 6).define('#', Blocks.CALCITE).pattern("###").unlockedBy("has_calcite", has(Blocks.CALCITE)).save(consumer);
 		ShapedRecipeBuilder.shaped(ESPSlabs.DRIPSTONE_SLAB.get(), 6).define('#', Blocks.DRIPSTONE_BLOCK).pattern("###").unlockedBy("has_dripstone_block", has(Blocks.DRIPSTONE_BLOCK)).save(consumer);
+		ShapedRecipeBuilder.shaped(ESPSlabs.MUD_SLAB.get(), 6).define('#', Blocks.MUD).pattern("###").unlockedBy("has_mud", has(Blocks.MUD)).save(consumer);
+		ShapedRecipeBuilder.shaped(ESPSlabs.PACKED_MUD_SLAB.get(), 6).define('#', Blocks.PACKED_MUD).pattern("###").unlockedBy("has_packed_mud", has(Blocks.PACKED_MUD)).save(consumer);
 		ShapedRecipeBuilder.shaped(ESPSlabs.WHITE_WOOL_SLAB.get(), 6).define('#', Blocks.WHITE_WOOL).pattern("###").unlockedBy("has_white_wool", has(Blocks.WHITE_WOOL)).save(consumer);
 		ShapedRecipeBuilder.shaped(ESPSlabs.ORANGE_WOOL_SLAB.get(), 6).define('#', Blocks.ORANGE_WOOL).pattern("###").unlockedBy("has_orange_wool", has(Blocks.ORANGE_WOOL)).save(consumer);
 		ShapedRecipeBuilder.shaped(ESPSlabs.MAGENTA_WOOL_SLAB.get(), 6).define('#', Blocks.MAGENTA_WOOL).pattern("###").unlockedBy("has_magenta_wool", has(Blocks.MAGENTA_WOOL)).save(consumer);
@@ -332,6 +341,7 @@ public class ESPSlabRecipeProvider extends RecipeProvider {
 		ShapedRecipeBuilder.shaped(ESPSlabs.SPRUCE_WOOD_SLAB.get(), 6).define('#', Blocks.SPRUCE_WOOD).pattern("###").unlockedBy("has_spruce_wood", has(Blocks.SPRUCE_WOOD)).save(consumer);
 		ShapedRecipeBuilder.shaped(ESPSlabs.BIRCH_WOOD_SLAB.get(), 6).define('#', Blocks.BIRCH_WOOD).pattern("###").unlockedBy("has_birch_wood", has(Blocks.BIRCH_WOOD)).save(consumer);
 		ShapedRecipeBuilder.shaped(ESPSlabs.JUNGLE_WOOD_SLAB.get(), 6).define('#', Blocks.JUNGLE_WOOD).pattern("###").unlockedBy("has_jungle_wood", has(Blocks.JUNGLE_WOOD)).save(consumer);
+		ShapedRecipeBuilder.shaped(ESPSlabs.MANGROVE_WOOD_SLAB.get(), 6).define('#', Blocks.MANGROVE_WOOD).pattern("###").unlockedBy("has_mangrove_wood", has(Blocks.MANGROVE_WOOD)).save(consumer);
 		ShapedRecipeBuilder.shaped(ESPSlabs.ACACIA_WOOD_SLAB.get(), 6).define('#', Blocks.ACACIA_WOOD).pattern("###").unlockedBy("has_acacia_wood", has(Blocks.ACACIA_WOOD)).save(consumer);
 		ShapedRecipeBuilder.shaped(ESPSlabs.DARK_OAK_WOOD_SLAB.get(), 6).define('#', Blocks.DARK_OAK_WOOD).pattern("###").unlockedBy("has_dark_oak_wood", has(Blocks.DARK_OAK_WOOD)).save(consumer);
 		ShapedRecipeBuilder.shaped(ESPSlabs.CRIMSON_HYPHAE_SLAB.get(), 6).define('#', Blocks.CRIMSON_HYPHAE).pattern("###").unlockedBy("has_crimson_hyphae", has(Blocks.CRIMSON_HYPHAE)).save(consumer);
@@ -342,7 +352,7 @@ public class ESPSlabRecipeProvider extends RecipeProvider {
 	}
 
 	public void generateSlabRecipes(Item input, Item output, Consumer<FinishedRecipe> consumer) {
-		ExtendedSlabs.LOGGER.info(input.asItem());
+		ExtendedSlabs.LOGGER.info(ForgeRegistries.ITEMS.getKey(input.asItem()));
 
 		ShapelessRecipeBuilder.shapeless(output)
 				.requires(input)

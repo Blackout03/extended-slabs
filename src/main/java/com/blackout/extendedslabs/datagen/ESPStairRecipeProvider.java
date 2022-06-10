@@ -10,6 +10,7 @@ import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Consumer;
@@ -34,6 +35,9 @@ public class ESPStairRecipeProvider extends RecipeProvider {
 		generateStairRecipes(ESPCorners.TUFF_CORNER.get().asItem(), ESPStairs.TUFF_STAIRS.get().asItem(), consumer);
 		generateStairRecipes(ESPCorners.CALCITE_CORNER.get().asItem(), ESPStairs.CALCITE_STAIRS.get().asItem(), consumer);
 		generateStairRecipes(ESPCorners.DRIPSTONE_CORNER.get().asItem(), ESPStairs.DRIPSTONE_STAIRS.get().asItem(), consumer);
+		generateStairRecipes(ESPCorners.MUD_CORNER.get().asItem(), ESPStairs.MUD_STAIRS.get().asItem(), consumer);
+		generateStairRecipes(ESPCorners.PACKED_MUD_CORNER.get().asItem(), ESPStairs.PACKED_MUD_STAIRS.get().asItem(), consumer);
+		generateStairRecipes(ESPCorners.MUD_BRICK_CORNER.get().asItem(), Blocks.MUD_BRICK_STAIRS.asItem(), consumer);
 
 		generateStairRecipes(ESPCorners.NETHERRACK_CORNER.get().asItem(), ESPStairs.NETHERRACK_STAIRS.get().asItem(), consumer);
 		generateStairRecipes(ESPCorners.NETHER_BRICK_CORNER.get().asItem(), Blocks.NETHER_BRICK_STAIRS.asItem(), consumer);
@@ -51,6 +55,7 @@ public class ESPStairRecipeProvider extends RecipeProvider {
 		generateStairRecipes(ESPCorners.CRIMSON_CORNER.get().asItem(), Blocks.CRIMSON_STAIRS.asItem(), consumer);
 		generateStairRecipes(ESPCorners.DARK_OAK_CORNER.get().asItem(), Blocks.DARK_OAK_STAIRS.asItem(), consumer);
 		generateStairRecipes(ESPCorners.JUNGLE_CORNER.get().asItem(), Blocks.JUNGLE_STAIRS.asItem(), consumer);
+		generateStairRecipes(ESPCorners.JUNGLE_CORNER.get().asItem(), Blocks.MANGROVE_STAIRS.asItem(), consumer);
 		generateStairRecipes(ESPCorners.OAK_CORNER.get().asItem(), Blocks.OAK_STAIRS.asItem(), consumer);
 		generateStairRecipes(ESPCorners.SPRUCE_CORNER.get().asItem(), Blocks.SPRUCE_STAIRS.asItem(), consumer);
 		generateStairRecipes(ESPCorners.WARPED_CORNER.get().asItem(), Blocks.WARPED_STAIRS.asItem(), consumer);
@@ -60,6 +65,7 @@ public class ESPStairRecipeProvider extends RecipeProvider {
 		generateStairRecipes(ESPCorners.CRIMSON_HYPHAE_CORNER.get().asItem(), ESPStairs.CRIMSON_HYPHAE_STAIRS.get().asItem(), consumer);
 		generateStairRecipes(ESPCorners.DARK_OAK_WOOD_CORNER.get().asItem(), ESPStairs.DARK_OAK_WOOD_STAIRS.get().asItem(), consumer);
 		generateStairRecipes(ESPCorners.JUNGLE_WOOD_CORNER.get().asItem(), ESPStairs.JUNGLE_WOOD_STAIRS.get().asItem(), consumer);
+		generateStairRecipes(ESPCorners.MANGROVE_WOOD_CORNER.get().asItem(), ESPStairs.MANGROVE_WOOD_STAIRS.get().asItem(), consumer);
 		generateStairRecipes(ESPCorners.OAK_WOOD_CORNER.get().asItem(), ESPStairs.OAK_WOOD_STAIRS.get().asItem(), consumer);
 		generateStairRecipes(ESPCorners.SPRUCE_WOOD_CORNER.get().asItem(), ESPStairs.SPRUCE_WOOD_STAIRS.get().asItem(), consumer);
 		generateStairRecipes(ESPCorners.WARPED_HYPHAE_CORNER.get().asItem(), ESPStairs.WARPED_HYPHAE_STAIRS.get().asItem(), consumer);
@@ -71,12 +77,15 @@ public class ESPStairRecipeProvider extends RecipeProvider {
 		ShapedRecipeBuilder.shaped(ESPStairs.TUFF_STAIRS.get(), 4).define('#', Blocks.TUFF).pattern("#  ").pattern("## ").pattern("###").unlockedBy("has_tuff", has(Blocks.TUFF)).save(consumer);
 		ShapedRecipeBuilder.shaped(ESPStairs.CALCITE_STAIRS.get(), 4).define('#', Blocks.CALCITE).pattern("#  ").pattern("## ").pattern("###").unlockedBy("has_calcite", has(Blocks.CALCITE)).save(consumer);
 		ShapedRecipeBuilder.shaped(ESPStairs.DRIPSTONE_STAIRS.get(), 4).define('#', Blocks.DRIPSTONE_BLOCK).pattern("#  ").pattern("## ").pattern("###").unlockedBy("has_dripstone_block", has(Blocks.DRIPSTONE_BLOCK)).save(consumer);
+		ShapedRecipeBuilder.shaped(ESPStairs.MUD_STAIRS.get(), 4).define('#', Blocks.MUD).pattern("#  ").pattern("## ").pattern("###").unlockedBy("has_mud", has(Blocks.MUD)).save(consumer);
+		ShapedRecipeBuilder.shaped(ESPStairs.PACKED_MUD_STAIRS.get(), 4).define('#', Blocks.PACKED_MUD).pattern("#  ").pattern("## ").pattern("###").unlockedBy("has_packed_mud", has(Blocks.PACKED_MUD)).save(consumer);
 
 		ShapedRecipeBuilder.shaped(ESPStairs.ACACIA_WOOD_STAIRS.get(), 4).define('#', Blocks.ACACIA_WOOD).pattern("#  ").pattern("## ").pattern("###").unlockedBy("has_acacia_wood", has(Blocks.ACACIA_WOOD)).save(consumer);
 		ShapedRecipeBuilder.shaped(ESPStairs.BIRCH_WOOD_STAIRS.get(), 4).define('#', Blocks.BIRCH_WOOD).pattern("#  ").pattern("## ").pattern("###").unlockedBy("has_birch_wood", has(Blocks.BIRCH_WOOD)).save(consumer);
 		ShapedRecipeBuilder.shaped(ESPStairs.CRIMSON_HYPHAE_STAIRS.get(), 4).define('#', Blocks.CRIMSON_HYPHAE).pattern("#  ").pattern("## ").pattern("###").unlockedBy("has_crimson_hyphae", has(Blocks.CRIMSON_HYPHAE)).save(consumer);
 		ShapedRecipeBuilder.shaped(ESPStairs.DARK_OAK_WOOD_STAIRS.get(), 4).define('#', Blocks.DARK_OAK_WOOD).pattern("#  ").pattern("## ").pattern("###").unlockedBy("has_dark_oak_wood", has(Blocks.DARK_OAK_WOOD)).save(consumer);
 		ShapedRecipeBuilder.shaped(ESPStairs.JUNGLE_WOOD_STAIRS.get(), 4).define('#', Blocks.JUNGLE_WOOD).pattern("#  ").pattern("## ").pattern("###").unlockedBy("has_jungle_wood", has(Blocks.JUNGLE_WOOD)).save(consumer);
+		ShapedRecipeBuilder.shaped(ESPStairs.MANGROVE_WOOD_STAIRS.get(), 4).define('#', Blocks.MANGROVE_WOOD).pattern("#  ").pattern("## ").pattern("###").unlockedBy("has_mangrove_wood", has(Blocks.MANGROVE_WOOD)).save(consumer);
 		ShapedRecipeBuilder.shaped(ESPStairs.OAK_WOOD_STAIRS.get(), 4).define('#', Blocks.OAK_WOOD).pattern("#  ").pattern("## ").pattern("###").unlockedBy("has_oak_wood", has(Blocks.OAK_WOOD)).save(consumer);
 		ShapedRecipeBuilder.shaped(ESPStairs.SPRUCE_WOOD_STAIRS.get(), 4).define('#', Blocks.SPRUCE_WOOD).pattern("#  ").pattern("## ").pattern("###").unlockedBy("has_spruce_wood", has(Blocks.SPRUCE_WOOD)).save(consumer);
 		ShapedRecipeBuilder.shaped(ESPStairs.WARPED_HYPHAE_STAIRS.get(), 4).define('#', Blocks.WARPED_HYPHAE).pattern("#  ").pattern("## ").pattern("###").unlockedBy("has_warped_hyphae", has(Blocks.WARPED_HYPHAE)).save(consumer);
@@ -87,7 +96,7 @@ public class ESPStairRecipeProvider extends RecipeProvider {
 	}
 
 	public void generateStairRecipes(Item output, Item input, Consumer<FinishedRecipe> consumer) {
-		ExtendedSlabs.LOGGER.info(input.asItem());
+		ExtendedSlabs.LOGGER.info(ForgeRegistries.ITEMS.getKey(input.asItem()));
 
 		ShapelessRecipeBuilder.shapeless(output)
 				.requires(input)

@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "extendedslabs:mud_stairs"
+    }
+  ],
+  "result": {
+    "item": "extendedslabs:mud_corner"
+  }
+}

@@ -56,6 +56,9 @@ public class ESPVerticalSlabs {
 	public static final RegistryObject<VerticalSlabBlock> TUFF_VERTICAL = registerBlock("vertical_tuff_slab", () -> new VerticalSlabBlock(Block.Properties.copy(Blocks.TUFF).requiresCorrectToolForDrops()), ExtendedSlabs.GROUP);
 	public static final RegistryObject<VerticalSlabBlock> CALCITE_VERTICAL = registerBlock("vertical_calcite_slab", () -> new VerticalSlabBlock(Block.Properties.copy(Blocks.CALCITE).requiresCorrectToolForDrops()), ExtendedSlabs.GROUP);
 	public static final RegistryObject<VerticalSlabBlock> DRIPSTONE_VERTICAL = registerBlock("vertical_dripstone_slab", () -> new VerticalSlabBlock(Block.Properties.copy(Blocks.DRIPSTONE_BLOCK).requiresCorrectToolForDrops()), ExtendedSlabs.GROUP);
+	public static final RegistryObject<VerticalSlabBlock> MUD_VERTICAL = registerBlock("vertical_mud_slab", () -> new VerticalSlabBlock(Block.Properties.copy(Blocks.MUD).requiresCorrectToolForDrops()), ExtendedSlabs.GROUP);
+	public static final RegistryObject<VerticalSlabBlock> PACKED_MUD_VERTICAL = registerBlock("vertical_packed_mud_slab", () -> new VerticalSlabBlock(Block.Properties.copy(Blocks.PACKED_MUD).requiresCorrectToolForDrops()), ExtendedSlabs.GROUP);
+	public static final RegistryObject<VerticalSlabBlock> MUD_BRICK_VERTICAL = registerBlock("vertical_mud_brick_slab", () -> new VerticalSlabBlock(Block.Properties.copy(Blocks.MUD_BRICK_SLAB).requiresCorrectToolForDrops()), ExtendedSlabs.GROUP);
 
 	// WOOL
 	public static final RegistryObject<VerticalSlabBlock> WHITE_WOOL_VERTICAL = registerBlock("vertical_white_wool_slab", () -> new VerticalSlabBlock(Block.Properties.copy(Blocks.WHITE_WOOL)), ExtendedSlabs.GROUP);
@@ -211,6 +214,7 @@ public class ESPVerticalSlabs {
 	public static final RegistryObject<VerticalSlabBlock> JUNGLE_VERTICAL = registerBlock("vertical_jungle_slab", () -> new VerticalSlabBlock(Block.Properties.copy(Blocks.JUNGLE_SLAB)), ExtendedSlabs.GROUP);
 	public static final RegistryObject<VerticalSlabBlock> ACACIA_VERTICAL = registerBlock("vertical_acacia_slab", () -> new VerticalSlabBlock(Block.Properties.copy(Blocks.ACACIA_SLAB)), ExtendedSlabs.GROUP);
 	public static final RegistryObject<VerticalSlabBlock> DARK_OAK_VERTICAL = registerBlock("vertical_dark_oak_slab", () -> new VerticalSlabBlock(Block.Properties.copy(Blocks.DARK_OAK_SLAB)), ExtendedSlabs.GROUP);
+	public static final RegistryObject<VerticalSlabBlock> MANGROVE_VERTICAL = registerBlock("vertical_mangrove_slab", () -> new VerticalSlabBlock(Block.Properties.copy(Blocks.MANGROVE_SLAB)), ExtendedSlabs.GROUP);
 	public static final RegistryObject<VerticalSlabBlock> CRIMSON_VERTICAL = registerBlock("vertical_crimson_slab", () -> new VerticalSlabBlock(Block.Properties.copy(Blocks.CRIMSON_SLAB)), ExtendedSlabs.GROUP);
 	public static final RegistryObject<VerticalSlabBlock> WARPED_VERTICAL = registerBlock("vertical_warped_slab", () -> new VerticalSlabBlock(Block.Properties.copy(Blocks.WARPED_SLAB)), ExtendedSlabs.GROUP);
 	public static final RegistryObject<VerticalSlabBlock> PETRIFIED_OAK_VERTICAL = registerBlock("vertical_petrified_oak_slab", () -> new VerticalSlabBlock(Block.Properties.copy(Blocks.PETRIFIED_OAK_SLAB)), ExtendedSlabs.GROUP);
@@ -222,6 +226,7 @@ public class ESPVerticalSlabs {
 	public static final RegistryObject<VerticalSlabBlock> JUNGLE_WOOD_VERTICAL = registerBlock("vertical_jungle_wood_slab", () -> new VerticalSlabBlock(Block.Properties.copy(Blocks.JUNGLE_WOOD)), ExtendedSlabs.GROUP);
 	public static final RegistryObject<VerticalSlabBlock> ACACIA_WOOD_VERTICAL = registerBlock("vertical_acacia_wood_slab", () -> new VerticalSlabBlock(Block.Properties.copy(Blocks.ACACIA_WOOD)), ExtendedSlabs.GROUP);
 	public static final RegistryObject<VerticalSlabBlock> DARK_OAK_WOOD_VERTICAL = registerBlock("vertical_dark_oak_wood_slab", () -> new VerticalSlabBlock(Block.Properties.copy(Blocks.DARK_OAK_WOOD)), ExtendedSlabs.GROUP);
+	public static final RegistryObject<VerticalSlabBlock> MANGROVE_WOOD_VERTICAL = registerBlock("vertical_mangrove_wood_slab", () -> new VerticalSlabBlock(Block.Properties.copy(Blocks.MANGROVE_WOOD)), ExtendedSlabs.GROUP);
 	public static final RegistryObject<VerticalSlabBlock> CRIMSON_HYPHAE_VERTICAL = registerBlock("vertical_crimson_hyphae_slab", () -> new VerticalSlabBlock(Block.Properties.copy(Blocks.CRIMSON_HYPHAE)), ExtendedSlabs.GROUP);
 	public static final RegistryObject<VerticalSlabBlock> WARPED_HYPHAE_VERTICAL = registerBlock("vertical_warped_hyphae_slab", () -> new VerticalSlabBlock(Block.Properties.copy(Blocks.WARPED_HYPHAE)), ExtendedSlabs.GROUP);
 
