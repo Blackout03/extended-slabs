@@ -2,6 +2,8 @@
   "replace": false,
   "values": [
     "extendedslabs:dirt_slab",
+    "extendedslabs:coarse_dirt_slab",
+    "extendedslabs:rooted_dirt_slab",
     "extendedslabs:grass_block_slab",
     "extendedslabs:podzol_slab",
     "extendedslabs:dirt_path_slab",
@@ -28,6 +30,8 @@
     "extendedslabs:clay_slab",
     "extendedslabs:vertical_clay_slab",
     "extendedslabs:vertical_dirt_slab",
+    "extendedslabs:vertical_coarse_dirt_slab",
+    "extendedslabs:vertical_rooted_dirt_slab",
     "extendedslabs:vertical_grass_block_slab",
     "extendedslabs:vertical_dirt_path_slab",
     "extendedslabs:vertical_podzol_slab",

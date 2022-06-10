@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=top": {
+      "model": "extendedslabs:block/coarse_dirt_slab_top"
+    },
+    "type=bottom": {
+      "model": "extendedslabs:block/coarse_dirt_slab"
+    },
+    "type=double": {
+      "model": "minecraft:block/coarse_dirt"
+    }
+  }
+}

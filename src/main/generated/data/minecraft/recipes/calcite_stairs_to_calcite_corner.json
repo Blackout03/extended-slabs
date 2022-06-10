@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "extendedslabs:calcite_stairs"
+    }
+  ],
+  "result": {
+    "item": "extendedslabs:calcite_corner"
+  }
+}

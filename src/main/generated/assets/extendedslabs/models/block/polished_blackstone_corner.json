@@ -1,0 +1,6 @@
+{
+  "parent": "extendedslabs:block/corner",
+  "textures": {
+    "block": "minecraft:block/polished_blackstone"
+  }
+}

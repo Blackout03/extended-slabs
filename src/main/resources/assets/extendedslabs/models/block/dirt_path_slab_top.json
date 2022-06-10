@@ -1,11 +1,10 @@
 {
-	"credit": "Made with Blockbench",
 	"parent": "minecraft:block/block",
 	"textures": {
-		"top": "block/dirt_path_top",
-		"side": "block/dirt_path_side",
-		"bottom": "block/dirt",
-		"particle": "block/dirt"
+		"top": "minecraft:block/dirt_path_top",
+		"side": "minecraft:block/dirt_path_side",
+		"bottom": "minecraft:block/dirt",
+		"particle": "minecraft:block/dirt"
 	},
 	"elements": [
 		{
