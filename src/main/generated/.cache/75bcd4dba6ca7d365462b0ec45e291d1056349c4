@@ -1,0 +1,5 @@
+// 1.19	2022-06-10T18:47:18.550639	Tags for minecraft:block
+923f4808dbbd04e79b9642b78543a8d83e23092a data/minecraft/tags/blocks/mineable/axe.json
+27a8eaa94a6a702ee34502ad688c836f548c68eb data/minecraft/tags/blocks/mineable/pickaxe.json
+30c30165d4b8cc35a0c2abeef004427a8ff8775a data/minecraft/tags/blocks/mineable/shovel.json
+1c41548c68de80a4ebf36083b3ccb722ce9914ec data/minecraft/tags/blocks/wool.json

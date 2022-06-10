@@ -1,17 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "#",
-    "#",
-    "#"
-  ],
   "key": {
     "#": {
       "item": "minecraft:smooth_sandstone"
     }
   },
+  "pattern": [
+    "#",
+    "#",
+    "#"
+  ],
   "result": {
-    "item": "extendedslabs:vertical_smooth_sandstone_slab",
-    "count": 6
+    "count": 6,
+    "item": "extendedslabs:vertical_smooth_sandstone_slab"
   }
 }

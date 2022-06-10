@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "extendedslabs:warped_hyphae_slab"
+    }
+  ],
+  "result": {
+    "item": "extendedslabs:vertical_warped_hyphae_slab"
+  }
+}

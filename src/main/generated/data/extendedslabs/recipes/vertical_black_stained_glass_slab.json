@@ -1,17 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "#",
-    "#",
-    "#"
-  ],
   "key": {
     "#": {
       "item": "minecraft:black_stained_glass"
     }
   },
+  "pattern": [
+    "#",
+    "#",
+    "#"
+  ],
   "result": {
-    "item": "extendedslabs:vertical_black_stained_glass_slab",
-    "count": 6
+    "count": 6,
+    "item": "extendedslabs:vertical_black_stained_glass_slab"
   }
 }

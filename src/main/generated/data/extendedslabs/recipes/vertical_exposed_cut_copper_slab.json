@@ -1,17 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "#",
-    "#",
-    "#"
-  ],
   "key": {
     "#": {
       "item": "minecraft:exposed_cut_copper"
     }
   },
+  "pattern": [
+    "#",
+    "#",
+    "#"
+  ],
   "result": {
-    "item": "extendedslabs:vertical_exposed_cut_copper_slab",
-    "count": 6
+    "count": 6,
+    "item": "extendedslabs:vertical_exposed_cut_copper_slab"
   }
 }

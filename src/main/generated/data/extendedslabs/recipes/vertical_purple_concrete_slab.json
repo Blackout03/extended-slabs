@@ -1,17 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "#",
-    "#",
-    "#"
-  ],
   "key": {
     "#": {
       "item": "minecraft:purple_concrete"
     }
   },
+  "pattern": [
+    "#",
+    "#",
+    "#"
+  ],
   "result": {
-    "item": "extendedslabs:vertical_purple_concrete_slab",
-    "count": 6
+    "count": 6,
+    "item": "extendedslabs:vertical_purple_concrete_slab"
   }
 }

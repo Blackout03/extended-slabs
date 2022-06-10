@@ -48,20 +48,20 @@ public class ESPItemModelGenerator extends ItemModelProvider {
     private void generateStairBlockItems(final Collection<RegistryObject<Item>> itemBlocks) {
         for (RegistryObject<Item> item : itemBlocks) {
             String name = item.getId().getPath();
-            if (!existingFileHelper.exists(new ResourceLocation(ExtendedSlabs.MODID, "block/stairs/regular/" + name), MODEL) || existingFileHelper.exists(new ResourceLocation(ExtendedSlabs.MODID, "item/" + name), MODEL))
+            if (!existingFileHelper.exists(new ResourceLocation(ExtendedSlabs.MODID, "block/" + name), MODEL) || existingFileHelper.exists(new ResourceLocation(ExtendedSlabs.MODID, "item/" + name), MODEL))
                 continue;
             ExtendedSlabs.LOGGER.info(item.getId());
-            withExistingParent(name, new ResourceLocation(ExtendedSlabs.MODID, "block/stairs/regular/" + name));
+            withExistingParent(name, new ResourceLocation(ExtendedSlabs.MODID, "block/" + name));
         }
     }
 
     private void generateCornerBlockItems(final Collection<RegistryObject<Item>> itemBlocks) {
         for (RegistryObject<Item> item : itemBlocks) {
             String name = item.getId().getPath();
-            if (!existingFileHelper.exists(new ResourceLocation(ExtendedSlabs.MODID, "block/corners/" + name), MODEL) || existingFileHelper.exists(new ResourceLocation(ExtendedSlabs.MODID, "item/" + name), MODEL))
+            if (!existingFileHelper.exists(new ResourceLocation(ExtendedSlabs.MODID, "block/" + name), MODEL) || existingFileHelper.exists(new ResourceLocation(ExtendedSlabs.MODID, "item/" + name), MODEL))
                 continue;
             ExtendedSlabs.LOGGER.info(item.getId());
-            withExistingParent(name, new ResourceLocation(ExtendedSlabs.MODID, "block/corners/" + name));
+            withExistingParent(name, new ResourceLocation(ExtendedSlabs.MODID, "block/" + name));
         }
     }
 

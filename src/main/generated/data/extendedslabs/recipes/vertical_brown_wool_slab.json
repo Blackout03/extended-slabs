@@ -1,17 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "#",
-    "#",
-    "#"
-  ],
   "key": {
     "#": {
       "item": "minecraft:brown_wool"
     }
   },
+  "pattern": [
+    "#",
+    "#",
+    "#"
+  ],
   "result": {
-    "item": "extendedslabs:vertical_brown_wool_slab",
-    "count": 6
+    "count": 6,
+    "item": "extendedslabs:vertical_brown_wool_slab"
   }
 }

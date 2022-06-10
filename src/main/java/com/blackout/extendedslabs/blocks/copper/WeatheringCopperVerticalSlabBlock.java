@@ -1,33 +1,62 @@
 package com.blackout.extendedslabs.blocks.copper;
 
 import com.blackout.extendedslabs.blocks.VerticalSlabBlock;
+import com.blackout.extendedslabs.util.CopperStateMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.WeatheringCopper;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Random;
+import java.util.Optional;
 
 public class WeatheringCopperVerticalSlabBlock extends VerticalSlabBlock implements WeatheringCopper {
-    private final WeatheringCopper.WeatherState weatherState;
+    private final WeatherState weatherState;
 
-    public WeatheringCopperVerticalSlabBlock(WeatheringCopper.WeatherState weatherState, BlockBehaviour.Properties properties) {
+    public WeatheringCopperVerticalSlabBlock(Properties properties, WeatherState weatherState) {
         super(properties);
         this.weatherState = weatherState;
     }
 
-    @SuppressWarnings("deprecation")
-    public void randomTick(@NotNull BlockState blockState, @NotNull ServerLevel serverLevel, @NotNull BlockPos blockPos, @NotNull Random random) {
+    @Override
+    public @NotNull InteractionResult use(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hitResult) {
+        var stack = player.getItemInHand(hand);
+        if (stack.getItem() == Items.HONEYCOMB) {
+            var block = CopperStateMap.getWaxed(state.getBlock());
+            if (block.isPresent()) {
+                level.setBlock(pos, block.map(b -> b.withPropertiesOf(state)).get(), 11);
+                level.levelEvent(player, 3003, pos, 0);
+                stack.shrink(1);
+                return InteractionResult.SUCCESS;
+            }
+        }
+        return InteractionResult.PASS;
+    }
+
+
+    @Override
+    public @NotNull Optional<BlockState> getNext(BlockState state) {
+        return CopperStateMap.getIncrease(state.getBlock()).map((block) -> block.withPropertiesOf(state));
+    }
+
+    @Override
+    public void randomTick(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, RandomSource random) {
         this.onRandomTick(blockState, serverLevel, blockPos, random);
     }
 
     public boolean isRandomlyTicking(BlockState state) {
-        return WeatheringCopper.getNext(state.getBlock()).isPresent();
+        return CopperStateMap.getIncrease(state.getBlock()).isPresent();
     }
 
-    public WeatheringCopper.@NotNull WeatherState getAge() {
+    @Override
+    public @NotNull WeatherState getAge() {
         return this.weatherState;
     }
 }

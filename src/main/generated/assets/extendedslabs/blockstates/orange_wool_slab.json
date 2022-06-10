@@ -1,13 +1,13 @@
 {
   "variants": {
-    "type=top": {
-      "model": "extendedslabs:block/orange_wool_slab_top"
-    },
     "type=bottom": {
       "model": "extendedslabs:block/orange_wool_slab"
     },
     "type=double": {
       "model": "minecraft:block/orange_wool"
+    },
+    "type=top": {
+      "model": "extendedslabs:block/orange_wool_slab_top"
     }
   }
 }
