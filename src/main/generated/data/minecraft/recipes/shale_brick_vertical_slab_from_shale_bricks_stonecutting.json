@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "darkerdepths:shale_bricks"
+  },
+  "result": "extendedslabs:vertical_shale_brick_slab",
+  "count": 2
+}

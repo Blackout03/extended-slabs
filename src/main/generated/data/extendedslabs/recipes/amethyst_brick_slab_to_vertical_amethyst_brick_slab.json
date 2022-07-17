@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "galosphere:amethyst_brick_slab"
+    }
+  ],
+  "result": {
+    "item": "extendedslabs:vertical_amethyst_brick_slab"
+  }
+}

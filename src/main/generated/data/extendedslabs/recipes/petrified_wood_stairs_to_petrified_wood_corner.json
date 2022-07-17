@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "extendedslabs:petrified_wood_stairs"
+    }
+  ],
+  "result": {
+    "item": "extendedslabs:petrified_wood_corner"
+  }
+}

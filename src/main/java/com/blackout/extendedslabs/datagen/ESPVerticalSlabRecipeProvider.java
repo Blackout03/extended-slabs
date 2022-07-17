@@ -3,12 +3,20 @@ package com.blackout.extendedslabs.datagen;
 import com.blackout.extendedslabs.ExtendedSlabs;
 import com.blackout.extendedslabs.init.ESPVerticalSlabs;
 import com.blackout.extendedslabs.init.ESPSlabs;
+import com.blackout.extendedslabs.init.modded.darkerdepths.DDSlabs;
+import com.blackout.extendedslabs.init.modded.darkerdepths.DDVerticalSlabs;
+import com.blackout.extendedslabs.init.modded.galosphere.GaloVerticalSlabs;
+import com.blackout.extendedslabs.init.modded.wildbackport.WBPSlabs;
+import com.blackout.extendedslabs.init.modded.wildbackport.WBPVerticalSlabs;
+import com.cursedcauldron.wildbackport.init.WBBlocks;
+import com.naterbobber.darkerdepths.init.DDBlocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.*;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.orcinus.galosphere.init.GBlocks;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Consumer;
@@ -436,6 +444,112 @@ public class ESPVerticalSlabRecipeProvider extends RecipeProvider {
 		SingleItemRecipeBuilder.stonecutting(Ingredient.of(Blocks.POLISHED_DEEPSLATE), ESPVerticalSlabs.POLISHED_DEEPSLATE_VERTICAL.get(), 2).unlockedBy("has_polished_deepslate", has(Blocks.POLISHED_DEEPSLATE)).save(consumer, "polished_deepslate_vertical_slab_from_polished_deepslate_stonecutting");
 		SingleItemRecipeBuilder.stonecutting(Ingredient.of(Blocks.DEEPSLATE_BRICKS), ESPVerticalSlabs.DEEPSLATE_BRICK_VERTICAL.get(), 2).unlockedBy("has_deepslate_bricks", has(Blocks.DEEPSLATE_BRICKS)).save(consumer, "deepslate_brick_vertical_slab_from_deepslate_bricks_stonecutting");
 		SingleItemRecipeBuilder.stonecutting(Ingredient.of(Blocks.DEEPSLATE_TILES), ESPVerticalSlabs.DEEPSLATE_TILE_VERTICAL.get(), 2).unlockedBy("has_deepslate_tiles", has(Blocks.DEEPSLATE_TILES)).save(consumer, "deepslate_tile_vertical_slab_from_deepslate_tiles_stonecutting");
+
+		generateVerticalSlabRecipes(WBPVerticalSlabs.MUD_VERTICAL.get().asItem(), WBPSlabs.MUD_SLAB.get().asItem(), consumer);
+		generateVerticalSlabRecipes(WBPVerticalSlabs.PACKED_MUD_VERTICAL.get().asItem(), WBPSlabs.PACKED_MUD_SLAB.get().asItem(), consumer);
+		generateVerticalSlabRecipes(WBPVerticalSlabs.MUD_BRICK_VERTICAL.get().asItem(), WBBlocks.MUD_BRICK_SLAB.get().asItem(), consumer);
+		generateVerticalSlabRecipes(WBPVerticalSlabs.MANGROVE_VERTICAL.get().asItem(), WBBlocks.MANGROVE_SLAB.get().asItem(), consumer);
+		generateVerticalSlabRecipes(WBPVerticalSlabs.MANGROVE_WOOD_VERTICAL.get().asItem(), WBPSlabs.MANGROVE_WOOD_SLAB.get().asItem(), consumer);
+
+		ShapedRecipeBuilder.shaped(WBPVerticalSlabs.MUD_VERTICAL.get(), 6).define('#', WBBlocks.MUD.get()).pattern("#").pattern("#").pattern("#").unlockedBy("has_mud", has(WBBlocks.MUD.get())).save(consumer);
+		ShapedRecipeBuilder.shaped(WBPVerticalSlabs.PACKED_MUD_VERTICAL.get(), 6).define('#', WBBlocks.PACKED_MUD.get()).pattern("#").pattern("#").pattern("#").unlockedBy("has_packed_mud", has(WBBlocks.PACKED_MUD.get())).save(consumer);
+		ShapedRecipeBuilder.shaped(WBPVerticalSlabs.MUD_BRICK_VERTICAL.get(), 6).define('#', WBBlocks.MUD_BRICKS.get()).pattern("#").pattern("#").pattern("#").unlockedBy("has_mud_bricks", has(WBBlocks.MUD_BRICKS.get())).save(consumer);
+		ShapedRecipeBuilder.shaped(WBPVerticalSlabs.MANGROVE_VERTICAL.get(), 6).define('#', WBBlocks.MANGROVE_PLANKS.get()).pattern("#").pattern("#").pattern("#").unlockedBy("has_mangrove_planks", has(WBBlocks.MANGROVE_PLANKS.get())).save(consumer);
+		ShapedRecipeBuilder.shaped(WBPVerticalSlabs.MANGROVE_WOOD_VERTICAL.get(), 6).define('#', WBBlocks.MANGROVE_WOOD.get()).pattern("#").pattern("#").pattern("#").unlockedBy("has_mangrove_wood", has(WBBlocks.MANGROVE_WOOD.get())).save(consumer);
+
+		generateVerticalSlabRecipes(GaloVerticalSlabs.AMETHYST_VERTICAL.get().asItem(), GBlocks.AMETHYST_SLAB.get().asItem(), consumer);
+		generateVerticalSlabRecipes(GaloVerticalSlabs.ALLURITE_VERTICAL.get().asItem(), GBlocks.ALLURITE_SLAB.get().asItem(), consumer);
+		generateVerticalSlabRecipes(GaloVerticalSlabs.LUMIERE_VERTICAL.get().asItem(), GBlocks.LUMIERE_SLAB.get().asItem(), consumer);
+		generateVerticalSlabRecipes(GaloVerticalSlabs.SMOOTH_AMETHYST_VERTICAL.get().asItem(), GBlocks.SMOOTH_AMETHYST_SLAB.get().asItem(), consumer);
+		generateVerticalSlabRecipes(GaloVerticalSlabs.SMOOTH_ALLURITE_VERTICAL.get().asItem(), GBlocks.SMOOTH_ALLURITE_SLAB.get().asItem(), consumer);
+		generateVerticalSlabRecipes(GaloVerticalSlabs.SMOOTH_LUMIERE_VERTICAL.get().asItem(), GBlocks.SMOOTH_LUMIERE_SLAB.get().asItem(), consumer);
+		generateVerticalSlabRecipes(GaloVerticalSlabs.AMETHYST_BRICK_VERTICAL.get().asItem(), GBlocks.AMETHYST_BRICK_SLAB.get().asItem(), consumer);
+		generateVerticalSlabRecipes(GaloVerticalSlabs.ALLURITE_BRICK_VERTICAL.get().asItem(), GBlocks.ALLURITE_BRICK_SLAB.get().asItem(), consumer);
+		generateVerticalSlabRecipes(GaloVerticalSlabs.LUMIERE_BRICK_VERTICAL.get().asItem(), GBlocks.LUMIERE_BRICK_SLAB.get().asItem(), consumer);
+
+		ShapedRecipeBuilder.shaped(GaloVerticalSlabs.AMETHYST_VERTICAL.get(), 6).define('#', Blocks.AMETHYST_BLOCK).pattern("#").pattern("#").pattern("#").unlockedBy("has_amethyst_block", has(Blocks.AMETHYST_BLOCK)).save(consumer);
+		ShapedRecipeBuilder.shaped(GaloVerticalSlabs.ALLURITE_VERTICAL.get(), 6).define('#', GBlocks.ALLURITE_BLOCK.get()).pattern("#").pattern("#").pattern("#").unlockedBy("has_allurite_block", has(GBlocks.ALLURITE_BLOCK.get())).save(consumer);
+		ShapedRecipeBuilder.shaped(GaloVerticalSlabs.LUMIERE_VERTICAL.get(), 6).define('#', GBlocks.LUMIERE_BLOCK.get()).pattern("#").pattern("#").pattern("#").unlockedBy("has_lumiere_block", has(GBlocks.LUMIERE_BLOCK.get())).save(consumer);
+		ShapedRecipeBuilder.shaped(GaloVerticalSlabs.SMOOTH_AMETHYST_VERTICAL.get(), 6).define('#', GBlocks.SMOOTH_AMETHYST.get()).pattern("#").pattern("#").pattern("#").unlockedBy("has_smooth_amethyst", has(GBlocks.SMOOTH_AMETHYST.get())).save(consumer);
+		ShapedRecipeBuilder.shaped(GaloVerticalSlabs.SMOOTH_ALLURITE_VERTICAL.get(), 6).define('#', GBlocks.SMOOTH_ALLURITE.get()).pattern("#").pattern("#").pattern("#").unlockedBy("has_smooth_allurite", has(GBlocks.SMOOTH_ALLURITE.get())).save(consumer);
+		ShapedRecipeBuilder.shaped(GaloVerticalSlabs.SMOOTH_LUMIERE_VERTICAL.get(), 6).define('#', GBlocks.SMOOTH_LUMIERE.get()).pattern("#").pattern("#").pattern("#").unlockedBy("has_smooth_lumiere", has(GBlocks.SMOOTH_LUMIERE.get())).save(consumer);
+		ShapedRecipeBuilder.shaped(GaloVerticalSlabs.AMETHYST_BRICK_VERTICAL.get(), 6).define('#', GBlocks.AMETHYST_BRICKS.get()).pattern("#").pattern("#").pattern("#").unlockedBy("has_amethyst_bricks", has(GBlocks.AMETHYST_BRICKS.get())).save(consumer);
+		ShapedRecipeBuilder.shaped(GaloVerticalSlabs.ALLURITE_BRICK_VERTICAL.get(), 6).define('#', GBlocks.ALLURITE_BRICKS.get()).pattern("#").pattern("#").pattern("#").unlockedBy("has_allurite_bricks", has(GBlocks.ALLURITE_BRICKS.get())).save(consumer);
+		ShapedRecipeBuilder.shaped(GaloVerticalSlabs.LUMIERE_BRICK_VERTICAL.get(), 6).define('#', GBlocks.LUMIERE_BRICKS.get()).pattern("#").pattern("#").pattern("#").unlockedBy("has_lumiere_bricks", has(GBlocks.LUMIERE_BRICKS.get())).save(consumer);
+
+		SingleItemRecipeBuilder.stonecutting(Ingredient.of(Blocks.AMETHYST_BLOCK), GaloVerticalSlabs.AMETHYST_VERTICAL.get(), 2).unlockedBy("has_amethyst_block", has(Blocks.AMETHYST_BLOCK)).save(consumer, "amethyst_vertical_slab_from_amethyst_block_stonecutting");
+		SingleItemRecipeBuilder.stonecutting(Ingredient.of(Blocks.AMETHYST_BLOCK), GaloVerticalSlabs.SMOOTH_AMETHYST_VERTICAL.get(), 2).unlockedBy("has_amethyst_block", has(Blocks.AMETHYST_BLOCK)).save(consumer, "smooth_amethyst_vertical_slab_from_amethyst_block_stonecutting");
+		SingleItemRecipeBuilder.stonecutting(Ingredient.of(Blocks.AMETHYST_BLOCK), GaloVerticalSlabs.AMETHYST_BRICK_VERTICAL.get(), 2).unlockedBy("has_amethyst_block", has(Blocks.AMETHYST_BLOCK)).save(consumer, "amethyst_brick_vertical_slab_from_amethyst_block_stonecutting");
+		SingleItemRecipeBuilder.stonecutting(Ingredient.of(GBlocks.SMOOTH_AMETHYST.get()), GaloVerticalSlabs.SMOOTH_AMETHYST_VERTICAL.get(), 2).unlockedBy("has_smooth_amethyst", has(GBlocks.SMOOTH_AMETHYST.get())).save(consumer, "smooth_amethyst_vertical_slab_from_smooth_amethyst_stonecutting");
+		SingleItemRecipeBuilder.stonecutting(Ingredient.of(GBlocks.SMOOTH_AMETHYST.get()), GaloVerticalSlabs.AMETHYST_BRICK_VERTICAL.get(), 2).unlockedBy("has_smooth_amethyst", has(GBlocks.SMOOTH_AMETHYST.get())).save(consumer, "amethyst_brick_vertical_slab_from_smooth_amethyst_stonecutting");
+		SingleItemRecipeBuilder.stonecutting(Ingredient.of(GBlocks.AMETHYST_BRICKS.get()), GaloVerticalSlabs.AMETHYST_BRICK_VERTICAL.get(), 2).unlockedBy("has_amethyst_bricks", has(GBlocks.AMETHYST_BRICKS.get())).save(consumer, "amethyst_brick_vertical_slab_from_amethyst_bricks_stonecutting");
+		SingleItemRecipeBuilder.stonecutting(Ingredient.of(GBlocks.ALLURITE_BLOCK.get()), GaloVerticalSlabs.ALLURITE_VERTICAL.get(), 2).unlockedBy("has_allurite_block", has(GBlocks.ALLURITE_BLOCK.get())).save(consumer, "allurite_vertical_slab_from_allurite_block_stonecutting");
+		SingleItemRecipeBuilder.stonecutting(Ingredient.of(GBlocks.ALLURITE_BLOCK.get()), GaloVerticalSlabs.SMOOTH_ALLURITE_VERTICAL.get(), 2).unlockedBy("has_allurite_block", has(GBlocks.ALLURITE_BLOCK.get())).save(consumer, "smooth_allurite_vertical_slab_from_allurite_block_stonecutting");
+		SingleItemRecipeBuilder.stonecutting(Ingredient.of(GBlocks.ALLURITE_BLOCK.get()), GaloVerticalSlabs.ALLURITE_BRICK_VERTICAL.get(), 2).unlockedBy("has_allurite_block", has(GBlocks.ALLURITE_BLOCK.get())).save(consumer, "allurite_brick_vertical_slab_from_allurite_block_stonecutting");
+		SingleItemRecipeBuilder.stonecutting(Ingredient.of(GBlocks.SMOOTH_ALLURITE.get()), GaloVerticalSlabs.SMOOTH_ALLURITE_VERTICAL.get(), 2).unlockedBy("has_smooth_allurite", has(GBlocks.SMOOTH_ALLURITE.get())).save(consumer, "smooth_allurite_vertical_slab_from_smooth_allurite_stonecutting");
+		SingleItemRecipeBuilder.stonecutting(Ingredient.of(GBlocks.SMOOTH_ALLURITE.get()), GaloVerticalSlabs.ALLURITE_BRICK_VERTICAL.get(), 2).unlockedBy("has_smooth_allurite", has(GBlocks.SMOOTH_ALLURITE.get())).save(consumer, "allurite_brick_vertical_slab_from_smooth_allurite_stonecutting");
+		SingleItemRecipeBuilder.stonecutting(Ingredient.of(GBlocks.ALLURITE_BRICKS.get()), GaloVerticalSlabs.ALLURITE_BRICK_VERTICAL.get(), 2).unlockedBy("has_allurite_bricks", has(GBlocks.ALLURITE_BRICKS.get())).save(consumer, "allurite_brick_vertical_slab_from_allurite_bricks_stonecutting");
+		SingleItemRecipeBuilder.stonecutting(Ingredient.of(GBlocks.LUMIERE_BLOCK.get()), GaloVerticalSlabs.LUMIERE_VERTICAL.get(), 2).unlockedBy("has_lumiere_block", has(GBlocks.LUMIERE_BLOCK.get())).save(consumer, "lumiere_vertical_slab_from_lumiere_block_stonecutting");
+		SingleItemRecipeBuilder.stonecutting(Ingredient.of(GBlocks.LUMIERE_BLOCK.get()), GaloVerticalSlabs.SMOOTH_LUMIERE_VERTICAL.get(), 2).unlockedBy("has_lumiere_block", has(GBlocks.LUMIERE_BLOCK.get())).save(consumer, "smooth_lumiere_vertical_slab_from_lumiere_block_stonecutting");
+		SingleItemRecipeBuilder.stonecutting(Ingredient.of(GBlocks.LUMIERE_BLOCK.get()), GaloVerticalSlabs.LUMIERE_BRICK_VERTICAL.get(), 2).unlockedBy("has_lumiere_block", has(GBlocks.LUMIERE_BLOCK.get())).save(consumer, "lumiere_brick_vertical_slab_from_lumiere_block_stonecutting");
+		SingleItemRecipeBuilder.stonecutting(Ingredient.of(GBlocks.SMOOTH_LUMIERE.get()), GaloVerticalSlabs.SMOOTH_LUMIERE_VERTICAL.get(), 2).unlockedBy("has_smooth_lumiere", has(GBlocks.SMOOTH_LUMIERE.get())).save(consumer, "smooth_lumiere_vertical_slab_from_smooth_lumiere_stonecutting");
+		SingleItemRecipeBuilder.stonecutting(Ingredient.of(GBlocks.SMOOTH_LUMIERE.get()), GaloVerticalSlabs.LUMIERE_BRICK_VERTICAL.get(), 2).unlockedBy("has_smooth_lumiere", has(GBlocks.SMOOTH_LUMIERE.get())).save(consumer, "lumiere_brick_vertical_slab_from_smooth_lumiere_stonecutting");
+		SingleItemRecipeBuilder.stonecutting(Ingredient.of(GBlocks.LUMIERE_BRICKS.get()), GaloVerticalSlabs.LUMIERE_BRICK_VERTICAL.get(), 2).unlockedBy("has_lumiere_bricks", has(GBlocks.LUMIERE_BRICKS.get())).save(consumer, "lumiere_brick_vertical_slab_from_lumiere_bricks_stonecutting");
+
+		generateVerticalSlabRecipes(DDVerticalSlabs.PETRIFIED_VERTICAL.get().asItem(), DDBlocks.PETRIFIED_SLAB.get().asItem(), consumer);
+		generateVerticalSlabRecipes(DDVerticalSlabs.PETRIFIED_WOOD_VERTICAL.get().asItem(), DDSlabs.PETRIFIED_WOOD_SLAB.get().asItem(), consumer);
+		generateVerticalSlabRecipes(DDVerticalSlabs.SHALE_VERTICAL.get().asItem(), DDBlocks.SHALE_SLAB.get().asItem(), consumer);
+		generateVerticalSlabRecipes(DDVerticalSlabs.POLISHED_SHALE_VERTICAL.get().asItem(), DDBlocks.POLISHED_SHALE_SLAB.get().asItem(), consumer);
+		generateVerticalSlabRecipes(DDVerticalSlabs.SHALE_BRICK_VERTICAL.get().asItem(), DDBlocks.SHALE_BRICKS_SLAB.get().asItem(), consumer);
+		generateVerticalSlabRecipes(DDVerticalSlabs.ARIDROCK_VERTICAL.get().asItem(), DDBlocks.ARIDROCK_SLAB.get().asItem(), consumer);
+		generateVerticalSlabRecipes(DDVerticalSlabs.POLISHED_ARIDROCK_VERTICAL.get().asItem(), DDBlocks.POLISHED_ARIDROCK_SLAB.get().asItem(), consumer);
+		generateVerticalSlabRecipes(DDVerticalSlabs.ARIDROCK_BRICK_VERTICAL.get().asItem(), DDBlocks.ARIDROCK_BRICKS_SLAB.get().asItem(), consumer);
+		generateVerticalSlabRecipes(DDVerticalSlabs.LIMESTONE_VERTICAL.get().asItem(), DDBlocks.LIMESTONE_SLAB.get().asItem(), consumer);
+		generateVerticalSlabRecipes(DDVerticalSlabs.POLISHED_LIMESTONE_VERTICAL.get().asItem(), DDBlocks.POLISHED_LIMESTONE_SLAB.get().asItem(), consumer);
+		generateVerticalSlabRecipes(DDVerticalSlabs.LIMESTONE_BRICK_VERTICAL.get().asItem(), DDBlocks.LIMESTONE_BRICKS_SLAB.get().asItem(), consumer);
+		generateVerticalSlabRecipes(DDVerticalSlabs.GRIMESTONE_VERTICAL.get().asItem(), DDBlocks.GRIMESTONE_SLAB.get().asItem(), consumer);
+		generateVerticalSlabRecipes(DDVerticalSlabs.POLISHED_GRIMESTONE_VERTICAL.get().asItem(), DDBlocks.POLISHED_GRIMESTONE_SLAB.get().asItem(), consumer);
+		generateVerticalSlabRecipes(DDVerticalSlabs.GRIMESTONE_BRICK_VERTICAL.get().asItem(), DDBlocks.GRIMESTONE_BRICKS_SLAB.get().asItem(), consumer);
+
+		ShapedRecipeBuilder.shaped(DDVerticalSlabs.PETRIFIED_VERTICAL.get(), 6).define('#', DDBlocks.PETRIFIED_PLANKS.get()).pattern("#").pattern("#").pattern("#").unlockedBy("has_petrified_planks", has(DDBlocks.PETRIFIED_PLANKS.get())).save(consumer);
+		ShapedRecipeBuilder.shaped(DDVerticalSlabs.PETRIFIED_WOOD_VERTICAL.get(), 6).define('#', DDBlocks.PETRIFIED_WOOD.get()).pattern("#").pattern("#").pattern("#").unlockedBy("has_petrified_wood", has(DDBlocks.PETRIFIED_WOOD.get())).save(consumer);
+		ShapedRecipeBuilder.shaped(DDVerticalSlabs.SHALE_VERTICAL.get(), 6).define('#', DDBlocks.SHALE.get()).pattern("#").pattern("#").pattern("#").unlockedBy("has_shale", has(DDBlocks.SHALE.get())).save(consumer);
+		ShapedRecipeBuilder.shaped(DDVerticalSlabs.POLISHED_SHALE_VERTICAL.get(), 6).define('#', DDBlocks.POLISHED_SHALE.get()).pattern("#").pattern("#").pattern("#").unlockedBy("has_polished_shale", has(DDBlocks.POLISHED_SHALE.get())).save(consumer);
+		ShapedRecipeBuilder.shaped(DDVerticalSlabs.SHALE_BRICK_VERTICAL.get(), 6).define('#', DDBlocks.SHALE_BRICKS.get()).pattern("#").pattern("#").pattern("#").unlockedBy("has_shale_bricks", has(DDBlocks.SHALE_BRICKS.get())).save(consumer);
+		ShapedRecipeBuilder.shaped(DDVerticalSlabs.ARIDROCK_VERTICAL.get(), 6).define('#', DDBlocks.ARIDROCK.get()).pattern("#").pattern("#").pattern("#").unlockedBy("has_aridrock", has(DDBlocks.ARIDROCK.get())).save(consumer);
+		ShapedRecipeBuilder.shaped(DDVerticalSlabs.POLISHED_ARIDROCK_VERTICAL.get(), 6).define('#', DDBlocks.POLISHED_ARIDROCK.get()).pattern("#").pattern("#").pattern("#").unlockedBy("has_polished_aridrock", has(DDBlocks.POLISHED_ARIDROCK.get())).save(consumer);
+		ShapedRecipeBuilder.shaped(DDVerticalSlabs.ARIDROCK_BRICK_VERTICAL.get(), 6).define('#', DDBlocks.ARIDROCK_BRICKS.get()).pattern("#").pattern("#").pattern("#").unlockedBy("has_aridrock_bricks", has(DDBlocks.ARIDROCK_BRICKS.get())).save(consumer);
+		ShapedRecipeBuilder.shaped(DDVerticalSlabs.LIMESTONE_VERTICAL.get(), 6).define('#', DDBlocks.LIMESTONE.get()).pattern("#").pattern("#").pattern("#").unlockedBy("has_limestone", has(DDBlocks.LIMESTONE.get())).save(consumer);
+		ShapedRecipeBuilder.shaped(DDVerticalSlabs.POLISHED_LIMESTONE_VERTICAL.get(), 6).define('#', DDBlocks.POLISHED_LIMESTONE.get()).pattern("#").pattern("#").pattern("#").unlockedBy("has_polished_limestone", has(DDBlocks.POLISHED_LIMESTONE.get())).save(consumer);
+		ShapedRecipeBuilder.shaped(DDVerticalSlabs.LIMESTONE_BRICK_VERTICAL.get(), 6).define('#', DDBlocks.LIMESTONE_BRICKS.get()).pattern("#").pattern("#").pattern("#").unlockedBy("has_limestone_bricks", has(DDBlocks.LIMESTONE_BRICKS.get())).save(consumer);
+		ShapedRecipeBuilder.shaped(DDVerticalSlabs.GRIMESTONE_VERTICAL.get(), 6).define('#', DDBlocks.GRIMESTONE.get()).pattern("#").pattern("#").pattern("#").unlockedBy("has_grimestone", has(DDBlocks.GRIMESTONE.get())).save(consumer);
+		ShapedRecipeBuilder.shaped(DDVerticalSlabs.POLISHED_GRIMESTONE_VERTICAL.get(), 6).define('#', DDBlocks.POLISHED_GRIMESTONE.get()).pattern("#").pattern("#").pattern("#").unlockedBy("has_polished_grimestone", has(DDBlocks.POLISHED_GRIMESTONE.get())).save(consumer);
+		ShapedRecipeBuilder.shaped(DDVerticalSlabs.GRIMESTONE_BRICK_VERTICAL.get(), 6).define('#', DDBlocks.GRIMESTONE_BRICKS.get()).pattern("#").pattern("#").pattern("#").unlockedBy("has_grimestone_bricks", has(DDBlocks.GRIMESTONE_BRICKS.get())).save(consumer);
+
+		SingleItemRecipeBuilder.stonecutting(Ingredient.of(DDBlocks.SHALE.get()), DDVerticalSlabs.SHALE_VERTICAL.get(), 2).unlockedBy("has_shale", has(DDBlocks.SHALE.get())).save(consumer, "shale_vertical_slab_from_shale_stonecutting");
+		SingleItemRecipeBuilder.stonecutting(Ingredient.of(DDBlocks.SHALE.get()), DDVerticalSlabs.POLISHED_SHALE_VERTICAL.get(), 2).unlockedBy("has_shale", has(DDBlocks.SHALE.get())).save(consumer, "polished_shale_vertical_slab_from_shale_stonecutting");
+		SingleItemRecipeBuilder.stonecutting(Ingredient.of(DDBlocks.SHALE.get()), DDVerticalSlabs.SHALE_BRICK_VERTICAL.get(), 2).unlockedBy("has_shale", has(DDBlocks.SHALE.get())).save(consumer, "shale_brick_vertical_slab_from_shale_stonecutting");
+		SingleItemRecipeBuilder.stonecutting(Ingredient.of(DDBlocks.POLISHED_SHALE.get()), DDVerticalSlabs.POLISHED_SHALE_VERTICAL.get(), 2).unlockedBy("has_polished_shale", has(DDBlocks.POLISHED_SHALE.get())).save(consumer, "polished_shale_vertical_slab_from_polished_shale_stonecutting");
+		SingleItemRecipeBuilder.stonecutting(Ingredient.of(DDBlocks.POLISHED_SHALE.get()), DDVerticalSlabs.SHALE_BRICK_VERTICAL.get(), 2).unlockedBy("has_polished_shale", has(DDBlocks.POLISHED_SHALE.get())).save(consumer, "shale_brick_vertical_slab_from_polished_shale_stonecutting");
+		SingleItemRecipeBuilder.stonecutting(Ingredient.of(DDBlocks.SHALE_BRICKS.get()), DDVerticalSlabs.SHALE_BRICK_VERTICAL.get(), 2).unlockedBy("has_shale_bricks", has(DDBlocks.SHALE_BRICKS.get())).save(consumer, "shale_brick_vertical_slab_from_shale_bricks_stonecutting");
+		SingleItemRecipeBuilder.stonecutting(Ingredient.of(DDBlocks.ARIDROCK.get()), DDVerticalSlabs.ARIDROCK_VERTICAL.get(), 2).unlockedBy("has_aridrock", has(DDBlocks.ARIDROCK.get())).save(consumer, "aridrock_vertical_slab_from_aridrock_stonecutting");
+		SingleItemRecipeBuilder.stonecutting(Ingredient.of(DDBlocks.ARIDROCK.get()), DDVerticalSlabs.POLISHED_ARIDROCK_VERTICAL.get(), 2).unlockedBy("has_aridrock", has(DDBlocks.ARIDROCK.get())).save(consumer, "polished_aridrock_vertical_slab_from_aridrock_stonecutting");
+		SingleItemRecipeBuilder.stonecutting(Ingredient.of(DDBlocks.ARIDROCK.get()), DDVerticalSlabs.ARIDROCK_BRICK_VERTICAL.get(), 2).unlockedBy("has_aridrock", has(DDBlocks.ARIDROCK.get())).save(consumer, "aridrock_brick_vertical_slab_from_aridrock_stonecutting");
+		SingleItemRecipeBuilder.stonecutting(Ingredient.of(DDBlocks.POLISHED_ARIDROCK.get()), DDVerticalSlabs.POLISHED_ARIDROCK_VERTICAL.get(), 2).unlockedBy("has_polished_aridrock", has(DDBlocks.POLISHED_ARIDROCK.get())).save(consumer, "polished_aridrock_vertical_slab_from_polished_aridrock_stonecutting");
+		SingleItemRecipeBuilder.stonecutting(Ingredient.of(DDBlocks.POLISHED_ARIDROCK.get()), DDVerticalSlabs.ARIDROCK_BRICK_VERTICAL.get(), 2).unlockedBy("has_polished_aridrock", has(DDBlocks.POLISHED_ARIDROCK.get())).save(consumer, "aridrock_brick_vertical_slab_from_polished_aridrock_stonecutting");
+		SingleItemRecipeBuilder.stonecutting(Ingredient.of(DDBlocks.ARIDROCK_BRICKS.get()), DDVerticalSlabs.ARIDROCK_BRICK_VERTICAL.get(), 2).unlockedBy("has_aridrock_bricks", has(DDBlocks.ARIDROCK_BRICKS.get())).save(consumer, "aridrock_brick_vertical_slab_from_aridrock_bricks_stonecutting");
+		SingleItemRecipeBuilder.stonecutting(Ingredient.of(DDBlocks.LIMESTONE.get()), DDVerticalSlabs.LIMESTONE_VERTICAL.get(), 2).unlockedBy("has_limestone", has(DDBlocks.LIMESTONE.get())).save(consumer, "limestone_vertical_slab_from_limestone_stonecutting");
+		SingleItemRecipeBuilder.stonecutting(Ingredient.of(DDBlocks.LIMESTONE.get()), DDVerticalSlabs.POLISHED_LIMESTONE_VERTICAL.get(), 2).unlockedBy("has_limestone", has(DDBlocks.LIMESTONE.get())).save(consumer, "polished_limestone_vertical_slab_from_limestone_stonecutting");
+		SingleItemRecipeBuilder.stonecutting(Ingredient.of(DDBlocks.LIMESTONE.get()), DDVerticalSlabs.LIMESTONE_BRICK_VERTICAL.get(), 2).unlockedBy("has_limestone", has(DDBlocks.LIMESTONE.get())).save(consumer, "limestone_brick_vertical_slab_from_limestone_stonecutting");
+		SingleItemRecipeBuilder.stonecutting(Ingredient.of(DDBlocks.POLISHED_LIMESTONE.get()), DDVerticalSlabs.POLISHED_LIMESTONE_VERTICAL.get(), 2).unlockedBy("has_polished_limestone", has(DDBlocks.POLISHED_LIMESTONE.get())).save(consumer, "polished_limestone_vertical_slab_from_polished_limestone_stonecutting");
+		SingleItemRecipeBuilder.stonecutting(Ingredient.of(DDBlocks.POLISHED_LIMESTONE.get()), DDVerticalSlabs.LIMESTONE_BRICK_VERTICAL.get(), 2).unlockedBy("has_polished_limestone", has(DDBlocks.POLISHED_LIMESTONE.get())).save(consumer, "limestone_brick_vertical_slab_from_polished_limestone_stonecutting");
+		SingleItemRecipeBuilder.stonecutting(Ingredient.of(DDBlocks.LIMESTONE_BRICKS.get()), DDVerticalSlabs.LIMESTONE_BRICK_VERTICAL.get(), 2).unlockedBy("has_limestone_bricks", has(DDBlocks.LIMESTONE_BRICKS.get())).save(consumer, "limestone_brick_vertical_slab_from_limestone_bricks_stonecutting");
+		SingleItemRecipeBuilder.stonecutting(Ingredient.of(DDBlocks.GRIMESTONE.get()), DDVerticalSlabs.GRIMESTONE_VERTICAL.get(), 2).unlockedBy("has_grimestone", has(DDBlocks.GRIMESTONE.get())).save(consumer, "grimestone_vertical_slab_from_grimestone_stonecutting");
+		SingleItemRecipeBuilder.stonecutting(Ingredient.of(DDBlocks.GRIMESTONE.get()), DDVerticalSlabs.POLISHED_GRIMESTONE_VERTICAL.get(), 2).unlockedBy("has_grimestone", has(DDBlocks.GRIMESTONE.get())).save(consumer, "polished_grimestone_vertical_slab_from_grimestone_stonecutting");
+		SingleItemRecipeBuilder.stonecutting(Ingredient.of(DDBlocks.GRIMESTONE.get()), DDVerticalSlabs.GRIMESTONE_BRICK_VERTICAL.get(), 2).unlockedBy("has_grimestone", has(DDBlocks.GRIMESTONE.get())).save(consumer, "grimestone_brick_vertical_slab_from_grimestone_stonecutting");
+		SingleItemRecipeBuilder.stonecutting(Ingredient.of(DDBlocks.POLISHED_GRIMESTONE.get()), DDVerticalSlabs.POLISHED_GRIMESTONE_VERTICAL.get(), 2).unlockedBy("has_polished_grimestone", has(DDBlocks.POLISHED_GRIMESTONE.get())).save(consumer, "polished_grimestone_vertical_slab_from_polished_grimestone_stonecutting");
+		SingleItemRecipeBuilder.stonecutting(Ingredient.of(DDBlocks.POLISHED_GRIMESTONE.get()), DDVerticalSlabs.GRIMESTONE_BRICK_VERTICAL.get(), 2).unlockedBy("has_polished_grimestone", has(DDBlocks.POLISHED_GRIMESTONE.get())).save(consumer, "grimestone_brick_vertical_slab_from_polished_grimestone_stonecutting");
+		SingleItemRecipeBuilder.stonecutting(Ingredient.of(DDBlocks.GRIMESTONE_BRICKS.get()), DDVerticalSlabs.GRIMESTONE_BRICK_VERTICAL.get(), 2).unlockedBy("has_grimestone_bricks", has(DDBlocks.GRIMESTONE_BRICKS.get())).save(consumer, "grimestone_brick_vertical_slab_from_grimestone_bricks_stonecutting");
 	}
 
 	public void generateVerticalSlabRecipes(Item output, Item input, Consumer<FinishedRecipe> consumer) {
@@ -443,7 +557,7 @@ public class ESPVerticalSlabRecipeProvider extends RecipeProvider {
 
 		ShapelessRecipeBuilder.shapeless(output)
 				.requires(input)
-				.unlockedBy("has_item", has(output))
-				.save(consumer, input + "_to_" + output);
+				.unlockedBy("has_slab", has(input))
+				.save(consumer, ExtendedSlabs.MODID + ":" + input + "_to_" + output);
 	}
 }

@@ -1,0 +1,8 @@
+{
+  "parent": "extendedslabs:block/inner_vertical_slab",
+  "textures": {
+    "side": "wildbackport:block/mangrove_log",
+    "bottom": "wildbackport:block/mangrove_log",
+    "top": "wildbackport:block/mangrove_log"
+  }
+}

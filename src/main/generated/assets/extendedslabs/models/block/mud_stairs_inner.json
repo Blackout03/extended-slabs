@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "side": "wildbackport:block/mud",
+    "bottom": "wildbackport:block/mud",
+    "top": "wildbackport:block/mud"
+  }
+}

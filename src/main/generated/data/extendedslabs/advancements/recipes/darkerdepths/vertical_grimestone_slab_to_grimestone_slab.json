@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "extendedslabs:vertical_grimestone_slab_to_grimestone_slab"
+    ]
+  },
+  "criteria": {
+    "has_vertical_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "extendedslabs:vertical_grimestone_slab"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "extendedslabs:vertical_grimestone_slab_to_grimestone_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_vertical_slab",
+      "has_the_recipe"
+    ]
+  ]
+}

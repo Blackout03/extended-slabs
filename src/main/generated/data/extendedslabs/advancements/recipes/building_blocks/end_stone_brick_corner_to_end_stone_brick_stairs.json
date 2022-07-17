@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "extendedslabs:end_stone_brick_corner_to_end_stone_brick_stairs"
+    ]
+  },
+  "criteria": {
+    "has_corner": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "extendedslabs:end_stone_brick_corner"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "extendedslabs:end_stone_brick_corner_to_end_stone_brick_stairs"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_corner",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "galosphere:allurite_stairs"
+    }
+  ],
+  "result": {
+    "item": "extendedslabs:allurite_corner"
+  }
+}

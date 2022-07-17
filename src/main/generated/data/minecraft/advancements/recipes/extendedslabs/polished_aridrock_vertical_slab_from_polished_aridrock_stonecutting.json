@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:polished_aridrock_vertical_slab_from_polished_aridrock_stonecutting"
+    ]
+  },
+  "criteria": {
+    "has_polished_aridrock": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "darkerdepths:polished_aridrock"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:polished_aridrock_vertical_slab_from_polished_aridrock_stonecutting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_polished_aridrock",
+      "has_the_recipe"
+    ]
+  ]
+}

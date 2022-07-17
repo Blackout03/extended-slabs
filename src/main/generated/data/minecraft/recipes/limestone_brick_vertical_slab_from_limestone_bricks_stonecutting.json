@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "darkerdepths:limestone_bricks"
+  },
+  "result": "extendedslabs:vertical_limestone_brick_slab",
+  "count": 2
+}

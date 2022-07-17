@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "darkerdepths:limestone_slab"
+    }
+  ],
+  "result": {
+    "item": "extendedslabs:vertical_limestone_slab"
+  }
+}

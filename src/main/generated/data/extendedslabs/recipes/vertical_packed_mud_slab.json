@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "wildbackport:packed_mud"
+    }
+  },
+  "result": {
+    "item": "extendedslabs:vertical_packed_mud_slab",
+    "count": 6
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "extendedslabs:limestone_brick_corner"
+    }
+  ],
+  "result": {
+    "item": "darkerdepths:limestone_bricks_stairs"
+  }
+}

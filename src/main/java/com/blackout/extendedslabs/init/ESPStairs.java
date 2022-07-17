@@ -47,7 +47,7 @@ public class ESPStairs {
 	public static final RegistryObject<StairBlock> END_STONE_STAIRS = registerBlock("end_stone_stairs",() -> new StairBlock(Block.stateById(1), Block.Properties.copy(Blocks.END_STONE).requiresCorrectToolForDrops()), ExtendedSlabs.GROUP);
 
 	public static <B extends Block> RegistryObject<B> registerBlock(String name, Supplier<? extends B> supplier, CreativeModeTab itemGroup) {
-		RegistryObject<B> block = ESPStairs.BLOCKS.register(name, supplier);
+		RegistryObject<B> block = BLOCKS.register(name, supplier);
 		ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties().tab(itemGroup)));
 		return block;
 	}

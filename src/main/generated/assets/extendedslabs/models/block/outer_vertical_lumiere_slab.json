@@ -1,0 +1,8 @@
+{
+  "parent": "extendedslabs:block/outer_vertical_slab",
+  "textures": {
+    "side": "galosphere:block/lumiere_block",
+    "bottom": "galosphere:block/lumiere_block",
+    "top": "galosphere:block/lumiere_block"
+  }
+}

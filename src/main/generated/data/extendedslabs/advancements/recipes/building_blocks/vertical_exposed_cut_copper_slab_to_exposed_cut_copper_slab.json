@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "extendedslabs:vertical_exposed_cut_copper_slab_to_exposed_cut_copper_slab"
+    ]
+  },
+  "criteria": {
+    "has_vertical_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "extendedslabs:vertical_exposed_cut_copper_slab"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "extendedslabs:vertical_exposed_cut_copper_slab_to_exposed_cut_copper_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_vertical_slab",
+      "has_the_recipe"
+    ]
+  ]
+}

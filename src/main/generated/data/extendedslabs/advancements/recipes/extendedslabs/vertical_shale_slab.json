@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "extendedslabs:vertical_shale_slab"
+    ]
+  },
+  "criteria": {
+    "has_shale": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "darkerdepths:shale"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "extendedslabs:vertical_shale_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_shale",
+      "has_the_recipe"
+    ]
+  ]
+}

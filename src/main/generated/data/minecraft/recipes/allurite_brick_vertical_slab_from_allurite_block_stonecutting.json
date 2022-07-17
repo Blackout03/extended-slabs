@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "galosphere:allurite_block"
+  },
+  "result": "extendedslabs:vertical_allurite_brick_slab",
+  "count": 2
+}

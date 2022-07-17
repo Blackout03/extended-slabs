@@ -1,0 +1,8 @@
+{
+  "parent": "extendedslabs:block/vertical_slab",
+  "textures": {
+    "side": "darkerdepths:block/shale",
+    "bottom": "darkerdepths:block/shale",
+    "top": "darkerdepths:block/shale"
+  }
+}

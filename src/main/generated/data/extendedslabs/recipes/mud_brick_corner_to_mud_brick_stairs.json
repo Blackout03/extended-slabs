@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "extendedslabs:mud_brick_corner"
+    }
+  ],
+  "result": {
+    "item": "wildbackport:mud_brick_stairs"
+  }
+}

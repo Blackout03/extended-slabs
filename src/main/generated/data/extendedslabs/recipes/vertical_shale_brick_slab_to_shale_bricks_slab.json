@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "extendedslabs:vertical_shale_brick_slab"
+    }
+  ],
+  "result": {
+    "item": "darkerdepths:shale_bricks_slab"
+  }
+}

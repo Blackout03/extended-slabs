@@ -5,12 +5,23 @@ import com.blackout.extendedslabs.init.ESPCorners;
 import com.blackout.extendedslabs.init.ESPSlabs;
 import com.blackout.extendedslabs.init.ESPStairs;
 import com.blackout.extendedslabs.init.ESPVerticalSlabs;
+import com.blackout.extendedslabs.init.modded.darkerdepths.DDCorners;
+import com.blackout.extendedslabs.init.modded.darkerdepths.DDSlabs;
+import com.blackout.extendedslabs.init.modded.darkerdepths.DDStairs;
+import com.blackout.extendedslabs.init.modded.darkerdepths.DDVerticalSlabs;
+import com.blackout.extendedslabs.init.modded.galosphere.GaloCorners;
+import com.blackout.extendedslabs.init.modded.galosphere.GaloVerticalSlabs;
+import com.blackout.extendedslabs.init.modded.wildbackport.WBPCorners;
+import com.blackout.extendedslabs.init.modded.wildbackport.WBPSlabs;
+import com.blackout.extendedslabs.init.modded.wildbackport.WBPStairs;
+import com.blackout.extendedslabs.init.modded.wildbackport.WBPVerticalSlabs;
 import com.blackout.extendedslabs.render.block.BlockRenderLayer;
 import com.blackout.extendedslabs.util.ESPCreativeModeTab;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.data.loading.DatagenModLoader;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModContainer;
 import net.minecraftforge.fml.ModList;
@@ -48,14 +59,44 @@ public class ExtendedSlabs {
 
 		eventBus.addListener(this::gatherData);
 
-		ESPSlabs.ITEMS.register(eventBus);
-		ESPSlabs.BLOCKS.register(eventBus);
-		ESPStairs.ITEMS.register(eventBus);
-		ESPStairs.BLOCKS.register(eventBus);
-		ESPCorners.ITEMS.register(eventBus);
 		ESPCorners.BLOCKS.register(eventBus);
-		ESPVerticalSlabs.ITEMS.register(eventBus);
+		ESPCorners.ITEMS.register(eventBus);
+		ESPSlabs.BLOCKS.register(eventBus);
+		ESPSlabs.ITEMS.register(eventBus);
+		ESPStairs.BLOCKS.register(eventBus);
+		ESPStairs.ITEMS.register(eventBus);
 		ESPVerticalSlabs.BLOCKS.register(eventBus);
+		ESPVerticalSlabs.ITEMS.register(eventBus);
+		LOGGER.debug(ExtendedSlabs.MODID + ": Vanilla Minecraft Compat Loaded");
+		if (DatagenModLoader.isRunningDataGen() || ModList.get().isLoaded("wildbackport")) {
+			WBPCorners.BLOCKS.register(eventBus);
+			WBPCorners.ITEMS.register(eventBus);
+			WBPSlabs.BLOCKS.register(eventBus);
+			WBPSlabs.ITEMS.register(eventBus);
+			WBPStairs.BLOCKS.register(eventBus);
+			WBPStairs.ITEMS.register(eventBus);
+			WBPVerticalSlabs.BLOCKS.register(eventBus);
+			WBPVerticalSlabs.ITEMS.register(eventBus);
+			LOGGER.debug(ExtendedSlabs.MODID + ": The Wild Backport Compat Loaded");
+		}
+		if (DatagenModLoader.isRunningDataGen() || ModList.get().isLoaded("galosphere")) {
+			GaloCorners.BLOCKS.register(eventBus);
+			GaloCorners.ITEMS.register(eventBus);
+			GaloVerticalSlabs.BLOCKS.register(eventBus);
+			GaloVerticalSlabs.ITEMS.register(eventBus);
+			LOGGER.debug(ExtendedSlabs.MODID + ": Galosphere Compat Loaded");
+		}
+		if (DatagenModLoader.isRunningDataGen() || ModList.get().isLoaded("darkerdepths")) {
+			DDCorners.BLOCKS.register(eventBus);
+			DDCorners.ITEMS.register(eventBus);
+			DDSlabs.BLOCKS.register(eventBus);
+			DDSlabs.ITEMS.register(eventBus);
+			DDStairs.BLOCKS.register(eventBus);
+			DDStairs.ITEMS.register(eventBus);
+			DDVerticalSlabs.BLOCKS.register(eventBus);
+			DDVerticalSlabs.ITEMS.register(eventBus);
+			LOGGER.debug(ExtendedSlabs.MODID + ": Darker Depths Compat Loaded");
+		}
 		MinecraftForge.EVENT_BUS.register(this);
 
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientSetup);
@@ -67,14 +108,16 @@ public class ExtendedSlabs {
 
 		if (event.includeServer()) {
 			dataGenerator.addProvider(new ESPLootTableProvider(dataGenerator));
-			dataGenerator.addProvider(new ESPBlockModelProvider(dataGenerator, MODID, existing));
-			dataGenerator.addProvider(new ESPItemModelGenerator(dataGenerator, existing));
-			dataGenerator.addProvider(new ESPBlockStateProvider(dataGenerator, MODID, existing));
 			dataGenerator.addProvider(new ESPBlockTagsProvider(dataGenerator, existing));
 			dataGenerator.addProvider(new ESPStairRecipeProvider(dataGenerator));
 			dataGenerator.addProvider(new ESPCornerRecipeProvider(dataGenerator));
 			dataGenerator.addProvider(new ESPSlabRecipeProvider(dataGenerator));
 			dataGenerator.addProvider(new ESPVerticalSlabRecipeProvider(dataGenerator));
+		}
+		if (event.includeClient()) {
+			dataGenerator.addProvider(new ESPBlockModelProvider(dataGenerator, MODID, existing));
+			dataGenerator.addProvider(new ESPItemModelGenerator(dataGenerator, existing));
+			dataGenerator.addProvider(new ESPBlockStateProvider(dataGenerator, MODID, existing));
 		}
 	}
 

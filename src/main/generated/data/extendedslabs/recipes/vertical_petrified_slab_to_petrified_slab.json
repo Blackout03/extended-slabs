@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "extendedslabs:vertical_petrified_slab"
+    }
+  ],
+  "result": {
+    "item": "darkerdepths:petrified_slab"
+  }
+}

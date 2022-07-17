@@ -46,6 +46,30 @@
     "extendedslabs:dark_oak_wood_corner",
     "extendedslabs:acacia_wood_corner",
     "extendedslabs:crimson_hyphae_corner",
-    "extendedslabs:warped_hyphae_corner"
+    "extendedslabs:warped_hyphae_corner",
+    {
+      "id": "extendedslabs:mangrove_wood_slab",
+      "required": false
+    },
+    {
+      "id": "extendedslabs:mangrove_wood_stairs",
+      "required": false
+    },
+    {
+      "id": "extendedslabs:vertical_mangrove_slab",
+      "required": false
+    },
+    {
+      "id": "extendedslabs:vertical_mangrove_wood_slab",
+      "required": false
+    },
+    {
+      "id": "extendedslabs:mangrove_corner",
+      "required": false
+    },
+    {
+      "id": "extendedslabs:mangrove_wood_corner",
+      "required": false
+    }
   ]
 }

@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "extendedslabs:polished_andesite_corner_to_polished_andesite_stairs"
+    ]
+  },
+  "criteria": {
+    "has_corner": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "extendedslabs:polished_andesite_corner"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "extendedslabs:polished_andesite_corner_to_polished_andesite_stairs"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_corner",
+      "has_the_recipe"
+    ]
+  ]
+}

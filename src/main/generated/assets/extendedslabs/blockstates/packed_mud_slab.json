@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=top": {
+      "model": "extendedslabs:block/packed_mud_slab_top"
+    },
+    "type=bottom": {
+      "model": "extendedslabs:block/packed_mud_slab"
+    },
+    "type=double": {
+      "model": "wildbackport:block/packed_mud"
+    }
+  }
+}

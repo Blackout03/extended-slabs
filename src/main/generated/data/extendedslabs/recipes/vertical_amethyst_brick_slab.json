@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "galosphere:amethyst_bricks"
+    }
+  },
+  "result": {
+    "item": "extendedslabs:vertical_amethyst_brick_slab",
+    "count": 6
+  }
+}

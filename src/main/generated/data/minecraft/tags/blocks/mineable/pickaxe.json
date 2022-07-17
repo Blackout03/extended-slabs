@@ -178,6 +178,222 @@
     "extendedslabs:red_nether_brick_corner",
     "extendedslabs:end_stone_corner",
     "extendedslabs:end_stone_brick_corner",
-    "extendedslabs:purpur_corner"
+    "extendedslabs:purpur_corner",
+    {
+      "id": "extendedslabs:packed_mud_slab",
+      "required": false
+    },
+    {
+      "id": "extendedslabs:packed_mud_stairs",
+      "required": false
+    },
+    {
+      "id": "extendedslabs:vertical_packed_mud_slab",
+      "required": false
+    },
+    {
+      "id": "extendedslabs:vertical_mud_brick_slab",
+      "required": false
+    },
+    {
+      "id": "extendedslabs:packed_mud_corner",
+      "required": false
+    },
+    {
+      "id": "extendedslabs:mud_brick_corner",
+      "required": false
+    },
+    {
+      "id": "extendedslabs:vertical_amethyst_slab",
+      "required": false
+    },
+    {
+      "id": "extendedslabs:vertical_smooth_amethyst_slab",
+      "required": false
+    },
+    {
+      "id": "extendedslabs:vertical_amethyst_brick_slab",
+      "required": false
+    },
+    {
+      "id": "extendedslabs:vertical_allurite_slab",
+      "required": false
+    },
+    {
+      "id": "extendedslabs:vertical_smooth_allurite_slab",
+      "required": false
+    },
+    {
+      "id": "extendedslabs:vertical_allurite_brick_slab",
+      "required": false
+    },
+    {
+      "id": "extendedslabs:vertical_lumiere_slab",
+      "required": false
+    },
+    {
+      "id": "extendedslabs:vertical_smooth_lumiere_slab",
+      "required": false
+    },
+    {
+      "id": "extendedslabs:vertical_lumiere_brick_slab",
+      "required": false
+    },
+    {
+      "id": "extendedslabs:amethyst_corner",
+      "required": false
+    },
+    {
+      "id": "extendedslabs:smooth_amethyst_corner",
+      "required": false
+    },
+    {
+      "id": "extendedslabs:amethyst_brick_corner",
+      "required": false
+    },
+    {
+      "id": "extendedslabs:allurite_corner",
+      "required": false
+    },
+    {
+      "id": "extendedslabs:smooth_allurite_corner",
+      "required": false
+    },
+    {
+      "id": "extendedslabs:allurite_brick_corner",
+      "required": false
+    },
+    {
+      "id": "extendedslabs:lumiere_corner",
+      "required": false
+    },
+    {
+      "id": "extendedslabs:smooth_lumiere_corner",
+      "required": false
+    },
+    {
+      "id": "extendedslabs:lumiere_brick_corner",
+      "required": false
+    },
+    {
+      "id": "extendedslabs:petrified_wood_slab",
+      "required": false
+    },
+    {
+      "id": "extendedslabs:petrified_wood_stairs",
+      "required": false
+    },
+    {
+      "id": "extendedslabs:vertical_petrified_slab",
+      "required": false
+    },
+    {
+      "id": "extendedslabs:vertical_petrified_wood_slab",
+      "required": false
+    },
+    {
+      "id": "extendedslabs:vertical_shale_slab",
+      "required": false
+    },
+    {
+      "id": "extendedslabs:vertical_polished_shale_slab",
+      "required": false
+    },
+    {
+      "id": "extendedslabs:vertical_shale_brick_slab",
+      "required": false
+    },
+    {
+      "id": "extendedslabs:vertical_aridrock_slab",
+      "required": false
+    },
+    {
+      "id": "extendedslabs:vertical_polished_aridrock_slab",
+      "required": false
+    },
+    {
+      "id": "extendedslabs:vertical_aridrock_brick_slab",
+      "required": false
+    },
+    {
+      "id": "extendedslabs:vertical_limestone_slab",
+      "required": false
+    },
+    {
+      "id": "extendedslabs:vertical_polished_limestone_slab",
+      "required": false
+    },
+    {
+      "id": "extendedslabs:vertical_limestone_brick_slab",
+      "required": false
+    },
+    {
+      "id": "extendedslabs:vertical_grimestone_slab",
+      "required": false
+    },
+    {
+      "id": "extendedslabs:vertical_polished_grimestone_slab",
+      "required": false
+    },
+    {
+      "id": "extendedslabs:vertical_grimestone_brick_slab",
+      "required": false
+    },
+    {
+      "id": "extendedslabs:petrified_corner",
+      "required": false
+    },
+    {
+      "id": "extendedslabs:petrified_wood_corner",
+      "required": false
+    },
+    {
+      "id": "extendedslabs:shale_corner",
+      "required": false
+    },
+    {
+      "id": "extendedslabs:polished_shale_corner",
+      "required": false
+    },
+    {
+      "id": "extendedslabs:shale_brick_corner",
+      "required": false
+    },
+    {
+      "id": "extendedslabs:aridrock_corner",
+      "required": false
+    },
+    {
+      "id": "extendedslabs:polished_aridrock_corner",
+      "required": false
+    },
+    {
+      "id": "extendedslabs:aridrock_brick_corner",
+      "required": false
+    },
+    {
+      "id": "extendedslabs:limestone_corner",
+      "required": false
+    },
+    {
+      "id": "extendedslabs:polished_limestone_corner",
+      "required": false
+    },
+    {
+      "id": "extendedslabs:limestone_brick_corner",
+      "required": false
+    },
+    {
+      "id": "extendedslabs:grimestone_corner",
+      "required": false
+    },
+    {
+      "id": "extendedslabs:polished_grimestone_corner",
+      "required": false
+    },
+    {
+      "id": "extendedslabs:grimestone_brick_corner",
+      "required": false
+    }
   ]
 }

@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "extendedslabs:vertical_allurite_brick_slab"
+    ]
+  },
+  "criteria": {
+    "has_allurite_bricks": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "galosphere:allurite_bricks"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "extendedslabs:vertical_allurite_brick_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_allurite_bricks",
+      "has_the_recipe"
+    ]
+  ]
+}

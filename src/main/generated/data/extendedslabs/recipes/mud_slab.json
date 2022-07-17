@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "wildbackport:mud"
+    }
+  },
+  "result": {
+    "item": "extendedslabs:mud_slab",
+    "count": 6
+  }
+}

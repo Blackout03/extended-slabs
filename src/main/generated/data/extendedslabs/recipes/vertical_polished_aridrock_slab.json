@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "darkerdepths:polished_aridrock"
+    }
+  },
+  "result": {
+    "item": "extendedslabs:vertical_polished_aridrock_slab",
+    "count": 6
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "extendedslabs:vertical_petrified_wood_slab"
+    }
+  ],
+  "result": {
+    "item": "extendedslabs:petrified_wood_slab"
+  }
+}

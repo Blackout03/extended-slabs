@@ -67,7 +67,7 @@ public class ESPCorners {
 	public static final RegistryObject<Block> PURPUR_CORNER = registerBlock("purpur_corner",() -> new CornerBlock(Block.Properties.copy(Blocks.PURPUR_SLAB).requiresCorrectToolForDrops()), ExtendedSlabs.GROUP);
 
 	public static <B extends Block> RegistryObject<B> registerBlock(String name, Supplier<? extends B> supplier, CreativeModeTab itemGroup) {
-		RegistryObject<B> block = ESPCorners.BLOCKS.register(name, supplier);
+		RegistryObject<B> block = BLOCKS.register(name, supplier);
 		ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties().tab(itemGroup)));
 		return block;
 	}

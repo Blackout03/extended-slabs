@@ -3,6 +3,13 @@ package com.blackout.extendedslabs.datagen;
 import com.blackout.extendedslabs.ExtendedSlabs;
 import com.blackout.extendedslabs.init.ESPCorners;
 import com.blackout.extendedslabs.init.ESPStairs;
+import com.blackout.extendedslabs.init.modded.darkerdepths.DDCorners;
+import com.blackout.extendedslabs.init.modded.darkerdepths.DDStairs;
+import com.blackout.extendedslabs.init.modded.galosphere.GaloCorners;
+import com.blackout.extendedslabs.init.modded.wildbackport.WBPCorners;
+import com.blackout.extendedslabs.init.modded.wildbackport.WBPStairs;
+import com.cursedcauldron.wildbackport.init.WBBlocks;
+import com.naterbobber.darkerdepths.init.DDBlocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeProvider;
@@ -10,6 +17,7 @@ import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.orcinus.galosphere.init.GBlocks;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Consumer;
@@ -63,14 +71,45 @@ public class ESPCornerRecipeProvider extends RecipeProvider {
         generateCornerRecipes(ESPCorners.OAK_WOOD_CORNER.get().asItem(), ESPStairs.OAK_WOOD_STAIRS.get().asItem(), consumer);
         generateCornerRecipes(ESPCorners.SPRUCE_WOOD_CORNER.get().asItem(), ESPStairs.SPRUCE_WOOD_STAIRS.get().asItem(), consumer);
         generateCornerRecipes(ESPCorners.WARPED_HYPHAE_CORNER.get().asItem(), ESPStairs.WARPED_HYPHAE_STAIRS.get().asItem(), consumer);
+
+        generateCornerRecipes(WBPCorners.MUD_CORNER.get().asItem(), WBPStairs.MUD_STAIRS.get().asItem(), consumer);
+        generateCornerRecipes(WBPCorners.PACKED_MUD_CORNER.get().asItem(), WBPStairs.PACKED_MUD_STAIRS.get().asItem(), consumer);
+        generateCornerRecipes(WBPCorners.MUD_BRICK_CORNER.get().asItem(), WBBlocks.MUD_BRICK_STAIRS.get().asItem(), consumer);
+        generateCornerRecipes(WBPCorners.MANGROVE_CORNER.get().asItem(), WBBlocks.MANGROVE_STAIRS.get().asItem(), consumer);
+        generateCornerRecipes(WBPCorners.MANGROVE_WOOD_CORNER.get().asItem(), WBPStairs.MANGROVE_WOOD_STAIRS.get().asItem(), consumer);
+
+        generateCornerRecipes(GaloCorners.AMETHYST_CORNER.get().asItem(), GBlocks.AMETHYST_STAIRS.get().asItem(), consumer);
+        generateCornerRecipes(GaloCorners.ALLURITE_CORNER.get().asItem(), GBlocks.ALLURITE_STAIRS.get().asItem(), consumer);
+        generateCornerRecipes(GaloCorners.LUMIERE_CORNER.get().asItem(), GBlocks.LUMIERE_STAIRS.get().asItem(), consumer);
+        generateCornerRecipes(GaloCorners.SMOOTH_AMETHYST_CORNER.get().asItem(), GBlocks.SMOOTH_AMETHYST_STAIRS.get().asItem(), consumer);
+        generateCornerRecipes(GaloCorners.SMOOTH_ALLURITE_CORNER.get().asItem(), GBlocks.SMOOTH_ALLURITE_STAIRS.get().asItem(), consumer);
+        generateCornerRecipes(GaloCorners.SMOOTH_LUMIERE_CORNER.get().asItem(), GBlocks.SMOOTH_LUMIERE_STAIRS.get().asItem(), consumer);
+        generateCornerRecipes(GaloCorners.AMETHYST_BRICK_CORNER.get().asItem(), GBlocks.AMETHYST_BRICK_STAIRS.get().asItem(), consumer);
+        generateCornerRecipes(GaloCorners.ALLURITE_BRICK_CORNER.get().asItem(), GBlocks.ALLURITE_BRICK_STAIRS.get().asItem(), consumer);
+        generateCornerRecipes(GaloCorners.LUMIERE_BRICK_CORNER.get().asItem(), GBlocks.LUMIERE_BRICK_STAIRS.get().asItem(), consumer);
+
+        generateCornerRecipes(DDCorners.PETRIFIED_CORNER.get().asItem(), DDBlocks.PETRIFIED_STAIRS.get().asItem(), consumer);
+        generateCornerRecipes(DDCorners.PETRIFIED_WOOD_CORNER.get().asItem(), DDStairs.PETRIFIED_WOOD_STAIRS.get().asItem(), consumer);
+        generateCornerRecipes(DDCorners.SHALE_CORNER.get().asItem(), DDBlocks.SHALE_STAIRS.get().asItem(), consumer);
+        generateCornerRecipes(DDCorners.POLISHED_SHALE_CORNER.get().asItem(), DDBlocks.POLISHED_SHALE_STAIRS.get().asItem(), consumer);
+        generateCornerRecipes(DDCorners.SHALE_BRICK_CORNER.get().asItem(), DDBlocks.SHALE_BRICKS_STAIRS.get().asItem(), consumer);
+        generateCornerRecipes(DDCorners.ARIDROCK_CORNER.get().asItem(), DDBlocks.ARIDROCK_STAIRS.get().asItem(), consumer);
+        generateCornerRecipes(DDCorners.POLISHED_ARIDROCK_CORNER.get().asItem(), DDBlocks.POLISHED_ARIDROCK_STAIRS.get().asItem(), consumer);
+        generateCornerRecipes(DDCorners.ARIDROCK_BRICK_CORNER.get().asItem(), DDBlocks.ARIDROCK_BRICKS_STAIRS.get().asItem(), consumer);
+        generateCornerRecipes(DDCorners.LIMESTONE_CORNER.get().asItem(), DDBlocks.LIMESTONE_STAIRS.get().asItem(), consumer);
+        generateCornerRecipes(DDCorners.POLISHED_LIMESTONE_CORNER.get().asItem(), DDBlocks.POLISHED_LIMESTONE_STAIRS.get().asItem(), consumer);
+        generateCornerRecipes(DDCorners.LIMESTONE_BRICK_CORNER.get().asItem(), DDBlocks.LIMESTONE_BRICKS_STAIRS.get().asItem(), consumer);
+        generateCornerRecipes(DDCorners.GRIMESTONE_CORNER.get().asItem(), DDBlocks.GRIMESTONE_STAIRS.get().asItem(), consumer);
+        generateCornerRecipes(DDCorners.POLISHED_GRIMESTONE_CORNER.get().asItem(), DDBlocks.POLISHED_GRIMESTONE_STAIRS.get().asItem(), consumer);
+        generateCornerRecipes(DDCorners.GRIMESTONE_BRICK_CORNER.get().asItem(), DDBlocks.GRIMESTONE_BRICKS_STAIRS.get().asItem(), consumer);
     }
 
-    public void generateCornerRecipes(Item input, Item output, Consumer<FinishedRecipe> consumer) {
-        ExtendedSlabs.LOGGER.info(ForgeRegistries.ITEMS.getKey(input.asItem()));
+    public void generateCornerRecipes(Item output, Item input, Consumer<FinishedRecipe> consumer) {
+        ExtendedSlabs.LOGGER.info(ForgeRegistries.ITEMS.getKey(output.asItem()));
 
         ShapelessRecipeBuilder.shapeless(output)
                 .requires(input)
-                .unlockedBy("has_item", has(output))
-                .save(consumer, input + "_to_" + output);
+                .unlockedBy("has_stair", has(input))
+                .save(consumer, ExtendedSlabs.MODID + ":" + input + "_to_" + output);
     }
 }

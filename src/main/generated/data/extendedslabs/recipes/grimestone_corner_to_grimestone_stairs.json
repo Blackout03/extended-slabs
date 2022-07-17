@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "extendedslabs:grimestone_corner"
+    }
+  ],
+  "result": {
+    "item": "darkerdepths:grimestone_stairs"
+  }
+}

@@ -3,14 +3,23 @@ package com.blackout.extendedslabs.datagen;
 import com.blackout.extendedslabs.ExtendedSlabs;
 import com.blackout.extendedslabs.init.ESPVerticalSlabs;
 import com.blackout.extendedslabs.init.ESPSlabs;
+import com.blackout.extendedslabs.init.modded.darkerdepths.DDSlabs;
+import com.blackout.extendedslabs.init.modded.darkerdepths.DDVerticalSlabs;
+import com.blackout.extendedslabs.init.modded.galosphere.GaloVerticalSlabs;
+import com.blackout.extendedslabs.init.modded.wildbackport.WBPSlabs;
+import com.blackout.extendedslabs.init.modded.wildbackport.WBPVerticalSlabs;
+import com.cursedcauldron.wildbackport.init.WBBlocks;
+import com.naterbobber.darkerdepths.init.DDBlocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.*;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.orcinus.galosphere.init.GBlocks;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Objects;
 import java.util.function.Consumer;
 
 public class ESPSlabRecipeProvider extends RecipeProvider {
@@ -340,6 +349,43 @@ public class ESPSlabRecipeProvider extends RecipeProvider {
 
 		SingleItemRecipeBuilder.stonecutting(Ingredient.of(Blocks.NETHERRACK), ESPSlabs.NETHERRACK_SLAB.get(), 2).unlockedBy("has_netherrack", has(Blocks.NETHERRACK)).save(consumer, "netherrack_slab_from_netherrack_stonecutting");
 		SingleItemRecipeBuilder.stonecutting(Ingredient.of(Blocks.END_STONE), ESPSlabs.END_STONE_SLAB.get(), 2).unlockedBy("has_end_stone", has(Blocks.NETHERRACK)).save(consumer, "end_stone_slab_from_end_stone_stonecutting");
+
+		generateSlabRecipes(WBPVerticalSlabs.MUD_VERTICAL.get().asItem(), WBPSlabs.MUD_SLAB.get().asItem(), consumer);
+		generateSlabRecipes(WBPVerticalSlabs.PACKED_MUD_VERTICAL.get().asItem(), WBPSlabs.PACKED_MUD_SLAB.get().asItem(), consumer);
+		generateSlabRecipes(WBPVerticalSlabs.MUD_BRICK_VERTICAL.get().asItem(), WBBlocks.MUD_BRICK_SLAB.get().asItem(), consumer);
+		generateSlabRecipes(WBPVerticalSlabs.MANGROVE_VERTICAL.get().asItem(), WBBlocks.MANGROVE_SLAB.get().asItem(), consumer);
+		generateSlabRecipes(WBPVerticalSlabs.MANGROVE_WOOD_VERTICAL.get().asItem(), WBPSlabs.MANGROVE_WOOD_SLAB.get().asItem(), consumer);
+
+		ShapedRecipeBuilder.shaped(WBPSlabs.MUD_SLAB.get(), 6).define('#', WBBlocks.MUD.get()).pattern("###").unlockedBy("has_mud", has(WBBlocks.MUD.get())).save(consumer);
+		ShapedRecipeBuilder.shaped(WBPSlabs.PACKED_MUD_SLAB.get(), 6).define('#', WBBlocks.PACKED_MUD.get()).pattern("###").unlockedBy("has_packed_mud", has(WBBlocks.PACKED_MUD.get())).save(consumer);
+		ShapedRecipeBuilder.shaped(WBPSlabs.MANGROVE_WOOD_SLAB.get(), 6).define('#', WBBlocks.MANGROVE_WOOD.get()).pattern("###").unlockedBy("has_mangrove_wood", has(WBBlocks.MANGROVE_WOOD.get())).save(consumer);
+
+		generateSlabRecipes(GaloVerticalSlabs.AMETHYST_VERTICAL.get().asItem(), GBlocks.AMETHYST_SLAB.get().asItem(), consumer);
+		generateSlabRecipes(GaloVerticalSlabs.ALLURITE_VERTICAL.get().asItem(), GBlocks.ALLURITE_SLAB.get().asItem(), consumer);
+		generateSlabRecipes(GaloVerticalSlabs.LUMIERE_VERTICAL.get().asItem(), GBlocks.LUMIERE_SLAB.get().asItem(), consumer);
+		generateSlabRecipes(GaloVerticalSlabs.SMOOTH_AMETHYST_VERTICAL.get().asItem(), GBlocks.SMOOTH_AMETHYST_SLAB.get().asItem(), consumer);
+		generateSlabRecipes(GaloVerticalSlabs.SMOOTH_ALLURITE_VERTICAL.get().asItem(), GBlocks.SMOOTH_ALLURITE_SLAB.get().asItem(), consumer);
+		generateSlabRecipes(GaloVerticalSlabs.SMOOTH_LUMIERE_VERTICAL.get().asItem(), GBlocks.SMOOTH_LUMIERE_SLAB.get().asItem(), consumer);
+		generateSlabRecipes(GaloVerticalSlabs.AMETHYST_BRICK_VERTICAL.get().asItem(), GBlocks.AMETHYST_BRICK_SLAB.get().asItem(), consumer);
+		generateSlabRecipes(GaloVerticalSlabs.ALLURITE_BRICK_VERTICAL.get().asItem(), GBlocks.ALLURITE_BRICK_SLAB.get().asItem(), consumer);
+		generateSlabRecipes(GaloVerticalSlabs.LUMIERE_BRICK_VERTICAL.get().asItem(), GBlocks.LUMIERE_BRICK_SLAB.get().asItem(), consumer);
+
+		generateSlabRecipes(DDVerticalSlabs.PETRIFIED_VERTICAL.get().asItem(), DDBlocks.PETRIFIED_SLAB.get().asItem(), consumer);
+		generateSlabRecipes(DDVerticalSlabs.PETRIFIED_WOOD_VERTICAL.get().asItem(), DDSlabs.PETRIFIED_WOOD_SLAB.get().asItem(), consumer);
+		generateSlabRecipes(DDVerticalSlabs.SHALE_VERTICAL.get().asItem(), DDBlocks.SHALE_SLAB.get().asItem(), consumer);
+		generateSlabRecipes(DDVerticalSlabs.POLISHED_SHALE_VERTICAL.get().asItem(), DDBlocks.POLISHED_SHALE_SLAB.get().asItem(), consumer);
+		generateSlabRecipes(DDVerticalSlabs.SHALE_BRICK_VERTICAL.get().asItem(), DDBlocks.SHALE_BRICKS_SLAB.get().asItem(), consumer);
+		generateSlabRecipes(DDVerticalSlabs.ARIDROCK_VERTICAL.get().asItem(), DDBlocks.ARIDROCK_SLAB.get().asItem(), consumer);
+		generateSlabRecipes(DDVerticalSlabs.POLISHED_ARIDROCK_VERTICAL.get().asItem(), DDBlocks.POLISHED_ARIDROCK_SLAB.get().asItem(), consumer);
+		generateSlabRecipes(DDVerticalSlabs.ARIDROCK_BRICK_VERTICAL.get().asItem(), DDBlocks.ARIDROCK_BRICKS_SLAB.get().asItem(), consumer);
+		generateSlabRecipes(DDVerticalSlabs.LIMESTONE_VERTICAL.get().asItem(), DDBlocks.LIMESTONE_SLAB.get().asItem(), consumer);
+		generateSlabRecipes(DDVerticalSlabs.POLISHED_LIMESTONE_VERTICAL.get().asItem(), DDBlocks.POLISHED_LIMESTONE_SLAB.get().asItem(), consumer);
+		generateSlabRecipes(DDVerticalSlabs.LIMESTONE_BRICK_VERTICAL.get().asItem(), DDBlocks.LIMESTONE_BRICKS_SLAB.get().asItem(), consumer);
+		generateSlabRecipes(DDVerticalSlabs.GRIMESTONE_VERTICAL.get().asItem(), DDBlocks.GRIMESTONE_SLAB.get().asItem(), consumer);
+		generateSlabRecipes(DDVerticalSlabs.POLISHED_GRIMESTONE_VERTICAL.get().asItem(), DDBlocks.POLISHED_GRIMESTONE_SLAB.get().asItem(), consumer);
+		generateSlabRecipes(DDVerticalSlabs.GRIMESTONE_BRICK_VERTICAL.get().asItem(), DDBlocks.GRIMESTONE_BRICKS_SLAB.get().asItem(), consumer);
+
+		ShapedRecipeBuilder.shaped(DDSlabs.PETRIFIED_WOOD_SLAB.get(), 6).define('#', DDBlocks.PETRIFIED_WOOD.get()).pattern("###").unlockedBy("has_petrified_wood", has(DDBlocks.PETRIFIED_WOOD.get())).save(consumer);
 	}
 
 	public void generateSlabRecipes(Item input, Item output, Consumer<FinishedRecipe> consumer) {
@@ -347,7 +393,7 @@ public class ESPSlabRecipeProvider extends RecipeProvider {
 
 		ShapelessRecipeBuilder.shapeless(output)
 				.requires(input)
-				.unlockedBy("has_item", has(output))
-				.save(consumer, input + "_to_" + output);
+				.unlockedBy("has_vertical_slab", has(input))
+				.save(consumer, ExtendedSlabs.MODID + ":" + input + "_to_" + output);
 	}
 }

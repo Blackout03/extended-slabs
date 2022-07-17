@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "minecraft:amethyst_block"
+  },
+  "result": "extendedslabs:vertical_amethyst_brick_slab",
+  "count": 2
+}

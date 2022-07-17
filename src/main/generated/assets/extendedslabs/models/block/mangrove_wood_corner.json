@@ -1,0 +1,6 @@
+{
+  "parent": "extendedslabs:block/corner",
+  "textures": {
+    "block": "wildbackport:block/mangrove_log"
+  }
+}

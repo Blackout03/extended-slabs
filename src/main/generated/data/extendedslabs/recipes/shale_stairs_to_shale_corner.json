@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "darkerdepths:shale_stairs"
+    }
+  ],
+  "result": {
+    "item": "extendedslabs:shale_corner"
+  }
+}

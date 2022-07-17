@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "extendedslabs:amethyst_corner"
+    }
+  ],
+  "result": {
+    "item": "galosphere:amethyst_stairs"
+  }
+}

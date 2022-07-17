@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "extendedslabs:mangrove_corner_to_mangrove_stairs"
+    ]
+  },
+  "criteria": {
+    "has_corner": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "extendedslabs:mangrove_corner"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "extendedslabs:mangrove_corner_to_mangrove_stairs"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_corner",
+      "has_the_recipe"
+    ]
+  ]
+}

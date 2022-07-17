@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "extendedslabs:aridrock_corner"
+    }
+  ],
+  "result": {
+    "item": "darkerdepths:aridrock_stairs"
+  }
+}

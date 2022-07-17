@@ -1,0 +1,8 @@
+{
+  "parent": "extendedslabs:block/vertical_slab",
+  "textures": {
+    "side": "darkerdepths:block/grimestone",
+    "bottom": "darkerdepths:block/grimestone",
+    "top": "darkerdepths:block/grimestone"
+  }
+}

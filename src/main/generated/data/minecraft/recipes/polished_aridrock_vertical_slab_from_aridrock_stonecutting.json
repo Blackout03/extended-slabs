@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "darkerdepths:aridrock"
+  },
+  "result": "extendedslabs:vertical_polished_aridrock_slab",
+  "count": 2
+}

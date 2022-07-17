@@ -1,0 +1,8 @@
+{
+  "parent": "extendedslabs:block/vertical_slab",
+  "textures": {
+    "side": "darkerdepths:block/aridrock_bricks",
+    "bottom": "darkerdepths:block/aridrock_bricks",
+    "top": "darkerdepths:block/aridrock_bricks"
+  }
+}

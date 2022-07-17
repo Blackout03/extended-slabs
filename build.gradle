@@ -1,20 +1,22 @@
 buildscript {
-    repositories {
-        // These repositories are only for Gradle plugins, put any other repositories in the repository block further below
-        maven { url = 'https://maven.minecraftforge.net' }
-        maven { url = 'https://maven.parchmentmc.org' }
-        mavenCentral()
-    }
-    dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
-        classpath 'org.parchmentmc:librarian:1.+'
-    }
+	repositories {
+		// These repositories are only for Gradle plugins, put any other repositories in the repository block further below
+		maven { url = 'https://maven.minecraftforge.net' }
+		maven { url = 'https://maven.parchmentmc.org' }
+		mavenCentral()
+	}
+	dependencies {
+		classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
+		classpath 'org.spongepowered:mixingradle:0.7.+'
+		classpath 'org.parchmentmc:librarian:1.+'
+	}
 }
 
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'org.parchmentmc.librarian.forgegradle'
 apply plugin: "eclipse"
 apply plugin: "maven-publish"
+apply plugin: 'org.spongepowered.mixin'
 
 version = "${project.minecraftVersion}-${project.modVersion}"
 group = 'com.blackout'
@@ -23,85 +25,96 @@ archivesBaseName = 'extendedslabs'
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 minecraft {
-    mappings channel: 'parchment', version: "2022.06.05-1.18.2"
-    runs {
-        client {
-            workingDirectory project.file("run")
-            property "forge.logging.markers", "SCAN,REGISTRIES,REGISTRYDUMP"
-            property "forge.logging.console.level", "debug"
-            mods {
-                extendedslabs {
-                    source sourceSets.main
-                }
-            }
-        }
-        server {
-            workingDirectory project.file("run")
-            property "forge.logging.markers", "SCAN,REGISTRIES,REGISTRYDUMP"
-            property "forge.logging.console.level", "debug"
-            mods {
-                extendedslabs {
-                    source sourceSets.main
-                }
-            }
-        }
-        data {
-            workingDirectory project.file("run")
-            property "forge.logging.markers", "SCAN,REGISTRIES,REGISTRYDUMP"
-            property "forge.logging.console.level", "debug"
-            args '--mod', 'extendedslabs', '--all', '--output', file('src/main/generated/'), '--existing', file('src/main/resources/')
-            mods {
-                extendedslabs {
-                    source sourceSets.main
-                }
-            }
-        }
-    }
+	mappings channel: 'parchment', version: "2022.06.05-1.18.2"
+	runs {
+		client {
+			workingDirectory project.file("run")
+			property "forge.logging.markers", "SCAN,REGISTRIES,REGISTRYDUMP"
+			property "forge.logging.console.level", "debug"
+			mods {
+				extendedslabs {
+					source sourceSets.main
+				}
+			}
+		}
+		server {
+			workingDirectory project.file("run")
+			property "forge.logging.markers", "SCAN,REGISTRIES,REGISTRYDUMP"
+			property "forge.logging.console.level", "debug"
+			mods {
+				extendedslabs {
+					source sourceSets.main
+				}
+			}
+		}
+		data {
+			workingDirectory project.file("run")
+			property "forge.logging.markers", "SCAN,REGISTRIES,REGISTRYDUMP"
+			property "forge.logging.console.level", "debug"
+			args '--mod', 'extendedslabs',
+					'--all',
+					'--output', file('src/main/generated/'),
+					'--existing', file('src/main/resources/'),
+					'--existing-mod', 'wildbackport',
+					'--existing-mod', 'darkerdepths',
+					'--existing-mod', 'galosphere'
+			mods {
+				extendedslabs {
+					source sourceSets.main
+				}
+			}
+		}
+	}
 }
 
 sourceSets {
-    main.resources.srcDirs += 'src/main/generated'
+	main.resources.srcDirs += 'src/main/generated'
 }
 
 dependencies {
-    minecraft "net.minecraftforge:forge:${project.minecraftVersion}-${project.forgeVersion}"
+	minecraft "net.minecraftforge:forge:${project.minecraftVersion}-${project.forgeVersion}"
 
-    implementation fg.deobf("curse.maven:configured-457570:${project.configured}")
-    implementation fg.deobf("curse.maven:catalogue-459701:${project.catalogue}")
+	implementation fg.deobf("curse.maven:configured-457570:${project.configured}")
+	implementation fg.deobf("curse.maven:catalogue-459701:${project.catalogue}")
 
-    runtimeOnly fg.deobf("mezz.jei:jei-1.18.2:${project.jei}")
-    implementation fg.deobf("curse.maven:just-enough-resources-jer-240630:${project.jer}")
+	implementation fg.deobf("mezz.jei:jei-1.18.2:${project.jei}")
+	implementation fg.deobf("curse.maven:just-enough-resources-jer-240630:${project.jer}")
 
-    runtimeOnly fg.deobf("curse.maven:the-one-probe-245211:${project.top}")
+	implementation fg.deobf("curse.maven:the-one-probe-245211:${project.top}")
+
+	implementation fg.deobf("curse.maven:the-wild-backport-537901:${project.wildbackport}")
+	implementation fg.deobf("curse.maven:darker-depths-460681:${project.darkerdepths}")
+	implementation fg.deobf("curse.maven:galosphere-631098:${project.galosphere}")
+	implementation fg.deobf("curse.maven:terrablender-563928:${project.terrablender}")
 }
 
 repositories {
-    maven {
-        name = "Progwml6 maven"
-        url = "https://dvs1.progwml6.com/files/maven/"
-    }
-    maven {
-        name = "ModMaven"
-        url = "https://modmaven.k-4u.nl"
-    }
-    maven {
-        name = "CurseForge"
-        url = "https://www.cursemaven.com"
-    }
+	maven {
+		name = "Progwml6 maven"
+		url = "https://dvs1.progwml6.com/files/maven/"
+	}
+	maven {
+		name = "ModMaven"
+		url = "https://modmaven.k-4u.nl"
+	}
+	maven {
+		name = "CurseForge"
+		url = "https://www.cursemaven.com"
+	}
 }
 
 jar {
-    manifest {
-        attributes([
-                "Specification-Title"     : project.modName,
-                "Specification-Vendor"    : "Blackout",
-                "Specification-Version"   : "1",
-                "Implementation-Title"    : project.modName,
-                "Implementation-Version"  : project.modVersion,
-                "Implementation-Vendor"   : "Blackout",
-                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
-        ])
-    }
+	manifest {
+		attributes([
+				"Specification-Title"     : project.modName,
+				"Specification-Vendor"    : "Blackout",
+				"Specification-Version"   : "1",
+				"Implementation-Title"    : project.modName,
+				"Implementation-Version"  : project.modVersion,
+				"Implementation-Vendor"   : "Blackout",
+				"Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+		])
+	}
 }
 
 jar.finalizedBy('reobfJar')

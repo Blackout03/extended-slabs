@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "extendedslabs:granite_corner_to_granite_stairs"
+    ]
+  },
+  "criteria": {
+    "has_corner": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "extendedslabs:granite_corner"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "extendedslabs:granite_corner_to_granite_stairs"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_corner",
+      "has_the_recipe"
+    ]
+  ]
+}

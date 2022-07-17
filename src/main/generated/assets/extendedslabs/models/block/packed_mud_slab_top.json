@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "side": "wildbackport:block/packed_mud",
+    "bottom": "wildbackport:block/packed_mud",
+    "top": "wildbackport:block/packed_mud"
+  }
+}

@@ -1,5 +1,6 @@
 package com.blackout.extendedslabs.datagen;
 
+import com.blackout.extendedslabs.ExtendedSlabs;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.client.model.generators.BlockModelProvider;
@@ -858,6 +859,141 @@ public class ESPBlockModelProvider extends BlockModelProvider {
         this.corner("end_stone_corner", mcRL("end_stone"));
         this.corner("end_stone_brick_corner", mcRL("end_stone_bricks"));
         this.corner("purpur_corner", mcRL("purpur_block"));
+
+        this.slab("mud_slab", wbpRL("mud"), wbpRL("mud"), wbpRL("mud"));
+        this.slabTop("mud_slab", wbpRL("mud"), wbpRL("mud"), wbpRL("mud"));
+        this.slab("packed_mud_slab", wbpRL("packed_mud"), wbpRL("packed_mud"), wbpRL("packed_mud"));
+        this.slabTop("packed_mud_slab", wbpRL("packed_mud"), wbpRL("packed_mud"), wbpRL("packed_mud"));
+        this.slab("mangrove_wood_slab", wbpRL("mangrove_log"), wbpRL("mangrove_log"), wbpRL("mangrove_log"));
+        this.slabTop("mangrove_wood_slab", wbpRL("mangrove_log"), wbpRL("mangrove_log"), wbpRL("mangrove_log"));
+        this.verticalSlab("vertical_mud_slab", wbpRL("mud"), wbpRL("mud"), wbpRL("mud"));
+        this.innerVerticalSlab("vertical_mud_slab", wbpRL("mud"), wbpRL("mud"), wbpRL("mud"));
+        this.outerVerticalSlab("vertical_mud_slab", wbpRL("mud"), wbpRL("mud"), wbpRL("mud"));
+        this.verticalSlab("vertical_packed_mud_slab", wbpRL("packed_mud"), wbpRL("packed_mud"), wbpRL("packed_mud"));
+        this.innerVerticalSlab("vertical_packed_mud_slab", wbpRL("packed_mud"), wbpRL("packed_mud"), wbpRL("packed_mud"));
+        this.outerVerticalSlab("vertical_packed_mud_slab", wbpRL("packed_mud"), wbpRL("packed_mud"), wbpRL("packed_mud"));
+        this.verticalSlab("vertical_mud_brick_slab", wbpRL("mud_bricks"), wbpRL("mud_bricks"), wbpRL("mud_bricks"));
+        this.innerVerticalSlab("vertical_mud_brick_slab", wbpRL("mud_bricks"), wbpRL("mud_bricks"), wbpRL("mud_bricks"));
+        this.outerVerticalSlab("vertical_mud_brick_slab", wbpRL("mud_bricks"), wbpRL("mud_bricks"), wbpRL("mud_bricks"));
+        this.verticalSlab("vertical_mangrove_slab", wbpRL("mangrove_planks"), wbpRL("mangrove_planks"), wbpRL("mangrove_planks"));
+        this.innerVerticalSlab("vertical_mangrove_slab", wbpRL("mangrove_planks"), wbpRL("mangrove_planks"), wbpRL("mangrove_planks"));
+        this.outerVerticalSlab("vertical_mangrove_slab", wbpRL("mangrove_planks"), wbpRL("mangrove_planks"), wbpRL("mangrove_planks"));
+        this.verticalSlab("vertical_mangrove_wood_slab", wbpRL("mangrove_log"), wbpRL("mangrove_log"), wbpRL("mangrove_log"));
+        this.innerVerticalSlab("vertical_mangrove_wood_slab", wbpRL("mangrove_log"), wbpRL("mangrove_log"), wbpRL("mangrove_log"));
+        this.outerVerticalSlab("vertical_mangrove_wood_slab", wbpRL("mangrove_log"), wbpRL("mangrove_log"), wbpRL("mangrove_log"));
+        this.stairs("mud_stairs", wbpRL("mud"), wbpRL("mud"), wbpRL("mud"));
+        this.stairsInner("mud_stairs", wbpRL("mud"), wbpRL("mud"), wbpRL("mud"));
+        this.stairsOuter("mud_stairs", wbpRL("mud"), wbpRL("mud"), wbpRL("mud"));
+        this.stairs("packed_mud_stairs", wbpRL("packed_mud"), wbpRL("packed_mud"), wbpRL("packed_mud"));
+        this.stairsInner("packed_mud_stairs", wbpRL("packed_mud"), wbpRL("packed_mud"), wbpRL("packed_mud"));
+        this.stairsOuter("packed_mud_stairs", wbpRL("packed_mud"), wbpRL("packed_mud"), wbpRL("packed_mud"));
+        this.stairs("mangrove_wood_stairs", wbpRL("mangrove_log"), wbpRL("mangrove_log"), wbpRL("mangrove_log"));
+        this.stairsInner("mangrove_wood_stairs", wbpRL("mangrove_log"), wbpRL("mangrove_log"), wbpRL("mangrove_log"));
+        this.stairsOuter("mangrove_wood_stairs", wbpRL("mangrove_log"), wbpRL("mangrove_log"), wbpRL("mangrove_log"));
+        this.corner("mud_corner", wbpRL("mud"));
+        this.corner("packed_mud_corner", wbpRL("packed_mud"));
+        this.corner("mud_brick_corner", wbpRL("mud_bricks"));
+        this.corner("mangrove_corner", wbpRL("mangrove_planks"));
+        this.corner("mangrove_wood_corner", wbpRL("mangrove_log"));
+
+        this.verticalSlab("vertical_amethyst_slab", mcRL("amethyst_block"), mcRL("amethyst_block"), mcRL("amethyst_block"));
+        this.innerVerticalSlab("vertical_amethyst_slab", mcRL("amethyst_block"), mcRL("amethyst_block"), mcRL("amethyst_block"));
+        this.outerVerticalSlab("vertical_amethyst_slab", mcRL("amethyst_block"), mcRL("amethyst_block"), mcRL("amethyst_block"));
+        this.verticalSlab("vertical_allurite_slab", galoRL("allurite_block"), galoRL("allurite_block"), galoRL("allurite_block"));
+        this.innerVerticalSlab("vertical_allurite_slab", galoRL("allurite_block"), galoRL("allurite_block"), galoRL("allurite_block"));
+        this.outerVerticalSlab("vertical_allurite_slab", galoRL("allurite_block"), galoRL("allurite_block"), galoRL("allurite_block"));
+        this.verticalSlab("vertical_lumiere_slab", galoRL("lumiere_block"), galoRL("lumiere_block"), galoRL("lumiere_block"));
+        this.innerVerticalSlab("vertical_lumiere_slab", galoRL("lumiere_block"), galoRL("lumiere_block"), galoRL("lumiere_block"));
+        this.outerVerticalSlab("vertical_lumiere_slab", galoRL("lumiere_block"), galoRL("lumiere_block"), galoRL("lumiere_block"));
+        this.verticalSlab("vertical_smooth_amethyst_slab", galoRL("smooth_amethyst"), galoRL("smooth_amethyst"), galoRL("smooth_amethyst"));
+        this.innerVerticalSlab("vertical_smooth_amethyst_slab", galoRL("smooth_amethyst"), galoRL("smooth_amethyst"), galoRL("smooth_amethyst"));
+        this.outerVerticalSlab("vertical_smooth_amethyst_slab", galoRL("smooth_amethyst"), galoRL("smooth_amethyst"), galoRL("smooth_amethyst"));
+        this.verticalSlab("vertical_smooth_allurite_slab", galoRL("smooth_allurite"), galoRL("smooth_allurite"), galoRL("smooth_allurite"));
+        this.innerVerticalSlab("vertical_smooth_allurite_slab", galoRL("smooth_allurite"), galoRL("smooth_allurite"), galoRL("smooth_allurite"));
+        this.outerVerticalSlab("vertical_smooth_allurite_slab", galoRL("smooth_allurite"), galoRL("smooth_allurite"), galoRL("smooth_allurite"));
+        this.verticalSlab("vertical_smooth_lumiere_slab", galoRL("smooth_lumiere"), galoRL("smooth_lumiere"), galoRL("smooth_lumiere"));
+        this.innerVerticalSlab("vertical_smooth_lumiere_slab", galoRL("smooth_lumiere"), galoRL("smooth_lumiere"), galoRL("smooth_lumiere"));
+        this.outerVerticalSlab("vertical_smooth_lumiere_slab", galoRL("smooth_lumiere"), galoRL("smooth_lumiere"), galoRL("smooth_lumiere"));
+        this.verticalSlab("vertical_amethyst_brick_slab", galoRL("amethyst_bricks"), galoRL("amethyst_bricks"), galoRL("amethyst_bricks"));
+        this.innerVerticalSlab("vertical_amethyst_brick_slab", galoRL("amethyst_bricks"), galoRL("amethyst_bricks"), galoRL("amethyst_bricks"));
+        this.outerVerticalSlab("vertical_amethyst_brick_slab", galoRL("amethyst_bricks"), galoRL("amethyst_bricks"), galoRL("amethyst_bricks"));
+        this.verticalSlab("vertical_allurite_brick_slab", galoRL("allurite_bricks"), galoRL("allurite_bricks"), galoRL("allurite_bricks"));
+        this.innerVerticalSlab("vertical_allurite_brick_slab", galoRL("allurite_bricks"), galoRL("allurite_bricks"), galoRL("allurite_bricks"));
+        this.outerVerticalSlab("vertical_allurite_brick_slab", galoRL("allurite_bricks"), galoRL("allurite_bricks"), galoRL("allurite_bricks"));
+        this.verticalSlab("vertical_lumiere_brick_slab", galoRL("lumiere_bricks"), galoRL("lumiere_bricks"), galoRL("lumiere_bricks"));
+        this.innerVerticalSlab("vertical_lumiere_brick_slab", galoRL("lumiere_bricks"), galoRL("lumiere_bricks"), galoRL("lumiere_bricks"));
+        this.outerVerticalSlab("vertical_lumiere_brick_slab", galoRL("lumiere_bricks"), galoRL("lumiere_bricks"), galoRL("lumiere_bricks"));
+        this.corner("amethyst_corner", mcRL("amethyst_block"));
+        this.corner("allurite_corner", galoRL("allurite_block"));
+        this.corner("lumiere_corner", galoRL("lumiere_block"));
+        this.corner("smooth_amethyst_corner", galoRL("smooth_amethyst"));
+        this.corner("smooth_allurite_corner", galoRL("smooth_allurite"));
+        this.corner("smooth_lumiere_corner", galoRL("smooth_lumiere"));
+        this.corner("amethyst_brick_corner", galoRL("amethyst_bricks"));
+        this.corner("allurite_brick_corner", galoRL("allurite_bricks"));
+        this.corner("lumiere_brick_corner", galoRL("lumiere_bricks"));
+
+        this.slab("petrified_wood_slab", ddRL("petrified_log"), ddRL("petrified_log"), ddRL("petrified_log"));
+        this.slabTop("petrified_wood_slab", ddRL("petrified_log"), ddRL("petrified_log"), ddRL("petrified_log"));
+        this.verticalSlab("vertical_petrified_slab", ddRL("petrified_planks"), ddRL("petrified_planks"), ddRL("petrified_planks"));
+        this.innerVerticalSlab("vertical_petrified_slab", ddRL("petrified_planks"), ddRL("petrified_planks"), ddRL("petrified_planks"));
+        this.outerVerticalSlab("vertical_petrified_slab", ddRL("petrified_planks"), ddRL("petrified_planks"), ddRL("petrified_planks"));
+        this.verticalSlab("vertical_petrified_wood_slab", ddRL("petrified_log"), ddRL("petrified_log"), ddRL("petrified_log"));
+        this.innerVerticalSlab("vertical_petrified_wood_slab", ddRL("petrified_log"), ddRL("petrified_log"), ddRL("petrified_log"));
+        this.outerVerticalSlab("vertical_petrified_wood_slab", ddRL("petrified_log"), ddRL("petrified_log"), ddRL("petrified_log"));
+        this.verticalSlab("vertical_shale_slab", ddRL("shale"), ddRL("shale"), ddRL("shale"));
+        this.innerVerticalSlab("vertical_shale_slab", ddRL("shale"), ddRL("shale"), ddRL("shale"));
+        this.outerVerticalSlab("vertical_shale_slab", ddRL("shale"), ddRL("shale"), ddRL("shale"));
+        this.verticalSlab("vertical_polished_shale_slab", ddRL("polished_shale"), ddRL("polished_shale"), ddRL("polished_shale"));
+        this.innerVerticalSlab("vertical_polished_shale_slab", ddRL("polished_shale"), ddRL("polished_shale"), ddRL("polished_shale"));
+        this.outerVerticalSlab("vertical_polished_shale_slab", ddRL("polished_shale"), ddRL("polished_shale"), ddRL("polished_shale"));
+        this.verticalSlab("vertical_shale_brick_slab", ddRL("shale_bricks"), ddRL("shale_bricks"), ddRL("shale_bricks"));
+        this.innerVerticalSlab("vertical_shale_brick_slab", ddRL("shale_bricks"), ddRL("shale_bricks"), ddRL("shale_bricks"));
+        this.outerVerticalSlab("vertical_shale_brick_slab", ddRL("shale_bricks"), ddRL("shale_bricks"), ddRL("shale_bricks"));
+        this.verticalSlab("vertical_aridrock_slab", ddRL("aridrock"), ddRL("aridrock"), ddRL("aridrock"));
+        this.innerVerticalSlab("vertical_aridrock_slab", ddRL("aridrock"), ddRL("aridrock"), ddRL("aridrock"));
+        this.outerVerticalSlab("vertical_aridrock_slab", ddRL("aridrock"), ddRL("aridrock"), ddRL("aridrock"));
+        this.verticalSlab("vertical_polished_aridrock_slab", ddRL("polished_aridrock"), ddRL("polished_aridrock"), ddRL("polished_aridrock"));
+        this.innerVerticalSlab("vertical_polished_aridrock_slab", ddRL("polished_aridrock"), ddRL("polished_aridrock"), ddRL("polished_aridrock"));
+        this.outerVerticalSlab("vertical_polished_aridrock_slab", ddRL("polished_aridrock"), ddRL("polished_aridrock"), ddRL("polished_aridrock"));
+        this.verticalSlab("vertical_aridrock_brick_slab", ddRL("aridrock_bricks"), ddRL("aridrock_bricks"), ddRL("aridrock_bricks"));
+        this.innerVerticalSlab("vertical_aridrock_brick_slab", ddRL("aridrock_bricks"), ddRL("aridrock_bricks"), ddRL("aridrock_bricks"));
+        this.outerVerticalSlab("vertical_aridrock_brick_slab", ddRL("aridrock_bricks"), ddRL("aridrock_bricks"), ddRL("aridrock_bricks"));
+        this.verticalSlab("vertical_limestone_slab", ddRL("limestone"), ddRL("limestone"), ddRL("limestone"));
+        this.innerVerticalSlab("vertical_limestone_slab", ddRL("limestone"), ddRL("limestone"), ddRL("limestone"));
+        this.outerVerticalSlab("vertical_limestone_slab", ddRL("limestone"), ddRL("limestone"), ddRL("limestone"));
+        this.verticalSlab("vertical_polished_limestone_slab", ddRL("polished_limestone"), ddRL("polished_limestone"), ddRL("polished_limestone"));
+        this.innerVerticalSlab("vertical_polished_limestone_slab", ddRL("polished_limestone"), ddRL("polished_limestone"), ddRL("polished_limestone"));
+        this.outerVerticalSlab("vertical_polished_limestone_slab", ddRL("polished_limestone"), ddRL("polished_limestone"), ddRL("polished_limestone"));
+        this.verticalSlab("vertical_limestone_brick_slab", ddRL("limestone_bricks"), ddRL("limestone_bricks"), ddRL("limestone_bricks"));
+        this.innerVerticalSlab("vertical_limestone_brick_slab", ddRL("limestone_bricks"), ddRL("limestone_bricks"), ddRL("limestone_bricks"));
+        this.outerVerticalSlab("vertical_limestone_brick_slab", ddRL("limestone_bricks"), ddRL("limestone_bricks"), ddRL("limestone_bricks"));
+        this.verticalSlab("vertical_grimestone_slab", ddRL("grimestone"), ddRL("grimestone"), ddRL("grimestone"));
+        this.innerVerticalSlab("vertical_grimestone_slab", ddRL("grimestone"), ddRL("grimestone"), ddRL("grimestone"));
+        this.outerVerticalSlab("vertical_grimestone_slab", ddRL("grimestone"), ddRL("grimestone"), ddRL("grimestone"));
+        this.verticalSlab("vertical_polished_grimestone_slab", ddRL("polished_grimestone"), ddRL("polished_grimestone"), ddRL("polished_grimestone"));
+        this.innerVerticalSlab("vertical_polished_grimestone_slab", ddRL("polished_grimestone"), ddRL("polished_grimestone"), ddRL("polished_grimestone"));
+        this.outerVerticalSlab("vertical_polished_grimestone_slab", ddRL("polished_grimestone"), ddRL("polished_grimestone"), ddRL("polished_grimestone"));
+        this.verticalSlab("vertical_grimestone_brick_slab", ddRL("grimestone_bricks"), ddRL("grimestone_bricks"), ddRL("grimestone_bricks"));
+        this.innerVerticalSlab("vertical_grimestone_brick_slab", ddRL("grimestone_bricks"), ddRL("grimestone_bricks"), ddRL("grimestone_bricks"));
+        this.outerVerticalSlab("vertical_grimestone_brick_slab", ddRL("grimestone_bricks"), ddRL("grimestone_bricks"), ddRL("grimestone_bricks"));
+        this.stairs("petrified_wood_stairs", ddRL("petrified_log"), ddRL("petrified_log"), ddRL("petrified_log"));
+        this.stairsInner("petrified_wood_stairs", ddRL("petrified_log"), ddRL("petrified_log"), ddRL("petrified_log"));
+        this.stairsOuter("petrified_wood_stairs", ddRL("petrified_log"), ddRL("petrified_log"), ddRL("petrified_log"));
+        this.corner("petrified_corner", ddRL("petrified_planks"));
+        this.corner("petrified_wood_corner", ddRL("petrified_log"));
+        this.corner("shale_corner", ddRL("shale"));
+        this.corner("polished_shale_corner", ddRL("polished_shale"));
+        this.corner("shale_brick_corner", ddRL("shale_bricks"));
+        this.corner("aridrock_corner", ddRL("aridrock"));
+        this.corner("polished_aridrock_corner", ddRL("polished_aridrock"));
+        this.corner("aridrock_brick_corner", ddRL("aridrock_bricks"));
+        this.corner("limestone_corner", ddRL("limestone"));
+        this.corner("polished_limestone_corner", ddRL("polished_limestone"));
+        this.corner("limestone_brick_corner", ddRL("limestone_bricks"));
+        this.corner("grimestone_corner", ddRL("grimestone"));
+        this.corner("polished_grimestone_corner", ddRL("polished_grimestone"));
+        this.corner("grimestone_brick_corner", ddRL("grimestone_bricks"));
     }
 
     private void sideBottomTop(String name, ResourceLocation parent, ResourceLocation side, ResourceLocation bottom, ResourceLocation top) {
@@ -888,6 +1024,18 @@ public class ESPBlockModelProvider extends BlockModelProvider {
     }
 
     private ResourceLocation espRL(String location) {
-        return new ResourceLocation("extendedslabs", BLOCK_FOLDER + "/" + location);
+        return new ResourceLocation(ExtendedSlabs.MODID, BLOCK_FOLDER + "/" + location);
+    }
+
+    private ResourceLocation wbpRL(String location) {
+        return new ResourceLocation("wildbackport", BLOCK_FOLDER + "/" + location);
+    }
+
+    private ResourceLocation galoRL(String location) {
+        return new ResourceLocation("galosphere", BLOCK_FOLDER + "/" + location);
+    }
+
+    private ResourceLocation ddRL(String location) {
+        return new ResourceLocation("darkerdepths", BLOCK_FOLDER + "/" + location);
     }
 }

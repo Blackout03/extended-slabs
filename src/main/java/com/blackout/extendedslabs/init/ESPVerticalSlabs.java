@@ -234,7 +234,7 @@ public class ESPVerticalSlabs {
 	public static final RegistryObject<WeatheringCopperVerticalSlabBlock> WAXED_CUT_COPPER_VERTICAL = registerBlock("vertical_waxed_cut_copper_slab", () -> new WeatheringCopperVerticalSlabBlock(BlockBehaviour.Properties.copy(Blocks.WAXED_CUT_COPPER).requiresCorrectToolForDrops(), WeatheringCopper.WeatherState.UNAFFECTED), ExtendedSlabs.GROUP);
 
 	public static <B extends Block> RegistryObject<B> registerBlock(String name, Supplier<? extends B> supplier, CreativeModeTab itemGroup) {
-		RegistryObject<B> block = ESPVerticalSlabs.BLOCKS.register(name, supplier);
+		RegistryObject<B> block = BLOCKS.register(name, supplier);
 		ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties().tab(itemGroup)));
 		return block;
 	}

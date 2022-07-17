@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "#",
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "darkerdepths:limestone"
+    }
+  },
+  "result": {
+    "item": "extendedslabs:vertical_limestone_slab",
+    "count": 6
+  }
+}

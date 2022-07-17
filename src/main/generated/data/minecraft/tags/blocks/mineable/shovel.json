@@ -27,8 +27,8 @@
     "extendedslabs:gravel_slab",
     "extendedslabs:red_sand_slab",
     "extendedslabs:sand_slab",
-    "extendedslabs:dirt_stairs",
     "extendedslabs:clay_slab",
+    "extendedslabs:dirt_stairs",
     "extendedslabs:vertical_clay_slab",
     "extendedslabs:vertical_dirt_slab",
     "extendedslabs:vertical_coarse_dirt_slab",
@@ -57,6 +57,22 @@
     "extendedslabs:vertical_black_concrete_powder_slab",
     "extendedslabs:vertical_gravel_slab",
     "extendedslabs:vertical_sand_slab",
-    "extendedslabs:vertical_red_sand_slab"
+    "extendedslabs:vertical_red_sand_slab",
+    {
+      "id": "extendedslabs:mud_slab",
+      "required": false
+    },
+    {
+      "id": "extendedslabs:mud_stairs",
+      "required": false
+    },
+    {
+      "id": "extendedslabs:mud_corner",
+      "required": false
+    },
+    {
+      "id": "extendedslabs:vertical_mud_slab",
+      "required": false
+    }
   ]
 }

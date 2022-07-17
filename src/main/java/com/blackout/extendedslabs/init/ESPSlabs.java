@@ -171,7 +171,7 @@ public class ESPSlabs {
 	public static final RegistryObject<SlabBlock> END_STONE_SLAB = registerBlock("end_stone_slab",() -> new SlabBlock(Block.Properties.copy(Blocks.END_STONE).requiresCorrectToolForDrops()), ExtendedSlabs.GROUP);
 
 	public static <B extends Block> RegistryObject<B> registerBlock(String name, Supplier<? extends B> supplier, CreativeModeTab itemGroup) {
-		RegistryObject<B> block = ESPSlabs.BLOCKS.register(name, supplier);
+		RegistryObject<B> block = BLOCKS.register(name, supplier);
 		ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties().tab(itemGroup)));
 		return block;
 	}

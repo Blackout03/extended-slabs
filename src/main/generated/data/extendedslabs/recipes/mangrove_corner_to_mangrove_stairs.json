@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "extendedslabs:mangrove_corner"
+    }
+  ],
+  "result": {
+    "item": "wildbackport:mangrove_stairs"
+  }
+}

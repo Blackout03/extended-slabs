@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "galosphere:smooth_lumiere_stairs"
+    }
+  ],
+  "result": {
+    "item": "extendedslabs:smooth_lumiere_corner"
+  }
+}

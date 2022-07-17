@@ -1,0 +1,6 @@
+{
+  "parent": "extendedslabs:block/corner",
+  "textures": {
+    "block": "darkerdepths:block/polished_grimestone"
+  }
+}

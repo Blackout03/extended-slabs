@@ -1,0 +1,8 @@
+{
+  "parent": "extendedslabs:block/vertical_slab",
+  "textures": {
+    "side": "darkerdepths:block/polished_limestone",
+    "bottom": "darkerdepths:block/polished_limestone",
+    "top": "darkerdepths:block/polished_limestone"
+  }
+}

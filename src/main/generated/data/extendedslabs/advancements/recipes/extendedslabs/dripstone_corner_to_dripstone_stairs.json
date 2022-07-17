@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "extendedslabs:dripstone_corner_to_dripstone_stairs"
+    ]
+  },
+  "criteria": {
+    "has_corner": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "extendedslabs:dripstone_corner"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "extendedslabs:dripstone_corner_to_dripstone_stairs"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_corner",
+      "has_the_recipe"
+    ]
+  ]
+}

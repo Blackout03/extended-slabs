@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "extendedslabs:cobblestone_stairs_to_cobblestone_corner"
+    ]
+  },
+  "criteria": {
+    "has_stair": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:cobblestone_stairs"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "extendedslabs:cobblestone_stairs_to_cobblestone_corner"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_stair",
+      "has_the_recipe"
+    ]
+  ]
+}
