@@ -1,0 +1,23 @@
+{
+  "values": [
+    "extendedslabs:dirt_stairs",
+    "extendedslabs:coarse_dirt_stairs",
+    "extendedslabs:rooted_dirt_stairs",
+    "extendedslabs:tuff_stairs",
+    "extendedslabs:calcite_stairs",
+    "extendedslabs:dripstone_stairs",
+    "extendedslabs:mud_stairs",
+    "extendedslabs:packed_mud_stairs",
+    "extendedslabs:oak_wood_stairs",
+    "extendedslabs:spruce_wood_stairs",
+    "extendedslabs:birch_wood_stairs",
+    "extendedslabs:jungle_wood_stairs",
+    "extendedslabs:acacia_wood_stairs",
+    "extendedslabs:dark_oak_wood_stairs",
+    "extendedslabs:mangrove_wood_stairs",
+    "extendedslabs:crimson_hyphae_stairs",
+    "extendedslabs:warped_hyphae_stairs",
+    "extendedslabs:netherrack_stairs",
+    "extendedslabs:end_stone_stairs"
+  ]
+}

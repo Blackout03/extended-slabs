@@ -1,4 +1,4 @@
-// 1.19	2022-06-11T02:11:50.9226578	LootTables
+// 1.19	2022-07-17T02:24:10.7294508	LootTables
 c2f743dfa83665397228d680aa145379af92944f data/extendedslabs/loot_tables/blocks/acacia_corner.json
 11116f0417fb9e80154e986942b3ced266227387 data/extendedslabs/loot_tables/blocks/acacia_wood_corner.json
 b92f89f4da07428aec80d083600798a379fa7362 data/extendedslabs/loot_tables/blocks/acacia_wood_slab.json
@@ -167,6 +167,7 @@ bdced670f76694da1c1ec2e4c59c3636c5e57fe2 data/extendedslabs/loot_tables/blocks/s
 878fb5c0da5dc8273f3a607b69e30af51e6121ff data/extendedslabs/loot_tables/blocks/stone_brick_corner.json
 6554a2126cd276dd8a80c279d83ef696d0206827 data/extendedslabs/loot_tables/blocks/stone_corner.json
 4a0cead44e800e281eaf7a4786254a55bbce2957 data/extendedslabs/loot_tables/blocks/terracotta_slab.json
+bcfaa17bc4f3d1b77c47e3602b9be01ab17f1a9a data/extendedslabs/loot_tables/blocks/tinted_glass_slab.json
 bed6e4521fcf30b8be7f5664d78a90f86339c33d data/extendedslabs/loot_tables/blocks/tuff_corner.json
 ba1ac138eadbc7dcf8a2c5aba9f1ae1faeb4e34e data/extendedslabs/loot_tables/blocks/tuff_slab.json
 668900fc1d7fed02c6119654a854a33105a10fc4 data/extendedslabs/loot_tables/blocks/tuff_stairs.json
@@ -330,6 +331,7 @@ dba00ccf5fd23d169d2823e27abd079d2f989863 data/extendedslabs/loot_tables/blocks/v
 eb69cf96fa5a5b3efffec5041d648e2c15dcb6fd data/extendedslabs/loot_tables/blocks/vertical_stone_brick_slab.json
 0538f056928bbb3bbf1c129abc50863d5446c673 data/extendedslabs/loot_tables/blocks/vertical_stone_slab.json
 7883d32cba29e3308304de4250b5a36309012a34 data/extendedslabs/loot_tables/blocks/vertical_terracotta_slab.json
+53c9b3be3ffbd309230cb78c8277e2f4322a6a56 data/extendedslabs/loot_tables/blocks/vertical_tinted_glass_slab.json
 f9c8a84ba6d977ca076a35cf4905b2169f6d2d5d data/extendedslabs/loot_tables/blocks/vertical_tuff_slab.json
 101778c6e7618f4a45840414a62861c5506e7d46 data/extendedslabs/loot_tables/blocks/vertical_warped_hyphae_slab.json
 15f92057e9a746e8a2ee89bde51c081533aa9497 data/extendedslabs/loot_tables/blocks/vertical_warped_nylium_slab.json

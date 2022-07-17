@@ -221,6 +221,8 @@ public class ESPBlockModelProvider extends BlockModelProvider {
         this.slabTop("black_glazed_terracotta_slab", mcRL("black_glazed_terracotta"), mcRL("black_glazed_terracotta"), mcRL("black_glazed_terracotta"));
         this.slab("glass_slab", mcRL("glass"), mcRL("glass"), mcRL("glass"));
         this.slabTop("glass_slab", mcRL("glass"), mcRL("glass"), mcRL("glass"));
+        this.slab("tinted_glass_slab", mcRL("tinted_glass"), mcRL("tinted_glass"), mcRL("tinted_glass"));
+        this.slabTop("tinted_glass_slab", mcRL("tinted_glass"), mcRL("tinted_glass"), mcRL("tinted_glass"));
         this.slab("white_stained_glass_slab", mcRL("white_stained_glass"), mcRL("white_stained_glass"), mcRL("white_stained_glass"));
         this.slabTop("white_stained_glass_slab", mcRL("white_stained_glass"), mcRL("white_stained_glass"), mcRL("white_stained_glass"));
         this.slab("orange_stained_glass_slab", mcRL("orange_stained_glass"), mcRL("orange_stained_glass"), mcRL("orange_stained_glass"));
@@ -587,6 +589,9 @@ public class ESPBlockModelProvider extends BlockModelProvider {
         this.verticalSlab("vertical_glass_slab", mcRL("glass"), mcRL("glass"), mcRL("glass"));
         this.innerVerticalSlab("vertical_glass_slab", mcRL("glass"), mcRL("glass"), mcRL("glass"));
         this.outerVerticalSlab("vertical_glass_slab", mcRL("glass"), mcRL("glass"), mcRL("glass"));
+        this.verticalSlab("vertical_tinted_glass_slab", mcRL("tinted_glass"), mcRL("tinted_glass"), mcRL("tinted_glass"));
+        this.innerVerticalSlab("vertical_tinted_glass_slab", mcRL("tinted_glass"), mcRL("tinted_glass"), mcRL("tinted_glass"));
+        this.outerVerticalSlab("vertical_tinted_glass_slab", mcRL("tinted_glass"), mcRL("tinted_glass"), mcRL("tinted_glass"));
         this.verticalSlab("vertical_white_stained_glass_slab", mcRL("white_stained_glass"), mcRL("white_stained_glass"), mcRL("white_stained_glass"));
         this.innerVerticalSlab("vertical_white_stained_glass_slab", mcRL("white_stained_glass"), mcRL("white_stained_glass"), mcRL("white_stained_glass"));
         this.outerVerticalSlab("vertical_white_stained_glass_slab", mcRL("white_stained_glass"), mcRL("white_stained_glass"), mcRL("white_stained_glass"));

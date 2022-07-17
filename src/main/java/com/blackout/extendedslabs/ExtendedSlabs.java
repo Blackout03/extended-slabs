@@ -1,23 +1,25 @@
 package com.blackout.extendedslabs;
 
 import com.blackout.extendedslabs.datagen.*;
+import com.blackout.extendedslabs.datagen.recipes.ESPCornerRecipeProvider;
+import com.blackout.extendedslabs.datagen.recipes.ESPSlabRecipeProvider;
+import com.blackout.extendedslabs.datagen.recipes.ESPStairRecipeProvider;
+import com.blackout.extendedslabs.datagen.recipes.ESPVerticalSlabRecipeProvider;
 import com.blackout.extendedslabs.init.ESPCorners;
 import com.blackout.extendedslabs.init.ESPSlabs;
 import com.blackout.extendedslabs.init.ESPStairs;
 import com.blackout.extendedslabs.init.ESPVerticalSlabs;
-import com.blackout.extendedslabs.render.block.BlockRenderLayer;
 import com.blackout.extendedslabs.util.ESPCreativeModeTab;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModContainer;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.forge.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.forgespi.language.IModInfo;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -57,8 +59,6 @@ public class ExtendedSlabs {
 		ESPVerticalSlabs.ITEMS.register(eventBus);
 		ESPVerticalSlabs.BLOCKS.register(eventBus);
 		MinecraftForge.EVENT_BUS.register(this);
-
-		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientSetup);
 	}
 
 	private void gatherData(final GatherDataEvent event) {
@@ -74,9 +74,5 @@ public class ExtendedSlabs {
 		dataGenerator.addProvider(event.includeServer(), new ESPCornerRecipeProvider(dataGenerator));
 		dataGenerator.addProvider(event.includeServer(), new ESPSlabRecipeProvider(dataGenerator));
 		dataGenerator.addProvider(event.includeServer(), new ESPVerticalSlabRecipeProvider(dataGenerator));
-	}
-
-	private void clientSetup(final FMLClientSetupEvent event) {
-		BlockRenderLayer.renderBlock();
 	}
 }

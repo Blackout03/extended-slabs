@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "extendedslabs:mangrove_wood_slab"
+          "name": "minecraft:air"
         }
       ],
       "rolls": 1.0

@@ -23,10 +23,10 @@ public class ESPItemModelGenerator extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        generateSlabBlockItems(ESPSlabs.ITEMS.getEntries());
-        generateStairBlockItems(ESPStairs.ITEMS.getEntries());
-        generateCornerBlockItems(ESPCorners.ITEMS.getEntries());
-        generateVerticalSlabBlockItems(ESPVerticalSlabs.ITEMS.getEntries());
+        generateBlockItems(ESPSlabs.ITEMS.getEntries());
+        generateBlockItems(ESPStairs.ITEMS.getEntries());
+        generateBlockItems(ESPCorners.ITEMS.getEntries());
+        generateBlockItems(ESPVerticalSlabs.ITEMS.getEntries());
     }
 
     @Nonnull
@@ -35,37 +35,7 @@ public class ESPItemModelGenerator extends ItemModelProvider {
         return ExtendedSlabs.MODNAME + " Item models";
     }
 
-    private void generateSlabBlockItems(final Collection<RegistryObject<Item>> itemBlocks) {
-        for (RegistryObject<Item> item : itemBlocks) {
-            String name = item.getId().getPath();
-            if (!existingFileHelper.exists(new ResourceLocation(ExtendedSlabs.MODID, "block/" + name), MODEL) || existingFileHelper.exists(new ResourceLocation(ExtendedSlabs.MODID, "item/" + name), MODEL))
-                continue;
-            ExtendedSlabs.LOGGER.info(item.getId());
-            withExistingParent(name, new ResourceLocation(ExtendedSlabs.MODID, "block/" + name));
-        }
-    }
-
-    private void generateStairBlockItems(final Collection<RegistryObject<Item>> itemBlocks) {
-        for (RegistryObject<Item> item : itemBlocks) {
-            String name = item.getId().getPath();
-            if (!existingFileHelper.exists(new ResourceLocation(ExtendedSlabs.MODID, "block/" + name), MODEL) || existingFileHelper.exists(new ResourceLocation(ExtendedSlabs.MODID, "item/" + name), MODEL))
-                continue;
-            ExtendedSlabs.LOGGER.info(item.getId());
-            withExistingParent(name, new ResourceLocation(ExtendedSlabs.MODID, "block/" + name));
-        }
-    }
-
-    private void generateCornerBlockItems(final Collection<RegistryObject<Item>> itemBlocks) {
-        for (RegistryObject<Item> item : itemBlocks) {
-            String name = item.getId().getPath();
-            if (!existingFileHelper.exists(new ResourceLocation(ExtendedSlabs.MODID, "block/" + name), MODEL) || existingFileHelper.exists(new ResourceLocation(ExtendedSlabs.MODID, "item/" + name), MODEL))
-                continue;
-            ExtendedSlabs.LOGGER.info(item.getId());
-            withExistingParent(name, new ResourceLocation(ExtendedSlabs.MODID, "block/" + name));
-        }
-    }
-
-    private void generateVerticalSlabBlockItems(final Collection<RegistryObject<Item>> itemBlocks) {
+    private void generateBlockItems(final Collection<RegistryObject<Item>> itemBlocks) {
         for (RegistryObject<Item> item : itemBlocks) {
             String name = item.getId().getPath();
             if (!existingFileHelper.exists(new ResourceLocation(ExtendedSlabs.MODID, "block/" + name), MODEL) || existingFileHelper.exists(new ResourceLocation(ExtendedSlabs.MODID, "item/" + name), MODEL))

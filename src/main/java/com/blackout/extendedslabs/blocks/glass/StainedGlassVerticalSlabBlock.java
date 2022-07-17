@@ -2,17 +2,32 @@ package com.blackout.extendedslabs.blocks.glass;
 
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.BeaconBeamBlock;
+import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.NotNull;
 
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+
 public class StainedGlassVerticalSlabBlock extends GlassVerticalSlabBlock implements BeaconBeamBlock {
-    private final DyeColor color;
+	public Block material;
+	public Block materialSlab;
+	private final DyeColor color;
 
-    public StainedGlassVerticalSlabBlock(DyeColor color, Properties builder) {
-        super(builder);
-        this.color = color;
-    }
+	public StainedGlassVerticalSlabBlock(Block material, Block materialSlab, DyeColor color, Properties builder) {
+		super(material, materialSlab, builder);
+		this.material = material;
+		this.materialSlab = materialSlab;
+		this.color = color;
+	}
 
-    public @NotNull DyeColor getColor() {
-        return this.color;
-    }
+	public Block getMaterial() {
+		return material;
+	}
+
+	public Block getMaterialSlab() {
+		return materialSlab;
+	}
+
+	public @NotNull DyeColor getColor() {
+		return this.color;
+	}
 }

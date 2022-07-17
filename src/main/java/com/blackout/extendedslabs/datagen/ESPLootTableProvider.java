@@ -1,5 +1,9 @@
 package com.blackout.extendedslabs.datagen;
 
+import com.blackout.extendedslabs.datagen.loottables.ESPCornersLootTables;
+import com.blackout.extendedslabs.datagen.loottables.ESPSlabsLootTables;
+import com.blackout.extendedslabs.datagen.loottables.ESPStairsLootTables;
+import com.blackout.extendedslabs.datagen.loottables.ESPVerticalSlabsLootTables;
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.data.DataGenerator;
@@ -23,9 +27,9 @@ public class ESPLootTableProvider extends LootTableProvider {
 
     @Override
     protected List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootContextParamSet>> getTables() {
-        return ImmutableList.of(Pair.of(ESPSlabsLootTables::new, LootContextParamSets.BLOCK),
+        return ImmutableList.of(Pair.of(ESPCornersLootTables::new, LootContextParamSets.BLOCK),
+                Pair.of(ESPSlabsLootTables::new, LootContextParamSets.BLOCK),
                 Pair.of(ESPStairsLootTables::new, LootContextParamSets.BLOCK),
-                Pair.of(ESPCornersLootTables::new, LootContextParamSets.BLOCK),
                 Pair.of(ESPVerticalSlabsLootTables::new, LootContextParamSets.BLOCK));
     }
 

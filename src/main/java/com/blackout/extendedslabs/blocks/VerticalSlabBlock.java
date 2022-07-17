@@ -29,7 +29,8 @@ import org.jetbrains.annotations.NotNull;
 import javax.annotation.Nullable;
 
 public class VerticalSlabBlock extends Block implements SimpleWaterloggedBlock {
-
+    public Block material;
+    public Block materialSlab;
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public static final EnumProperty<VerticalSlabShape> SHAPE = EnumProperty.create("shape", VerticalSlabShape.class);
@@ -44,9 +45,19 @@ public class VerticalSlabBlock extends Block implements SimpleWaterloggedBlock {
     protected static final VoxelShape SOUTH_OUTER_SHAPE = Block.box(8.0D, 0.0D, 8.0D, 16.0D, 16.0D, 16.0D);
     protected static final VoxelShape WEST_OUTER_SHAPE = Block.box(0.0D, 0.0D, 8.0D, 8.0D, 16.0D, 16.0D);
 
-    public VerticalSlabBlock(Properties builder) {
+    public VerticalSlabBlock(Block material, Block materialSlab, Properties builder) {
         super(builder);
+        this.material = material;
+        this.materialSlab = materialSlab;
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(SHAPE, VerticalSlabShape.STRAIGHT).setValue(WATERLOGGED, Boolean.FALSE));
+    }
+
+    public Block getMaterial() {
+        return material;
+    }
+
+    public Block getMaterialSlab() {
+        return materialSlab;
     }
 
     @Override

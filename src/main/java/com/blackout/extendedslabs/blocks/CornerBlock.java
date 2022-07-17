@@ -23,7 +23,11 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+
 public class CornerBlock extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock {
+    public Block material;
+    public Block materialStair;
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
@@ -37,9 +41,19 @@ public class CornerBlock extends HorizontalDirectionalBlock implements SimpleWat
     protected static final VoxelShape SOUTH_OUTER_SHAPE = Block.box(8.0D, 0.0D, 8.0D, 16.0D, 16.0D, 16.0D);
     protected static final VoxelShape WEST_OUTER_SHAPE = Block.box(0.0D, 0.0D, 8.0D, 8.0D, 16.0D, 16.0D);
 
-    public CornerBlock(Properties builder) {
+    public CornerBlock(Block material, Block materialStair, Properties builder) {
         super(builder);
+        this.material = material;
+        this.materialStair = materialStair;
         this.registerDefaultState(this.stateDefinition.any().setValue(WATERLOGGED, false));
+    }
+
+    public Block getMaterial() {
+        return material;
+    }
+
+    public Block getMaterialStair() {
+        return materialStair;
     }
 
     @Override

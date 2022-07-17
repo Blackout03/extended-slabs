@@ -1,5 +1,9 @@
-// 1.19	2022-06-11T02:11:50.9266618	Tags for minecraft:block
-648415c3527ff994a5b34386d23ad9c2381dd56e data/minecraft/tags/blocks/mineable/axe.json
-4408a9d01f8e240d7545eb4547c38f1f9216b38c data/minecraft/tags/blocks/mineable/pickaxe.json
-a1197c632de5991aa9a5f8d7b838bc44891c17ea data/minecraft/tags/blocks/mineable/shovel.json
+// 1.19	2022-07-17T19:54:36.628756	Tags for minecraft:block
+ac318e688c2dd6090e9303ba2e09497d23c53632 data/minecraft/tags/blocks/impermeable.json
+0102b59d726ae97571befa015dd29c6284d9b616 data/minecraft/tags/blocks/mineable/axe.json
+3ef25d2c6583c77a688e3c436f8552d29d5ef460 data/minecraft/tags/blocks/mineable/pickaxe.json
+ff4cda0f738c3cb31317070aac30b482fc8499ed data/minecraft/tags/blocks/mineable/shovel.json
+c8e78536e7ae881349041ccbbfb18d950d60127f data/minecraft/tags/blocks/needs_stone_tool.json
+f323658a0e2eea582bf7701692305ff7ac945125 data/minecraft/tags/blocks/slabs.json
+230202549251d689c64195e0bf171009af31168a data/minecraft/tags/blocks/stairs.json
 1c41548c68de80a4ebf36083b3ccb722ce9914ec data/minecraft/tags/blocks/wool.json

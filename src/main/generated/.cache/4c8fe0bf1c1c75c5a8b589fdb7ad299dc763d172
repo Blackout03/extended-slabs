@@ -1,4 +1,4 @@
-// 1.19	2022-06-11T02:11:50.9176553	Extended Slabs Item models
+// 1.19	2022-07-18T02:21:12.4831539	Extended Slabs Item models
 d014b7673daed8eac018c9eb9dd90a14678f8de6 assets/extendedslabs/models/item/acacia_corner.json
 5f940e7eb8fcd7b579b5e2528e6014061d969711 assets/extendedslabs/models/item/acacia_wood_corner.json
 51e9fb6bf08bcf00956cc1c5dd9d47bbc62f1a3c assets/extendedslabs/models/item/acacia_wood_slab.json
@@ -167,6 +167,7 @@ b1383a1b52ee5ed8e344c95bee5bf0343eab1fd2 assets/extendedslabs/models/item/rooted
 407483f3087f4cea49adb4b5fd30a4a3438628b4 assets/extendedslabs/models/item/stone_brick_corner.json
 a349aa6976dde3fa3d70d528e6e73aed51479316 assets/extendedslabs/models/item/stone_corner.json
 f6a2226a37f514c099e24ceef2853f484912bc8d assets/extendedslabs/models/item/terracotta_slab.json
+3ef66013b1dfcf10b3cb1a5bdb288f65a17c8349 assets/extendedslabs/models/item/tinted_glass_slab.json
 ac58d48c0a6397b811f2681d7c9a8e3a017cf403 assets/extendedslabs/models/item/tuff_corner.json
 a1cb96f2ed1b3466204cef93aa19f6f85a43adc9 assets/extendedslabs/models/item/tuff_slab.json
 24724a6b875ea54863b3c66d623ac29b6f27f27a assets/extendedslabs/models/item/tuff_stairs.json
@@ -330,6 +331,7 @@ c6aa43234fca0ef303a3255b644b4ae24facc01b assets/extendedslabs/models/item/vertic
 a08610a4a928487bb8b05534de971b4fabab3afb assets/extendedslabs/models/item/vertical_stone_brick_slab.json
 e7c0dcc7894a978e498db8004e0e0a9ba266afbe assets/extendedslabs/models/item/vertical_stone_slab.json
 f7913497d32c361b87a5235e39e072fcb92ab9fc assets/extendedslabs/models/item/vertical_terracotta_slab.json
+701f9ed76c0fd9711b310cad645af24ab3940f3e assets/extendedslabs/models/item/vertical_tinted_glass_slab.json
 4b707c764d0644089c23a130effdcf430a454ed8 assets/extendedslabs/models/item/vertical_tuff_slab.json
 e674ea4289585f5b18e7fc60f6495d7699d09b86 assets/extendedslabs/models/item/vertical_warped_hyphae_slab.json
 c871f437f06a6fbb41a748a80cac25691f3f1403 assets/extendedslabs/models/item/vertical_warped_nylium_slab.json

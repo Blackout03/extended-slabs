@@ -2,7 +2,6 @@ package com.blackout.extendedslabs.datagen;
 
 import com.blackout.extendedslabs.blocks.VerticalSlabBlock;
 import com.blackout.extendedslabs.blocks.falling.FallingSlabBlock;
-import com.blackout.extendedslabs.blocks.falling.FallingVerticalSlabBlock;
 import com.blackout.extendedslabs.blocks.shapes.VerticalSlabShape;
 import com.blackout.extendedslabs.init.ESPCorners;
 import com.blackout.extendedslabs.init.ESPSlabs;
@@ -141,6 +140,7 @@ public class ESPBlockStateProvider extends BlockStateProvider {
         this.slabBlock(ESPSlabs.RED_GLAZED_TERRACOTTA_SLAB.get(), mcRL("red_glazed_terracotta"), mcRL("red_glazed_terracotta"), mcRL("red_glazed_terracotta"), mcRL("red_glazed_terracotta"));
         this.slabBlock(ESPSlabs.BLACK_GLAZED_TERRACOTTA_SLAB.get(), mcRL("black_glazed_terracotta"), mcRL("black_glazed_terracotta"), mcRL("black_glazed_terracotta"), mcRL("black_glazed_terracotta"));
         this.slabBlock(ESPSlabs.GLASS_SLAB.get(), mcRL("glass"), mcRL("glass"), mcRL("glass"), mcRL("glass"));
+        this.slabBlock(ESPSlabs.TINTED_GLASS_SLAB.get(), mcRL("tinted_glass"), mcRL("tinted_glass"), mcRL("tinted_glass"), mcRL("tinted_glass"));
         this.slabBlock(ESPSlabs.WHITE_STAINED_GLASS_SLAB.get(), mcRL("white_stained_glass"), mcRL("white_stained_glass"), mcRL("white_stained_glass"), mcRL("white_stained_glass"));
         this.slabBlock(ESPSlabs.ORANGE_STAINED_GLASS_SLAB.get(), mcRL("orange_stained_glass"), mcRL("orange_stained_glass"), mcRL("orange_stained_glass"), mcRL("orange_stained_glass"));
         this.slabBlock(ESPSlabs.MAGENTA_STAINED_GLASS_SLAB.get(), mcRL("magenta_stained_glass"), mcRL("magenta_stained_glass"), mcRL("magenta_stained_glass"), mcRL("magenta_stained_glass"));
@@ -166,9 +166,9 @@ public class ESPBlockStateProvider extends BlockStateProvider {
         this.verticalSlabBlock(ESPVerticalSlabs.ROOTED_DIRT_VERTICAL.get(), "vertical_rooted_dirt_slab", mcRL("rooted_dirt"), mcRL("rooted_dirt"), mcRL("rooted_dirt"));
         this.verticalSlabBlock(ESPVerticalSlabs.PODZOL_VERTICAL.get(), "vertical_podzol_slab", mcRL("podzol_side"), mcRL("dirt"), mcRL("podzol_top"));
         this.verticalSlabBlock(ESPVerticalSlabs.MYCELIUM_VERTICAL.get(), "vertical_mycelium_slab", mcRL("mycelium_side"), mcRL("dirt"), mcRL("mycelium_top"));
-        this.fallingVerticalSlabBlock(ESPVerticalSlabs.SAND_VERTICAL.get(), "vertical_sand_slab", mcRL("sand"), mcRL("sand"), mcRL("sand"));
-        this.fallingVerticalSlabBlock(ESPVerticalSlabs.RED_SAND_VERTICAL.get(), "vertical_red_sand_slab", mcRL("red_sand"), mcRL("red_sand"), mcRL("red_sand"));
-        this.fallingVerticalSlabBlock(ESPVerticalSlabs.GRAVEL_VERTICAL.get(), "vertical_gravel_slab", mcRL("gravel"), mcRL("gravel"), mcRL("gravel"));
+        this.verticalSlabBlock(ESPVerticalSlabs.SAND_VERTICAL.get(), "vertical_sand_slab", mcRL("sand"), mcRL("sand"), mcRL("sand"));
+        this.verticalSlabBlock(ESPVerticalSlabs.RED_SAND_VERTICAL.get(), "vertical_red_sand_slab", mcRL("red_sand"), mcRL("red_sand"), mcRL("red_sand"));
+        this.verticalSlabBlock(ESPVerticalSlabs.GRAVEL_VERTICAL.get(), "vertical_gravel_slab", mcRL("gravel"), mcRL("gravel"), mcRL("gravel"));
         this.verticalSlabBlock(ESPVerticalSlabs.COBBLESTONE_VERTICAL.get(), "vertical_cobblestone_slab", mcRL("cobblestone"), mcRL("cobblestone"), mcRL("cobblestone"));
         this.verticalSlabBlock(ESPVerticalSlabs.STONE_VERTICAL.get(), "vertical_stone_slab", mcRL("stone"), mcRL("stone"), mcRL("stone"));
         this.verticalSlabBlock(ESPVerticalSlabs.STONE_BRICK_VERTICAL.get(), "vertical_stone_brick_slab", mcRL("stone_bricks"), mcRL("stone_bricks"), mcRL("stone_bricks"));
@@ -204,22 +204,22 @@ public class ESPBlockStateProvider extends BlockStateProvider {
         this.verticalSlabBlock(ESPVerticalSlabs.GREEN_WOOL_VERTICAL.get(), "vertical_green_wool_slab", mcRL("green_wool"), mcRL("green_wool"), mcRL("green_wool"));
         this.verticalSlabBlock(ESPVerticalSlabs.RED_WOOL_VERTICAL.get(), "vertical_red_wool_slab", mcRL("red_wool"), mcRL("red_wool"), mcRL("red_wool"));
         this.verticalSlabBlock(ESPVerticalSlabs.BLACK_WOOL_VERTICAL.get(), "vertical_black_wool_slab", mcRL("black_wool"), mcRL("black_wool"), mcRL("black_wool"));
-        this.fallingVerticalSlabBlock(ESPVerticalSlabs.WHITE_CONCRETE_POWDER_VERTICAL.get(), "vertical_white_concrete_powder_slab", mcRL("white_concrete_powder"), mcRL("white_concrete_powder"), mcRL("white_concrete_powder"));
-        this.fallingVerticalSlabBlock(ESPVerticalSlabs.ORANGE_CONCRETE_POWDER_VERTICAL.get(), "vertical_orange_concrete_powder_slab", mcRL("orange_concrete_powder"), mcRL("orange_concrete_powder"), mcRL("orange_concrete_powder"));
-        this.fallingVerticalSlabBlock(ESPVerticalSlabs.MAGENTA_CONCRETE_POWDER_VERTICAL.get(), "vertical_magenta_concrete_powder_slab", mcRL("magenta_concrete_powder"), mcRL("magenta_concrete_powder"), mcRL("magenta_concrete_powder"));
-        this.fallingVerticalSlabBlock(ESPVerticalSlabs.LIGHT_BLUE_CONCRETE_POWDER_VERTICAL.get(), "vertical_light_blue_concrete_powder_slab", mcRL("light_blue_concrete_powder"), mcRL("light_blue_concrete_powder"), mcRL("light_blue_concrete_powder"));
-        this.fallingVerticalSlabBlock(ESPVerticalSlabs.YELLOW_CONCRETE_POWDER_VERTICAL.get(), "vertical_yellow_concrete_powder_slab", mcRL("yellow_concrete_powder"), mcRL("yellow_concrete_powder"), mcRL("yellow_concrete_powder"));
-        this.fallingVerticalSlabBlock(ESPVerticalSlabs.LIME_CONCRETE_POWDER_VERTICAL.get(), "vertical_lime_concrete_powder_slab", mcRL("lime_concrete_powder"), mcRL("lime_concrete_powder"), mcRL("lime_concrete_powder"));
-        this.fallingVerticalSlabBlock(ESPVerticalSlabs.PINK_CONCRETE_POWDER_VERTICAL.get(), "vertical_pink_concrete_powder_slab", mcRL("pink_concrete_powder"), mcRL("pink_concrete_powder"), mcRL("pink_concrete_powder"));
-        this.fallingVerticalSlabBlock(ESPVerticalSlabs.GRAY_CONCRETE_POWDER_VERTICAL.get(), "vertical_gray_concrete_powder_slab", mcRL("gray_concrete_powder"), mcRL("gray_concrete_powder"), mcRL("gray_concrete_powder"));
-        this.fallingVerticalSlabBlock(ESPVerticalSlabs.LIGHT_GRAY_CONCRETE_POWDER_VERTICAL.get(), "vertical_light_gray_concrete_powder_slab", mcRL("light_gray_concrete_powder"), mcRL("light_gray_concrete_powder"), mcRL("light_gray_concrete_powder"));
-        this.fallingVerticalSlabBlock(ESPVerticalSlabs.CYAN_CONCRETE_POWDER_VERTICAL.get(), "vertical_cyan_concrete_powder_slab", mcRL("cyan_concrete_powder"), mcRL("cyan_concrete_powder"), mcRL("cyan_concrete_powder"));
-        this.fallingVerticalSlabBlock(ESPVerticalSlabs.PURPLE_CONCRETE_POWDER_VERTICAL.get(), "vertical_purple_concrete_powder_slab", mcRL("purple_concrete_powder"), mcRL("purple_concrete_powder"), mcRL("purple_concrete_powder"));
-        this.fallingVerticalSlabBlock(ESPVerticalSlabs.BLUE_CONCRETE_POWDER_VERTICAL.get(), "vertical_blue_concrete_powder_slab", mcRL("blue_concrete_powder"), mcRL("blue_concrete_powder"), mcRL("blue_concrete_powder"));
-        this.fallingVerticalSlabBlock(ESPVerticalSlabs.BROWN_CONCRETE_POWDER_VERTICAL.get(), "vertical_brown_concrete_powder_slab", mcRL("brown_concrete_powder"), mcRL("brown_concrete_powder"), mcRL("brown_concrete_powder"));
-        this.fallingVerticalSlabBlock(ESPVerticalSlabs.GREEN_CONCRETE_POWDER_VERTICAL.get(), "vertical_green_concrete_powder_slab", mcRL("green_concrete_powder"), mcRL("green_concrete_powder"), mcRL("green_concrete_powder"));
-        this.fallingVerticalSlabBlock(ESPVerticalSlabs.RED_CONCRETE_POWDER_VERTICAL.get(), "vertical_red_concrete_powder_slab", mcRL("red_concrete_powder"), mcRL("red_concrete_powder"), mcRL("red_concrete_powder"));
-        this.fallingVerticalSlabBlock(ESPVerticalSlabs.BLACK_CONCRETE_POWDER_VERTICAL.get(), "vertical_black_concrete_powder_slab", mcRL("black_concrete_powder"), mcRL("black_concrete_powder"), mcRL("black_concrete_powder"));
+        this.verticalSlabBlock(ESPVerticalSlabs.WHITE_CONCRETE_POWDER_VERTICAL.get(), "vertical_white_concrete_powder_slab", mcRL("white_concrete_powder"), mcRL("white_concrete_powder"), mcRL("white_concrete_powder"));
+        this.verticalSlabBlock(ESPVerticalSlabs.ORANGE_CONCRETE_POWDER_VERTICAL.get(), "vertical_orange_concrete_powder_slab", mcRL("orange_concrete_powder"), mcRL("orange_concrete_powder"), mcRL("orange_concrete_powder"));
+        this.verticalSlabBlock(ESPVerticalSlabs.MAGENTA_CONCRETE_POWDER_VERTICAL.get(), "vertical_magenta_concrete_powder_slab", mcRL("magenta_concrete_powder"), mcRL("magenta_concrete_powder"), mcRL("magenta_concrete_powder"));
+        this.verticalSlabBlock(ESPVerticalSlabs.LIGHT_BLUE_CONCRETE_POWDER_VERTICAL.get(), "vertical_light_blue_concrete_powder_slab", mcRL("light_blue_concrete_powder"), mcRL("light_blue_concrete_powder"), mcRL("light_blue_concrete_powder"));
+        this.verticalSlabBlock(ESPVerticalSlabs.YELLOW_CONCRETE_POWDER_VERTICAL.get(), "vertical_yellow_concrete_powder_slab", mcRL("yellow_concrete_powder"), mcRL("yellow_concrete_powder"), mcRL("yellow_concrete_powder"));
+        this.verticalSlabBlock(ESPVerticalSlabs.LIME_CONCRETE_POWDER_VERTICAL.get(), "vertical_lime_concrete_powder_slab", mcRL("lime_concrete_powder"), mcRL("lime_concrete_powder"), mcRL("lime_concrete_powder"));
+        this.verticalSlabBlock(ESPVerticalSlabs.PINK_CONCRETE_POWDER_VERTICAL.get(), "vertical_pink_concrete_powder_slab", mcRL("pink_concrete_powder"), mcRL("pink_concrete_powder"), mcRL("pink_concrete_powder"));
+        this.verticalSlabBlock(ESPVerticalSlabs.GRAY_CONCRETE_POWDER_VERTICAL.get(), "vertical_gray_concrete_powder_slab", mcRL("gray_concrete_powder"), mcRL("gray_concrete_powder"), mcRL("gray_concrete_powder"));
+        this.verticalSlabBlock(ESPVerticalSlabs.LIGHT_GRAY_CONCRETE_POWDER_VERTICAL.get(), "vertical_light_gray_concrete_powder_slab", mcRL("light_gray_concrete_powder"), mcRL("light_gray_concrete_powder"), mcRL("light_gray_concrete_powder"));
+        this.verticalSlabBlock(ESPVerticalSlabs.CYAN_CONCRETE_POWDER_VERTICAL.get(), "vertical_cyan_concrete_powder_slab", mcRL("cyan_concrete_powder"), mcRL("cyan_concrete_powder"), mcRL("cyan_concrete_powder"));
+        this.verticalSlabBlock(ESPVerticalSlabs.PURPLE_CONCRETE_POWDER_VERTICAL.get(), "vertical_purple_concrete_powder_slab", mcRL("purple_concrete_powder"), mcRL("purple_concrete_powder"), mcRL("purple_concrete_powder"));
+        this.verticalSlabBlock(ESPVerticalSlabs.BLUE_CONCRETE_POWDER_VERTICAL.get(), "vertical_blue_concrete_powder_slab", mcRL("blue_concrete_powder"), mcRL("blue_concrete_powder"), mcRL("blue_concrete_powder"));
+        this.verticalSlabBlock(ESPVerticalSlabs.BROWN_CONCRETE_POWDER_VERTICAL.get(), "vertical_brown_concrete_powder_slab", mcRL("brown_concrete_powder"), mcRL("brown_concrete_powder"), mcRL("brown_concrete_powder"));
+        this.verticalSlabBlock(ESPVerticalSlabs.GREEN_CONCRETE_POWDER_VERTICAL.get(), "vertical_green_concrete_powder_slab", mcRL("green_concrete_powder"), mcRL("green_concrete_powder"), mcRL("green_concrete_powder"));
+        this.verticalSlabBlock(ESPVerticalSlabs.RED_CONCRETE_POWDER_VERTICAL.get(), "vertical_red_concrete_powder_slab", mcRL("red_concrete_powder"), mcRL("red_concrete_powder"), mcRL("red_concrete_powder"));
+        this.verticalSlabBlock(ESPVerticalSlabs.BLACK_CONCRETE_POWDER_VERTICAL.get(), "vertical_black_concrete_powder_slab", mcRL("black_concrete_powder"), mcRL("black_concrete_powder"), mcRL("black_concrete_powder"));
         this.verticalSlabBlock(ESPVerticalSlabs.WHITE_CONCRETE_VERTICAL.get(), "vertical_white_concrete_slab", mcRL("white_concrete"), mcRL("white_concrete"), mcRL("white_concrete"));
         this.verticalSlabBlock(ESPVerticalSlabs.ORANGE_CONCRETE_VERTICAL.get(), "vertical_orange_concrete_slab", mcRL("orange_concrete"), mcRL("orange_concrete"), mcRL("orange_concrete"));
         this.verticalSlabBlock(ESPVerticalSlabs.MAGENTA_CONCRETE_VERTICAL.get(), "vertical_magenta_concrete_slab", mcRL("magenta_concrete"), mcRL("magenta_concrete"), mcRL("magenta_concrete"));
@@ -271,6 +271,7 @@ public class ESPBlockStateProvider extends BlockStateProvider {
         this.verticalSlabBlock(ESPVerticalSlabs.RED_GLAZED_TERRACOTTA_VERTICAL.get(), "vertical_red_glazed_terracotta_slab", mcRL("red_glazed_terracotta"), mcRL("red_glazed_terracotta"), mcRL("red_glazed_terracotta"));
         this.verticalSlabBlock(ESPVerticalSlabs.BLACK_GLAZED_TERRACOTTA_VERTICAL.get(), "vertical_black_glazed_terracotta_slab", mcRL("black_glazed_terracotta"), mcRL("black_glazed_terracotta"), mcRL("black_glazed_terracotta"));
         this.verticalSlabBlock(ESPVerticalSlabs.GLASS_VERTICAL.get(), "vertical_glass_slab", mcRL("glass"), mcRL("glass"), mcRL("glass"));
+        this.verticalSlabBlock(ESPVerticalSlabs.TINTED_GLASS_VERTICAL.get(), "vertical_tinted_glass_slab", mcRL("tinted_glass"), mcRL("tinted_glass"), mcRL("tinted_glass"));
         this.verticalSlabBlock(ESPVerticalSlabs.WHITE_STAINED_GLASS_VERTICAL.get(), "vertical_white_stained_glass_slab", mcRL("white_stained_glass"), mcRL("white_stained_glass"), mcRL("white_stained_glass"));
         this.verticalSlabBlock(ESPVerticalSlabs.ORANGE_STAINED_GLASS_VERTICAL.get(), "vertical_orange_stained_glass_slab", mcRL("orange_stained_glass"), mcRL("orange_stained_glass"), mcRL("orange_stained_glass"));
         this.verticalSlabBlock(ESPVerticalSlabs.MAGENTA_STAINED_GLASS_VERTICAL.get(), "vertical_magenta_stained_glass_slab", mcRL("magenta_stained_glass"), mcRL("magenta_stained_glass"), mcRL("magenta_stained_glass"));
@@ -444,18 +445,18 @@ public class ESPBlockStateProvider extends BlockStateProvider {
                 .partialState().with(SlabBlock.TYPE, SlabType.DOUBLE).addModels(new ConfiguredModel(doubleslab));
     }
 
-    public void verticalSlabBlock(VerticalSlabBlock block, String name, ResourceLocation side, ResourceLocation bottom, ResourceLocation top) {
+    public void verticalSlabBlock(Block block, String name, ResourceLocation side, ResourceLocation bottom, ResourceLocation top) {
         verticalSlabBlockInternal(block, name, side, bottom, top);
     }
 
-    private void verticalSlabBlockInternal(VerticalSlabBlock block, String baseName, ResourceLocation side, ResourceLocation bottom, ResourceLocation top) {
+    private void verticalSlabBlockInternal(Block block, String baseName, ResourceLocation side, ResourceLocation bottom, ResourceLocation top) {
         ModelFile verticalSlab = models().withExistingParent(baseName, espRL("vertical_slab")).texture("side", side).texture("bottom", bottom).texture("top", top);
         ModelFile verticalSlabInner = models().withExistingParent("inner_" + baseName, espRL("inner_vertical_slab")).texture("side", side).texture("bottom", bottom).texture("top", top);
         ModelFile verticalSlabOuter = models().withExistingParent("outer_" + baseName, espRL("outer_vertical_slab")).texture("side", side).texture("bottom", bottom).texture("top", top);
         verticalSlabBlock(block, verticalSlab, verticalSlabInner, verticalSlabOuter);
     }
 
-    public void verticalSlabBlock(VerticalSlabBlock block, ModelFile verticalSlab, ModelFile verticalSlabInner, ModelFile verticalSlabOuter) {
+    public void verticalSlabBlock(Block block, ModelFile verticalSlab, ModelFile verticalSlabInner, ModelFile verticalSlabOuter) {
         getVariantBuilder(block)
                 .forAllStatesExcept(state -> {
                     Direction facing = state.getValue(VerticalSlabBlock.FACING);
@@ -475,39 +476,6 @@ public class ESPBlockStateProvider extends BlockStateProvider {
                             .uvLock(uvlock)
                             .build();
                 }, VerticalSlabBlock.WATERLOGGED);
-    }
-
-    public void fallingVerticalSlabBlock(FallingVerticalSlabBlock block, String name, ResourceLocation side, ResourceLocation bottom, ResourceLocation top) {
-        fallingVerticalSlabBlockInternal(block, name, side, bottom, top);
-    }
-
-    private void fallingVerticalSlabBlockInternal(FallingVerticalSlabBlock block, String baseName, ResourceLocation side, ResourceLocation bottom, ResourceLocation top) {
-        ModelFile verticalSlab = models().withExistingParent(baseName, espRL("vertical_slab")).texture("side", side).texture("bottom", bottom).texture("top", top);
-        ModelFile verticalSlabInner = models().withExistingParent("inner_" + baseName, espRL("inner_vertical_slab")).texture("side", side).texture("bottom", bottom).texture("top", top);
-        ModelFile verticalSlabOuter = models().withExistingParent("outer_" + baseName, espRL("outer_vertical_slab")).texture("side", side).texture("bottom", bottom).texture("top", top);
-        fallingVerticalSlabBlock(block, verticalSlab, verticalSlabInner, verticalSlabOuter);
-    }
-
-    public void fallingVerticalSlabBlock(FallingVerticalSlabBlock block, ModelFile verticalSlab, ModelFile verticalSlabInner, ModelFile verticalSlabOuter) {
-        getVariantBuilder(block)
-                .forAllStatesExcept(state -> {
-                    Direction facing = state.getValue(FallingVerticalSlabBlock.FACING);
-                    VerticalSlabShape shape = state.getValue(FallingVerticalSlabBlock.SHAPE);
-                    int yRot = (int) facing.getClockWise().toYRot(); // Stairs model is rotated 90 degrees clockwise for some reason
-                    if (shape == VerticalSlabShape.INNER_LEFT) {
-                        yRot += 270; // Left facing stairs are rotated 90 degrees clockwise
-                    }
-                    if (shape == VerticalSlabShape.OUTER_LEFT) {
-                        yRot += 270; // Left facing stairs are rotated 90 degrees clockwise
-                    }
-                    yRot %= 360;
-                    boolean uvlock = yRot != 0; // Don't set uvlock for states that have no rotation
-                    return ConfiguredModel.builder()
-                            .modelFile(shape == VerticalSlabShape.STRAIGHT ? verticalSlab : shape == VerticalSlabShape.INNER_LEFT || shape == VerticalSlabShape.INNER_RIGHT ? verticalSlabInner : verticalSlabOuter)
-                            .rotationY(yRot)
-                            .uvLock(uvlock)
-                            .build();
-                }, FallingVerticalSlabBlock.WATERLOGGED);
     }
 
     private ResourceLocation mcRL(String texture) {

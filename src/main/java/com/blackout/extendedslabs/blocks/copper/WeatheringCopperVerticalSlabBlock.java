@@ -10,6 +10,8 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.WeatheringCopper;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
@@ -17,12 +19,27 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Optional;
 
+import net.minecraft.world.level.block.WeatheringCopper.WeatherState;
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+
 public class WeatheringCopperVerticalSlabBlock extends VerticalSlabBlock implements WeatheringCopper {
+    public Block material;
+    public Block materialSlab;
     private final WeatherState weatherState;
 
-    public WeatheringCopperVerticalSlabBlock(Properties properties, WeatherState weatherState) {
-        super(properties);
+    public WeatheringCopperVerticalSlabBlock(Block material, Block materialSlab, Properties properties, WeatherState weatherState) {
+        super(material, (SlabBlock) materialSlab, properties);
+        this.material = material;
+        this.materialSlab = materialSlab;
         this.weatherState = weatherState;
+    }
+
+    public Block getMaterial() {
+        return material;
+    }
+
+    public Block getMaterialSlab() {
+        return materialSlab;
     }
 
     @Override

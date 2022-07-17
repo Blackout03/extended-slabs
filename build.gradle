@@ -6,12 +6,14 @@ buildscript {
     }
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
+        classpath 'org.spongepowered:mixingradle:0.7.+'
     }
 }
 
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: "idea"
 apply plugin: "maven-publish"
+apply plugin: 'org.spongepowered.mixin'
 
 version = "${project.minecraftVersion}-${project.modVersion}"
 group = 'com.blackout'
@@ -46,7 +48,10 @@ minecraft {
             workingDirectory project.file("run")
             property "forge.logging.markers", "SCAN,REGISTRIES,REGISTRYDUMP"
             property "forge.logging.console.level", "debug"
-            args '--mod', 'extendedslabs', '--all', '--output', file('src/main/generated/'), '--existing', file('src/main/resources/')
+            args '--mod', 'extendedslabs',
+                    '--all',
+                    '--output', file('src/main/generated/'),
+                    '--existing', file('src/main/resources/')
             mods {
                 extendedslabs {
                     source sourceSets.main
@@ -63,7 +68,14 @@ sourceSets {
 dependencies {
     minecraft "net.minecraftforge:forge:${project.minecraftVersion}-${project.forgeVersion}"
 
-    runtimeOnly fg.deobf("curse.maven:the-one-probe-245211:${project.top}")
+    implementation fg.deobf("mezz.jei:jei-${project.minecraftVersion}-common-api:${project.jei}")
+    implementation fg.deobf("mezz.jei:jei-${project.minecraftVersion}-forge-api:${project.jei}")
+    implementation fg.deobf("mezz.jei:jei-${project.minecraftVersion}-forge:${project.jei}")
+
+    implementation fg.deobf("curse.maven:configured-457570:${project.configured}")
+    implementation fg.deobf("curse.maven:catalogue-459701:${project.catalogue}")
+
+    implementation fg.deobf("curse.maven:the-one-probe-245211:${project.top}")
 }
 
 repositories {
