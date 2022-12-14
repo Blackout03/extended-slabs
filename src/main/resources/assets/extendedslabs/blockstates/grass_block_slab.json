@@ -16,10 +16,10 @@
     ],
     "type=double":
     [
-      { "model": "minecraft:block/grass_block" },
-      { "model": "minecraft:block/grass_block", "y": 90 },
-      { "model": "minecraft:block/grass_block", "y": 180 },
-      { "model": "minecraft:block/grass_block", "y": 270 }
+      { "model": "extendedslabs:block/grass_block" },
+      { "model": "extendedslabs:block/grass_block", "y": 90 },
+      { "model": "extendedslabs:block/grass_block", "y": 180 },
+      { "model": "extendedslabs:block/grass_block", "y": 270 }
     ]
   }
 }

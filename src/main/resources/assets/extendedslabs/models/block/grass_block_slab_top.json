@@ -1,5 +1,6 @@
 {
   "parent": "minecraft:block/slab_top",
+  "render_type": "minecraft:cutout_mipped",
   "textures": {
     "particle": "minecraft:block/dirt",
     "bottom": "minecraft:block/dirt",

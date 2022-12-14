@@ -1,5 +1,6 @@
 {
   "parent": "extendedslabs:block/vertical_slab",
+  "render_type": "minecraft:translucent",
   "textures": {
     "bottom": "minecraft:block/lime_stained_glass",
     "side": "minecraft:block/lime_stained_glass",
