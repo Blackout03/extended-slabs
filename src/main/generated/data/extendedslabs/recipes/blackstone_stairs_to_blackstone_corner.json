@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:blackstone_stairs"
+    }
+  ],
+  "result": {
+    "item": "extendedslabs:blackstone_corner"
+  }
+}

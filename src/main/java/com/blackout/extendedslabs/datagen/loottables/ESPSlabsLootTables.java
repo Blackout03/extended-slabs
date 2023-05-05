@@ -10,17 +10,21 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Collection;
 
 public class ESPSlabsLootTables extends BlockLoot {
-    @Override
-    protected void addTables() {
-        final Collection<RegistryObject<Block>> blocks = ESPSlabs.BLOCKS.getEntries();
-        for (RegistryObject<Block> block : blocks) {
-            ExtendedSlabs.LOGGER.info(block.getId());
-            dropSelf(block.get());
-        }
-    }
+	@Override
+	protected void addTables() {
+		final Collection<RegistryObject<Block>> blocks = ESPSlabs.BLOCKS.getEntries();
+		for (RegistryObject<Block> block : blocks) {
+			ExtendedSlabs.LOGGER.info(block.getId());
+			dropSelf(block.get());
+		}
+	}
 
-    @Override
-    protected @NotNull Iterable<Block> getKnownBlocks() {
-        return ESPSlabs.BLOCKS.getEntries().stream().map(RegistryObject::get)::iterator;
-    }
+	public void dropSelf(Block p_124289_) {
+		this.add(p_124289_, BlockLoot::createSlabItemTable);
+	}
+
+	@Override
+	protected @NotNull Iterable<Block> getKnownBlocks() {
+		return ESPSlabs.BLOCKS.getEntries().stream().map(RegistryObject::get)::iterator;
+	}
 }

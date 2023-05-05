@@ -37,7 +37,7 @@ public class ESPSlabs {
 	public static final RegistryObject<SlabBlock> ROOTED_DIRT_SLAB = registerBlock("rooted_dirt_slab", () -> new SlabBlock(Block.Properties.of(ESPMaterial.SHOVEL_DIRT, MaterialColor.DIRT).strength(0.5F).sound(SoundType.ROOTED_DIRT)), ExtendedSlabs.GROUP);
 	public static final RegistryObject<SlabBlock> PODZOL_SLAB = registerBlock("podzol_slab",() -> new SlabBlock(Block.Properties.of(ESPMaterial.SHOVEL_DIRT, MaterialColor.PODZOL).strength(0.5F).sound(SoundType.GRAVEL)), ExtendedSlabs.GROUP);
 	public static final RegistryObject<SlabBlock> MYCELIUM_SLAB = registerBlock("mycelium_slab", () -> new SlabBlock(Block.Properties.of(ESPMaterial.SHOVEL_GRASS, MaterialColor.COLOR_PURPLE).randomTicks().strength(0.6F).sound(SoundType.GRASS)), ExtendedSlabs.GROUP);
-	public static final RegistryObject<PathSlabBlock> DIRT_PATH_SLAB = registerBlock("dirt_path_slab",() -> new PathSlabBlock(Block.Properties.of(ESPMaterial.SHOVEL_DIRT, MaterialColor.DIRT).strength(0.65F).sound(SoundType.GRASS).isViewBlocking(ESPSlabs::always).isSuffocating(ESPSlabs::always)), ExtendedSlabs.GROUP);
+	public static final RegistryObject<PathSlabBlock> DIRT_PATH_SLAB = registerBlock("dirt_path_slab",() -> new PathSlabBlock(Block.Properties.of(ESPMaterial.SHOVEL_DIRT, MaterialColor.DIRT).strength(0.65F).sound(SoundType.GRASS)), ExtendedSlabs.GROUP);
 	public static final RegistryObject<FallingSlabBlock> SAND_SLAB = registerBlock("sand_slab",() -> new FallingSlabBlock(Block.Properties.of(ESPMaterial.SHOVEL_SAND, MaterialColor.SAND).strength(0.5F).sound(SoundType.SAND)), ExtendedSlabs.GROUP);
 	public static final RegistryObject<FallingSlabBlock> RED_SAND_SLAB = registerBlock("red_sand_slab",() -> new FallingSlabBlock(Block.Properties.of(ESPMaterial.SHOVEL_SAND, MaterialColor.COLOR_ORANGE).strength(0.5F).sound(SoundType.SAND)), ExtendedSlabs.GROUP);
 	public static final RegistryObject<FallingSlabBlock> GRAVEL_SLAB = registerBlock("gravel_slab",() -> new FallingSlabBlock(Block.Properties.of(ESPMaterial.SHOVEL_SAND, MaterialColor.STONE).strength(0.6F).sound(SoundType.GRAVEL)), ExtendedSlabs.GROUP);
@@ -46,7 +46,7 @@ public class ESPSlabs {
 	public static final RegistryObject<SlabBlock> TUFF_SLAB = registerBlock("tuff_slab", () -> new SlabBlock(Block.Properties.of(ESPMaterial.PICKAXE_STONE, MaterialColor.TERRACOTTA_GRAY).sound(SoundType.TUFF).requiresCorrectToolForDrops().strength(1.5F, 6.0F)), ExtendedSlabs.GROUP);
 	public static final RegistryObject<SlabBlock> CALCITE_SLAB = registerBlock("calcite_slab", () -> new SlabBlock(Block.Properties.of(ESPMaterial.PICKAXE_STONE, MaterialColor.TERRACOTTA_WHITE).sound(SoundType.CALCITE).requiresCorrectToolForDrops().strength(0.75F)), ExtendedSlabs.GROUP);
 	public static final RegistryObject<SlabBlock> DRIPSTONE_SLAB = registerBlock("dripstone_slab", () -> new SlabBlock(Block.Properties.of(ESPMaterial.PICKAXE_STONE, MaterialColor.TERRACOTTA_BROWN).sound(SoundType.DRIPSTONE_BLOCK).requiresCorrectToolForDrops().strength(1.5F, 1.0F)), ExtendedSlabs.GROUP);
-	public static final RegistryObject<SlabBlock> MUD_SLAB = registerBlock("mud_slab", () -> new SlabBlock(Block.Properties.of(ESPMaterial.SHOVEL_DIRT, MaterialColor.TERRACOTTA_CYAN).strength(0.5F).isValidSpawn(ESPSlabs::always).isRedstoneConductor(ESPSlabs::always).isViewBlocking(ESPSlabs::always).isSuffocating(ESPSlabs::always).sound(SoundType.MUD)), ExtendedSlabs.GROUP);
+	public static final RegistryObject<SlabBlock> MUD_SLAB = registerBlock("mud_slab", () -> new SlabBlock(Block.Properties.of(ESPMaterial.SHOVEL_DIRT, MaterialColor.TERRACOTTA_CYAN).strength(0.5F).sound(SoundType.MUD)), ExtendedSlabs.GROUP);
 	public static final RegistryObject<SlabBlock> PACKED_MUD_SLAB = registerBlock("packed_mud_slab", () -> new SlabBlock(Block.Properties.of(ESPMaterial.PICKAXE_MUD, MaterialColor.DIRT).strength(1.0F, 3.0F).sound(SoundType.PACKED_MUD)), ExtendedSlabs.GROUP);
 
 	// WOOL
@@ -184,14 +184,6 @@ public class ESPSlabs {
 		RegistryObject<B> block = ESPSlabs.BLOCKS.register(name, supplier);
 		ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties().tab(itemGroup)));
 		return block;
-	}
-
-	private static boolean always(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos) {
-		return true;
-	}
-
-	private static Boolean always(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, EntityType<?> entityType) {
-		return true;
 	}
 
 	private static boolean never(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos) {

@@ -28,7 +28,7 @@ public class ESPStairRecipeProvider extends RecipeProvider {
 
 	@Override
 	public void buildCraftingRecipes(@NotNull Consumer<FinishedRecipe> consumer) {
-		final Collection<RegistryObject<Block>> blocks = ESPVerticalSlabs.BLOCKS.getEntries();
+		final Collection<RegistryObject<Block>> blocks = ESPCorners.BLOCKS.getEntries();
 		for (RegistryObject<Block> block : blocks) {
 			if (block.get() instanceof CornerBlock cornerBlock) {
 				generateStairRecipes(cornerBlock.asItem(), cornerBlock.getMaterialStair().asItem(), consumer);

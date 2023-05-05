@@ -2,16 +2,12 @@ package com.blackout.extendedslabs.init;
 
 import com.blackout.extendedslabs.ExtendedSlabs;
 import com.blackout.extendedslabs.blocks.CornerBlock;
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.MaterialColor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
@@ -38,7 +34,7 @@ public class ESPCorners {
 	public static final RegistryObject<Block> TUFF_CORNER = registerBlock("tuff_corner",() -> new CornerBlock(Blocks.TUFF, ESPStairs.TUFF_STAIRS.get(), Block.Properties.of(ESPMaterial.PICKAXE_STONE, MaterialColor.TERRACOTTA_GRAY).sound(SoundType.TUFF).requiresCorrectToolForDrops().strength(1.5F, 6.0F)), ExtendedSlabs.GROUP);
 	public static final RegistryObject<Block> CALCITE_CORNER = registerBlock("calcite_corner",() -> new CornerBlock(Blocks.CALCITE, ESPStairs.CALCITE_STAIRS.get(), Block.Properties.of(ESPMaterial.PICKAXE_STONE, MaterialColor.TERRACOTTA_WHITE).sound(SoundType.CALCITE).requiresCorrectToolForDrops().strength(0.75F)), ExtendedSlabs.GROUP);
 	public static final RegistryObject<Block> DRIPSTONE_CORNER = registerBlock("dripstone_corner",() -> new CornerBlock(Blocks.DRIPSTONE_BLOCK, ESPStairs.DRIPSTONE_STAIRS.get(), Block.Properties.of(ESPMaterial.PICKAXE_STONE, MaterialColor.TERRACOTTA_BROWN).sound(SoundType.DRIPSTONE_BLOCK).requiresCorrectToolForDrops().strength(1.5F, 1.0F)), ExtendedSlabs.GROUP);
-	public static final RegistryObject<Block> MUD_CORNER = registerBlock("mud_corner",() -> new CornerBlock(Blocks.MUD, ESPStairs.MUD_STAIRS.get(), Block.Properties.of(ESPMaterial.SHOVEL_DIRT, MaterialColor.TERRACOTTA_CYAN).strength(0.5F).isValidSpawn(ESPCorners::always).isRedstoneConductor(ESPCorners::always).isViewBlocking(ESPCorners::always).isSuffocating(ESPCorners::always).sound(SoundType.MUD)), ExtendedSlabs.GROUP);
+	public static final RegistryObject<Block> MUD_CORNER = registerBlock("mud_corner",() -> new CornerBlock(Blocks.MUD, ESPStairs.MUD_STAIRS.get(), Block.Properties.of(ESPMaterial.SHOVEL_DIRT, MaterialColor.TERRACOTTA_CYAN).strength(0.5F).sound(SoundType.MUD)), ExtendedSlabs.GROUP);
 	public static final RegistryObject<Block> PACKED_MUD_CORNER = registerBlock("packed_mud_corner",() -> new CornerBlock(Blocks.PACKED_MUD, ESPStairs.PACKED_MUD_STAIRS.get(), Block.Properties.of(ESPMaterial.PICKAXE_MUD, MaterialColor.DIRT).strength(1.0F, 3.0F).sound(SoundType.PACKED_MUD)), ExtendedSlabs.GROUP);
 	public static final RegistryObject<Block> MUD_BRICK_CORNER = registerBlock("mud_brick_corner",() -> new CornerBlock(Blocks.MUD_BRICKS, Blocks.MUD_BRICK_STAIRS, Block.Properties.of(ESPMaterial.PICKAXE_STONE, MaterialColor.TERRACOTTA_LIGHT_GRAY).requiresCorrectToolForDrops().strength(1.5F, 3.0F).sound(SoundType.MUD_BRICKS)), ExtendedSlabs.GROUP);
 
@@ -81,13 +77,5 @@ public class ESPCorners {
 		RegistryObject<B> block = ESPCorners.BLOCKS.register(name, supplier);
 		ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties().tab(itemGroup)));
 		return block;
-	}
-
-	private static boolean always(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos) {
-		return true;
-	}
-
-	private static Boolean always(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, EntityType<?> entityType) {
-		return true;
 	}
 }

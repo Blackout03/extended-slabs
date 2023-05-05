@@ -41,7 +41,7 @@ public class ESPVerticalSlabs {
 	public static final RegistryObject<Block> ROOTED_DIRT_VERTICAL = registerBlock("vertical_rooted_dirt_slab", () -> new VerticalSlabBlock(Blocks.ROOTED_DIRT, ESPSlabs.ROOTED_DIRT_SLAB.get(), Block.Properties.of(ESPMaterial.SHOVEL_DIRT, MaterialColor.DIRT).strength(0.5F).sound(SoundType.ROOTED_DIRT)), ExtendedSlabs.GROUP);
 	public static final RegistryObject<Block> PODZOL_VERTICAL = registerBlock("vertical_podzol_slab", () -> new VerticalSlabBlock(Blocks.PODZOL, ESPSlabs.PODZOL_SLAB.get(), Block.Properties.of(ESPMaterial.SHOVEL_DIRT, MaterialColor.PODZOL).strength(0.5F).sound(SoundType.GRAVEL)), ExtendedSlabs.GROUP);
 	public static final RegistryObject<Block> MYCELIUM_VERTICAL = registerBlock("vertical_mycelium_slab", () -> new VerticalSlabBlock(Blocks.MYCELIUM, ESPSlabs.MYCELIUM_SLAB.get(), Block.Properties.of(ESPMaterial.SHOVEL_GRASS, MaterialColor.COLOR_PURPLE).randomTicks().strength(0.6F).sound(SoundType.GRASS)), ExtendedSlabs.GROUP);
-	public static final RegistryObject<Block> DIRT_PATH_VERTICAL = registerBlock("vertical_dirt_path_slab", () -> new PathVerticalSlabBlock(Blocks.DIRT_PATH, ESPSlabs.DIRT_PATH_SLAB.get(), BlockBehaviour.Properties.of(ESPMaterial.SHOVEL_DIRT, MaterialColor.DIRT).strength(0.65F).sound(SoundType.GRASS).isViewBlocking(ESPVerticalSlabs::always).isSuffocating(ESPVerticalSlabs::always)), ExtendedSlabs.GROUP);
+	public static final RegistryObject<Block> DIRT_PATH_VERTICAL = registerBlock("vertical_dirt_path_slab", () -> new PathVerticalSlabBlock(Blocks.DIRT_PATH, ESPSlabs.DIRT_PATH_SLAB.get(), BlockBehaviour.Properties.of(ESPMaterial.SHOVEL_DIRT, MaterialColor.DIRT).strength(0.65F).sound(SoundType.GRASS)), ExtendedSlabs.GROUP);
 	public static final RegistryObject<Block> SAND_VERTICAL = registerBlock("vertical_sand_slab", () -> new FallingVerticalSlabBlock(Blocks.SAND, ESPSlabs.SAND_SLAB.get(), Block.Properties.of(ESPMaterial.SHOVEL_SAND, MaterialColor.SAND).strength(0.5F).sound(SoundType.SAND)), ExtendedSlabs.GROUP);
 	public static final RegistryObject<Block> RED_SAND_VERTICAL = registerBlock("vertical_red_sand_slab", () -> new FallingVerticalSlabBlock(Blocks.RED_SAND, ESPSlabs.RED_SAND_SLAB.get(), Block.Properties.of(ESPMaterial.SHOVEL_SAND, MaterialColor.COLOR_ORANGE).strength(0.5F).sound(SoundType.SAND)), ExtendedSlabs.GROUP);
 	public static final RegistryObject<Block> GRAVEL_VERTICAL = registerBlock("vertical_gravel_slab", () -> new FallingVerticalSlabBlock(Blocks.GRAVEL, ESPSlabs.GRAVEL_SLAB.get(), Block.Properties.of(ESPMaterial.SHOVEL_SAND, MaterialColor.STONE).strength(0.6F).sound(SoundType.GRAVEL)), ExtendedSlabs.GROUP);
@@ -63,7 +63,7 @@ public class ESPVerticalSlabs {
 	public static final RegistryObject<Block> TUFF_VERTICAL = registerBlock("vertical_tuff_slab", () -> new VerticalSlabBlock(Blocks.TUFF, ESPSlabs.TUFF_SLAB.get(), Block.Properties.of(ESPMaterial.PICKAXE_STONE, MaterialColor.TERRACOTTA_GRAY).sound(SoundType.TUFF).requiresCorrectToolForDrops().strength(1.5F, 6.0F)), ExtendedSlabs.GROUP);
 	public static final RegistryObject<Block> CALCITE_VERTICAL = registerBlock("vertical_calcite_slab", () -> new VerticalSlabBlock(Blocks.CALCITE, ESPSlabs.CALCITE_SLAB.get(), Block.Properties.of(ESPMaterial.PICKAXE_STONE, MaterialColor.TERRACOTTA_WHITE).sound(SoundType.CALCITE).requiresCorrectToolForDrops().strength(0.75F)), ExtendedSlabs.GROUP);
 	public static final RegistryObject<Block> DRIPSTONE_VERTICAL = registerBlock("vertical_dripstone_slab", () -> new VerticalSlabBlock(Blocks.DRIPSTONE_BLOCK, ESPSlabs.DRIPSTONE_SLAB.get(), Block.Properties.of(ESPMaterial.PICKAXE_STONE, MaterialColor.TERRACOTTA_BROWN).sound(SoundType.DRIPSTONE_BLOCK).requiresCorrectToolForDrops().strength(1.5F, 1.0F)), ExtendedSlabs.GROUP);
-	public static final RegistryObject<Block> MUD_VERTICAL = registerBlock("vertical_mud_slab", () -> new VerticalSlabBlock(Blocks.MUD, ESPSlabs.MUD_SLAB.get(), Block.Properties.of(ESPMaterial.SHOVEL_DIRT, MaterialColor.TERRACOTTA_CYAN).strength(0.5F).isValidSpawn(ESPVerticalSlabs::always).isRedstoneConductor(ESPVerticalSlabs::always).isViewBlocking(ESPVerticalSlabs::always).isSuffocating(ESPVerticalSlabs::always).sound(SoundType.MUD)), ExtendedSlabs.GROUP);
+	public static final RegistryObject<Block> MUD_VERTICAL = registerBlock("vertical_mud_slab", () -> new VerticalSlabBlock(Blocks.MUD, ESPSlabs.MUD_SLAB.get(), Block.Properties.of(ESPMaterial.SHOVEL_DIRT, MaterialColor.TERRACOTTA_CYAN).strength(0.5F).sound(SoundType.MUD)), ExtendedSlabs.GROUP);
 	public static final RegistryObject<Block> PACKED_MUD_VERTICAL = registerBlock("vertical_packed_mud_slab", () -> new VerticalSlabBlock(Blocks.PACKED_MUD, ESPSlabs.PACKED_MUD_SLAB.get(), Block.Properties.of(ESPMaterial.PICKAXE_MUD, MaterialColor.DIRT).strength(1.0F, 3.0F).sound(SoundType.PACKED_MUD)), ExtendedSlabs.GROUP);
 	public static final RegistryObject<Block> MUD_BRICK_VERTICAL = registerBlock("vertical_mud_brick_slab", () -> new VerticalSlabBlock(Blocks.MUD_BRICKS, Blocks.MUD_BRICK_SLAB, Block.Properties.of(ESPMaterial.PICKAXE_STONE, MaterialColor.TERRACOTTA_LIGHT_GRAY).requiresCorrectToolForDrops().strength(1.5F, 3.0F).sound(SoundType.MUD_BRICKS)), ExtendedSlabs.GROUP);
 
@@ -252,14 +252,6 @@ public class ESPVerticalSlabs {
 		RegistryObject<B> block = ESPVerticalSlabs.BLOCKS.register(name, supplier);
 		ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties().tab(itemGroup)));
 		return block;
-	}
-
-	private static boolean always(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos) {
-		return true;
-	}
-
-	private static Boolean always(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, EntityType<?> entityType) {
-		return true;
 	}
 
 	private static boolean never(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos) {

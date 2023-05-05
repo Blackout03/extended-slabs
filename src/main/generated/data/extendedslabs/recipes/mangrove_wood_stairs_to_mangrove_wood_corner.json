@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "extendedslabs:mangrove_wood_stairs"
+    }
+  ],
+  "result": {
+    "item": "extendedslabs:mangrove_wood_corner"
+  }
+}

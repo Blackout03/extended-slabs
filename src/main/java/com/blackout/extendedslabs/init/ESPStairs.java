@@ -1,17 +1,13 @@
 package com.blackout.extendedslabs.init;
 
 import com.blackout.extendedslabs.ExtendedSlabs;
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.MaterialColor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
@@ -34,7 +30,7 @@ public class ESPStairs {
 	public static final RegistryObject<StairBlock> TUFF_STAIRS = registerBlock("tuff_stairs", () -> new StairBlock(Block.stateById(1), BlockBehaviour.Properties.of(ESPMaterial.PICKAXE_STONE, MaterialColor.TERRACOTTA_GRAY).sound(SoundType.TUFF).requiresCorrectToolForDrops().strength(1.5F, 6.0F)), ExtendedSlabs.GROUP);
 	public static final RegistryObject<StairBlock> CALCITE_STAIRS = registerBlock("calcite_stairs", () -> new StairBlock(Block.stateById(1), BlockBehaviour.Properties.of(ESPMaterial.PICKAXE_STONE, MaterialColor.TERRACOTTA_WHITE).sound(SoundType.CALCITE).requiresCorrectToolForDrops().strength(0.75F)), ExtendedSlabs.GROUP);
 	public static final RegistryObject<StairBlock> DRIPSTONE_STAIRS = registerBlock("dripstone_stairs", () -> new StairBlock(Block.stateById(1), BlockBehaviour.Properties.of(ESPMaterial.PICKAXE_STONE, MaterialColor.TERRACOTTA_BROWN).sound(SoundType.DRIPSTONE_BLOCK).requiresCorrectToolForDrops().strength(1.5F, 1.0F)), ExtendedSlabs.GROUP);
-	public static final RegistryObject<StairBlock> MUD_STAIRS = registerBlock("mud_stairs", () -> new StairBlock(Block.stateById(1), BlockBehaviour.Properties.of(ESPMaterial.SHOVEL_DIRT, MaterialColor.TERRACOTTA_CYAN).strength(0.5F).isValidSpawn(ESPStairs::always).isRedstoneConductor(ESPStairs::always).isViewBlocking(ESPStairs::always).isSuffocating(ESPStairs::always).sound(SoundType.MUD)), ExtendedSlabs.GROUP);
+	public static final RegistryObject<StairBlock> MUD_STAIRS = registerBlock("mud_stairs", () -> new StairBlock(Block.stateById(1), BlockBehaviour.Properties.of(ESPMaterial.SHOVEL_DIRT, MaterialColor.TERRACOTTA_CYAN).strength(0.5F).sound(SoundType.MUD)), ExtendedSlabs.GROUP);
 	public static final RegistryObject<StairBlock> PACKED_MUD_STAIRS = registerBlock("packed_mud_stairs", () -> new StairBlock(Block.stateById(1), BlockBehaviour.Properties.of(ESPMaterial.PICKAXE_MUD, MaterialColor.DIRT).strength(1.0F, 3.0F).sound(SoundType.PACKED_MUD)), ExtendedSlabs.GROUP);
 
 	// WOOD
@@ -58,13 +54,5 @@ public class ESPStairs {
 		RegistryObject<B> block = ESPStairs.BLOCKS.register(name, supplier);
 		ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties().tab(itemGroup)));
 		return block;
-	}
-
-	private static boolean always(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos) {
-		return true;
-	}
-
-	private static Boolean always(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, EntityType<?> entityType) {
-		return true;
 	}
 }

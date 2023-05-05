@@ -2,6 +2,7 @@ package com.blackout.extendedslabs.datagen.recipes;
 
 import com.blackout.extendedslabs.ExtendedSlabs;
 import com.blackout.extendedslabs.blocks.CornerBlock;
+import com.blackout.extendedslabs.init.ESPCorners;
 import com.blackout.extendedslabs.init.ESPVerticalSlabs;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.FinishedRecipe;
@@ -24,7 +25,7 @@ public class ESPCornerRecipeProvider extends RecipeProvider {
 
 	@Override
 	public void buildCraftingRecipes(@NotNull Consumer<FinishedRecipe> consumer) {
-		final Collection<RegistryObject<Block>> blocks = ESPVerticalSlabs.BLOCKS.getEntries();
+		final Collection<RegistryObject<Block>> blocks = ESPCorners.BLOCKS.getEntries();
 		for (RegistryObject<Block> block : blocks) {
 			if (block.get() instanceof CornerBlock cornerBlock) {
 				generateCornerRecipes(cornerBlock.asItem(), cornerBlock.getMaterialStair().asItem(), consumer);
