@@ -1,5 +1,6 @@
 package com.blackout.extendedslabs.datagen;
 
+import com.blackout.extendedslabs.ExtendedSlabs;
 import com.blackout.extendedslabs.blocks.VerticalSlabBlock;
 import com.blackout.extendedslabs.blocks.falling.FallingSlabBlock;
 import com.blackout.extendedslabs.blocks.shapes.VerticalSlabShape;
@@ -9,6 +10,7 @@ import com.blackout.extendedslabs.init.ESPStairs;
 import com.blackout.extendedslabs.init.ESPVerticalSlabs;
 import net.minecraft.core.Direction;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SlabBlock;
@@ -26,9 +28,9 @@ import java.util.function.Function;
 
 public class ESPBlockStateProvider extends BlockStateProvider {
 	private final ESPBlockModelProvider espBlockModels;
-	public ESPBlockStateProvider(DataGenerator gen, String modid, ExistingFileHelper exFileHelper) {
-		super(gen, modid, exFileHelper);
-		this.espBlockModels = new ESPBlockModelProvider(gen, modid, exFileHelper) {
+	public ESPBlockStateProvider(PackOutput output, ExistingFileHelper exFileHelper) {
+		super(output, ExtendedSlabs.MODID, exFileHelper);
+		this.espBlockModels = new ESPBlockModelProvider(output, exFileHelper) {
 			@Override protected void registerModels() {}
 		};
 	}
@@ -321,6 +323,8 @@ public class ESPBlockStateProvider extends BlockStateProvider {
 		this.verticalSlabBlock(ESPVerticalSlabs.ACACIA_VERTICAL.get(), mcRL("acacia_planks"), mcRL("acacia_planks"), mcRL("acacia_planks"));
 		this.verticalSlabBlock(ESPVerticalSlabs.DARK_OAK_VERTICAL.get(), mcRL("dark_oak_planks"), mcRL("dark_oak_planks"), mcRL("dark_oak_planks"));
 		this.verticalSlabBlock(ESPVerticalSlabs.MANGROVE_VERTICAL.get(), mcRL("mangrove_planks"), mcRL("mangrove_planks"), mcRL("mangrove_planks"));
+		this.verticalSlabBlock(ESPVerticalSlabs.BAMBOO_VERTICAL.get(), mcRL("bamboo_planks"), mcRL("bamboo_planks"), mcRL("bamboo_planks"));
+		this.verticalSlabBlock(ESPVerticalSlabs.BAMBOO_MOSAIC_VERTICAL.get(), mcRL("bamboo_mosaic"), mcRL("bamboo_mosaic"), mcRL("bamboo_mosaic"));
 		this.verticalSlabBlock(ESPVerticalSlabs.CRIMSON_VERTICAL.get(), mcRL("crimson_planks"), mcRL("crimson_planks"), mcRL("crimson_planks"));
 		this.verticalSlabBlock(ESPVerticalSlabs.WARPED_VERTICAL.get(), mcRL("warped_planks"), mcRL("warped_planks"), mcRL("warped_planks"));
 		this.verticalSlabBlock(ESPVerticalSlabs.OAK_WOOD_VERTICAL.get(), mcRL("oak_log"), mcRL("oak_log"), mcRL("oak_log"));
@@ -375,14 +379,16 @@ public class ESPBlockStateProvider extends BlockStateProvider {
 		this.cornerBlock(ESPCorners.MUD_CORNER.get(), mcRL("mud"));
 		this.cornerBlock(ESPCorners.PACKED_MUD_CORNER.get(), mcRL("packed_mud"));
 		this.cornerBlock(ESPCorners.MUD_BRICK_CORNER.get(), mcRL("mud_bricks"));
-		this.cornerBlock(ESPCorners.ACACIA_CORNER.get(), mcRL("acacia_planks"));
-		this.cornerBlock(ESPCorners.BIRCH_CORNER.get(), mcRL("birch_planks"));
-		this.cornerBlock(ESPCorners.CRIMSON_CORNER.get(), mcRL("crimson_planks"));
-		this.cornerBlock(ESPCorners.DARK_OAK_CORNER.get(), mcRL("dark_oak_planks"));
-		this.cornerBlock(ESPCorners.MANGROVE_CORNER.get(), mcRL("mangrove_planks"));
-		this.cornerBlock(ESPCorners.JUNGLE_CORNER.get(), mcRL("jungle_planks"));
 		this.cornerBlock(ESPCorners.OAK_CORNER.get(), mcRL("oak_planks"));
 		this.cornerBlock(ESPCorners.SPRUCE_CORNER.get(), mcRL("spruce_planks"));
+		this.cornerBlock(ESPCorners.BIRCH_CORNER.get(), mcRL("birch_planks"));
+		this.cornerBlock(ESPCorners.JUNGLE_CORNER.get(), mcRL("jungle_planks"));
+		this.cornerBlock(ESPCorners.ACACIA_CORNER.get(), mcRL("acacia_planks"));
+		this.cornerBlock(ESPCorners.DARK_OAK_CORNER.get(), mcRL("dark_oak_planks"));
+		this.cornerBlock(ESPCorners.MANGROVE_CORNER.get(), mcRL("mangrove_planks"));
+		this.cornerBlock(ESPCorners.BAMBOO_CORNER.get(), mcRL("bamboo_planks"));
+		this.cornerBlock(ESPCorners.BAMBOO_MOSAIC_CORNER.get(), mcRL("bamboo_mosaic"));
+		this.cornerBlock(ESPCorners.CRIMSON_CORNER.get(), mcRL("crimson_planks"));
 		this.cornerBlock(ESPCorners.WARPED_CORNER.get(), mcRL("warped_planks"));
 		this.cornerBlock(ESPCorners.ACACIA_WOOD_CORNER.get(), mcRL("acacia_log"));
 		this.cornerBlock(ESPCorners.BIRCH_WOOD_CORNER.get(), mcRL("birch_log"));

@@ -4,36 +4,18 @@ import com.blackout.extendedslabs.datagen.loottables.ESPCornersLootTables;
 import com.blackout.extendedslabs.datagen.loottables.ESPSlabsLootTables;
 import com.blackout.extendedslabs.datagen.loottables.ESPStairsLootTables;
 import com.blackout.extendedslabs.datagen.loottables.ESPVerticalSlabsLootTables;
-import com.google.common.collect.ImmutableList;
-import com.mojang.datafixers.util.Pair;
-import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.data.loot.LootTableProvider;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.storage.loot.LootTable;
-import net.minecraft.world.level.storage.loot.ValidationContext;
-import net.minecraft.world.level.storage.loot.parameters.LootContextParamSet;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 
 import java.util.List;
-import java.util.Map;
-import java.util.function.BiConsumer;
-import java.util.function.Consumer;
-import java.util.function.Supplier;
+import java.util.Set;
 
 public class ESPLootTableProvider extends LootTableProvider {
-    public ESPLootTableProvider(DataGenerator dataGeneratorIn) {
-        super(dataGeneratorIn);
-    }
-
-    @Override
-    protected List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootContextParamSet>> getTables() {
-        return ImmutableList.of(Pair.of(ESPCornersLootTables::new, LootContextParamSets.BLOCK),
-                Pair.of(ESPSlabsLootTables::new, LootContextParamSets.BLOCK),
-                Pair.of(ESPStairsLootTables::new, LootContextParamSets.BLOCK),
-                Pair.of(ESPVerticalSlabsLootTables::new, LootContextParamSets.BLOCK));
-    }
-
-    @Override
-    protected void validate(Map<ResourceLocation, LootTable> map, ValidationContext validationtracker) {
+    public ESPLootTableProvider(PackOutput output) {
+        super(output, Set.of(), List.of(new LootTableProvider.SubProviderEntry(ESPCornersLootTables::new, LootContextParamSets.BLOCK),
+                new LootTableProvider.SubProviderEntry(ESPSlabsLootTables::new, LootContextParamSets.BLOCK),
+                new LootTableProvider.SubProviderEntry(ESPStairsLootTables::new, LootContextParamSets.BLOCK),
+                new LootTableProvider.SubProviderEntry(ESPVerticalSlabsLootTables::new, LootContextParamSets.BLOCK)));
     }
 }

@@ -1,6 +1,6 @@
-// 1.19.2	2022-09-28T17:35:49.0477811	Tags for minecraft:block
+// 1.19.3	2023-05-10T02:01:14.5268845	Tags for minecraft:block mod id extendedslabs
 ac318e688c2dd6090e9303ba2e09497d23c53632 data/minecraft/tags/blocks/impermeable.json
-0102b59d726ae97571befa015dd29c6284d9b616 data/minecraft/tags/blocks/mineable/axe.json
+b8a8d274afbeb5c23ca74bec4df78a159e963a80 data/minecraft/tags/blocks/mineable/axe.json
 504ca18dc889fb50ae9274dd3c9c46766564b5ee data/minecraft/tags/blocks/mineable/pickaxe.json
 ff4cda0f738c3cb31317070aac30b482fc8499ed data/minecraft/tags/blocks/mineable/shovel.json
 c8e78536e7ae881349041ccbbfb18d950d60127f data/minecraft/tags/blocks/needs_stone_tool.json

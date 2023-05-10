@@ -25,6 +25,14 @@
     "extendedslabs:acacia_corner",
     "extendedslabs:dark_oak_corner",
     "extendedslabs:mangrove_corner",
+    {
+      "id": "extendedslabs:blocks/bamboo_corner",
+      "required": false
+    },
+    {
+      "id": "extendedslabs:blocks/bamboo_mosaic_corner",
+      "required": false
+    },
     "extendedslabs:crimson_corner",
     "extendedslabs:warped_corner",
     "extendedslabs:oak_wood_corner",
@@ -43,6 +51,14 @@
     "extendedslabs:vertical_acacia_slab",
     "extendedslabs:vertical_dark_oak_slab",
     "extendedslabs:vertical_mangrove_slab",
+    {
+      "id": "extendedslabs:blocks/vertical_bamboo_slab",
+      "required": false
+    },
+    {
+      "id": "extendedslabs:blocks/vertical_bamboo_mosaic_slab",
+      "required": false
+    },
     "extendedslabs:vertical_crimson_slab",
     "extendedslabs:vertical_warped_slab",
     "extendedslabs:vertical_oak_wood_slab",

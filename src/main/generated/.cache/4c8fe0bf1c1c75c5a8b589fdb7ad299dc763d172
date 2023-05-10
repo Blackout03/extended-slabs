@@ -1,9 +1,11 @@
-// 1.19.2	2022-09-28T17:35:49.1037811	Extended Slabs Item models
+// 1.19.3	2023-05-10T14:42:13.79865	Extended Slabs Item models
 d014b7673daed8eac018c9eb9dd90a14678f8de6 assets/extendedslabs/models/item/acacia_corner.json
 5f940e7eb8fcd7b579b5e2528e6014061d969711 assets/extendedslabs/models/item/acacia_wood_corner.json
 51e9fb6bf08bcf00956cc1c5dd9d47bbc62f1a3c assets/extendedslabs/models/item/acacia_wood_slab.json
 144ec78712f4ab566385e8d3de9970be6ef3844e assets/extendedslabs/models/item/acacia_wood_stairs.json
 ffb3a06acce28b269f88d95814be85819e9a6bfb assets/extendedslabs/models/item/andesite_corner.json
+a41d6587325908f1f6edb19603884e41085471d8 assets/extendedslabs/models/item/bamboo_corner.json
+f5d505388319e24f5dbab4ffcf1a99d0123c4410 assets/extendedslabs/models/item/bamboo_mosaic_corner.json
 2a20049662bd1e97e81fbee31f4c36b5855b0819 assets/extendedslabs/models/item/birch_corner.json
 f47afc8fa4bcfdeccca25ec8fc726081767e01a3 assets/extendedslabs/models/item/birch_wood_corner.json
 dcbb40073b45fdb3489eddd3820842d33b09314b assets/extendedslabs/models/item/birch_wood_slab.json
@@ -174,6 +176,8 @@ a1cb96f2ed1b3466204cef93aa19f6f85a43adc9 assets/extendedslabs/models/item/tuff_s
 2350b8c2d2dd3a3f631c216014aed90d8cdc0029 assets/extendedslabs/models/item/vertical_acacia_slab.json
 85154a738f6f2e4345dc99828da7fe04b084e1ed assets/extendedslabs/models/item/vertical_acacia_wood_slab.json
 1c61e4367accfcb7b32676feac8776e22467401b assets/extendedslabs/models/item/vertical_andesite_slab.json
+21d851c002073c3471c127ebd9509097de56b5d3 assets/extendedslabs/models/item/vertical_bamboo_mosaic_slab.json
+923327495677c88ac2e685f75a8fb7f359338566 assets/extendedslabs/models/item/vertical_bamboo_slab.json
 8b4275a83b6ed2f97d11b58e3c6a018594cbda77 assets/extendedslabs/models/item/vertical_birch_slab.json
 ce4011710640cd539fcf0ef0b1ba8274ea8462fc assets/extendedslabs/models/item/vertical_birch_wood_slab.json
 d4d6260de2a88489e54fd83400ecbe6281f3206c assets/extendedslabs/models/item/vertical_blackstone_slab.json

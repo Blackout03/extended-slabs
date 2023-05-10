@@ -1,6 +1,7 @@
 package com.blackout.extendedslabs.datagen;
 
-import net.minecraft.data.DataGenerator;
+import com.blackout.extendedslabs.ExtendedSlabs;
+import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.client.model.generators.BlockModelProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
@@ -8,8 +9,8 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 
 public class ESPBlockModelProvider extends BlockModelProvider {
 
-    public ESPBlockModelProvider(DataGenerator generator, String modid, ExistingFileHelper existingFileHelper) {
-        super(generator, modid, existingFileHelper);
+    public ESPBlockModelProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
+        super(output, ExtendedSlabs.MODID, existingFileHelper);
     }
 
     @Override
@@ -757,6 +758,12 @@ public class ESPBlockModelProvider extends BlockModelProvider {
         this.verticalSlab("vertical_mangrove_slab", mcRL("mangrove_planks"), mcRL("mangrove_planks"), mcRL("mangrove_planks"));
         this.innerVerticalSlab("vertical_mangrove_slab", mcRL("mangrove_planks"), mcRL("mangrove_planks"), mcRL("mangrove_planks"));
         this.outerVerticalSlab("vertical_mangrove_slab", mcRL("mangrove_planks"), mcRL("mangrove_planks"), mcRL("mangrove_planks"));
+        this.verticalSlab("vertical_bamboo_slab", mcRL("bamboo_planks"), mcRL("bamboo_planks"), mcRL("bamboo_planks"));
+        this.innerVerticalSlab("vertical_bamboo_slab", mcRL("bamboo_planks"), mcRL("bamboo_planks"), mcRL("bamboo_planks"));
+        this.outerVerticalSlab("vertical_bamboo_slab", mcRL("bamboo_planks"), mcRL("bamboo_planks"), mcRL("bamboo_planks"));
+        this.verticalSlab("vertical_bamboo_mosaic_slab", mcRL("bamboo_mosaic"), mcRL("bamboo_mosaic"), mcRL("bamboo_mosaic"));
+        this.innerVerticalSlab("vertical_bamboo_mosaic_slab", mcRL("bamboo_mosaic"), mcRL("bamboo_mosaic"), mcRL("bamboo_mosaic"));
+        this.outerVerticalSlab("vertical_bamboo_mosaic_slab", mcRL("bamboo_mosaic"), mcRL("bamboo_mosaic"), mcRL("bamboo_mosaic"));
         this.verticalSlab("vertical_crimson_slab", mcRL("crimson_planks"), mcRL("crimson_planks"), mcRL("crimson_planks"));
         this.innerVerticalSlab("vertical_crimson_slab", mcRL("crimson_planks"), mcRL("crimson_planks"), mcRL("crimson_planks"));
         this.outerVerticalSlab("vertical_crimson_slab", mcRL("crimson_planks"), mcRL("crimson_planks"), mcRL("crimson_planks"));
@@ -889,14 +896,16 @@ public class ESPBlockModelProvider extends BlockModelProvider {
         this.corner("mud_corner", mcRL("mud"));
         this.corner("packed_mud_corner", mcRL("packed_mud"));
         this.corner("mud_brick_corner", mcRL("mud_bricks"));
-        this.corner("acacia_corner", mcRL("acacia_planks"));
-        this.corner("birch_corner", mcRL("birch_planks"));
-        this.corner("crimson_corner", mcRL("crimson_planks"));
-        this.corner("dark_oak_corner", mcRL("dark_oak_planks"));
-        this.corner("mangrove_corner", mcRL("mangrove_planks"));
-        this.corner("jungle_corner", mcRL("jungle_planks"));
         this.corner("oak_corner", mcRL("oak_planks"));
         this.corner("spruce_corner", mcRL("spruce_planks"));
+        this.corner("birch_corner", mcRL("birch_planks"));
+        this.corner("crimson_corner", mcRL("crimson_planks"));
+        this.corner("jungle_corner", mcRL("jungle_planks"));
+        this.corner("acacia_corner", mcRL("acacia_planks"));
+        this.corner("dark_oak_corner", mcRL("dark_oak_planks"));
+        this.corner("mangrove_corner", mcRL("mangrove_planks"));
+        this.corner("bamboo_corner", mcRL("bamboo_planks"));
+        this.corner("bamboo_mosaic_corner", mcRL("bamboo_mosaic"));
         this.corner("warped_corner", mcRL("warped_planks"));
         this.corner("acacia_wood_corner", mcRL("acacia_log"));
         this.corner("birch_wood_corner", mcRL("birch_log"));

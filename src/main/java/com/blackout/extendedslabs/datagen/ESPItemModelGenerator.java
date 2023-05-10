@@ -6,6 +6,7 @@ import com.blackout.extendedslabs.init.ESPSlabs;
 import com.blackout.extendedslabs.init.ESPStairs;
 import com.blackout.extendedslabs.init.ESPVerticalSlabs;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
@@ -17,8 +18,8 @@ import java.util.Collection;
 
 public class ESPItemModelGenerator extends ItemModelProvider {
 
-    public ESPItemModelGenerator(DataGenerator generator, ExistingFileHelper existingFileHelper) {
-        super(generator, ExtendedSlabs.MODID, existingFileHelper);
+    public ESPItemModelGenerator(PackOutput output, ExistingFileHelper existingFileHelper) {
+        super(output, ExtendedSlabs.MODID, existingFileHelper);
     }
 
     @Override
