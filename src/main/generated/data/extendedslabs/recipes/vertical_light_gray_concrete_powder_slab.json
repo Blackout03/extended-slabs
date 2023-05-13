@@ -14,5 +14,6 @@
   "result": {
     "count": 6,
     "item": "extendedslabs:vertical_light_gray_concrete_powder_slab"
-  }
+  },
+  "show_notification": true
 }

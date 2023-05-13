@@ -23,8 +23,6 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
-
 public class CornerBlock extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock {
     public Block material;
     public Block materialStair;

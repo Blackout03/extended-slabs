@@ -60,7 +60,7 @@ public class WeatheringCopperVerticalSlabBlock extends VerticalSlabBlock impleme
     }
 
     @Override
-    public void randomTick(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, RandomSource random) {
+    public void randomTick(@NotNull BlockState blockState, @NotNull ServerLevel serverLevel, @NotNull BlockPos blockPos, @NotNull RandomSource random) {
         this.onRandomTick(blockState, serverLevel, blockPos, random);
     }
 

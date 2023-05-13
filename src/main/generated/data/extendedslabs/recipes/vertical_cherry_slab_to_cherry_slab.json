@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "extendedslabs:vertical_cherry_slab"
+    }
+  ],
+  "result": {
+    "item": "minecraft:cherry_slab"
+  }
+}

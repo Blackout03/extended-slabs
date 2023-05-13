@@ -70,6 +70,8 @@ public class ESPBlockModelProvider extends BlockModelProvider {
         this.slabTop("dark_oak_wood_slab", mcRL("dark_oak_log"), mcRL("dark_oak_log"), mcRL("dark_oak_log"));
         this.slab("mangrove_wood_slab", mcRL("mangrove_log"), mcRL("mangrove_log"), mcRL("mangrove_log"));
         this.slabTop("mangrove_wood_slab", mcRL("mangrove_log"), mcRL("mangrove_log"), mcRL("mangrove_log"));
+        this.slab("cherry_wood_slab", mcRL("cherry_log"), mcRL("cherry_log"), mcRL("cherry_log"));
+        this.slabTop("cherry_wood_slab", mcRL("cherry_log"), mcRL("cherry_log"), mcRL("cherry_log"));
         this.slab("crimson_hyphae_slab", mcRL("crimson_stem"), mcRL("crimson_stem"), mcRL("crimson_stem"));
         this.slabTop("crimson_hyphae_slab", mcRL("crimson_stem"), mcRL("crimson_stem"), mcRL("crimson_stem"));
         this.slab("warped_hyphae_slab", mcRL("warped_stem"), mcRL("warped_stem"), mcRL("warped_stem"));
@@ -758,6 +760,9 @@ public class ESPBlockModelProvider extends BlockModelProvider {
         this.verticalSlab("vertical_mangrove_slab", mcRL("mangrove_planks"), mcRL("mangrove_planks"), mcRL("mangrove_planks"));
         this.innerVerticalSlab("vertical_mangrove_slab", mcRL("mangrove_planks"), mcRL("mangrove_planks"), mcRL("mangrove_planks"));
         this.outerVerticalSlab("vertical_mangrove_slab", mcRL("mangrove_planks"), mcRL("mangrove_planks"), mcRL("mangrove_planks"));
+        this.verticalSlab("vertical_cherry_slab", mcRL("cherry_planks"), mcRL("cherry_planks"), mcRL("cherry_planks"));
+        this.innerVerticalSlab("vertical_cherry_slab", mcRL("cherry_planks"), mcRL("cherry_planks"), mcRL("cherry_planks"));
+        this.outerVerticalSlab("vertical_cherry_slab", mcRL("cherry_planks"), mcRL("cherry_planks"), mcRL("cherry_planks"));
         this.verticalSlab("vertical_bamboo_slab", mcRL("bamboo_planks"), mcRL("bamboo_planks"), mcRL("bamboo_planks"));
         this.innerVerticalSlab("vertical_bamboo_slab", mcRL("bamboo_planks"), mcRL("bamboo_planks"), mcRL("bamboo_planks"));
         this.outerVerticalSlab("vertical_bamboo_slab", mcRL("bamboo_planks"), mcRL("bamboo_planks"), mcRL("bamboo_planks"));
@@ -794,6 +799,9 @@ public class ESPBlockModelProvider extends BlockModelProvider {
         this.verticalSlab("vertical_mangrove_wood_slab", mcRL("mangrove_log"), mcRL("mangrove_log"), mcRL("mangrove_log"));
         this.innerVerticalSlab("vertical_mangrove_wood_slab", mcRL("mangrove_log"), mcRL("mangrove_log"), mcRL("mangrove_log"));
         this.outerVerticalSlab("vertical_mangrove_wood_slab", mcRL("mangrove_log"), mcRL("mangrove_log"), mcRL("mangrove_log"));
+        this.verticalSlab("vertical_cherry_wood_slab", mcRL("cherry_log"), mcRL("cherry_log"), mcRL("cherry_log"));
+        this.innerVerticalSlab("vertical_cherry_wood_slab", mcRL("cherry_log"), mcRL("cherry_log"), mcRL("cherry_log"));
+        this.outerVerticalSlab("vertical_cherry_wood_slab", mcRL("cherry_log"), mcRL("cherry_log"), mcRL("cherry_log"));
         this.verticalSlab("vertical_crimson_hyphae_slab", mcRL("crimson_stem"), mcRL("crimson_stem"), mcRL("crimson_stem"));
         this.innerVerticalSlab("vertical_crimson_hyphae_slab", mcRL("crimson_stem"), mcRL("crimson_stem"), mcRL("crimson_stem"));
         this.outerVerticalSlab("vertical_crimson_hyphae_slab", mcRL("crimson_stem"), mcRL("crimson_stem"), mcRL("crimson_stem"));
@@ -860,6 +868,9 @@ public class ESPBlockModelProvider extends BlockModelProvider {
         this.stairs("mangrove_wood_stairs", mcRL("mangrove_log"), mcRL("mangrove_log"), mcRL("mangrove_log"));
         this.stairsInner("mangrove_wood_stairs", mcRL("mangrove_log"), mcRL("mangrove_log"), mcRL("mangrove_log"));
         this.stairsOuter("mangrove_wood_stairs", mcRL("mangrove_log"), mcRL("mangrove_log"), mcRL("mangrove_log"));
+        this.stairs("cherry_wood_stairs", mcRL("cherry_log"), mcRL("cherry_log"), mcRL("cherry_log"));
+        this.stairsInner("cherry_wood_stairs", mcRL("cherry_log"), mcRL("cherry_log"), mcRL("cherry_log"));
+        this.stairsOuter("cherry_wood_stairs", mcRL("cherry_log"), mcRL("cherry_log"), mcRL("cherry_log"));
         this.stairs("crimson_hyphae_stairs", mcRL("crimson_stem"), mcRL("crimson_stem"), mcRL("crimson_stem"));
         this.stairsInner("crimson_hyphae_stairs", mcRL("crimson_stem"), mcRL("crimson_stem"), mcRL("crimson_stem"));
         this.stairsOuter("crimson_hyphae_stairs", mcRL("crimson_stem"), mcRL("crimson_stem"), mcRL("crimson_stem"));
@@ -904,6 +915,7 @@ public class ESPBlockModelProvider extends BlockModelProvider {
         this.corner("acacia_corner", mcRL("acacia_planks"));
         this.corner("dark_oak_corner", mcRL("dark_oak_planks"));
         this.corner("mangrove_corner", mcRL("mangrove_planks"));
+        this.corner("cherry_corner", mcRL("cherry_planks"));
         this.corner("bamboo_corner", mcRL("bamboo_planks"));
         this.corner("bamboo_mosaic_corner", mcRL("bamboo_mosaic"));
         this.corner("warped_corner", mcRL("warped_planks"));
@@ -912,6 +924,7 @@ public class ESPBlockModelProvider extends BlockModelProvider {
         this.corner("crimson_hyphae_corner", mcRL("crimson_stem"));
         this.corner("dark_oak_wood_corner", mcRL("dark_oak_log"));
         this.corner("mangrove_wood_corner", mcRL("mangrove_log"));
+        this.corner("cherry_wood_corner", mcRL("cherry_log"));
         this.corner("jungle_wood_corner", mcRL("jungle_log"));
         this.corner("oak_wood_corner", mcRL("oak_log"));
         this.corner("spruce_wood_corner", mcRL("spruce_log"));

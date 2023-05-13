@@ -14,5 +14,6 @@
   "result": {
     "count": 6,
     "item": "extendedslabs:vertical_spruce_slab"
-  }
+  },
+  "show_notification": true
 }

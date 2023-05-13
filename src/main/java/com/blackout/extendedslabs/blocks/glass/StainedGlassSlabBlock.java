@@ -4,8 +4,6 @@ import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.BeaconBeamBlock;
 import org.jetbrains.annotations.NotNull;
 
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
-
 public class StainedGlassSlabBlock extends GlassSlabBlock implements BeaconBeamBlock {
     private final DyeColor color;
 

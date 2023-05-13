@@ -14,5 +14,6 @@
   "result": {
     "count": 6,
     "item": "extendedslabs:vertical_brown_terracotta_slab"
-  }
+  },
+  "show_notification": true
 }

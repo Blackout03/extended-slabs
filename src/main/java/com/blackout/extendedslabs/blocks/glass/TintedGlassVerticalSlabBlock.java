@@ -28,7 +28,7 @@ public class TintedGlassVerticalSlabBlock extends GlassVerticalSlabBlock {
 		return false;
 	}
 
-	public int getLightBlock(BlockState p_154828_, BlockGetter p_154829_, BlockPos p_154830_) {
+	public int getLightBlock(@NotNull BlockState p_154828_, BlockGetter p_154829_, @NotNull BlockPos p_154830_) {
 		return p_154829_.getMaxLightLevel();
 	}
 }

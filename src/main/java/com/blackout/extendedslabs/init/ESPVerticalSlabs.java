@@ -12,7 +12,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.BlockGetter;
@@ -225,6 +224,7 @@ public class ESPVerticalSlabs {
 	public static final RegistryObject<Block> ACACIA_VERTICAL = registerBlock("vertical_acacia_slab", () -> new VerticalSlabBlock(Blocks.ACACIA_PLANKS, Blocks.ACACIA_SLAB, Block.Properties.of(ESPMaterial.AXE_WOOD, MaterialColor.COLOR_ORANGE).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
 	public static final RegistryObject<Block> DARK_OAK_VERTICAL = registerBlock("vertical_dark_oak_slab", () -> new VerticalSlabBlock(Blocks.DARK_OAK_PLANKS, Blocks.DARK_OAK_SLAB, Block.Properties.of(ESPMaterial.AXE_WOOD, MaterialColor.COLOR_BROWN).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
 	public static final RegistryObject<Block> MANGROVE_VERTICAL = registerBlock("vertical_mangrove_slab", () -> new VerticalSlabBlock(Blocks.MANGROVE_PLANKS, Blocks.MANGROVE_SLAB, Block.Properties.of(ESPMaterial.AXE_WOOD, MaterialColor.COLOR_RED).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+	public static final RegistryObject<Block> CHERRY_VERTICAL = registerBlock("vertical_cherry_slab", () -> new VerticalSlabBlock(Blocks.CHERRY_PLANKS, Blocks.CHERRY_SLAB, Block.Properties.of(ESPMaterial.AXE_WOOD, MaterialColor.TERRACOTTA_WHITE).strength(2.0F, 3.0F).sound(SoundType.CHERRY_WOOD).requiredFeatures(FeatureFlags.UPDATE_1_20)));
 	public static final RegistryObject<Block> BAMBOO_VERTICAL = registerBlock("vertical_bamboo_slab", () -> new VerticalSlabBlock(Blocks.BAMBOO_PLANKS, Blocks.BAMBOO_SLAB, Block.Properties.of(ESPMaterial.AXE_WOOD, MaterialColor.COLOR_YELLOW).strength(2.0F, 3.0F).sound(SoundType.BAMBOO_WOOD).requiredFeatures(FeatureFlags.UPDATE_1_20)));
 	public static final RegistryObject<Block> BAMBOO_MOSAIC_VERTICAL = registerBlock("vertical_bamboo_mosaic_slab", () -> new VerticalSlabBlock(Blocks.BAMBOO_MOSAIC, Blocks.BAMBOO_MOSAIC_SLAB, Block.Properties.of(ESPMaterial.AXE_WOOD, MaterialColor.COLOR_YELLOW).strength(2.0F, 3.0F).sound(SoundType.BAMBOO_WOOD).requiredFeatures(FeatureFlags.UPDATE_1_20)));
 	public static final RegistryObject<Block> CRIMSON_VERTICAL = registerBlock("vertical_crimson_slab", () -> new VerticalSlabBlock(Blocks.CRIMSON_PLANKS, Blocks.CRIMSON_SLAB, Block.Properties.of(ESPMaterial.AXE_NETHER_WOOD, MaterialColor.CRIMSON_STEM).strength(2.0F, 3.0F).sound(SoundType.NETHER_WOOD)));
@@ -239,6 +239,7 @@ public class ESPVerticalSlabs {
 	public static final RegistryObject<Block> ACACIA_WOOD_VERTICAL = registerBlock("vertical_acacia_wood_slab", () -> new VerticalSlabBlock(Blocks.ACACIA_WOOD, ESPSlabs.ACACIA_WOOD_SLAB.get(), Block.Properties.of(ESPMaterial.AXE_WOOD, MaterialColor.COLOR_ORANGE).strength(2.0F).sound(SoundType.WOOD)));
 	public static final RegistryObject<Block> DARK_OAK_WOOD_VERTICAL = registerBlock("vertical_dark_oak_wood_slab", () -> new VerticalSlabBlock(Blocks.DARK_OAK_WOOD, ESPSlabs.DARK_OAK_WOOD_SLAB.get(), Block.Properties.of(ESPMaterial.AXE_WOOD, MaterialColor.COLOR_BROWN).strength(2.0F).sound(SoundType.WOOD)));
 	public static final RegistryObject<Block> MANGROVE_WOOD_VERTICAL = registerBlock("vertical_mangrove_wood_slab", () -> new VerticalSlabBlock(Blocks.MANGROVE_WOOD, ESPSlabs.MANGROVE_WOOD_SLAB.get(), Block.Properties.of(ESPMaterial.AXE_WOOD, MaterialColor.COLOR_RED).strength(2.0F).sound(SoundType.WOOD)));
+	public static final RegistryObject<Block> CHERRY_WOOD_VERTICAL = registerBlock("vertical_cherry_wood_slab", () -> new VerticalSlabBlock(Blocks.CHERRY_WOOD, ESPSlabs.CHERRY_WOOD_SLAB.get(), Block.Properties.of(ESPMaterial.AXE_WOOD, MaterialColor.TERRACOTTA_GRAY).strength(2.0F).sound(SoundType.CHERRY_WOOD).requiredFeatures(FeatureFlags.UPDATE_1_20)));
 	public static final RegistryObject<Block> CRIMSON_HYPHAE_VERTICAL = registerBlock("vertical_crimson_hyphae_slab", () -> new VerticalSlabBlock(Blocks.CRIMSON_HYPHAE, ESPSlabs.CRIMSON_HYPHAE_SLAB.get(), Block.Properties.of(ESPMaterial.AXE_NETHER_WOOD, MaterialColor.CRIMSON_HYPHAE).strength(2.0F).sound(SoundType.STEM)));
 	public static final RegistryObject<Block> WARPED_HYPHAE_VERTICAL = registerBlock("vertical_warped_hyphae_slab", () -> new VerticalSlabBlock(Blocks.WARPED_HYPHAE, ESPSlabs.WARPED_HYPHAE_SLAB.get(), Block.Properties.of(ESPMaterial.AXE_NETHER_WOOD, MaterialColor.WARPED_HYPHAE).strength(2.0F).sound(SoundType.STEM)));
 

@@ -12,5 +12,6 @@
   "result": {
     "count": 6,
     "item": "extendedslabs:yellow_glazed_terracotta_slab"
-  }
+  },
+  "show_notification": true
 }

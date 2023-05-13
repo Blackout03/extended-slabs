@@ -8,8 +8,8 @@ import com.blackout.extendedslabs.blocks.glass.TintedGlassSlabBlock;
 import com.blackout.extendedslabs.blocks.path.PathSlabBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.BlockGetter;
@@ -170,6 +170,7 @@ public class ESPSlabs {
 	public static final RegistryObject<SlabBlock> ACACIA_WOOD_SLAB = registerBlock("acacia_wood_slab", () -> new SlabBlock(Block.Properties.of(ESPMaterial.AXE_WOOD, MaterialColor.COLOR_ORANGE).strength(2.0F).sound(SoundType.WOOD)));
 	public static final RegistryObject<SlabBlock> DARK_OAK_WOOD_SLAB = registerBlock("dark_oak_wood_slab", () -> new SlabBlock(Block.Properties.of(ESPMaterial.AXE_WOOD, MaterialColor.COLOR_BROWN).strength(2.0F).sound(SoundType.WOOD)));
 	public static final RegistryObject<SlabBlock> MANGROVE_WOOD_SLAB = registerBlock("mangrove_wood_slab", () -> new SlabBlock(Block.Properties.of(ESPMaterial.AXE_WOOD, MaterialColor.COLOR_RED).strength(2.0F).sound(SoundType.WOOD)));
+	public static final RegistryObject<SlabBlock> CHERRY_WOOD_SLAB = registerBlock("cherry_wood_slab", () -> new SlabBlock(Block.Properties.of(ESPMaterial.AXE_WOOD, MaterialColor.TERRACOTTA_GRAY).strength(2.0F).sound(SoundType.CHERRY_WOOD).requiredFeatures(FeatureFlags.UPDATE_1_20)));
 	public static final RegistryObject<SlabBlock> CRIMSON_HYPHAE_SLAB = registerBlock("crimson_hyphae_slab", () -> new SlabBlock(Block.Properties.of(ESPMaterial.AXE_NETHER_WOOD, MaterialColor.CRIMSON_HYPHAE).strength(2.0F).sound(SoundType.STEM)));
 	public static final RegistryObject<SlabBlock> WARPED_HYPHAE_SLAB = registerBlock("warped_hyphae_slab", () -> new SlabBlock(Block.Properties.of(ESPMaterial.AXE_NETHER_WOOD, MaterialColor.WARPED_HYPHAE).strength(2.0F).sound(SoundType.STEM)));
 

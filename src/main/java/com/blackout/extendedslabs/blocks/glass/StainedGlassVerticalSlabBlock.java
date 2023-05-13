@@ -5,8 +5,6 @@ import net.minecraft.world.level.block.BeaconBeamBlock;
 import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.NotNull;
 
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
-
 public class StainedGlassVerticalSlabBlock extends GlassVerticalSlabBlock implements BeaconBeamBlock {
 	public Block material;
 	public Block materialSlab;

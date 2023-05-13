@@ -2,10 +2,8 @@ package com.blackout.extendedslabs.init;
 
 import com.blackout.extendedslabs.ExtendedSlabs;
 import com.blackout.extendedslabs.blocks.CornerBlock;
-import com.blackout.extendedslabs.blocks.VerticalSlabBlock;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -49,6 +47,7 @@ public class ESPCorners {
 	public static final RegistryObject<Block> ACACIA_CORNER = registerBlock("acacia_corner",() -> new CornerBlock(Blocks.ACACIA_PLANKS, Blocks.ACACIA_STAIRS, Block.Properties.of(ESPMaterial.AXE_WOOD, MaterialColor.COLOR_ORANGE).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
 	public static final RegistryObject<Block> DARK_OAK_CORNER = registerBlock("dark_oak_corner",() -> new CornerBlock(Blocks.DARK_OAK_PLANKS, Blocks.DARK_OAK_STAIRS, Block.Properties.of(ESPMaterial.AXE_WOOD, MaterialColor.COLOR_BROWN).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
 	public static final RegistryObject<Block> MANGROVE_CORNER = registerBlock("mangrove_corner",() -> new CornerBlock(Blocks.MANGROVE_PLANKS, Blocks.MANGROVE_STAIRS, Block.Properties.of(ESPMaterial.AXE_WOOD, MaterialColor.COLOR_RED).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+	public static final RegistryObject<Block> CHERRY_CORNER = registerBlock("cherry_corner", () -> new CornerBlock(Blocks.CHERRY_PLANKS, Blocks.CHERRY_STAIRS, Block.Properties.of(ESPMaterial.AXE_WOOD, MaterialColor.TERRACOTTA_WHITE).strength(2.0F, 3.0F).sound(SoundType.CHERRY_WOOD).requiredFeatures(FeatureFlags.UPDATE_1_20)));
 	public static final RegistryObject<Block> BAMBOO_CORNER = registerBlock("bamboo_corner", () -> new CornerBlock(Blocks.BAMBOO_PLANKS, Blocks.BAMBOO_SLAB, Block.Properties.of(ESPMaterial.AXE_WOOD, MaterialColor.COLOR_YELLOW).strength(2.0F, 3.0F).sound(SoundType.BAMBOO_WOOD).requiredFeatures(FeatureFlags.UPDATE_1_20)));
 	public static final RegistryObject<Block> BAMBOO_MOSAIC_CORNER = registerBlock("bamboo_mosaic_corner", () -> new CornerBlock(Blocks.BAMBOO_MOSAIC, Blocks.BAMBOO_MOSAIC_SLAB, Block.Properties.of(ESPMaterial.AXE_WOOD, MaterialColor.COLOR_YELLOW).strength(2.0F, 3.0F).sound(SoundType.BAMBOO_WOOD).requiredFeatures(FeatureFlags.UPDATE_1_20)));
 	public static final RegistryObject<Block> CRIMSON_CORNER = registerBlock("crimson_corner",() -> new CornerBlock(Blocks.CRIMSON_PLANKS, Blocks.CRIMSON_STAIRS, Block.Properties.of(ESPMaterial.AXE_NETHER_WOOD, MaterialColor.CRIMSON_STEM).strength(2.0F, 3.0F).sound(SoundType.NETHER_WOOD)));
@@ -62,6 +61,7 @@ public class ESPCorners {
 	public static final RegistryObject<Block> ACACIA_WOOD_CORNER = registerBlock("acacia_wood_corner", () -> new CornerBlock(Blocks.ACACIA_WOOD, ESPStairs.ACACIA_WOOD_STAIRS.get(), Block.Properties.of(ESPMaterial.AXE_WOOD, MaterialColor.COLOR_ORANGE).strength(2.0F).sound(SoundType.WOOD)));
 	public static final RegistryObject<Block> DARK_OAK_WOOD_CORNER = registerBlock("dark_oak_wood_corner", () -> new CornerBlock(Blocks.DARK_OAK_WOOD, ESPStairs.DARK_OAK_WOOD_STAIRS.get(), Block.Properties.of(ESPMaterial.AXE_WOOD, MaterialColor.COLOR_BROWN).strength(2.0F).sound(SoundType.WOOD)));
 	public static final RegistryObject<Block> MANGROVE_WOOD_CORNER = registerBlock("mangrove_wood_corner", () -> new CornerBlock(Blocks.MANGROVE_WOOD, ESPStairs.MANGROVE_WOOD_STAIRS.get(), Block.Properties.of(ESPMaterial.AXE_WOOD, MaterialColor.COLOR_RED).strength(2.0F).sound(SoundType.WOOD)));
+	public static final RegistryObject<Block> CHERRY_WOOD_CORNER = registerBlock("cherry_wood_corner", () -> new CornerBlock(Blocks.CHERRY_WOOD, ESPStairs.CHERRY_WOOD_STAIRS.get(), Block.Properties.of(ESPMaterial.AXE_WOOD, MaterialColor.TERRACOTTA_GRAY).strength(2.0F).sound(SoundType.CHERRY_WOOD).requiredFeatures(FeatureFlags.UPDATE_1_20)));
 	public static final RegistryObject<Block> CRIMSON_HYPHAE_CORNER = registerBlock("crimson_hyphae_corner", () -> new CornerBlock(Blocks.CRIMSON_HYPHAE, ESPStairs.CRIMSON_HYPHAE_STAIRS.get(), Block.Properties.of(ESPMaterial.AXE_NETHER_WOOD, MaterialColor.CRIMSON_HYPHAE).strength(2.0F).sound(SoundType.STEM)));
 	public static final RegistryObject<Block> WARPED_HYPHAE_CORNER = registerBlock("warped_hyphae_corner", () -> new CornerBlock(Blocks.WARPED_HYPHAE, ESPStairs.WARPED_HYPHAE_STAIRS.get(), Block.Properties.of(ESPMaterial.AXE_NETHER_WOOD, MaterialColor.WARPED_HYPHAE).strength(2.0F).sound(SoundType.STEM)));
 

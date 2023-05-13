@@ -1,4 +1,4 @@
-// 1.19.3	2023-05-10T14:42:13.79865	Extended Slabs Item models
+// 1.19.4	2023-05-12T23:49:28.1865072	Extended Slabs Item models
 d014b7673daed8eac018c9eb9dd90a14678f8de6 assets/extendedslabs/models/item/acacia_corner.json
 5f940e7eb8fcd7b579b5e2528e6014061d969711 assets/extendedslabs/models/item/acacia_wood_corner.json
 51e9fb6bf08bcf00956cc1c5dd9d47bbc62f1a3c assets/extendedslabs/models/item/acacia_wood_slab.json
@@ -32,6 +32,10 @@ b8f74cceb9050b36b015036691b9512d48359fb8 assets/extendedslabs/models/item/brown_
 59df744cc152bb640c344077a4234baf830e5a49 assets/extendedslabs/models/item/calcite_corner.json
 06bed142dfb170aed550a5fa9a74e87baacaf5be assets/extendedslabs/models/item/calcite_slab.json
 023245e12ddcd6f6431ba7a419a14c564209b7bc assets/extendedslabs/models/item/calcite_stairs.json
+74c1a66ae8abf102c34ea6b24947826e20575a58 assets/extendedslabs/models/item/cherry_corner.json
+a5d44cc9e34510825077e1fd25954e4ef0c1ae75 assets/extendedslabs/models/item/cherry_wood_corner.json
+a4e07da0e8c306bd37c6ea615486eb8bd64ea08a assets/extendedslabs/models/item/cherry_wood_slab.json
+c24b9991a7c3250a0dd98c9ca77d00afc74680d6 assets/extendedslabs/models/item/cherry_wood_stairs.json
 33ac2f82142cfd1cb793c104b6a22661312e74eb assets/extendedslabs/models/item/clay_slab.json
 ceec72fb93ead7fafb31d3db798e5344ddd8215b assets/extendedslabs/models/item/coarse_dirt_slab.json
 7becdaab42de945a207147556116540cf481920e assets/extendedslabs/models/item/coarse_dirt_stairs.json
@@ -201,6 +205,8 @@ f199ac82ded3686fb2e34ac58d01c73fae4872fb assets/extendedslabs/models/item/vertic
 557a28a5293163aa23c91637353bf9fa8c75c6d8 assets/extendedslabs/models/item/vertical_brown_terracotta_slab.json
 17fce89e742cf365c88f8ceebdf1c5408de053cd assets/extendedslabs/models/item/vertical_brown_wool_slab.json
 cf34eae1de190f6bac92096913ffb6b10303ab76 assets/extendedslabs/models/item/vertical_calcite_slab.json
+eab272ca751fb1a63ada8c0c2acd1a6dcb32f1f7 assets/extendedslabs/models/item/vertical_cherry_slab.json
+6a40ad1983c8b639dbefe42cdc9330711004d137 assets/extendedslabs/models/item/vertical_cherry_wood_slab.json
 c2f9a01ccf0995b624cee43d535aff0dacebc114 assets/extendedslabs/models/item/vertical_clay_slab.json
 911935e81758a03dd8c458bbfa37824aec9f7eb2 assets/extendedslabs/models/item/vertical_coarse_dirt_slab.json
 700412c8e039e095297c4ae8b5ca296a27bf51ff assets/extendedslabs/models/item/vertical_cobbled_deepslate_slab.json

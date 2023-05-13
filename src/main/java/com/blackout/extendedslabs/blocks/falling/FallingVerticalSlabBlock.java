@@ -180,7 +180,6 @@ public class FallingVerticalSlabBlock extends FallingBlock implements SimpleWate
      * Note that this method should ideally consider only the specific face passed in.
      */
     @Override
-    @SuppressWarnings("deprecation")
     public @NotNull BlockState updateShape(BlockState stateIn, @NotNull Direction facing, @NotNull BlockState facingState, @NotNull LevelAccessor worldIn, @NotNull BlockPos currentPos, @NotNull BlockPos facingPos) {
         if (stateIn.getValue(WATERLOGGED)) {
             worldIn.getFluidTicks().willTickThisTick(currentPos, Fluids.WATER);

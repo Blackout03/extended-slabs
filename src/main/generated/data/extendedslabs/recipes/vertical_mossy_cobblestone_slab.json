@@ -14,5 +14,6 @@
   "result": {
     "count": 6,
     "item": "extendedslabs:vertical_mossy_cobblestone_slab"
-  }
+  },
+  "show_notification": true
 }

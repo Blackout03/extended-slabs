@@ -9,7 +9,6 @@ import com.blackout.extendedslabs.init.ESPSlabs;
 import com.blackout.extendedslabs.init.ESPStairs;
 import com.blackout.extendedslabs.init.ESPVerticalSlabs;
 import net.minecraft.core.Direction;
-import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
@@ -57,6 +56,7 @@ public class ESPBlockStateProvider extends BlockStateProvider {
 		this.slabBlock(ESPSlabs.ACACIA_WOOD_SLAB.get(), mcRL("acacia_log"), mcRL("acacia_log"), mcRL("acacia_log"), mcRL("acacia_log"));
 		this.slabBlock(ESPSlabs.DARK_OAK_WOOD_SLAB.get(), mcRL("dark_oak_log"), mcRL("dark_oak_log"), mcRL("dark_oak_log"), mcRL("dark_oak_log"));
 		this.slabBlock(ESPSlabs.MANGROVE_WOOD_SLAB.get(), mcRL("mangrove_log"), mcRL("mangrove_log"), mcRL("mangrove_log"), mcRL("mangrove_log"));
+		this.slabBlock(ESPSlabs.CHERRY_WOOD_SLAB.get(), mcRL("cherry_log"), mcRL("cherry_log"), mcRL("cherry_log"), mcRL("cherry_log"));
 		this.slabBlock(ESPSlabs.CRIMSON_HYPHAE_SLAB.get(), mcRL("crimson_stem"), mcRL("crimson_stem"), mcRL("crimson_stem"), mcRL("crimson_stem"));
 		this.slabBlock(ESPSlabs.WARPED_HYPHAE_SLAB.get(), mcRL("warped_stem"), mcRL("warped_stem"), mcRL("warped_stem"), mcRL("warped_stem"));
 		this.slabBlock(ESPSlabs.WHITE_WOOL_SLAB.get(), mcRL("white_wool"), mcRL("white_wool"), mcRL("white_wool"), mcRL("white_wool"));
@@ -323,6 +323,7 @@ public class ESPBlockStateProvider extends BlockStateProvider {
 		this.verticalSlabBlock(ESPVerticalSlabs.ACACIA_VERTICAL.get(), mcRL("acacia_planks"), mcRL("acacia_planks"), mcRL("acacia_planks"));
 		this.verticalSlabBlock(ESPVerticalSlabs.DARK_OAK_VERTICAL.get(), mcRL("dark_oak_planks"), mcRL("dark_oak_planks"), mcRL("dark_oak_planks"));
 		this.verticalSlabBlock(ESPVerticalSlabs.MANGROVE_VERTICAL.get(), mcRL("mangrove_planks"), mcRL("mangrove_planks"), mcRL("mangrove_planks"));
+		this.verticalSlabBlock(ESPVerticalSlabs.CHERRY_VERTICAL.get(), mcRL("cherry_planks"), mcRL("cherry_planks"), mcRL("cherry_planks"));
 		this.verticalSlabBlock(ESPVerticalSlabs.BAMBOO_VERTICAL.get(), mcRL("bamboo_planks"), mcRL("bamboo_planks"), mcRL("bamboo_planks"));
 		this.verticalSlabBlock(ESPVerticalSlabs.BAMBOO_MOSAIC_VERTICAL.get(), mcRL("bamboo_mosaic"), mcRL("bamboo_mosaic"), mcRL("bamboo_mosaic"));
 		this.verticalSlabBlock(ESPVerticalSlabs.CRIMSON_VERTICAL.get(), mcRL("crimson_planks"), mcRL("crimson_planks"), mcRL("crimson_planks"));
@@ -334,6 +335,7 @@ public class ESPBlockStateProvider extends BlockStateProvider {
 		this.verticalSlabBlock(ESPVerticalSlabs.ACACIA_WOOD_VERTICAL.get(), mcRL("acacia_log"), mcRL("acacia_log"), mcRL("acacia_log"));
 		this.verticalSlabBlock(ESPVerticalSlabs.DARK_OAK_WOOD_VERTICAL.get(), mcRL("dark_oak_log"), mcRL("dark_oak_log"), mcRL("dark_oak_log"));
 		this.verticalSlabBlock(ESPVerticalSlabs.MANGROVE_WOOD_VERTICAL.get(), mcRL("mangrove_log"), mcRL("mangrove_log"), mcRL("mangrove_log"));
+		this.verticalSlabBlock(ESPVerticalSlabs.CHERRY_WOOD_VERTICAL.get(), mcRL("cherry_log"), mcRL("cherry_log"), mcRL("cherry_log"));
 		this.verticalSlabBlock(ESPVerticalSlabs.CRIMSON_HYPHAE_VERTICAL.get(), mcRL("crimson_stem"), mcRL("crimson_stem"), mcRL("crimson_stem"));
 		this.verticalSlabBlock(ESPVerticalSlabs.WARPED_HYPHAE_VERTICAL.get(), mcRL("warped_stem"), mcRL("warped_stem"), mcRL("warped_stem"));
 		this.verticalSlabBlock(ESPVerticalSlabs.PETRIFIED_OAK_VERTICAL.get(), mcRL("oak_planks"), mcRL("oak_planks"), mcRL("oak_planks"));
@@ -362,6 +364,7 @@ public class ESPBlockStateProvider extends BlockStateProvider {
 		this.stairsBlock(ESPStairs.ACACIA_WOOD_STAIRS.get(), mcRL("acacia_log"));
 		this.stairsBlock(ESPStairs.DARK_OAK_WOOD_STAIRS.get(), mcRL("dark_oak_log"));
 		this.stairsBlock(ESPStairs.MANGROVE_WOOD_STAIRS.get(), mcRL("mangrove_log"));
+		this.stairsBlock(ESPStairs.CHERRY_WOOD_STAIRS.get(), mcRL("cherry_log"));
 		this.stairsBlock(ESPStairs.CRIMSON_HYPHAE_STAIRS.get(), mcRL("crimson_stem"));
 		this.stairsBlock(ESPStairs.WARPED_HYPHAE_STAIRS.get(), mcRL("warped_stem"));
 		this.cornerBlock(ESPCorners.STONE_CORNER.get(), mcRL("stone"));
@@ -386,6 +389,7 @@ public class ESPBlockStateProvider extends BlockStateProvider {
 		this.cornerBlock(ESPCorners.ACACIA_CORNER.get(), mcRL("acacia_planks"));
 		this.cornerBlock(ESPCorners.DARK_OAK_CORNER.get(), mcRL("dark_oak_planks"));
 		this.cornerBlock(ESPCorners.MANGROVE_CORNER.get(), mcRL("mangrove_planks"));
+		this.cornerBlock(ESPCorners.CHERRY_CORNER.get(), mcRL("cherry_planks"));
 		this.cornerBlock(ESPCorners.BAMBOO_CORNER.get(), mcRL("bamboo_planks"));
 		this.cornerBlock(ESPCorners.BAMBOO_MOSAIC_CORNER.get(), mcRL("bamboo_mosaic"));
 		this.cornerBlock(ESPCorners.CRIMSON_CORNER.get(), mcRL("crimson_planks"));
@@ -395,6 +399,7 @@ public class ESPBlockStateProvider extends BlockStateProvider {
 		this.cornerBlock(ESPCorners.CRIMSON_HYPHAE_CORNER.get(), mcRL("crimson_stem"));
 		this.cornerBlock(ESPCorners.DARK_OAK_WOOD_CORNER.get(), mcRL("dark_oak_log"));
 		this.cornerBlock(ESPCorners.MANGROVE_WOOD_CORNER.get(), mcRL("mangrove_log"));
+		this.cornerBlock(ESPCorners.CHERRY_WOOD_CORNER.get(), mcRL("cherry_log"));
 		this.cornerBlock(ESPCorners.JUNGLE_WOOD_CORNER.get(), mcRL("jungle_log"));
 		this.cornerBlock(ESPCorners.OAK_WOOD_CORNER.get(), mcRL("oak_log"));
 		this.cornerBlock(ESPCorners.SPRUCE_WOOD_CORNER.get(), mcRL("spruce_log"));

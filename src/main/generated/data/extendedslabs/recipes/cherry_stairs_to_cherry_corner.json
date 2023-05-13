@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "minecraft:cherry_stairs"
+    }
+  ],
+  "result": {
+    "item": "extendedslabs:cherry_corner"
+  }
+}

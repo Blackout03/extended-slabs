@@ -30,7 +30,7 @@ public class ESPCreativeTabs {
 		EXTENDED_SLABS = event.registerCreativeModeTab(new ResourceLocation(ExtendedSlabs.MODID, "extended_slabs"),
 				builder -> builder.title(Component.translatable("itemGroup.extendedslabs"))
 						.icon(ESPCreativeTabs::makeIcon)
-						.displayItems((featureFlag, output, operator) -> {
+						.displayItems((featureFlag, output) -> {
 							add(output, ESPStairs.orderedItems());
 							add(output, ESPSlabs.orderedItems());
 							add(output, ESPVerticalSlabs.orderedItems());
@@ -92,6 +92,11 @@ public class ESPCreativeTabs {
 						ESPSlabs.MANGROVE_WOOD_SLAB.get(), ESPStairs.MANGROVE_WOOD_STAIRS.get()));
 		putAfter(event, CreativeModeTabs.BUILDING_BLOCKS, Blocks.MANGROVE_SLAB,
 				List.of(ESPCorners.MANGROVE_CORNER.get(), ESPVerticalSlabs.MANGROVE_VERTICAL.get()));
+		putAfter(event, CreativeModeTabs.BUILDING_BLOCKS, Blocks.CHERRY_WOOD,
+				List.of(ESPCorners.CHERRY_WOOD_CORNER.get(), ESPVerticalSlabs.CHERRY_WOOD_VERTICAL.get(),
+						ESPSlabs.CHERRY_WOOD_SLAB.get(), ESPStairs.CHERRY_WOOD_STAIRS.get()));
+		putAfter(event, CreativeModeTabs.BUILDING_BLOCKS, Blocks.CHERRY_SLAB,
+				List.of(ESPCorners.CHERRY_CORNER.get(), ESPVerticalSlabs.CHERRY_VERTICAL.get()));
 		putAfter(event, CreativeModeTabs.BUILDING_BLOCKS, Blocks.BAMBOO_MOSAIC_SLAB,
 				List.of(ESPCorners.BAMBOO_MOSAIC_CORNER.get(), ESPCorners.BAMBOO_CORNER.get(),
 						ESPVerticalSlabs.BAMBOO_MOSAIC_VERTICAL.get(), ESPVerticalSlabs.BAMBOO_VERTICAL.get()));

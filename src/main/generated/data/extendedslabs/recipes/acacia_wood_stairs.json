@@ -14,5 +14,6 @@
   "result": {
     "count": 4,
     "item": "extendedslabs:acacia_wood_stairs"
-  }
+  },
+  "show_notification": true
 }

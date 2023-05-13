@@ -12,5 +12,6 @@
   "result": {
     "count": 6,
     "item": "extendedslabs:green_stained_glass_slab"
-  }
+  },
+  "show_notification": true
 }

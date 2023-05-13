@@ -7,6 +7,7 @@
     "extendedslabs:acacia_wood_slab",
     "extendedslabs:dark_oak_wood_slab",
     "extendedslabs:mangrove_wood_slab",
+    "extendedslabs:cherry_wood_slab",
     "extendedslabs:crimson_hyphae_slab",
     "extendedslabs:warped_hyphae_slab",
     "extendedslabs:oak_wood_stairs",
@@ -16,6 +17,7 @@
     "extendedslabs:acacia_wood_stairs",
     "extendedslabs:dark_oak_wood_stairs",
     "extendedslabs:mangrove_wood_stairs",
+    "extendedslabs:cherry_wood_stairs",
     "extendedslabs:crimson_hyphae_stairs",
     "extendedslabs:warped_hyphae_stairs",
     "extendedslabs:oak_corner",
@@ -25,14 +27,9 @@
     "extendedslabs:acacia_corner",
     "extendedslabs:dark_oak_corner",
     "extendedslabs:mangrove_corner",
-    {
-      "id": "extendedslabs:blocks/bamboo_corner",
-      "required": false
-    },
-    {
-      "id": "extendedslabs:blocks/bamboo_mosaic_corner",
-      "required": false
-    },
+    "extendedslabs:cherry_corner",
+    "extendedslabs:bamboo_corner",
+    "extendedslabs:bamboo_mosaic_corner",
     "extendedslabs:crimson_corner",
     "extendedslabs:warped_corner",
     "extendedslabs:oak_wood_corner",
@@ -42,6 +39,7 @@
     "extendedslabs:acacia_wood_corner",
     "extendedslabs:dark_oak_wood_corner",
     "extendedslabs:mangrove_wood_corner",
+    "extendedslabs:cherry_wood_corner",
     "extendedslabs:crimson_hyphae_corner",
     "extendedslabs:warped_hyphae_corner",
     "extendedslabs:vertical_oak_slab",
@@ -51,14 +49,9 @@
     "extendedslabs:vertical_acacia_slab",
     "extendedslabs:vertical_dark_oak_slab",
     "extendedslabs:vertical_mangrove_slab",
-    {
-      "id": "extendedslabs:blocks/vertical_bamboo_slab",
-      "required": false
-    },
-    {
-      "id": "extendedslabs:blocks/vertical_bamboo_mosaic_slab",
-      "required": false
-    },
+    "extendedslabs:vertical_cherry_slab",
+    "extendedslabs:vertical_bamboo_slab",
+    "extendedslabs:vertical_bamboo_mosaic_slab",
     "extendedslabs:vertical_crimson_slab",
     "extendedslabs:vertical_warped_slab",
     "extendedslabs:vertical_oak_wood_slab",
@@ -68,6 +61,7 @@
     "extendedslabs:vertical_acacia_wood_slab",
     "extendedslabs:vertical_dark_oak_wood_slab",
     "extendedslabs:vertical_mangrove_wood_slab",
+    "extendedslabs:vertical_cherry_wood_slab",
     "extendedslabs:vertical_crimson_hyphae_slab",
     "extendedslabs:vertical_warped_hyphae_slab"
   ]

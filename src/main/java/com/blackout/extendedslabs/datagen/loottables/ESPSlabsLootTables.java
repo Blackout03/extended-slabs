@@ -1,7 +1,6 @@
 package com.blackout.extendedslabs.datagen.loottables;
 
 import com.blackout.extendedslabs.ExtendedSlabs;
-import com.blackout.extendedslabs.init.ESPCorners;
 import com.blackout.extendedslabs.init.ESPSlabs;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.data.loot.BlockLootSubProvider;
@@ -35,11 +34,11 @@ public class ESPSlabsLootTables extends BlockLootSubProvider {
 		}
 	}
 
-	public void dropSelf(Block p_124289_) {
+	public void dropSelf(@NotNull Block p_124289_) {
 		this.add(p_124289_, createSlabItemTable(p_124289_));
 	}
 
-	public LootTable.Builder createSlabItemTable(Block p_251313_) {
+	public LootTable.@NotNull Builder createSlabItemTable(@NotNull Block p_251313_) {
 		return LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(this.applyExplosionDecay(p_251313_, LootItem.lootTableItem(p_251313_).apply(SetItemCountFunction.setCount(ConstantValue.exactly(2.0F)).when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(p_251313_).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(SlabBlock.TYPE, SlabType.DOUBLE)))))));
 	}
 

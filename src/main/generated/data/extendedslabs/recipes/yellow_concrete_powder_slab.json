@@ -12,5 +12,6 @@
   "result": {
     "count": 6,
     "item": "extendedslabs:yellow_concrete_powder_slab"
-  }
+  },
+  "show_notification": true
 }

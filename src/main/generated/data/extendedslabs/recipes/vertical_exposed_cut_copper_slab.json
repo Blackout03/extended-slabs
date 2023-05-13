@@ -14,5 +14,6 @@
   "result": {
     "count": 6,
     "item": "extendedslabs:vertical_exposed_cut_copper_slab"
-  }
+  },
+  "show_notification": true
 }

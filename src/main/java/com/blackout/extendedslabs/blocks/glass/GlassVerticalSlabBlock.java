@@ -9,8 +9,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
-
 public class GlassVerticalSlabBlock extends VerticalSlabBlock {
 	public Block material;
 	public Block materialSlab;
