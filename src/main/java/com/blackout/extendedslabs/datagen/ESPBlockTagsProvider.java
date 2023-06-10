@@ -1,7 +1,7 @@
 package com.blackout.extendedslabs.datagen;
 
 import com.blackout.extendedslabs.ExtendedSlabs;
-import com.blackout.extendedslabs.init.ESPMaterial;
+import com.blackout.extendedslabs.blocks.IBlockCharacteristics;
 import com.blackout.extendedslabs.init.ESPSlabs;
 import com.blackout.extendedslabs.init.ESPStairs;
 import net.minecraft.core.HolderLookup;
@@ -10,15 +10,14 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.IntrinsicHolderTagsProvider;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.material.Material;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.CompletableFuture;
 
 public class ESPBlockTagsProvider extends IntrinsicHolderTagsProvider<Block> {
@@ -29,33 +28,26 @@ public class ESPBlockTagsProvider extends IntrinsicHolderTagsProvider<Block> {
 	@Override
 	protected void addTags(@NotNull HolderLookup.Provider provider) {
 		final @NotNull Set<Map.Entry<ResourceKey<Block>, Block>> blocks = ForgeRegistries.BLOCKS.getEntries();
+		Set<TagKey<Block>> tagSet = new HashSet<>();
+		Set<Block> blockSet = new HashSet<>();
+
 		for (Map.Entry<ResourceKey<Block>, Block> blockEntry : blocks) {
 			Block block = blockEntry.getValue();
-			final Material material = block.defaultBlockState().getMaterial();
+			if (block instanceof IBlockCharacteristics blockCharacteristics) {
+				List<TagKey<Block>> characteristics = blockCharacteristics.getCharacteristics();
+				tagSet.addAll(characteristics);
+				blockSet.add(block);
+			}
+		}
 
-			if (material == ESPMaterial.PICKAXE_MUD || material == ESPMaterial.PICKAXE_STONE || material == ESPMaterial.PICKAXE_METAL) {
-				ExtendedSlabs.LOGGER.info("Tag: " + BlockTags.MINEABLE_WITH_PICKAXE.location() + " Block: " + ForgeRegistries.BLOCKS.getKey(block));
-				tag(BlockTags.MINEABLE_WITH_PICKAXE).add(block);
-			}
-			if (material == ESPMaterial.SHOVEL_DIRT || material == ESPMaterial.SHOVEL_GRASS || material == ESPMaterial.SHOVEL_SAND || material == ESPMaterial.SHOVEL_CLAY) {
-				ExtendedSlabs.LOGGER.info("Tag: " + BlockTags.MINEABLE_WITH_SHOVEL.location() + " Block: " + ForgeRegistries.BLOCKS.getKey(block));
-				tag(BlockTags.MINEABLE_WITH_SHOVEL).add(block);
-			}
-			if (material == ESPMaterial.AXE_WOOD || material == ESPMaterial.AXE_NETHER_WOOD) {
-				ExtendedSlabs.LOGGER.info("Tag: " + BlockTags.MINEABLE_WITH_AXE.location() + " Block: " + ForgeRegistries.BLOCKS.getKey(block));
-				tag(BlockTags.MINEABLE_WITH_AXE).add(block);
-			}
-			if (material == ESPMaterial.WOOL) {
-				ExtendedSlabs.LOGGER.info("Tag: " + BlockTags.WOOL.location() + " Block: " + ForgeRegistries.BLOCKS.getKey(block));
-				tag(BlockTags.WOOL).add(block);
-			}
-			if (material == ESPMaterial.GLASS) {
-				ExtendedSlabs.LOGGER.info("Tag: " + BlockTags.IMPERMEABLE.location() + " Block: " + ForgeRegistries.BLOCKS.getKey(block));
-				tag(BlockTags.IMPERMEABLE).add(block);
-			}
-			if (material == ESPMaterial.PICKAXE_METAL) {
-				ExtendedSlabs.LOGGER.info("Tag: " + BlockTags.NEEDS_STONE_TOOL.location() + " Block: " + ForgeRegistries.BLOCKS.getKey(block));
-				tag(BlockTags.NEEDS_STONE_TOOL).add(block);
+		for (TagKey<Block> tag : tagSet) {
+			for (Block block : blockSet) {
+				if (block instanceof IBlockCharacteristics blockCharacteristics) {
+					if (blockCharacteristics.getCharacteristics().contains(tag)) {
+						ExtendedSlabs.LOGGER.info("Tag: " + tag.location() + " Block: " + ForgeRegistries.BLOCKS.getKey(block));
+						this.tag(tag).add(block);
+					}
+				}
 			}
 		}
 

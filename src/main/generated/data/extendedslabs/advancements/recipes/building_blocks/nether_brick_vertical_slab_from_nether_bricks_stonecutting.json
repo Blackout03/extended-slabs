@@ -30,5 +30,6 @@
     "recipes": [
       "extendedslabs:nether_brick_vertical_slab_from_nether_bricks_stonecutting"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

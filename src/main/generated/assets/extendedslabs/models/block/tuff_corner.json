@@ -1,6 +1,8 @@
 {
   "parent": "extendedslabs:block/corner",
   "textures": {
-    "block": "minecraft:block/tuff"
+    "bottom": "minecraft:block/tuff",
+    "side": "minecraft:block/tuff",
+    "top": "minecraft:block/tuff"
   }
 }

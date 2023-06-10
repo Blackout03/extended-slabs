@@ -1,12 +1,20 @@
 {
   "values": [
-    "extendedslabs:vertical_oxidized_cut_copper_slab",
     "extendedslabs:vertical_weathered_cut_copper_slab",
+    "extendedslabs:oxidized_cut_copper_corner",
+    "extendedslabs:waxed_cut_copper_corner",
+    "extendedslabs:exposed_cut_copper_corner",
+    "extendedslabs:waxed_weathered_cut_copper_corner",
+    "extendedslabs:cut_copper_corner",
+    "extendedslabs:weathered_cut_copper_corner",
     "extendedslabs:vertical_exposed_cut_copper_slab",
+    "extendedslabs:vertical_waxed_exposed_cut_copper_slab",
+    "extendedslabs:vertical_oxidized_cut_copper_slab",
+    "extendedslabs:waxed_oxidized_cut_copper_corner",
+    "extendedslabs:vertical_waxed_cut_copper_slab",
     "extendedslabs:vertical_cut_copper_slab",
     "extendedslabs:vertical_waxed_oxidized_cut_copper_slab",
-    "extendedslabs:vertical_waxed_weathered_cut_copper_slab",
-    "extendedslabs:vertical_waxed_exposed_cut_copper_slab",
-    "extendedslabs:vertical_waxed_cut_copper_slab"
+    "extendedslabs:waxed_exposed_cut_copper_corner",
+    "extendedslabs:vertical_waxed_weathered_cut_copper_slab"
   ]
 }

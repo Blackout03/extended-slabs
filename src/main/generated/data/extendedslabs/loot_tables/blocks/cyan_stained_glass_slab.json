@@ -30,5 +30,6 @@
       ],
       "rolls": 1.0
     }
-  ]
+  ],
+  "random_sequence": "extendedslabs:blocks/cyan_stained_glass_slab"
 }

@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[44,)"
+loaderVersion="[46,)"
 issueTrackerURL="https://github.com/Blackout03/extended-slabs/issues"
 displayURL="https://www.curseforge.com/minecraft/mc-mods/extended-slabs-plus"
 license="All Rights Reserved"
@@ -7,8 +7,8 @@ license="All Rights Reserved"
 [[mods]]
 modId="extendedslabs"
 version="${file.jarVersion}"
-displayName="Extended Slabs +"
-authors="Blackout03"
+displayName="${modName}"
+authors="${modAuthor}"
 description='''This mod adds vertical slabs and more to Minecraft.'''
 itemIcon="extendedslabs:vertical_dirt_path_slab"
 logoFile="icon.png"
@@ -17,13 +17,13 @@ credits="Thinkverse"
 [[dependencies.extendedslabs]]
 modId="forge"
 mandatory=true
-versionRange="[44.1.0,)"
+versionRange="[46.0.1,)"
 ordering="NONE"
 side="BOTH"
 
 [[dependencies.extendedslabs]]
 modId="minecraft"
 mandatory=true
-versionRange="[1.19.3,)"
+versionRange="[1.20,)"
 ordering="NONE"
 side="BOTH"

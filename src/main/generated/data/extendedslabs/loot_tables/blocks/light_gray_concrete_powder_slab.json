@@ -30,5 +30,6 @@
       ],
       "rolls": 1.0
     }
-  ]
+  ],
+  "random_sequence": "extendedslabs:blocks/light_gray_concrete_powder_slab"
 }

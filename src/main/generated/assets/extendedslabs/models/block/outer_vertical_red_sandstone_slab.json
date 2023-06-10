@@ -1,7 +1,7 @@
 {
   "parent": "extendedslabs:block/outer_vertical_slab",
   "textures": {
-    "bottom": "minecraft:block/red_sandstone_bottom",
+    "bottom": "minecraft:block/red_sandstone_top",
     "side": "minecraft:block/red_sandstone",
     "top": "minecraft:block/red_sandstone_top"
   }

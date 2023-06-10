@@ -4,7 +4,7 @@
       "model": "extendedslabs:block/pink_stained_glass_slab"
     },
     "type=double": {
-      "model": "extendedslabs:block/pink_stained_glass"
+      "model": "minecraft:block/pink_stained_glass"
     },
     "type=top": {
       "model": "extendedslabs:block/pink_stained_glass_slab_top"

@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "render_type": "minecraft:translucent",
+  "textures": {
+    "bottom": "minecraft:block/glass",
+    "side": "minecraft:block/glass",
+    "top": "minecraft:block/glass"
+  }
+}

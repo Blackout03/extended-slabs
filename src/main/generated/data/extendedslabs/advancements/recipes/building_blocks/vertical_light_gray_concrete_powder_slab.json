@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_light_gray_concrete_powder": {
+    "has_item": {
       "conditions": {
         "items": [
           {
@@ -22,7 +22,7 @@
   },
   "requirements": [
     [
-      "has_light_gray_concrete_powder",
+      "has_item",
       "has_the_recipe"
     ]
   ],
@@ -30,5 +30,6 @@
     "recipes": [
       "extendedslabs:vertical_light_gray_concrete_powder_slab"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

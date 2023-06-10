@@ -30,5 +30,6 @@
     "recipes": [
       "extendedslabs:deepslate_brick_vertical_slab_from_deepslate_bricks_stonecutting"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

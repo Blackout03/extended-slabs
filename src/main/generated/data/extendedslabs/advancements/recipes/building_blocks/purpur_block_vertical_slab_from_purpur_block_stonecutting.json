@@ -30,5 +30,6 @@
     "recipes": [
       "extendedslabs:purpur_block_vertical_slab_from_purpur_block_stonecutting"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

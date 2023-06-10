@@ -1,6 +1,8 @@
 {
   "parent": "extendedslabs:block/corner",
   "textures": {
-    "block": "minecraft:block/birch_log"
+    "bottom": "minecraft:block/birch_log",
+    "side": "minecraft:block/birch_log",
+    "top": "minecraft:block/birch_log"
   }
 }

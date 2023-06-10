@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "extendedslabs:white_stained_glass_corner"
+    }
+  ],
+  "result": {
+    "item": "extendedslabs:white_stained_glass_stairs"
+  }
+}

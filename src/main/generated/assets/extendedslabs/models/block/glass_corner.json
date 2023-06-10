@@ -1,0 +1,9 @@
+{
+  "parent": "extendedslabs:block/corner",
+  "render_type": "minecraft:translucent",
+  "textures": {
+    "bottom": "minecraft:block/glass",
+    "side": "minecraft:block/glass",
+    "top": "minecraft:block/glass"
+  }
+}

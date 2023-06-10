@@ -30,5 +30,6 @@
     "recipes": [
       "extendedslabs:brick_vertical_slab_from_bricks_stonecutting"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

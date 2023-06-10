@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "extendedslabs:terracotta_stairs"
+    }
+  ],
+  "result": {
+    "item": "extendedslabs:terracotta_corner"
+  }
+}

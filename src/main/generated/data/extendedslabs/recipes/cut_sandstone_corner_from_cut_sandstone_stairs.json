@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "extendedslabs:cut_sandstone_stairs"
+    }
+  ],
+  "result": {
+    "item": "extendedslabs:cut_sandstone_corner"
+  }
+}

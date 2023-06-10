@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_item": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:waxed_oxidized_cut_copper_stairs"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "extendedslabs:waxed_oxidized_cut_copper_corner_from_waxed_oxidized_cut_copper_stairs"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_item",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "extendedslabs:waxed_oxidized_cut_copper_corner_from_waxed_oxidized_cut_copper_stairs"
+    ]
+  },
+  "sends_telemetry_event": false
+}

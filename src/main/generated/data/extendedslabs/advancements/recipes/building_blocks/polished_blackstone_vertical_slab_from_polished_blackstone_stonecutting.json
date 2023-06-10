@@ -30,5 +30,6 @@
     "recipes": [
       "extendedslabs:polished_blackstone_vertical_slab_from_polished_blackstone_stonecutting"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -1,5 +1,6 @@
 package com.blackout.extendedslabs.util;
 
+import com.blackout.extendedslabs.init.ESPCorners;
 import com.blackout.extendedslabs.init.ESPVerticalSlabs;
 import net.minecraft.world.level.block.Block;
 
@@ -52,5 +53,9 @@ public class CopperStateMap {
 		put(ESPVerticalSlabs.EXPOSED_CUT_COPPER_VERTICAL.get(), ESPVerticalSlabs.WEATHERED_CUT_COPPER_VERTICAL.get(), ESPVerticalSlabs.WAXED_EXPOSED_CUT_COPPER_VERTICAL.get());
 		put(ESPVerticalSlabs.WEATHERED_CUT_COPPER_VERTICAL.get(), ESPVerticalSlabs.OXIDIZED_CUT_COPPER_VERTICAL.get(), ESPVerticalSlabs.WAXED_WEATHERED_CUT_COPPER_VERTICAL.get());
 		put(ESPVerticalSlabs.OXIDIZED_CUT_COPPER_VERTICAL.get(), null, ESPVerticalSlabs.WAXED_OXIDIZED_CUT_COPPER_VERTICAL.get());
+		put(ESPCorners.CUT_COPPER_CORNER.get(), ESPCorners.EXPOSED_CUT_COPPER_CORNER.get(), ESPCorners.WAXED_CUT_COPPER_CORNER.get());
+		put(ESPCorners.EXPOSED_CUT_COPPER_CORNER.get(), ESPCorners.WEATHERED_CUT_COPPER_CORNER.get(), ESPCorners.WAXED_EXPOSED_CUT_COPPER_CORNER.get());
+		put(ESPCorners.WEATHERED_CUT_COPPER_CORNER.get(), ESPCorners.OXIDIZED_CUT_COPPER_CORNER.get(), ESPCorners.WAXED_WEATHERED_CUT_COPPER_CORNER.get());
+		put(ESPCorners.OXIDIZED_CUT_COPPER_CORNER.get(), null, ESPCorners.WAXED_OXIDIZED_CUT_COPPER_CORNER.get());
 	}
 }

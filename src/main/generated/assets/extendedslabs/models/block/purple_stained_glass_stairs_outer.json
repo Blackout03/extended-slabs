@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "render_type": "minecraft:translucent",
+  "textures": {
+    "bottom": "minecraft:block/purple_stained_glass",
+    "side": "minecraft:block/purple_stained_glass",
+    "top": "minecraft:block/purple_stained_glass"
+  }
+}

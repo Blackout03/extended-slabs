@@ -1,10 +1,12 @@
 package com.blackout.extendedslabs.blocks.falling;
 
-import com.blackout.extendedslabs.blocks.VerticalSlabBlock;
+import com.blackout.extendedslabs.blocks.IBlockCharacteristics;
+import com.blackout.extendedslabs.blocks.ESPVerticalSlabBlock;
 import com.blackout.extendedslabs.blocks.path.PathVerticalSlabBlock;
 import com.blackout.extendedslabs.blocks.shapes.VerticalSlabShape;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -28,8 +30,10 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
+import java.util.List;
 
-public class FallingVerticalSlabBlock extends FallingBlock implements SimpleWaterloggedBlock {
+public class FallingVerticalSlabBlock extends FallingBlock implements SimpleWaterloggedBlock, IBlockCharacteristics {
+    private final List<TagKey<Block>> characteristics;
     public Block material;
     public Block materialSlab;
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
@@ -46,11 +50,24 @@ public class FallingVerticalSlabBlock extends FallingBlock implements SimpleWate
     protected static final VoxelShape SOUTH_OUTER_SHAPE = Block.box(8.0D, 0.0D, 8.0D, 16.0D, 16.0D, 16.0D);
     protected static final VoxelShape WEST_OUTER_SHAPE = Block.box(0.0D, 0.0D, 8.0D, 8.0D, 16.0D, 16.0D);
 
-    public FallingVerticalSlabBlock(Block material, Block materialSlab, Properties builder) {
+    public FallingVerticalSlabBlock(List<TagKey<Block>> characteristics, Block material, Block materialSlab, Properties builder) {
         super(builder);
+        this.characteristics = characteristics;
         this.material = material;
         this.materialSlab = materialSlab;
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(SHAPE, VerticalSlabShape.STRAIGHT).setValue(WATERLOGGED, Boolean.FALSE));
+    }
+
+    public FallingVerticalSlabBlock(Block material, Block materialSlab, Properties builder) {
+        this(IBlockCharacteristics.tag(), material, materialSlab, builder);
+        this.material = material;
+        this.materialSlab = materialSlab;
+        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(SHAPE, VerticalSlabShape.STRAIGHT).setValue(WATERLOGGED, Boolean.FALSE));
+    }
+
+    @Override
+    public List<TagKey<Block>> getCharacteristics() {
+        return characteristics;
     }
 
     public Block getMaterial() {
@@ -170,7 +187,7 @@ public class FallingVerticalSlabBlock extends FallingBlock implements SimpleWate
     }
 
     public static boolean isBlockVerticalSlab(BlockState state) {
-        return state.getBlock() instanceof VerticalSlabBlock || state.getBlock() instanceof FallingVerticalSlabBlock || state.getBlock() instanceof PathVerticalSlabBlock;
+        return state.getBlock() instanceof ESPVerticalSlabBlock || state.getBlock() instanceof FallingVerticalSlabBlock || state.getBlock() instanceof PathVerticalSlabBlock;
     }
 
     /**

@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_exposed_cut_copper": {
+    "has_item": {
       "conditions": {
         "items": [
           {
@@ -22,7 +22,7 @@
   },
   "requirements": [
     [
-      "has_exposed_cut_copper",
+      "has_item",
       "has_the_recipe"
     ]
   ],
@@ -30,5 +30,6 @@
     "recipes": [
       "extendedslabs:vertical_exposed_cut_copper_slab"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

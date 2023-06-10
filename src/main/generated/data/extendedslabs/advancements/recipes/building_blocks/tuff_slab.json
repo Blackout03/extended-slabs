@@ -1,13 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_the_recipe": {
-      "conditions": {
-        "recipe": "extendedslabs:tuff_slab"
-      },
-      "trigger": "minecraft:recipe_unlocked"
-    },
-    "has_tuff": {
+    "has_item": {
       "conditions": {
         "items": [
           {
@@ -18,11 +12,17 @@
         ]
       },
       "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "extendedslabs:tuff_slab"
+      },
+      "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_tuff",
+      "has_item",
       "has_the_recipe"
     ]
   ],
@@ -30,5 +30,6 @@
     "recipes": [
       "extendedslabs:tuff_slab"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

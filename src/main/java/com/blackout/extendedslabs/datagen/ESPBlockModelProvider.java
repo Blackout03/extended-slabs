@@ -1,1005 +1,304 @@
 package com.blackout.extendedslabs.datagen;
 
 import com.blackout.extendedslabs.ExtendedSlabs;
+import com.blackout.extendedslabs.blocks.glass.GlassCornerBlock;
+import com.blackout.extendedslabs.blocks.glass.GlassSlabBlock;
+import com.blackout.extendedslabs.blocks.glass.GlassStairBlock;
+import com.blackout.extendedslabs.blocks.glass.GlassVerticalSlabBlock;
+import com.blackout.extendedslabs.init.ESPCorners;
+import com.blackout.extendedslabs.init.ESPSlabs;
+import com.blackout.extendedslabs.init.ESPStairs;
+import com.blackout.extendedslabs.init.ESPVerticalSlabs;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.model.generators.BlockModelProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.registries.RegistryObject;
 
 public class ESPBlockModelProvider extends BlockModelProvider {
 
-    public ESPBlockModelProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
-        super(output, ExtendedSlabs.MODID, existingFileHelper);
-    }
+	public ESPBlockModelProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
+		super(output, ExtendedSlabs.MODID, existingFileHelper);
+	}
 
-    @Override
-    protected void registerModels() {
-        // TODO Automate the data generators
-        this.cubeAllTranslucent("glass", mcRL("glass"));
-        this.cubeAllTranslucent("tinted_glass", mcRL("tinted_glass"));
-        this.cubeAllTranslucent("white_stained_glass", mcRL("white_stained_glass"));
-        this.cubeAllTranslucent("orange_stained_glass", mcRL("orange_stained_glass"));
-        this.cubeAllTranslucent("magenta_stained_glass", mcRL("magenta_stained_glass"));
-        this.cubeAllTranslucent("light_blue_stained_glass", mcRL("light_blue_stained_glass"));
-        this.cubeAllTranslucent("yellow_stained_glass", mcRL("yellow_stained_glass"));
-        this.cubeAllTranslucent("lime_stained_glass", mcRL("lime_stained_glass"));
-        this.cubeAllTranslucent("pink_stained_glass", mcRL("pink_stained_glass"));
-        this.cubeAllTranslucent("gray_stained_glass", mcRL("gray_stained_glass"));
-        this.cubeAllTranslucent("light_gray_stained_glass", mcRL("light_gray_stained_glass"));
-        this.cubeAllTranslucent("cyan_stained_glass", mcRL("cyan_stained_glass"));
-        this.cubeAllTranslucent("purple_stained_glass", mcRL("purple_stained_glass"));
-        this.cubeAllTranslucent("blue_stained_glass", mcRL("blue_stained_glass"));
-        this.cubeAllTranslucent("brown_stained_glass", mcRL("brown_stained_glass"));
-        this.cubeAllTranslucent("green_stained_glass", mcRL("green_stained_glass"));
-        this.cubeAllTranslucent("red_stained_glass", mcRL("red_stained_glass"));
-        this.cubeAllTranslucent("black_stained_glass", mcRL("black_stained_glass"));
-        this.slab("dirt_slab", mcRL("dirt"), mcRL("dirt"), mcRL("dirt"));
-        this.slabTop("dirt_slab", mcRL("dirt"), mcRL("dirt"), mcRL("dirt"));
-        this.slab("coarse_dirt_slab", mcRL("coarse_dirt"), mcRL("coarse_dirt"), mcRL("coarse_dirt"));
-        this.slabTop("coarse_dirt_slab", mcRL("coarse_dirt"), mcRL("coarse_dirt"), mcRL("coarse_dirt"));
-        this.slab("rooted_dirt_slab", mcRL("rooted_dirt"), mcRL("rooted_dirt"), mcRL("rooted_dirt"));
-        this.slabTop("rooted_dirt_slab", mcRL("rooted_dirt"), mcRL("rooted_dirt"), mcRL("rooted_dirt"));
-        this.slab("tuff_slab", mcRL("tuff"), mcRL("tuff"), mcRL("tuff"));
-        this.slabTop("tuff_slab", mcRL("tuff"), mcRL("tuff"), mcRL("tuff"));
-        this.slab("calcite_slab", mcRL("calcite"), mcRL("calcite"), mcRL("calcite"));
-        this.slabTop("calcite_slab", mcRL("calcite"), mcRL("calcite"), mcRL("calcite"));
-        this.slab("dripstone_slab", mcRL("dripstone_block"), mcRL("dripstone_block"), mcRL("dripstone_block"));
-        this.slabTop("dripstone_slab", mcRL("dripstone_block"), mcRL("dripstone_block"), mcRL("dripstone_block"));
-        this.slab("mud_slab", mcRL("mud"), mcRL("mud"), mcRL("mud"));
-        this.slabTop("mud_slab", mcRL("mud"), mcRL("mud"), mcRL("mud"));
-        this.slab("packed_mud_slab", mcRL("packed_mud"), mcRL("packed_mud"), mcRL("packed_mud"));
-        this.slabTop("packed_mud_slab", mcRL("packed_mud"), mcRL("packed_mud"), mcRL("packed_mud"));
-        this.slab("sand_slab", mcRL("sand"), mcRL("sand"), mcRL("sand"));
-        this.slabTop("sand_slab", mcRL("sand"), mcRL("sand"), mcRL("sand"));
-        this.slab("red_sand_slab", mcRL("red_sand"), mcRL("red_sand"), mcRL("red_sand"));
-        this.slabTop("red_sand_slab", mcRL("red_sand"), mcRL("red_sand"), mcRL("red_sand"));
-        this.slab("gravel_slab", mcRL("gravel"), mcRL("gravel"), mcRL("gravel"));
-        this.slabTop("gravel_slab", mcRL("gravel"), mcRL("gravel"), mcRL("gravel"));
-        this.slab("oak_wood_slab", mcRL("oak_log"), mcRL("oak_log"), mcRL("oak_log"));
-        this.slabTop("oak_wood_slab", mcRL("oak_log"), mcRL("oak_log"), mcRL("oak_log"));
-        this.slab("spruce_wood_slab", mcRL("spruce_log"), mcRL("spruce_log"), mcRL("spruce_log"));
-        this.slabTop("spruce_wood_slab", mcRL("spruce_log"), mcRL("spruce_log"), mcRL("spruce_log"));
-        this.slab("birch_wood_slab", mcRL("birch_log"), mcRL("birch_log"), mcRL("birch_log"));
-        this.slabTop("birch_wood_slab", mcRL("birch_log"), mcRL("birch_log"), mcRL("birch_log"));
-        this.slab("jungle_wood_slab", mcRL("jungle_log"), mcRL("jungle_log"), mcRL("jungle_log"));
-        this.slabTop("jungle_wood_slab", mcRL("jungle_log"), mcRL("jungle_log"), mcRL("jungle_log"));
-        this.slab("acacia_wood_slab", mcRL("acacia_log"), mcRL("acacia_log"), mcRL("acacia_log"));
-        this.slabTop("acacia_wood_slab", mcRL("acacia_log"), mcRL("acacia_log"), mcRL("acacia_log"));
-        this.slab("dark_oak_wood_slab", mcRL("dark_oak_log"), mcRL("dark_oak_log"), mcRL("dark_oak_log"));
-        this.slabTop("dark_oak_wood_slab", mcRL("dark_oak_log"), mcRL("dark_oak_log"), mcRL("dark_oak_log"));
-        this.slab("mangrove_wood_slab", mcRL("mangrove_log"), mcRL("mangrove_log"), mcRL("mangrove_log"));
-        this.slabTop("mangrove_wood_slab", mcRL("mangrove_log"), mcRL("mangrove_log"), mcRL("mangrove_log"));
-        this.slab("cherry_wood_slab", mcRL("cherry_log"), mcRL("cherry_log"), mcRL("cherry_log"));
-        this.slabTop("cherry_wood_slab", mcRL("cherry_log"), mcRL("cherry_log"), mcRL("cherry_log"));
-        this.slab("crimson_hyphae_slab", mcRL("crimson_stem"), mcRL("crimson_stem"), mcRL("crimson_stem"));
-        this.slabTop("crimson_hyphae_slab", mcRL("crimson_stem"), mcRL("crimson_stem"), mcRL("crimson_stem"));
-        this.slab("warped_hyphae_slab", mcRL("warped_stem"), mcRL("warped_stem"), mcRL("warped_stem"));
-        this.slabTop("warped_hyphae_slab", mcRL("warped_stem"), mcRL("warped_stem"), mcRL("warped_stem"));
-        this.slab("white_wool_slab", mcRL("white_wool"), mcRL("white_wool"), mcRL("white_wool"));
-        this.slabTop("white_wool_slab", mcRL("white_wool"), mcRL("white_wool"), mcRL("white_wool"));
-        this.slab("orange_wool_slab", mcRL("orange_wool"), mcRL("orange_wool"), mcRL("orange_wool"));
-        this.slabTop("orange_wool_slab", mcRL("orange_wool"), mcRL("orange_wool"), mcRL("orange_wool"));
-        this.slab("magenta_wool_slab", mcRL("magenta_wool"), mcRL("magenta_wool"), mcRL("magenta_wool"));
-        this.slabTop("magenta_wool_slab", mcRL("magenta_wool"), mcRL("magenta_wool"), mcRL("magenta_wool"));
-        this.slab("light_blue_wool_slab", mcRL("light_blue_wool"), mcRL("light_blue_wool"), mcRL("light_blue_wool"));
-        this.slabTop("light_blue_wool_slab", mcRL("light_blue_wool"), mcRL("light_blue_wool"), mcRL("light_blue_wool"));
-        this.slab("yellow_wool_slab", mcRL("yellow_wool"), mcRL("yellow_wool"), mcRL("yellow_wool"));
-        this.slabTop("yellow_wool_slab", mcRL("yellow_wool"), mcRL("yellow_wool"), mcRL("yellow_wool"));
-        this.slab("lime_wool_slab", mcRL("lime_wool"), mcRL("lime_wool"), mcRL("lime_wool"));
-        this.slabTop("lime_wool_slab", mcRL("lime_wool"), mcRL("lime_wool"), mcRL("lime_wool"));
-        this.slab("pink_wool_slab", mcRL("pink_wool"), mcRL("pink_wool"), mcRL("pink_wool"));
-        this.slabTop("pink_wool_slab", mcRL("pink_wool"), mcRL("pink_wool"), mcRL("pink_wool"));
-        this.slab("gray_wool_slab", mcRL("gray_wool"), mcRL("gray_wool"), mcRL("gray_wool"));
-        this.slabTop("gray_wool_slab", mcRL("gray_wool"), mcRL("gray_wool"), mcRL("gray_wool"));
-        this.slab("light_gray_wool_slab", mcRL("light_gray_wool"), mcRL("light_gray_wool"), mcRL("light_gray_wool"));
-        this.slabTop("light_gray_wool_slab", mcRL("light_gray_wool"), mcRL("light_gray_wool"), mcRL("light_gray_wool"));
-        this.slab("cyan_wool_slab", mcRL("cyan_wool"), mcRL("cyan_wool"), mcRL("cyan_wool"));
-        this.slabTop("cyan_wool_slab", mcRL("cyan_wool"), mcRL("cyan_wool"), mcRL("cyan_wool"));
-        this.slab("purple_wool_slab", mcRL("purple_wool"), mcRL("purple_wool"), mcRL("purple_wool"));
-        this.slabTop("purple_wool_slab", mcRL("purple_wool"), mcRL("purple_wool"), mcRL("purple_wool"));
-        this.slab("blue_wool_slab", mcRL("blue_wool"), mcRL("blue_wool"), mcRL("blue_wool"));
-        this.slabTop("blue_wool_slab", mcRL("blue_wool"), mcRL("blue_wool"), mcRL("blue_wool"));
-        this.slab("brown_wool_slab", mcRL("brown_wool"), mcRL("brown_wool"), mcRL("brown_wool"));
-        this.slabTop("brown_wool_slab", mcRL("brown_wool"), mcRL("brown_wool"), mcRL("brown_wool"));
-        this.slab("green_wool_slab", mcRL("green_wool"), mcRL("green_wool"), mcRL("green_wool"));
-        this.slabTop("green_wool_slab", mcRL("green_wool"), mcRL("green_wool"), mcRL("green_wool"));
-        this.slab("red_wool_slab", mcRL("red_wool"), mcRL("red_wool"), mcRL("red_wool"));
-        this.slabTop("red_wool_slab", mcRL("red_wool"), mcRL("red_wool"), mcRL("red_wool"));
-        this.slab("black_wool_slab", mcRL("black_wool"), mcRL("black_wool"), mcRL("black_wool"));
-        this.slabTop("black_wool_slab", mcRL("black_wool"), mcRL("black_wool"), mcRL("black_wool"));
-        this.slab("white_concrete_powder_slab", mcRL("white_concrete_powder"), mcRL("white_concrete_powder"), mcRL("white_concrete_powder"));
-        this.slabTop("white_concrete_powder_slab", mcRL("white_concrete_powder"), mcRL("white_concrete_powder"), mcRL("white_concrete_powder"));
-        this.slab("orange_concrete_powder_slab", mcRL("orange_concrete_powder"), mcRL("orange_concrete_powder"), mcRL("orange_concrete_powder"));
-        this.slabTop("orange_concrete_powder_slab", mcRL("orange_concrete_powder"), mcRL("orange_concrete_powder"), mcRL("orange_concrete_powder"));
-        this.slab("magenta_concrete_powder_slab", mcRL("magenta_concrete_powder"), mcRL("magenta_concrete_powder"), mcRL("magenta_concrete_powder"));
-        this.slabTop("magenta_concrete_powder_slab", mcRL("magenta_concrete_powder"), mcRL("magenta_concrete_powder"), mcRL("magenta_concrete_powder"));
-        this.slab("light_blue_concrete_powder_slab", mcRL("light_blue_concrete_powder"), mcRL("light_blue_concrete_powder"), mcRL("light_blue_concrete_powder"));
-        this.slabTop("light_blue_concrete_powder_slab", mcRL("light_blue_concrete_powder"), mcRL("light_blue_concrete_powder"), mcRL("light_blue_concrete_powder"));
-        this.slab("yellow_concrete_powder_slab", mcRL("yellow_concrete_powder"), mcRL("yellow_concrete_powder"), mcRL("yellow_concrete_powder"));
-        this.slabTop("yellow_concrete_powder_slab", mcRL("yellow_concrete_powder"), mcRL("yellow_concrete_powder"), mcRL("yellow_concrete_powder"));
-        this.slab("lime_concrete_powder_slab", mcRL("lime_concrete_powder"), mcRL("lime_concrete_powder"), mcRL("lime_concrete_powder"));
-        this.slabTop("lime_concrete_powder_slab", mcRL("lime_concrete_powder"), mcRL("lime_concrete_powder"), mcRL("lime_concrete_powder"));
-        this.slab("pink_concrete_powder_slab", mcRL("pink_concrete_powder"), mcRL("pink_concrete_powder"), mcRL("pink_concrete_powder"));
-        this.slabTop("pink_concrete_powder_slab", mcRL("pink_concrete_powder"), mcRL("pink_concrete_powder"), mcRL("pink_concrete_powder"));
-        this.slab("gray_concrete_powder_slab", mcRL("gray_concrete_powder"), mcRL("gray_concrete_powder"), mcRL("gray_concrete_powder"));
-        this.slabTop("gray_concrete_powder_slab", mcRL("gray_concrete_powder"), mcRL("gray_concrete_powder"), mcRL("gray_concrete_powder"));
-        this.slab("light_gray_concrete_powder_slab", mcRL("light_gray_concrete_powder"), mcRL("light_gray_concrete_powder"), mcRL("light_gray_concrete_powder"));
-        this.slabTop("light_gray_concrete_powder_slab", mcRL("light_gray_concrete_powder"), mcRL("light_gray_concrete_powder"), mcRL("light_gray_concrete_powder"));
-        this.slab("cyan_concrete_powder_slab", mcRL("cyan_concrete_powder"), mcRL("cyan_concrete_powder"), mcRL("cyan_concrete_powder"));
-        this.slabTop("cyan_concrete_powder_slab", mcRL("cyan_concrete_powder"), mcRL("cyan_concrete_powder"), mcRL("cyan_concrete_powder"));
-        this.slab("purple_concrete_powder_slab", mcRL("purple_concrete_powder"), mcRL("purple_concrete_powder"), mcRL("purple_concrete_powder"));
-        this.slabTop("purple_concrete_powder_slab", mcRL("purple_concrete_powder"), mcRL("purple_concrete_powder"), mcRL("purple_concrete_powder"));
-        this.slab("blue_concrete_powder_slab", mcRL("blue_concrete_powder"), mcRL("blue_concrete_powder"), mcRL("blue_concrete_powder"));
-        this.slabTop("blue_concrete_powder_slab", mcRL("blue_concrete_powder"), mcRL("blue_concrete_powder"), mcRL("blue_concrete_powder"));
-        this.slab("brown_concrete_powder_slab", mcRL("brown_concrete_powder"), mcRL("brown_concrete_powder"), mcRL("brown_concrete_powder"));
-        this.slabTop("brown_concrete_powder_slab", mcRL("brown_concrete_powder"), mcRL("brown_concrete_powder"), mcRL("brown_concrete_powder"));
-        this.slab("green_concrete_powder_slab", mcRL("green_concrete_powder"), mcRL("green_concrete_powder"), mcRL("green_concrete_powder"));
-        this.slabTop("green_concrete_powder_slab", mcRL("green_concrete_powder"), mcRL("green_concrete_powder"), mcRL("green_concrete_powder"));
-        this.slab("red_concrete_powder_slab", mcRL("red_concrete_powder"), mcRL("red_concrete_powder"), mcRL("red_concrete_powder"));
-        this.slabTop("red_concrete_powder_slab", mcRL("red_concrete_powder"), mcRL("red_concrete_powder"), mcRL("red_concrete_powder"));
-        this.slab("black_concrete_powder_slab", mcRL("black_concrete_powder"), mcRL("black_concrete_powder"), mcRL("black_concrete_powder"));
-        this.slabTop("black_concrete_powder_slab", mcRL("black_concrete_powder"), mcRL("black_concrete_powder"), mcRL("black_concrete_powder"));
-        this.slab("white_concrete_slab", mcRL("white_concrete"), mcRL("white_concrete"), mcRL("white_concrete"));
-        this.slabTop("white_concrete_slab", mcRL("white_concrete"), mcRL("white_concrete"), mcRL("white_concrete"));
-        this.slab("orange_concrete_slab", mcRL("orange_concrete"), mcRL("orange_concrete"), mcRL("orange_concrete"));
-        this.slabTop("orange_concrete_slab", mcRL("orange_concrete"), mcRL("orange_concrete"), mcRL("orange_concrete"));
-        this.slab("magenta_concrete_slab", mcRL("magenta_concrete"), mcRL("magenta_concrete"), mcRL("magenta_concrete"));
-        this.slabTop("magenta_concrete_slab", mcRL("magenta_concrete"), mcRL("magenta_concrete"), mcRL("magenta_concrete"));
-        this.slab("light_blue_concrete_slab", mcRL("light_blue_concrete"), mcRL("light_blue_concrete"), mcRL("light_blue_concrete"));
-        this.slabTop("light_blue_concrete_slab", mcRL("light_blue_concrete"), mcRL("light_blue_concrete"), mcRL("light_blue_concrete"));
-        this.slab("yellow_concrete_slab", mcRL("yellow_concrete"), mcRL("yellow_concrete"), mcRL("yellow_concrete"));
-        this.slabTop("yellow_concrete_slab", mcRL("yellow_concrete"), mcRL("yellow_concrete"), mcRL("yellow_concrete"));
-        this.slab("lime_concrete_slab", mcRL("lime_concrete"), mcRL("lime_concrete"), mcRL("lime_concrete"));
-        this.slabTop("lime_concrete_slab", mcRL("lime_concrete"), mcRL("lime_concrete"), mcRL("lime_concrete"));
-        this.slab("pink_concrete_slab", mcRL("pink_concrete"), mcRL("pink_concrete"), mcRL("pink_concrete"));
-        this.slabTop("pink_concrete_slab", mcRL("pink_concrete"), mcRL("pink_concrete"), mcRL("pink_concrete"));
-        this.slab("gray_concrete_slab", mcRL("gray_concrete"), mcRL("gray_concrete"), mcRL("gray_concrete"));
-        this.slabTop("gray_concrete_slab", mcRL("gray_concrete"), mcRL("gray_concrete"), mcRL("gray_concrete"));
-        this.slab("light_gray_concrete_slab", mcRL("light_gray_concrete"), mcRL("light_gray_concrete"), mcRL("light_gray_concrete"));
-        this.slabTop("light_gray_concrete_slab", mcRL("light_gray_concrete"), mcRL("light_gray_concrete"), mcRL("light_gray_concrete"));
-        this.slab("cyan_concrete_slab", mcRL("cyan_concrete"), mcRL("cyan_concrete"), mcRL("cyan_concrete"));
-        this.slabTop("cyan_concrete_slab", mcRL("cyan_concrete"), mcRL("cyan_concrete"), mcRL("cyan_concrete"));
-        this.slab("purple_concrete_slab", mcRL("purple_concrete"), mcRL("purple_concrete"), mcRL("purple_concrete"));
-        this.slabTop("purple_concrete_slab", mcRL("purple_concrete"), mcRL("purple_concrete"), mcRL("purple_concrete"));
-        this.slab("blue_concrete_slab", mcRL("blue_concrete"), mcRL("blue_concrete"), mcRL("blue_concrete"));
-        this.slabTop("blue_concrete_slab", mcRL("blue_concrete"), mcRL("blue_concrete"), mcRL("blue_concrete"));
-        this.slab("brown_concrete_slab", mcRL("brown_concrete"), mcRL("brown_concrete"), mcRL("brown_concrete"));
-        this.slabTop("brown_concrete_slab", mcRL("brown_concrete"), mcRL("brown_concrete"), mcRL("brown_concrete"));
-        this.slab("green_concrete_slab", mcRL("green_concrete"), mcRL("green_concrete"), mcRL("green_concrete"));
-        this.slabTop("green_concrete_slab", mcRL("green_concrete"), mcRL("green_concrete"), mcRL("green_concrete"));
-        this.slab("red_concrete_slab", mcRL("red_concrete"), mcRL("red_concrete"), mcRL("red_concrete"));
-        this.slabTop("red_concrete_slab", mcRL("red_concrete"), mcRL("red_concrete"), mcRL("red_concrete"));
-        this.slab("black_concrete_slab", mcRL("black_concrete"), mcRL("black_concrete"), mcRL("black_concrete"));
-        this.slabTop("black_concrete_slab", mcRL("black_concrete"), mcRL("black_concrete"), mcRL("black_concrete"));
-        this.slab("clay_slab", mcRL("clay"), mcRL("clay"), mcRL("clay"));
-        this.slabTop("clay_slab", mcRL("clay"), mcRL("clay"), mcRL("clay"));
-        this.slab("terracotta_slab", mcRL("terracotta"), mcRL("terracotta"), mcRL("terracotta"));
-        this.slabTop("terracotta_slab", mcRL("terracotta"), mcRL("terracotta"), mcRL("terracotta"));
-        this.slab("white_terracotta_slab", mcRL("white_terracotta"), mcRL("white_terracotta"), mcRL("white_terracotta"));
-        this.slabTop("white_terracotta_slab", mcRL("white_terracotta"), mcRL("white_terracotta"), mcRL("white_terracotta"));
-        this.slab("orange_terracotta_slab", mcRL("orange_terracotta"), mcRL("orange_terracotta"), mcRL("orange_terracotta"));
-        this.slabTop("orange_terracotta_slab", mcRL("orange_terracotta"), mcRL("orange_terracotta"), mcRL("orange_terracotta"));
-        this.slab("magenta_terracotta_slab", mcRL("magenta_terracotta"), mcRL("magenta_terracotta"), mcRL("magenta_terracotta"));
-        this.slabTop("magenta_terracotta_slab", mcRL("magenta_terracotta"), mcRL("magenta_terracotta"), mcRL("magenta_terracotta"));
-        this.slab("light_blue_terracotta_slab", mcRL("light_blue_terracotta"), mcRL("light_blue_terracotta"), mcRL("light_blue_terracotta"));
-        this.slabTop("light_blue_terracotta_slab", mcRL("light_blue_terracotta"), mcRL("light_blue_terracotta"), mcRL("light_blue_terracotta"));
-        this.slab("yellow_terracotta_slab", mcRL("yellow_terracotta"), mcRL("yellow_terracotta"), mcRL("yellow_terracotta"));
-        this.slabTop("yellow_terracotta_slab", mcRL("yellow_terracotta"), mcRL("yellow_terracotta"), mcRL("yellow_terracotta"));
-        this.slab("lime_terracotta_slab", mcRL("lime_terracotta"), mcRL("lime_terracotta"), mcRL("lime_terracotta"));
-        this.slabTop("lime_terracotta_slab", mcRL("lime_terracotta"), mcRL("lime_terracotta"), mcRL("lime_terracotta"));
-        this.slab("pink_terracotta_slab", mcRL("pink_terracotta"), mcRL("pink_terracotta"), mcRL("pink_terracotta"));
-        this.slabTop("pink_terracotta_slab", mcRL("pink_terracotta"), mcRL("pink_terracotta"), mcRL("pink_terracotta"));
-        this.slab("gray_terracotta_slab", mcRL("gray_terracotta"), mcRL("gray_terracotta"), mcRL("gray_terracotta"));
-        this.slabTop("gray_terracotta_slab", mcRL("gray_terracotta"), mcRL("gray_terracotta"), mcRL("gray_terracotta"));
-        this.slab("light_gray_terracotta_slab", mcRL("light_gray_terracotta"), mcRL("light_gray_terracotta"), mcRL("light_gray_terracotta"));
-        this.slabTop("light_gray_terracotta_slab", mcRL("light_gray_terracotta"), mcRL("light_gray_terracotta"), mcRL("light_gray_terracotta"));
-        this.slab("cyan_terracotta_slab", mcRL("cyan_terracotta"), mcRL("cyan_terracotta"), mcRL("cyan_terracotta"));
-        this.slabTop("cyan_terracotta_slab", mcRL("cyan_terracotta"), mcRL("cyan_terracotta"), mcRL("cyan_terracotta"));
-        this.slab("purple_terracotta_slab", mcRL("purple_terracotta"), mcRL("purple_terracotta"), mcRL("purple_terracotta"));
-        this.slabTop("purple_terracotta_slab", mcRL("purple_terracotta"), mcRL("purple_terracotta"), mcRL("purple_terracotta"));
-        this.slab("blue_terracotta_slab", mcRL("blue_terracotta"), mcRL("blue_terracotta"), mcRL("blue_terracotta"));
-        this.slabTop("blue_terracotta_slab", mcRL("blue_terracotta"), mcRL("blue_terracotta"), mcRL("blue_terracotta"));
-        this.slab("brown_terracotta_slab", mcRL("brown_terracotta"), mcRL("brown_terracotta"), mcRL("brown_terracotta"));
-        this.slabTop("brown_terracotta_slab", mcRL("brown_terracotta"), mcRL("brown_terracotta"), mcRL("brown_terracotta"));
-        this.slab("green_terracotta_slab", mcRL("green_terracotta"), mcRL("green_terracotta"), mcRL("green_terracotta"));
-        this.slabTop("green_terracotta_slab", mcRL("green_terracotta"), mcRL("green_terracotta"), mcRL("green_terracotta"));
-        this.slab("red_terracotta_slab", mcRL("red_terracotta"), mcRL("red_terracotta"), mcRL("red_terracotta"));
-        this.slabTop("red_terracotta_slab", mcRL("red_terracotta"), mcRL("red_terracotta"), mcRL("red_terracotta"));
-        this.slab("black_terracotta_slab", mcRL("black_terracotta"), mcRL("black_terracotta"), mcRL("black_terracotta"));
-        this.slabTop("black_terracotta_slab", mcRL("black_terracotta"), mcRL("black_terracotta"), mcRL("black_terracotta"));
-        this.slab("white_glazed_terracotta_slab", mcRL("white_glazed_terracotta"), mcRL("white_glazed_terracotta"), mcRL("white_glazed_terracotta"));
-        this.slabTop("white_glazed_terracotta_slab", mcRL("white_glazed_terracotta"), mcRL("white_glazed_terracotta"), mcRL("white_glazed_terracotta"));
-        this.slab("orange_glazed_terracotta_slab", mcRL("orange_glazed_terracotta"), mcRL("orange_glazed_terracotta"), mcRL("orange_glazed_terracotta"));
-        this.slabTop("orange_glazed_terracotta_slab", mcRL("orange_glazed_terracotta"), mcRL("orange_glazed_terracotta"), mcRL("orange_glazed_terracotta"));
-        this.slab("magenta_glazed_terracotta_slab", mcRL("magenta_glazed_terracotta"), mcRL("magenta_glazed_terracotta"), mcRL("magenta_glazed_terracotta"));
-        this.slabTop("magenta_glazed_terracotta_slab", mcRL("magenta_glazed_terracotta"), mcRL("magenta_glazed_terracotta"), mcRL("magenta_glazed_terracotta"));
-        this.slab("light_blue_glazed_terracotta_slab", mcRL("light_blue_glazed_terracotta"), mcRL("light_blue_glazed_terracotta"), mcRL("light_blue_glazed_terracotta"));
-        this.slabTop("light_blue_glazed_terracotta_slab", mcRL("light_blue_glazed_terracotta"), mcRL("light_blue_glazed_terracotta"), mcRL("light_blue_glazed_terracotta"));
-        this.slab("yellow_glazed_terracotta_slab", mcRL("yellow_glazed_terracotta"), mcRL("yellow_glazed_terracotta"), mcRL("yellow_glazed_terracotta"));
-        this.slabTop("yellow_glazed_terracotta_slab", mcRL("yellow_glazed_terracotta"), mcRL("yellow_glazed_terracotta"), mcRL("yellow_glazed_terracotta"));
-        this.slab("lime_glazed_terracotta_slab", mcRL("lime_glazed_terracotta"), mcRL("lime_glazed_terracotta"), mcRL("lime_glazed_terracotta"));
-        this.slabTop("lime_glazed_terracotta_slab", mcRL("lime_glazed_terracotta"), mcRL("lime_glazed_terracotta"), mcRL("lime_glazed_terracotta"));
-        this.slab("pink_glazed_terracotta_slab", mcRL("pink_glazed_terracotta"), mcRL("pink_glazed_terracotta"), mcRL("pink_glazed_terracotta"));
-        this.slabTop("pink_glazed_terracotta_slab", mcRL("pink_glazed_terracotta"), mcRL("pink_glazed_terracotta"), mcRL("pink_glazed_terracotta"));
-        this.slab("gray_glazed_terracotta_slab", mcRL("gray_glazed_terracotta"), mcRL("gray_glazed_terracotta"), mcRL("gray_glazed_terracotta"));
-        this.slabTop("gray_glazed_terracotta_slab", mcRL("gray_glazed_terracotta"), mcRL("gray_glazed_terracotta"), mcRL("gray_glazed_terracotta"));
-        this.slab("light_gray_glazed_terracotta_slab", mcRL("light_gray_glazed_terracotta"), mcRL("light_gray_glazed_terracotta"), mcRL("light_gray_glazed_terracotta"));
-        this.slabTop("light_gray_glazed_terracotta_slab", mcRL("light_gray_glazed_terracotta"), mcRL("light_gray_glazed_terracotta"), mcRL("light_gray_glazed_terracotta"));
-        this.slab("cyan_glazed_terracotta_slab", mcRL("cyan_glazed_terracotta"), mcRL("cyan_glazed_terracotta"), mcRL("cyan_glazed_terracotta"));
-        this.slabTop("cyan_glazed_terracotta_slab", mcRL("cyan_glazed_terracotta"), mcRL("cyan_glazed_terracotta"), mcRL("cyan_glazed_terracotta"));
-        this.slab("purple_glazed_terracotta_slab", mcRL("purple_glazed_terracotta"), mcRL("purple_glazed_terracotta"), mcRL("purple_glazed_terracotta"));
-        this.slabTop("purple_glazed_terracotta_slab", mcRL("purple_glazed_terracotta"), mcRL("purple_glazed_terracotta"), mcRL("purple_glazed_terracotta"));
-        this.slab("blue_glazed_terracotta_slab", mcRL("blue_glazed_terracotta"), mcRL("blue_glazed_terracotta"), mcRL("blue_glazed_terracotta"));
-        this.slabTop("blue_glazed_terracotta_slab", mcRL("blue_glazed_terracotta"), mcRL("blue_glazed_terracotta"), mcRL("blue_glazed_terracotta"));
-        this.slab("brown_glazed_terracotta_slab", mcRL("brown_glazed_terracotta"), mcRL("brown_glazed_terracotta"), mcRL("brown_glazed_terracotta"));
-        this.slabTop("brown_glazed_terracotta_slab", mcRL("brown_glazed_terracotta"), mcRL("brown_glazed_terracotta"), mcRL("brown_glazed_terracotta"));
-        this.slab("green_glazed_terracotta_slab", mcRL("green_glazed_terracotta"), mcRL("green_glazed_terracotta"), mcRL("green_glazed_terracotta"));
-        this.slabTop("green_glazed_terracotta_slab", mcRL("green_glazed_terracotta"), mcRL("green_glazed_terracotta"), mcRL("green_glazed_terracotta"));
-        this.slab("red_glazed_terracotta_slab", mcRL("red_glazed_terracotta"), mcRL("red_glazed_terracotta"), mcRL("red_glazed_terracotta"));
-        this.slabTop("red_glazed_terracotta_slab", mcRL("red_glazed_terracotta"), mcRL("red_glazed_terracotta"), mcRL("red_glazed_terracotta"));
-        this.slab("black_glazed_terracotta_slab", mcRL("black_glazed_terracotta"), mcRL("black_glazed_terracotta"), mcRL("black_glazed_terracotta"));
-        this.slabTop("black_glazed_terracotta_slab", mcRL("black_glazed_terracotta"), mcRL("black_glazed_terracotta"), mcRL("black_glazed_terracotta"));
-        this.slabTranslucent("glass_slab", mcRL("glass"), mcRL("glass"), mcRL("glass"));
-        this.slabTopTranslucent("glass_slab", mcRL("glass"), mcRL("glass"), mcRL("glass"));
-        this.slabTranslucent("tinted_glass_slab", mcRL("tinted_glass"), mcRL("tinted_glass"), mcRL("tinted_glass"));
-        this.slabTopTranslucent("tinted_glass_slab", mcRL("tinted_glass"), mcRL("tinted_glass"), mcRL("tinted_glass"));
-        this.slabTranslucent("white_stained_glass_slab", mcRL("white_stained_glass"), mcRL("white_stained_glass"), mcRL("white_stained_glass"));
-        this.slabTopTranslucent("white_stained_glass_slab", mcRL("white_stained_glass"), mcRL("white_stained_glass"), mcRL("white_stained_glass"));
-        this.slabTranslucent("orange_stained_glass_slab", mcRL("orange_stained_glass"), mcRL("orange_stained_glass"), mcRL("orange_stained_glass"));
-        this.slabTopTranslucent("orange_stained_glass_slab", mcRL("orange_stained_glass"), mcRL("orange_stained_glass"), mcRL("orange_stained_glass"));
-        this.slabTranslucent("magenta_stained_glass_slab", mcRL("magenta_stained_glass"), mcRL("magenta_stained_glass"), mcRL("magenta_stained_glass"));
-        this.slabTopTranslucent("magenta_stained_glass_slab", mcRL("magenta_stained_glass"), mcRL("magenta_stained_glass"), mcRL("magenta_stained_glass"));
-        this.slabTranslucent("light_blue_stained_glass_slab", mcRL("light_blue_stained_glass"), mcRL("light_blue_stained_glass"), mcRL("light_blue_stained_glass"));
-        this.slabTopTranslucent("light_blue_stained_glass_slab", mcRL("light_blue_stained_glass"), mcRL("light_blue_stained_glass"), mcRL("light_blue_stained_glass"));
-        this.slabTranslucent("yellow_stained_glass_slab", mcRL("yellow_stained_glass"), mcRL("yellow_stained_glass"), mcRL("yellow_stained_glass"));
-        this.slabTopTranslucent("yellow_stained_glass_slab", mcRL("yellow_stained_glass"), mcRL("yellow_stained_glass"), mcRL("yellow_stained_glass"));
-        this.slabTranslucent("lime_stained_glass_slab", mcRL("lime_stained_glass"), mcRL("lime_stained_glass"), mcRL("lime_stained_glass"));
-        this.slabTopTranslucent("lime_stained_glass_slab", mcRL("lime_stained_glass"), mcRL("lime_stained_glass"), mcRL("lime_stained_glass"));
-        this.slabTranslucent("pink_stained_glass_slab", mcRL("pink_stained_glass"), mcRL("pink_stained_glass"), mcRL("pink_stained_glass"));
-        this.slabTopTranslucent("pink_stained_glass_slab", mcRL("pink_stained_glass"), mcRL("pink_stained_glass"), mcRL("pink_stained_glass"));
-        this.slabTranslucent("gray_stained_glass_slab", mcRL("gray_stained_glass"), mcRL("gray_stained_glass"), mcRL("gray_stained_glass"));
-        this.slabTopTranslucent("gray_stained_glass_slab", mcRL("gray_stained_glass"), mcRL("gray_stained_glass"), mcRL("gray_stained_glass"));
-        this.slabTranslucent("light_gray_stained_glass_slab", mcRL("light_gray_stained_glass"), mcRL("light_gray_stained_glass"), mcRL("light_gray_stained_glass"));
-        this.slabTopTranslucent("light_gray_stained_glass_slab", mcRL("light_gray_stained_glass"), mcRL("light_gray_stained_glass"), mcRL("light_gray_stained_glass"));
-        this.slabTranslucent("cyan_stained_glass_slab", mcRL("cyan_stained_glass"), mcRL("cyan_stained_glass"), mcRL("cyan_stained_glass"));
-        this.slabTopTranslucent("cyan_stained_glass_slab", mcRL("cyan_stained_glass"), mcRL("cyan_stained_glass"), mcRL("cyan_stained_glass"));
-        this.slabTranslucent("purple_stained_glass_slab", mcRL("purple_stained_glass"), mcRL("purple_stained_glass"), mcRL("purple_stained_glass"));
-        this.slabTopTranslucent("purple_stained_glass_slab", mcRL("purple_stained_glass"), mcRL("purple_stained_glass"), mcRL("purple_stained_glass"));
-        this.slabTranslucent("blue_stained_glass_slab", mcRL("blue_stained_glass"), mcRL("blue_stained_glass"), mcRL("blue_stained_glass"));
-        this.slabTopTranslucent("blue_stained_glass_slab", mcRL("blue_stained_glass"), mcRL("blue_stained_glass"), mcRL("blue_stained_glass"));
-        this.slabTranslucent("brown_stained_glass_slab", mcRL("brown_stained_glass"), mcRL("brown_stained_glass"), mcRL("brown_stained_glass"));
-        this.slabTopTranslucent("brown_stained_glass_slab", mcRL("brown_stained_glass"), mcRL("brown_stained_glass"), mcRL("brown_stained_glass"));
-        this.slabTranslucent("green_stained_glass_slab", mcRL("green_stained_glass"), mcRL("green_stained_glass"), mcRL("green_stained_glass"));
-        this.slabTopTranslucent("green_stained_glass_slab", mcRL("green_stained_glass"), mcRL("green_stained_glass"), mcRL("green_stained_glass"));
-        this.slabTranslucent("red_stained_glass_slab", mcRL("red_stained_glass"), mcRL("red_stained_glass"), mcRL("red_stained_glass"));
-        this.slabTopTranslucent("red_stained_glass_slab", mcRL("red_stained_glass"), mcRL("red_stained_glass"), mcRL("red_stained_glass"));
-        this.slabTranslucent("black_stained_glass_slab", mcRL("black_stained_glass"), mcRL("black_stained_glass"), mcRL("black_stained_glass"));
-        this.slabTopTranslucent("black_stained_glass_slab", mcRL("black_stained_glass"), mcRL("black_stained_glass"), mcRL("black_stained_glass"));
-        this.slab("netherrack_slab", mcRL("netherrack"), mcRL("netherrack"), mcRL("netherrack"));
-        this.slabTop("netherrack_slab", mcRL("netherrack"), mcRL("netherrack"), mcRL("netherrack"));
-        this.slab("end_stone_slab", mcRL("end_stone"), mcRL("end_stone"), mcRL("end_stone"));
-        this.slabTop("end_stone_slab", mcRL("end_stone"), mcRL("end_stone"), mcRL("end_stone"));
-        this.verticalSlab("vertical_dirt_slab", mcRL("dirt"), mcRL("dirt"), mcRL("dirt"));
-        this.innerVerticalSlab("vertical_dirt_slab", mcRL("dirt"), mcRL("dirt"), mcRL("dirt"));
-        this.outerVerticalSlab("vertical_dirt_slab", mcRL("dirt"), mcRL("dirt"), mcRL("dirt"));
-        this.verticalSlab("vertical_coarse_dirt_slab", mcRL("coarse_dirt"), mcRL("coarse_dirt"), mcRL("coarse_dirt"));
-        this.innerVerticalSlab("vertical_coarse_dirt_slab", mcRL("coarse_dirt"), mcRL("coarse_dirt"), mcRL("coarse_dirt"));
-        this.outerVerticalSlab("vertical_coarse_dirt_slab", mcRL("coarse_dirt"), mcRL("coarse_dirt"), mcRL("coarse_dirt"));
-        this.verticalSlab("vertical_rooted_dirt_slab", mcRL("rooted_dirt"), mcRL("rooted_dirt"), mcRL("rooted_dirt"));
-        this.innerVerticalSlab("vertical_rooted_dirt_slab", mcRL("rooted_dirt"), mcRL("rooted_dirt"), mcRL("rooted_dirt"));
-        this.outerVerticalSlab("vertical_rooted_dirt_slab", mcRL("rooted_dirt"), mcRL("rooted_dirt"), mcRL("rooted_dirt"));
-        this.verticalSlab("vertical_podzol_slab", mcRL("podzol_side"), mcRL("dirt"), mcRL("podzol_top"));
-        this.innerVerticalSlab("vertical_podzol_slab", mcRL("podzol_side"), mcRL("dirt"), mcRL("podzol_top"));
-        this.outerVerticalSlab("vertical_podzol_slab", mcRL("podzol_side"), mcRL("dirt"), mcRL("podzol_top"));
-        this.verticalSlab("vertical_mycelium_slab", mcRL("mycelium_side"), mcRL("dirt"), mcRL("mycelium_top"));
-        this.innerVerticalSlab("vertical_mycelium_slab", mcRL("mycelium_side"), mcRL("dirt"), mcRL("mycelium_top"));
-        this.outerVerticalSlab("vertical_mycelium_slab", mcRL("mycelium_side"), mcRL("dirt"), mcRL("mycelium_top"));
-        this.verticalSlab("vertical_sand_slab", mcRL("sand"), mcRL("sand"), mcRL("sand"));
-        this.innerVerticalSlab("vertical_sand_slab", mcRL("sand"), mcRL("sand"), mcRL("sand"));
-        this.outerVerticalSlab("vertical_sand_slab", mcRL("sand"), mcRL("sand"), mcRL("sand"));
-        this.verticalSlab("vertical_red_sand_slab", mcRL("red_sand"), mcRL("red_sand"), mcRL("red_sand"));
-        this.innerVerticalSlab("vertical_red_sand_slab", mcRL("red_sand"), mcRL("red_sand"), mcRL("red_sand"));
-        this.outerVerticalSlab("vertical_red_sand_slab", mcRL("red_sand"), mcRL("red_sand"), mcRL("red_sand"));
-        this.verticalSlab("vertical_gravel_slab", mcRL("gravel"), mcRL("gravel"), mcRL("gravel"));
-        this.innerVerticalSlab("vertical_gravel_slab", mcRL("gravel"), mcRL("gravel"), mcRL("gravel"));
-        this.outerVerticalSlab("vertical_gravel_slab", mcRL("gravel"), mcRL("gravel"), mcRL("gravel"));
-        this.verticalSlab("vertical_cobblestone_slab", mcRL("cobblestone"), mcRL("cobblestone"), mcRL("cobblestone"));
-        this.innerVerticalSlab("vertical_cobblestone_slab", mcRL("cobblestone"), mcRL("cobblestone"), mcRL("cobblestone"));
-        this.outerVerticalSlab("vertical_cobblestone_slab", mcRL("cobblestone"), mcRL("cobblestone"), mcRL("cobblestone"));
-        this.verticalSlab("vertical_stone_slab", mcRL("stone"), mcRL("stone"), mcRL("stone"));
-        this.innerVerticalSlab("vertical_stone_slab", mcRL("stone"), mcRL("stone"), mcRL("stone"));
-        this.outerVerticalSlab("vertical_stone_slab", mcRL("stone"), mcRL("stone"), mcRL("stone"));
-        this.verticalSlab("vertical_stone_brick_slab", mcRL("stone_bricks"), mcRL("stone_bricks"), mcRL("stone_bricks"));
-        this.innerVerticalSlab("vertical_stone_brick_slab", mcRL("stone_bricks"), mcRL("stone_bricks"), mcRL("stone_bricks"));
-        this.outerVerticalSlab("vertical_stone_brick_slab", mcRL("stone_bricks"), mcRL("stone_bricks"), mcRL("stone_bricks"));
-        this.verticalSlab("vertical_smooth_stone_slab", mcRL("smooth_stone"), mcRL("smooth_stone"), mcRL("smooth_stone"));
-        this.innerVerticalSlab("vertical_smooth_stone_slab", mcRL("smooth_stone"), mcRL("smooth_stone"), mcRL("smooth_stone"));
-        this.outerVerticalSlab("vertical_smooth_stone_slab", mcRL("smooth_stone"), mcRL("smooth_stone"), mcRL("smooth_stone"));
-        this.verticalSlab("vertical_mossy_cobblestone_slab", mcRL("mossy_cobblestone"), mcRL("mossy_cobblestone"), mcRL("mossy_cobblestone"));
-        this.innerVerticalSlab("vertical_mossy_cobblestone_slab", mcRL("mossy_cobblestone"), mcRL("mossy_cobblestone"), mcRL("mossy_cobblestone"));
-        this.outerVerticalSlab("vertical_mossy_cobblestone_slab", mcRL("mossy_cobblestone"), mcRL("mossy_cobblestone"), mcRL("mossy_cobblestone"));
-        this.verticalSlab("vertical_mossy_stone_brick_slab", mcRL("mossy_stone_bricks"), mcRL("mossy_stone_bricks"), mcRL("mossy_stone_bricks"));
-        this.innerVerticalSlab("vertical_mossy_stone_brick_slab", mcRL("mossy_stone_bricks"), mcRL("mossy_stone_bricks"), mcRL("mossy_stone_bricks"));
-        this.outerVerticalSlab("vertical_mossy_stone_brick_slab", mcRL("mossy_stone_bricks"), mcRL("mossy_stone_bricks"), mcRL("mossy_stone_bricks"));
-        this.verticalSlab("vertical_andesite_slab", mcRL("andesite"), mcRL("andesite"), mcRL("andesite"));
-        this.innerVerticalSlab("vertical_andesite_slab", mcRL("andesite"), mcRL("andesite"), mcRL("andesite"));
-        this.outerVerticalSlab("vertical_andesite_slab", mcRL("andesite"), mcRL("andesite"), mcRL("andesite"));
-        this.verticalSlab("vertical_polished_andesite_slab", mcRL("polished_andesite"), mcRL("polished_andesite"), mcRL("polished_andesite"));
-        this.innerVerticalSlab("vertical_polished_andesite_slab", mcRL("polished_andesite"), mcRL("polished_andesite"), mcRL("polished_andesite"));
-        this.outerVerticalSlab("vertical_polished_andesite_slab", mcRL("polished_andesite"), mcRL("polished_andesite"), mcRL("polished_andesite"));
-        this.verticalSlab("vertical_diorite_slab", mcRL("diorite"), mcRL("diorite"), mcRL("diorite"));
-        this.innerVerticalSlab("vertical_diorite_slab", mcRL("diorite"), mcRL("diorite"), mcRL("diorite"));
-        this.outerVerticalSlab("vertical_diorite_slab", mcRL("diorite"), mcRL("diorite"), mcRL("diorite"));
-        this.verticalSlab("vertical_polished_diorite_slab", mcRL("polished_diorite"), mcRL("polished_diorite"), mcRL("polished_diorite"));
-        this.innerVerticalSlab("vertical_polished_diorite_slab", mcRL("polished_diorite"), mcRL("polished_diorite"), mcRL("polished_diorite"));
-        this.outerVerticalSlab("vertical_polished_diorite_slab", mcRL("polished_diorite"), mcRL("polished_diorite"), mcRL("polished_diorite"));
-        this.verticalSlab("vertical_granite_slab", mcRL("granite"), mcRL("granite"), mcRL("granite"));
-        this.innerVerticalSlab("vertical_granite_slab", mcRL("granite"), mcRL("granite"), mcRL("granite"));
-        this.outerVerticalSlab("vertical_granite_slab", mcRL("granite"), mcRL("granite"), mcRL("granite"));
-        this.verticalSlab("vertical_polished_granite_slab", mcRL("polished_granite"), mcRL("polished_granite"), mcRL("polished_granite"));
-        this.innerVerticalSlab("vertical_polished_granite_slab", mcRL("polished_granite"), mcRL("polished_granite"), mcRL("polished_granite"));
-        this.outerVerticalSlab("vertical_polished_granite_slab", mcRL("polished_granite"), mcRL("polished_granite"), mcRL("polished_granite"));
-        this.verticalSlab("vertical_brick_slab", mcRL("bricks"), mcRL("bricks"), mcRL("bricks"));
-        this.innerVerticalSlab("vertical_brick_slab", mcRL("bricks"), mcRL("bricks"), mcRL("bricks"));
-        this.outerVerticalSlab("vertical_brick_slab", mcRL("bricks"), mcRL("bricks"), mcRL("bricks"));
-        this.verticalSlab("vertical_tuff_slab", mcRL("tuff"), mcRL("tuff"), mcRL("tuff"));
-        this.innerVerticalSlab("vertical_tuff_slab", mcRL("tuff"), mcRL("tuff"), mcRL("tuff"));
-        this.outerVerticalSlab("vertical_tuff_slab", mcRL("tuff"), mcRL("tuff"), mcRL("tuff"));
-        this.verticalSlab("vertical_calcite_slab", mcRL("calcite"), mcRL("calcite"), mcRL("calcite"));
-        this.innerVerticalSlab("vertical_calcite_slab", mcRL("calcite"), mcRL("calcite"), mcRL("calcite"));
-        this.outerVerticalSlab("vertical_calcite_slab", mcRL("calcite"), mcRL("calcite"), mcRL("calcite"));
-        this.verticalSlab("vertical_dripstone_slab", mcRL("dripstone_block"), mcRL("dripstone_block"), mcRL("dripstone_block"));
-        this.innerVerticalSlab("vertical_dripstone_slab", mcRL("dripstone_block"), mcRL("dripstone_block"), mcRL("dripstone_block"));
-        this.outerVerticalSlab("vertical_dripstone_slab", mcRL("dripstone_block"), mcRL("dripstone_block"), mcRL("dripstone_block"));
-        this.verticalSlab("vertical_mud_slab", mcRL("mud"), mcRL("mud"), mcRL("mud"));
-        this.innerVerticalSlab("vertical_mud_slab", mcRL("mud"), mcRL("mud"), mcRL("mud"));
-        this.outerVerticalSlab("vertical_mud_slab", mcRL("mud"), mcRL("mud"), mcRL("mud"));
-        this.verticalSlab("vertical_packed_mud_slab", mcRL("packed_mud"), mcRL("packed_mud"), mcRL("packed_mud"));
-        this.innerVerticalSlab("vertical_packed_mud_slab", mcRL("packed_mud"), mcRL("packed_mud"), mcRL("packed_mud"));
-        this.outerVerticalSlab("vertical_packed_mud_slab", mcRL("packed_mud"), mcRL("packed_mud"), mcRL("packed_mud"));
-        this.verticalSlab("vertical_mud_brick_slab", mcRL("mud_bricks"), mcRL("mud_bricks"), mcRL("mud_bricks"));
-        this.innerVerticalSlab("vertical_mud_brick_slab", mcRL("mud_bricks"), mcRL("mud_bricks"), mcRL("mud_bricks"));
-        this.outerVerticalSlab("vertical_mud_brick_slab", mcRL("mud_bricks"), mcRL("mud_bricks"), mcRL("mud_bricks"));
-        this.verticalSlab("vertical_white_wool_slab", mcRL("white_wool"), mcRL("white_wool"), mcRL("white_wool"));
-        this.innerVerticalSlab("vertical_white_wool_slab", mcRL("white_wool"), mcRL("white_wool"), mcRL("white_wool"));
-        this.outerVerticalSlab("vertical_white_wool_slab", mcRL("white_wool"), mcRL("white_wool"), mcRL("white_wool"));
-        this.verticalSlab("vertical_orange_wool_slab", mcRL("orange_wool"), mcRL("orange_wool"), mcRL("orange_wool"));
-        this.innerVerticalSlab("vertical_orange_wool_slab", mcRL("orange_wool"), mcRL("orange_wool"), mcRL("orange_wool"));
-        this.outerVerticalSlab("vertical_orange_wool_slab", mcRL("orange_wool"), mcRL("orange_wool"), mcRL("orange_wool"));
-        this.verticalSlab("vertical_magenta_wool_slab", mcRL("magenta_wool"), mcRL("magenta_wool"), mcRL("magenta_wool"));
-        this.innerVerticalSlab("vertical_magenta_wool_slab", mcRL("magenta_wool"), mcRL("magenta_wool"), mcRL("magenta_wool"));
-        this.outerVerticalSlab("vertical_magenta_wool_slab", mcRL("magenta_wool"), mcRL("magenta_wool"), mcRL("magenta_wool"));
-        this.verticalSlab("vertical_light_blue_wool_slab", mcRL("light_blue_wool"), mcRL("light_blue_wool"), mcRL("light_blue_wool"));
-        this.innerVerticalSlab("vertical_light_blue_wool_slab", mcRL("light_blue_wool"), mcRL("light_blue_wool"), mcRL("light_blue_wool"));
-        this.outerVerticalSlab("vertical_light_blue_wool_slab", mcRL("light_blue_wool"), mcRL("light_blue_wool"), mcRL("light_blue_wool"));
-        this.verticalSlab("vertical_yellow_wool_slab", mcRL("yellow_wool"), mcRL("yellow_wool"), mcRL("yellow_wool"));
-        this.innerVerticalSlab("vertical_yellow_wool_slab", mcRL("yellow_wool"), mcRL("yellow_wool"), mcRL("yellow_wool"));
-        this.outerVerticalSlab("vertical_yellow_wool_slab", mcRL("yellow_wool"), mcRL("yellow_wool"), mcRL("yellow_wool"));
-        this.verticalSlab("vertical_lime_wool_slab", mcRL("lime_wool"), mcRL("lime_wool"), mcRL("lime_wool"));
-        this.innerVerticalSlab("vertical_lime_wool_slab", mcRL("lime_wool"), mcRL("lime_wool"), mcRL("lime_wool"));
-        this.outerVerticalSlab("vertical_lime_wool_slab", mcRL("lime_wool"), mcRL("lime_wool"), mcRL("lime_wool"));
-        this.verticalSlab("vertical_pink_wool_slab", mcRL("pink_wool"), mcRL("pink_wool"), mcRL("pink_wool"));
-        this.innerVerticalSlab("vertical_pink_wool_slab", mcRL("pink_wool"), mcRL("pink_wool"), mcRL("pink_wool"));
-        this.outerVerticalSlab("vertical_pink_wool_slab", mcRL("pink_wool"), mcRL("pink_wool"), mcRL("pink_wool"));
-        this.verticalSlab("vertical_gray_wool_slab", mcRL("gray_wool"), mcRL("gray_wool"), mcRL("gray_wool"));
-        this.innerVerticalSlab("vertical_gray_wool_slab", mcRL("gray_wool"), mcRL("gray_wool"), mcRL("gray_wool"));
-        this.outerVerticalSlab("vertical_gray_wool_slab", mcRL("gray_wool"), mcRL("gray_wool"), mcRL("gray_wool"));
-        this.verticalSlab("vertical_light_gray_wool_slab", mcRL("light_gray_wool"), mcRL("light_gray_wool"), mcRL("light_gray_wool"));
-        this.innerVerticalSlab("vertical_light_gray_wool_slab", mcRL("light_gray_wool"), mcRL("light_gray_wool"), mcRL("light_gray_wool"));
-        this.outerVerticalSlab("vertical_light_gray_wool_slab", mcRL("light_gray_wool"), mcRL("light_gray_wool"), mcRL("light_gray_wool"));
-        this.verticalSlab("vertical_cyan_wool_slab", mcRL("cyan_wool"), mcRL("cyan_wool"), mcRL("cyan_wool"));
-        this.innerVerticalSlab("vertical_cyan_wool_slab", mcRL("cyan_wool"), mcRL("cyan_wool"), mcRL("cyan_wool"));
-        this.outerVerticalSlab("vertical_cyan_wool_slab", mcRL("cyan_wool"), mcRL("cyan_wool"), mcRL("cyan_wool"));
-        this.verticalSlab("vertical_purple_wool_slab", mcRL("purple_wool"), mcRL("purple_wool"), mcRL("purple_wool"));
-        this.innerVerticalSlab("vertical_purple_wool_slab", mcRL("purple_wool"), mcRL("purple_wool"), mcRL("purple_wool"));
-        this.outerVerticalSlab("vertical_purple_wool_slab", mcRL("purple_wool"), mcRL("purple_wool"), mcRL("purple_wool"));
-        this.verticalSlab("vertical_blue_wool_slab", mcRL("blue_wool"), mcRL("blue_wool"), mcRL("blue_wool"));
-        this.innerVerticalSlab("vertical_blue_wool_slab", mcRL("blue_wool"), mcRL("blue_wool"), mcRL("blue_wool"));
-        this.outerVerticalSlab("vertical_blue_wool_slab", mcRL("blue_wool"), mcRL("blue_wool"), mcRL("blue_wool"));
-        this.verticalSlab("vertical_brown_wool_slab", mcRL("brown_wool"), mcRL("brown_wool"), mcRL("brown_wool"));
-        this.innerVerticalSlab("vertical_brown_wool_slab", mcRL("brown_wool"), mcRL("brown_wool"), mcRL("brown_wool"));
-        this.outerVerticalSlab("vertical_brown_wool_slab", mcRL("brown_wool"), mcRL("brown_wool"), mcRL("brown_wool"));
-        this.verticalSlab("vertical_green_wool_slab", mcRL("green_wool"), mcRL("green_wool"), mcRL("green_wool"));
-        this.innerVerticalSlab("vertical_green_wool_slab", mcRL("green_wool"), mcRL("green_wool"), mcRL("green_wool"));
-        this.outerVerticalSlab("vertical_green_wool_slab", mcRL("green_wool"), mcRL("green_wool"), mcRL("green_wool"));
-        this.verticalSlab("vertical_red_wool_slab", mcRL("red_wool"), mcRL("red_wool"), mcRL("red_wool"));
-        this.innerVerticalSlab("vertical_red_wool_slab", mcRL("red_wool"), mcRL("red_wool"), mcRL("red_wool"));
-        this.outerVerticalSlab("vertical_red_wool_slab", mcRL("red_wool"), mcRL("red_wool"), mcRL("red_wool"));
-        this.verticalSlab("vertical_black_wool_slab", mcRL("black_wool"), mcRL("black_wool"), mcRL("black_wool"));
-        this.innerVerticalSlab("vertical_black_wool_slab", mcRL("black_wool"), mcRL("black_wool"), mcRL("black_wool"));
-        this.outerVerticalSlab("vertical_black_wool_slab", mcRL("black_wool"), mcRL("black_wool"), mcRL("black_wool"));
-        this.verticalSlab("vertical_white_concrete_powder_slab", mcRL("white_concrete_powder"), mcRL("white_concrete_powder"), mcRL("white_concrete_powder"));
-        this.innerVerticalSlab("vertical_white_concrete_powder_slab", mcRL("white_concrete_powder"), mcRL("white_concrete_powder"), mcRL("white_concrete_powder"));
-        this.outerVerticalSlab("vertical_white_concrete_powder_slab", mcRL("white_concrete_powder"), mcRL("white_concrete_powder"), mcRL("white_concrete_powder"));
-        this.verticalSlab("vertical_orange_concrete_powder_slab", mcRL("orange_concrete_powder"), mcRL("orange_concrete_powder"), mcRL("orange_concrete_powder"));
-        this.innerVerticalSlab("vertical_orange_concrete_powder_slab", mcRL("orange_concrete_powder"), mcRL("orange_concrete_powder"), mcRL("orange_concrete_powder"));
-        this.outerVerticalSlab("vertical_orange_concrete_powder_slab", mcRL("orange_concrete_powder"), mcRL("orange_concrete_powder"), mcRL("orange_concrete_powder"));
-        this.verticalSlab("vertical_magenta_concrete_powder_slab", mcRL("magenta_concrete_powder"), mcRL("magenta_concrete_powder"), mcRL("magenta_concrete_powder"));
-        this.innerVerticalSlab("vertical_magenta_concrete_powder_slab", mcRL("magenta_concrete_powder"), mcRL("magenta_concrete_powder"), mcRL("magenta_concrete_powder"));
-        this.outerVerticalSlab("vertical_magenta_concrete_powder_slab", mcRL("magenta_concrete_powder"), mcRL("magenta_concrete_powder"), mcRL("magenta_concrete_powder"));
-        this.verticalSlab("vertical_light_blue_concrete_powder_slab", mcRL("light_blue_concrete_powder"), mcRL("light_blue_concrete_powder"), mcRL("light_blue_concrete_powder"));
-        this.innerVerticalSlab("vertical_light_blue_concrete_powder_slab", mcRL("light_blue_concrete_powder"), mcRL("light_blue_concrete_powder"), mcRL("light_blue_concrete_powder"));
-        this.outerVerticalSlab("vertical_light_blue_concrete_powder_slab", mcRL("light_blue_concrete_powder"), mcRL("light_blue_concrete_powder"), mcRL("light_blue_concrete_powder"));
-        this.verticalSlab("vertical_yellow_concrete_powder_slab", mcRL("yellow_concrete_powder"), mcRL("yellow_concrete_powder"), mcRL("yellow_concrete_powder"));
-        this.innerVerticalSlab("vertical_yellow_concrete_powder_slab", mcRL("yellow_concrete_powder"), mcRL("yellow_concrete_powder"), mcRL("yellow_concrete_powder"));
-        this.outerVerticalSlab("vertical_yellow_concrete_powder_slab", mcRL("yellow_concrete_powder"), mcRL("yellow_concrete_powder"), mcRL("yellow_concrete_powder"));
-        this.verticalSlab("vertical_lime_concrete_powder_slab", mcRL("lime_concrete_powder"), mcRL("lime_concrete_powder"), mcRL("lime_concrete_powder"));
-        this.innerVerticalSlab("vertical_lime_concrete_powder_slab", mcRL("lime_concrete_powder"), mcRL("lime_concrete_powder"), mcRL("lime_concrete_powder"));
-        this.outerVerticalSlab("vertical_lime_concrete_powder_slab", mcRL("lime_concrete_powder"), mcRL("lime_concrete_powder"), mcRL("lime_concrete_powder"));
-        this.verticalSlab("vertical_pink_concrete_powder_slab", mcRL("pink_concrete_powder"), mcRL("pink_concrete_powder"), mcRL("pink_concrete_powder"));
-        this.innerVerticalSlab("vertical_pink_concrete_powder_slab", mcRL("pink_concrete_powder"), mcRL("pink_concrete_powder"), mcRL("pink_concrete_powder"));
-        this.outerVerticalSlab("vertical_pink_concrete_powder_slab", mcRL("pink_concrete_powder"), mcRL("pink_concrete_powder"), mcRL("pink_concrete_powder"));
-        this.verticalSlab("vertical_gray_concrete_powder_slab", mcRL("gray_concrete_powder"), mcRL("gray_concrete_powder"), mcRL("gray_concrete_powder"));
-        this.innerVerticalSlab("vertical_gray_concrete_powder_slab", mcRL("gray_concrete_powder"), mcRL("gray_concrete_powder"), mcRL("gray_concrete_powder"));
-        this.outerVerticalSlab("vertical_gray_concrete_powder_slab", mcRL("gray_concrete_powder"), mcRL("gray_concrete_powder"), mcRL("gray_concrete_powder"));
-        this.verticalSlab("vertical_light_gray_concrete_powder_slab", mcRL("light_gray_concrete_powder"), mcRL("light_gray_concrete_powder"), mcRL("light_gray_concrete_powder"));
-        this.innerVerticalSlab("vertical_light_gray_concrete_powder_slab", mcRL("light_gray_concrete_powder"), mcRL("light_gray_concrete_powder"), mcRL("light_gray_concrete_powder"));
-        this.outerVerticalSlab("vertical_light_gray_concrete_powder_slab", mcRL("light_gray_concrete_powder"), mcRL("light_gray_concrete_powder"), mcRL("light_gray_concrete_powder"));
-        this.verticalSlab("vertical_cyan_concrete_powder_slab", mcRL("cyan_concrete_powder"), mcRL("cyan_concrete_powder"), mcRL("cyan_concrete_powder"));
-        this.innerVerticalSlab("vertical_cyan_concrete_powder_slab", mcRL("cyan_concrete_powder"), mcRL("cyan_concrete_powder"), mcRL("cyan_concrete_powder"));
-        this.outerVerticalSlab("vertical_cyan_concrete_powder_slab", mcRL("cyan_concrete_powder"), mcRL("cyan_concrete_powder"), mcRL("cyan_concrete_powder"));
-        this.verticalSlab("vertical_purple_concrete_powder_slab", mcRL("purple_concrete_powder"), mcRL("purple_concrete_powder"), mcRL("purple_concrete_powder"));
-        this.innerVerticalSlab("vertical_purple_concrete_powder_slab", mcRL("purple_concrete_powder"), mcRL("purple_concrete_powder"), mcRL("purple_concrete_powder"));
-        this.outerVerticalSlab("vertical_purple_concrete_powder_slab", mcRL("purple_concrete_powder"), mcRL("purple_concrete_powder"), mcRL("purple_concrete_powder"));
-        this.verticalSlab("vertical_blue_concrete_powder_slab", mcRL("blue_concrete_powder"), mcRL("blue_concrete_powder"), mcRL("blue_concrete_powder"));
-        this.innerVerticalSlab("vertical_blue_concrete_powder_slab", mcRL("blue_concrete_powder"), mcRL("blue_concrete_powder"), mcRL("blue_concrete_powder"));
-        this.outerVerticalSlab("vertical_blue_concrete_powder_slab", mcRL("blue_concrete_powder"), mcRL("blue_concrete_powder"), mcRL("blue_concrete_powder"));
-        this.verticalSlab("vertical_brown_concrete_powder_slab", mcRL("brown_concrete_powder"), mcRL("brown_concrete_powder"), mcRL("brown_concrete_powder"));
-        this.innerVerticalSlab("vertical_brown_concrete_powder_slab", mcRL("brown_concrete_powder"), mcRL("brown_concrete_powder"), mcRL("brown_concrete_powder"));
-        this.outerVerticalSlab("vertical_brown_concrete_powder_slab", mcRL("brown_concrete_powder"), mcRL("brown_concrete_powder"), mcRL("brown_concrete_powder"));
-        this.verticalSlab("vertical_green_concrete_powder_slab", mcRL("green_concrete_powder"), mcRL("green_concrete_powder"), mcRL("green_concrete_powder"));
-        this.innerVerticalSlab("vertical_green_concrete_powder_slab", mcRL("green_concrete_powder"), mcRL("green_concrete_powder"), mcRL("green_concrete_powder"));
-        this.outerVerticalSlab("vertical_green_concrete_powder_slab", mcRL("green_concrete_powder"), mcRL("green_concrete_powder"), mcRL("green_concrete_powder"));
-        this.verticalSlab("vertical_red_concrete_powder_slab", mcRL("red_concrete_powder"), mcRL("red_concrete_powder"), mcRL("red_concrete_powder"));
-        this.innerVerticalSlab("vertical_red_concrete_powder_slab", mcRL("red_concrete_powder"), mcRL("red_concrete_powder"), mcRL("red_concrete_powder"));
-        this.outerVerticalSlab("vertical_red_concrete_powder_slab", mcRL("red_concrete_powder"), mcRL("red_concrete_powder"), mcRL("red_concrete_powder"));
-        this.verticalSlab("vertical_black_concrete_powder_slab", mcRL("black_concrete_powder"), mcRL("black_concrete_powder"), mcRL("black_concrete_powder"));
-        this.innerVerticalSlab("vertical_black_concrete_powder_slab", mcRL("black_concrete_powder"), mcRL("black_concrete_powder"), mcRL("black_concrete_powder"));
-        this.outerVerticalSlab("vertical_black_concrete_powder_slab", mcRL("black_concrete_powder"), mcRL("black_concrete_powder"), mcRL("black_concrete_powder"));
-        this.verticalSlab("vertical_white_concrete_slab", mcRL("white_concrete"), mcRL("white_concrete"), mcRL("white_concrete"));
-        this.innerVerticalSlab("vertical_white_concrete_slab", mcRL("white_concrete"), mcRL("white_concrete"), mcRL("white_concrete"));
-        this.outerVerticalSlab("vertical_white_concrete_slab", mcRL("white_concrete"), mcRL("white_concrete"), mcRL("white_concrete"));
-        this.verticalSlab("vertical_orange_concrete_slab", mcRL("orange_concrete"), mcRL("orange_concrete"), mcRL("orange_concrete"));
-        this.innerVerticalSlab("vertical_orange_concrete_slab", mcRL("orange_concrete"), mcRL("orange_concrete"), mcRL("orange_concrete"));
-        this.outerVerticalSlab("vertical_orange_concrete_slab", mcRL("orange_concrete"), mcRL("orange_concrete"), mcRL("orange_concrete"));
-        this.verticalSlab("vertical_magenta_concrete_slab", mcRL("magenta_concrete"), mcRL("magenta_concrete"), mcRL("magenta_concrete"));
-        this.innerVerticalSlab("vertical_magenta_concrete_slab", mcRL("magenta_concrete"), mcRL("magenta_concrete"), mcRL("magenta_concrete"));
-        this.outerVerticalSlab("vertical_magenta_concrete_slab", mcRL("magenta_concrete"), mcRL("magenta_concrete"), mcRL("magenta_concrete"));
-        this.verticalSlab("vertical_light_blue_concrete_slab", mcRL("light_blue_concrete"), mcRL("light_blue_concrete"), mcRL("light_blue_concrete"));
-        this.innerVerticalSlab("vertical_light_blue_concrete_slab", mcRL("light_blue_concrete"), mcRL("light_blue_concrete"), mcRL("light_blue_concrete"));
-        this.outerVerticalSlab("vertical_light_blue_concrete_slab", mcRL("light_blue_concrete"), mcRL("light_blue_concrete"), mcRL("light_blue_concrete"));
-        this.verticalSlab("vertical_yellow_concrete_slab", mcRL("yellow_concrete"), mcRL("yellow_concrete"), mcRL("yellow_concrete"));
-        this.innerVerticalSlab("vertical_yellow_concrete_slab", mcRL("yellow_concrete"), mcRL("yellow_concrete"), mcRL("yellow_concrete"));
-        this.outerVerticalSlab("vertical_yellow_concrete_slab", mcRL("yellow_concrete"), mcRL("yellow_concrete"), mcRL("yellow_concrete"));
-        this.verticalSlab("vertical_lime_concrete_slab", mcRL("lime_concrete"), mcRL("lime_concrete"), mcRL("lime_concrete"));
-        this.innerVerticalSlab("vertical_lime_concrete_slab", mcRL("lime_concrete"), mcRL("lime_concrete"), mcRL("lime_concrete"));
-        this.outerVerticalSlab("vertical_lime_concrete_slab", mcRL("lime_concrete"), mcRL("lime_concrete"), mcRL("lime_concrete"));
-        this.verticalSlab("vertical_pink_concrete_slab", mcRL("pink_concrete"), mcRL("pink_concrete"), mcRL("pink_concrete"));
-        this.innerVerticalSlab("vertical_pink_concrete_slab", mcRL("pink_concrete"), mcRL("pink_concrete"), mcRL("pink_concrete"));
-        this.outerVerticalSlab("vertical_pink_concrete_slab", mcRL("pink_concrete"), mcRL("pink_concrete"), mcRL("pink_concrete"));
-        this.verticalSlab("vertical_gray_concrete_slab", mcRL("gray_concrete"), mcRL("gray_concrete"), mcRL("gray_concrete"));
-        this.innerVerticalSlab("vertical_gray_concrete_slab", mcRL("gray_concrete"), mcRL("gray_concrete"), mcRL("gray_concrete"));
-        this.outerVerticalSlab("vertical_gray_concrete_slab", mcRL("gray_concrete"), mcRL("gray_concrete"), mcRL("gray_concrete"));
-        this.verticalSlab("vertical_light_gray_concrete_slab", mcRL("light_gray_concrete"), mcRL("light_gray_concrete"), mcRL("light_gray_concrete"));
-        this.innerVerticalSlab("vertical_light_gray_concrete_slab", mcRL("light_gray_concrete"), mcRL("light_gray_concrete"), mcRL("light_gray_concrete"));
-        this.outerVerticalSlab("vertical_light_gray_concrete_slab", mcRL("light_gray_concrete"), mcRL("light_gray_concrete"), mcRL("light_gray_concrete"));
-        this.verticalSlab("vertical_cyan_concrete_slab", mcRL("cyan_concrete"), mcRL("cyan_concrete"), mcRL("cyan_concrete"));
-        this.innerVerticalSlab("vertical_cyan_concrete_slab", mcRL("cyan_concrete"), mcRL("cyan_concrete"), mcRL("cyan_concrete"));
-        this.outerVerticalSlab("vertical_cyan_concrete_slab", mcRL("cyan_concrete"), mcRL("cyan_concrete"), mcRL("cyan_concrete"));
-        this.verticalSlab("vertical_purple_concrete_slab", mcRL("purple_concrete"), mcRL("purple_concrete"), mcRL("purple_concrete"));
-        this.innerVerticalSlab("vertical_purple_concrete_slab", mcRL("purple_concrete"), mcRL("purple_concrete"), mcRL("purple_concrete"));
-        this.outerVerticalSlab("vertical_purple_concrete_slab", mcRL("purple_concrete"), mcRL("purple_concrete"), mcRL("purple_concrete"));
-        this.verticalSlab("vertical_blue_concrete_slab", mcRL("blue_concrete"), mcRL("blue_concrete"), mcRL("blue_concrete"));
-        this.innerVerticalSlab("vertical_blue_concrete_slab", mcRL("blue_concrete"), mcRL("blue_concrete"), mcRL("blue_concrete"));
-        this.outerVerticalSlab("vertical_blue_concrete_slab", mcRL("blue_concrete"), mcRL("blue_concrete"), mcRL("blue_concrete"));
-        this.verticalSlab("vertical_brown_concrete_slab", mcRL("brown_concrete"), mcRL("brown_concrete"), mcRL("brown_concrete"));
-        this.innerVerticalSlab("vertical_brown_concrete_slab", mcRL("brown_concrete"), mcRL("brown_concrete"), mcRL("brown_concrete"));
-        this.outerVerticalSlab("vertical_brown_concrete_slab", mcRL("brown_concrete"), mcRL("brown_concrete"), mcRL("brown_concrete"));
-        this.verticalSlab("vertical_green_concrete_slab", mcRL("green_concrete"), mcRL("green_concrete"), mcRL("green_concrete"));
-        this.innerVerticalSlab("vertical_green_concrete_slab", mcRL("green_concrete"), mcRL("green_concrete"), mcRL("green_concrete"));
-        this.outerVerticalSlab("vertical_green_concrete_slab", mcRL("green_concrete"), mcRL("green_concrete"), mcRL("green_concrete"));
-        this.verticalSlab("vertical_red_concrete_slab", mcRL("red_concrete"), mcRL("red_concrete"), mcRL("red_concrete"));
-        this.innerVerticalSlab("vertical_red_concrete_slab", mcRL("red_concrete"), mcRL("red_concrete"), mcRL("red_concrete"));
-        this.outerVerticalSlab("vertical_red_concrete_slab", mcRL("red_concrete"), mcRL("red_concrete"), mcRL("red_concrete"));
-        this.verticalSlab("vertical_black_concrete_slab", mcRL("black_concrete"), mcRL("black_concrete"), mcRL("black_concrete"));
-        this.innerVerticalSlab("vertical_black_concrete_slab", mcRL("black_concrete"), mcRL("black_concrete"), mcRL("black_concrete"));
-        this.outerVerticalSlab("vertical_black_concrete_slab", mcRL("black_concrete"), mcRL("black_concrete"), mcRL("black_concrete"));
-        this.verticalSlab("vertical_clay_slab", mcRL("clay"), mcRL("clay"), mcRL("clay"));
-        this.innerVerticalSlab("vertical_clay_slab", mcRL("clay"), mcRL("clay"), mcRL("clay"));
-        this.outerVerticalSlab("vertical_clay_slab", mcRL("clay"), mcRL("clay"), mcRL("clay"));
-        this.verticalSlab("vertical_terracotta_slab", mcRL("terracotta"), mcRL("terracotta"), mcRL("terracotta"));
-        this.innerVerticalSlab("vertical_terracotta_slab", mcRL("terracotta"), mcRL("terracotta"), mcRL("terracotta"));
-        this.outerVerticalSlab("vertical_terracotta_slab", mcRL("terracotta"), mcRL("terracotta"), mcRL("terracotta"));
-        this.verticalSlab("vertical_white_terracotta_slab", mcRL("white_terracotta"), mcRL("white_terracotta"), mcRL("white_terracotta"));
-        this.innerVerticalSlab("vertical_white_terracotta_slab", mcRL("white_terracotta"), mcRL("white_terracotta"), mcRL("white_terracotta"));
-        this.outerVerticalSlab("vertical_white_terracotta_slab", mcRL("white_terracotta"), mcRL("white_terracotta"), mcRL("white_terracotta"));
-        this.verticalSlab("vertical_orange_terracotta_slab", mcRL("orange_terracotta"), mcRL("orange_terracotta"), mcRL("orange_terracotta"));
-        this.innerVerticalSlab("vertical_orange_terracotta_slab", mcRL("orange_terracotta"), mcRL("orange_terracotta"), mcRL("orange_terracotta"));
-        this.outerVerticalSlab("vertical_orange_terracotta_slab", mcRL("orange_terracotta"), mcRL("orange_terracotta"), mcRL("orange_terracotta"));
-        this.verticalSlab("vertical_magenta_terracotta_slab", mcRL("magenta_terracotta"), mcRL("magenta_terracotta"), mcRL("magenta_terracotta"));
-        this.innerVerticalSlab("vertical_magenta_terracotta_slab", mcRL("magenta_terracotta"), mcRL("magenta_terracotta"), mcRL("magenta_terracotta"));
-        this.outerVerticalSlab("vertical_magenta_terracotta_slab", mcRL("magenta_terracotta"), mcRL("magenta_terracotta"), mcRL("magenta_terracotta"));
-        this.verticalSlab("vertical_light_blue_terracotta_slab", mcRL("light_blue_terracotta"), mcRL("light_blue_terracotta"), mcRL("light_blue_terracotta"));
-        this.innerVerticalSlab("vertical_light_blue_terracotta_slab", mcRL("light_blue_terracotta"), mcRL("light_blue_terracotta"), mcRL("light_blue_terracotta"));
-        this.outerVerticalSlab("vertical_light_blue_terracotta_slab", mcRL("light_blue_terracotta"), mcRL("light_blue_terracotta"), mcRL("light_blue_terracotta"));
-        this.verticalSlab("vertical_yellow_terracotta_slab", mcRL("yellow_terracotta"), mcRL("yellow_terracotta"), mcRL("yellow_terracotta"));
-        this.innerVerticalSlab("vertical_yellow_terracotta_slab", mcRL("yellow_terracotta"), mcRL("yellow_terracotta"), mcRL("yellow_terracotta"));
-        this.outerVerticalSlab("vertical_yellow_terracotta_slab", mcRL("yellow_terracotta"), mcRL("yellow_terracotta"), mcRL("yellow_terracotta"));
-        this.verticalSlab("vertical_lime_terracotta_slab", mcRL("lime_terracotta"), mcRL("lime_terracotta"), mcRL("lime_terracotta"));
-        this.innerVerticalSlab("vertical_lime_terracotta_slab", mcRL("lime_terracotta"), mcRL("lime_terracotta"), mcRL("lime_terracotta"));
-        this.outerVerticalSlab("vertical_lime_terracotta_slab", mcRL("lime_terracotta"), mcRL("lime_terracotta"), mcRL("lime_terracotta"));
-        this.verticalSlab("vertical_pink_terracotta_slab", mcRL("pink_terracotta"), mcRL("pink_terracotta"), mcRL("pink_terracotta"));
-        this.innerVerticalSlab("vertical_pink_terracotta_slab", mcRL("pink_terracotta"), mcRL("pink_terracotta"), mcRL("pink_terracotta"));
-        this.outerVerticalSlab("vertical_pink_terracotta_slab", mcRL("pink_terracotta"), mcRL("pink_terracotta"), mcRL("pink_terracotta"));
-        this.verticalSlab("vertical_gray_terracotta_slab", mcRL("gray_terracotta"), mcRL("gray_terracotta"), mcRL("gray_terracotta"));
-        this.innerVerticalSlab("vertical_gray_terracotta_slab", mcRL("gray_terracotta"), mcRL("gray_terracotta"), mcRL("gray_terracotta"));
-        this.outerVerticalSlab("vertical_gray_terracotta_slab", mcRL("gray_terracotta"), mcRL("gray_terracotta"), mcRL("gray_terracotta"));
-        this.verticalSlab("vertical_light_gray_terracotta_slab", mcRL("light_gray_terracotta"), mcRL("light_gray_terracotta"), mcRL("light_gray_terracotta"));
-        this.innerVerticalSlab("vertical_light_gray_terracotta_slab", mcRL("light_gray_terracotta"), mcRL("light_gray_terracotta"), mcRL("light_gray_terracotta"));
-        this.outerVerticalSlab("vertical_light_gray_terracotta_slab", mcRL("light_gray_terracotta"), mcRL("light_gray_terracotta"), mcRL("light_gray_terracotta"));
-        this.verticalSlab("vertical_cyan_terracotta_slab", mcRL("cyan_terracotta"), mcRL("cyan_terracotta"), mcRL("cyan_terracotta"));
-        this.innerVerticalSlab("vertical_cyan_terracotta_slab", mcRL("cyan_terracotta"), mcRL("cyan_terracotta"), mcRL("cyan_terracotta"));
-        this.outerVerticalSlab("vertical_cyan_terracotta_slab", mcRL("cyan_terracotta"), mcRL("cyan_terracotta"), mcRL("cyan_terracotta"));
-        this.verticalSlab("vertical_purple_terracotta_slab", mcRL("purple_terracotta"), mcRL("purple_terracotta"), mcRL("purple_terracotta"));
-        this.innerVerticalSlab("vertical_purple_terracotta_slab", mcRL("purple_terracotta"), mcRL("purple_terracotta"), mcRL("purple_terracotta"));
-        this.outerVerticalSlab("vertical_purple_terracotta_slab", mcRL("purple_terracotta"), mcRL("purple_terracotta"), mcRL("purple_terracotta"));
-        this.verticalSlab("vertical_blue_terracotta_slab", mcRL("blue_terracotta"), mcRL("blue_terracotta"), mcRL("blue_terracotta"));
-        this.innerVerticalSlab("vertical_blue_terracotta_slab", mcRL("blue_terracotta"), mcRL("blue_terracotta"), mcRL("blue_terracotta"));
-        this.outerVerticalSlab("vertical_blue_terracotta_slab", mcRL("blue_terracotta"), mcRL("blue_terracotta"), mcRL("blue_terracotta"));
-        this.verticalSlab("vertical_brown_terracotta_slab", mcRL("brown_terracotta"), mcRL("brown_terracotta"), mcRL("brown_terracotta"));
-        this.innerVerticalSlab("vertical_brown_terracotta_slab", mcRL("brown_terracotta"), mcRL("brown_terracotta"), mcRL("brown_terracotta"));
-        this.outerVerticalSlab("vertical_brown_terracotta_slab", mcRL("brown_terracotta"), mcRL("brown_terracotta"), mcRL("brown_terracotta"));
-        this.verticalSlab("vertical_green_terracotta_slab", mcRL("green_terracotta"), mcRL("green_terracotta"), mcRL("green_terracotta"));
-        this.innerVerticalSlab("vertical_green_terracotta_slab", mcRL("green_terracotta"), mcRL("green_terracotta"), mcRL("green_terracotta"));
-        this.outerVerticalSlab("vertical_green_terracotta_slab", mcRL("green_terracotta"), mcRL("green_terracotta"), mcRL("green_terracotta"));
-        this.verticalSlab("vertical_red_terracotta_slab", mcRL("red_terracotta"), mcRL("red_terracotta"), mcRL("red_terracotta"));
-        this.innerVerticalSlab("vertical_red_terracotta_slab", mcRL("red_terracotta"), mcRL("red_terracotta"), mcRL("red_terracotta"));
-        this.outerVerticalSlab("vertical_red_terracotta_slab", mcRL("red_terracotta"), mcRL("red_terracotta"), mcRL("red_terracotta"));
-        this.verticalSlab("vertical_black_terracotta_slab", mcRL("black_terracotta"), mcRL("black_terracotta"), mcRL("black_terracotta"));
-        this.innerVerticalSlab("vertical_black_terracotta_slab", mcRL("black_terracotta"), mcRL("black_terracotta"), mcRL("black_terracotta"));
-        this.outerVerticalSlab("vertical_black_terracotta_slab", mcRL("black_terracotta"), mcRL("black_terracotta"), mcRL("black_terracotta"));
-        this.verticalSlab("vertical_white_glazed_terracotta_slab", mcRL("white_glazed_terracotta"), mcRL("white_glazed_terracotta"), mcRL("white_glazed_terracotta"));
-        this.innerVerticalSlab("vertical_white_glazed_terracotta_slab", mcRL("white_glazed_terracotta"), mcRL("white_glazed_terracotta"), mcRL("white_glazed_terracotta"));
-        this.outerVerticalSlab("vertical_white_glazed_terracotta_slab", mcRL("white_glazed_terracotta"), mcRL("white_glazed_terracotta"), mcRL("white_glazed_terracotta"));
-        this.verticalSlab("vertical_orange_glazed_terracotta_slab", mcRL("orange_glazed_terracotta"), mcRL("orange_glazed_terracotta"), mcRL("orange_glazed_terracotta"));
-        this.innerVerticalSlab("vertical_orange_glazed_terracotta_slab", mcRL("orange_glazed_terracotta"), mcRL("orange_glazed_terracotta"), mcRL("orange_glazed_terracotta"));
-        this.outerVerticalSlab("vertical_orange_glazed_terracotta_slab", mcRL("orange_glazed_terracotta"), mcRL("orange_glazed_terracotta"), mcRL("orange_glazed_terracotta"));
-        this.verticalSlab("vertical_magenta_glazed_terracotta_slab", mcRL("magenta_glazed_terracotta"), mcRL("magenta_glazed_terracotta"), mcRL("magenta_glazed_terracotta"));
-        this.innerVerticalSlab("vertical_magenta_glazed_terracotta_slab", mcRL("magenta_glazed_terracotta"), mcRL("magenta_glazed_terracotta"), mcRL("magenta_glazed_terracotta"));
-        this.outerVerticalSlab("vertical_magenta_glazed_terracotta_slab", mcRL("magenta_glazed_terracotta"), mcRL("magenta_glazed_terracotta"), mcRL("magenta_glazed_terracotta"));
-        this.verticalSlab("vertical_light_blue_glazed_terracotta_slab", mcRL("light_blue_glazed_terracotta"), mcRL("light_blue_glazed_terracotta"), mcRL("light_blue_glazed_terracotta"));
-        this.innerVerticalSlab("vertical_light_blue_glazed_terracotta_slab", mcRL("light_blue_glazed_terracotta"), mcRL("light_blue_glazed_terracotta"), mcRL("light_blue_glazed_terracotta"));
-        this.outerVerticalSlab("vertical_light_blue_glazed_terracotta_slab", mcRL("light_blue_glazed_terracotta"), mcRL("light_blue_glazed_terracotta"), mcRL("light_blue_glazed_terracotta"));
-        this.verticalSlab("vertical_yellow_glazed_terracotta_slab", mcRL("yellow_glazed_terracotta"), mcRL("yellow_glazed_terracotta"), mcRL("yellow_glazed_terracotta"));
-        this.innerVerticalSlab("vertical_yellow_glazed_terracotta_slab", mcRL("yellow_glazed_terracotta"), mcRL("yellow_glazed_terracotta"), mcRL("yellow_glazed_terracotta"));
-        this.outerVerticalSlab("vertical_yellow_glazed_terracotta_slab", mcRL("yellow_glazed_terracotta"), mcRL("yellow_glazed_terracotta"), mcRL("yellow_glazed_terracotta"));
-        this.verticalSlab("vertical_lime_glazed_terracotta_slab", mcRL("lime_glazed_terracotta"), mcRL("lime_glazed_terracotta"), mcRL("lime_glazed_terracotta"));
-        this.innerVerticalSlab("vertical_lime_glazed_terracotta_slab", mcRL("lime_glazed_terracotta"), mcRL("lime_glazed_terracotta"), mcRL("lime_glazed_terracotta"));
-        this.outerVerticalSlab("vertical_lime_glazed_terracotta_slab", mcRL("lime_glazed_terracotta"), mcRL("lime_glazed_terracotta"), mcRL("lime_glazed_terracotta"));
-        this.verticalSlab("vertical_pink_glazed_terracotta_slab", mcRL("pink_glazed_terracotta"), mcRL("pink_glazed_terracotta"), mcRL("pink_glazed_terracotta"));
-        this.innerVerticalSlab("vertical_pink_glazed_terracotta_slab", mcRL("pink_glazed_terracotta"), mcRL("pink_glazed_terracotta"), mcRL("pink_glazed_terracotta"));
-        this.outerVerticalSlab("vertical_pink_glazed_terracotta_slab", mcRL("pink_glazed_terracotta"), mcRL("pink_glazed_terracotta"), mcRL("pink_glazed_terracotta"));
-        this.verticalSlab("vertical_gray_glazed_terracotta_slab", mcRL("gray_glazed_terracotta"), mcRL("gray_glazed_terracotta"), mcRL("gray_glazed_terracotta"));
-        this.innerVerticalSlab("vertical_gray_glazed_terracotta_slab", mcRL("gray_glazed_terracotta"), mcRL("gray_glazed_terracotta"), mcRL("gray_glazed_terracotta"));
-        this.outerVerticalSlab("vertical_gray_glazed_terracotta_slab", mcRL("gray_glazed_terracotta"), mcRL("gray_glazed_terracotta"), mcRL("gray_glazed_terracotta"));
-        this.verticalSlab("vertical_light_gray_glazed_terracotta_slab", mcRL("light_gray_glazed_terracotta"), mcRL("light_gray_glazed_terracotta"), mcRL("light_gray_glazed_terracotta"));
-        this.innerVerticalSlab("vertical_light_gray_glazed_terracotta_slab", mcRL("light_gray_glazed_terracotta"), mcRL("light_gray_glazed_terracotta"), mcRL("light_gray_glazed_terracotta"));
-        this.outerVerticalSlab("vertical_light_gray_glazed_terracotta_slab", mcRL("light_gray_glazed_terracotta"), mcRL("light_gray_glazed_terracotta"), mcRL("light_gray_glazed_terracotta"));
-        this.verticalSlab("vertical_cyan_glazed_terracotta_slab", mcRL("cyan_glazed_terracotta"), mcRL("cyan_glazed_terracotta"), mcRL("cyan_glazed_terracotta"));
-        this.innerVerticalSlab("vertical_cyan_glazed_terracotta_slab", mcRL("cyan_glazed_terracotta"), mcRL("cyan_glazed_terracotta"), mcRL("cyan_glazed_terracotta"));
-        this.outerVerticalSlab("vertical_cyan_glazed_terracotta_slab", mcRL("cyan_glazed_terracotta"), mcRL("cyan_glazed_terracotta"), mcRL("cyan_glazed_terracotta"));
-        this.verticalSlab("vertical_purple_glazed_terracotta_slab", mcRL("purple_glazed_terracotta"), mcRL("purple_glazed_terracotta"), mcRL("purple_glazed_terracotta"));
-        this.innerVerticalSlab("vertical_purple_glazed_terracotta_slab", mcRL("purple_glazed_terracotta"), mcRL("purple_glazed_terracotta"), mcRL("purple_glazed_terracotta"));
-        this.outerVerticalSlab("vertical_purple_glazed_terracotta_slab", mcRL("purple_glazed_terracotta"), mcRL("purple_glazed_terracotta"), mcRL("purple_glazed_terracotta"));
-        this.verticalSlab("vertical_blue_glazed_terracotta_slab", mcRL("blue_glazed_terracotta"), mcRL("blue_glazed_terracotta"), mcRL("blue_glazed_terracotta"));
-        this.innerVerticalSlab("vertical_blue_glazed_terracotta_slab", mcRL("blue_glazed_terracotta"), mcRL("blue_glazed_terracotta"), mcRL("blue_glazed_terracotta"));
-        this.outerVerticalSlab("vertical_blue_glazed_terracotta_slab", mcRL("blue_glazed_terracotta"), mcRL("blue_glazed_terracotta"), mcRL("blue_glazed_terracotta"));
-        this.verticalSlab("vertical_brown_glazed_terracotta_slab", mcRL("brown_glazed_terracotta"), mcRL("brown_glazed_terracotta"), mcRL("brown_glazed_terracotta"));
-        this.innerVerticalSlab("vertical_brown_glazed_terracotta_slab", mcRL("brown_glazed_terracotta"), mcRL("brown_glazed_terracotta"), mcRL("brown_glazed_terracotta"));
-        this.outerVerticalSlab("vertical_brown_glazed_terracotta_slab", mcRL("brown_glazed_terracotta"), mcRL("brown_glazed_terracotta"), mcRL("brown_glazed_terracotta"));
-        this.verticalSlab("vertical_green_glazed_terracotta_slab", mcRL("green_glazed_terracotta"), mcRL("green_glazed_terracotta"), mcRL("green_glazed_terracotta"));
-        this.innerVerticalSlab("vertical_green_glazed_terracotta_slab", mcRL("green_glazed_terracotta"), mcRL("green_glazed_terracotta"), mcRL("green_glazed_terracotta"));
-        this.outerVerticalSlab("vertical_green_glazed_terracotta_slab", mcRL("green_glazed_terracotta"), mcRL("green_glazed_terracotta"), mcRL("green_glazed_terracotta"));
-        this.verticalSlab("vertical_red_glazed_terracotta_slab", mcRL("red_glazed_terracotta"), mcRL("red_glazed_terracotta"), mcRL("red_glazed_terracotta"));
-        this.innerVerticalSlab("vertical_red_glazed_terracotta_slab", mcRL("red_glazed_terracotta"), mcRL("red_glazed_terracotta"), mcRL("red_glazed_terracotta"));
-        this.outerVerticalSlab("vertical_red_glazed_terracotta_slab", mcRL("red_glazed_terracotta"), mcRL("red_glazed_terracotta"), mcRL("red_glazed_terracotta"));
-        this.verticalSlab("vertical_black_glazed_terracotta_slab", mcRL("black_glazed_terracotta"), mcRL("black_glazed_terracotta"), mcRL("black_glazed_terracotta"));
-        this.innerVerticalSlab("vertical_black_glazed_terracotta_slab", mcRL("black_glazed_terracotta"), mcRL("black_glazed_terracotta"), mcRL("black_glazed_terracotta"));
-        this.outerVerticalSlab("vertical_black_glazed_terracotta_slab", mcRL("black_glazed_terracotta"), mcRL("black_glazed_terracotta"), mcRL("black_glazed_terracotta"));
-        this.verticalSlabTranslucent("vertical_glass_slab", mcRL("glass"), mcRL("glass"), mcRL("glass"));
-        this.innerVerticalSlabTranslucent("vertical_glass_slab", mcRL("glass"), mcRL("glass"), mcRL("glass"));
-        this.outerVerticalSlabTranslucent("vertical_glass_slab", mcRL("glass"), mcRL("glass"), mcRL("glass"));
-        this.verticalSlabTranslucent("vertical_tinted_glass_slab", mcRL("tinted_glass"), mcRL("tinted_glass"), mcRL("tinted_glass"));
-        this.innerVerticalSlabTranslucent("vertical_tinted_glass_slab", mcRL("tinted_glass"), mcRL("tinted_glass"), mcRL("tinted_glass"));
-        this.outerVerticalSlabTranslucent("vertical_tinted_glass_slab", mcRL("tinted_glass"), mcRL("tinted_glass"), mcRL("tinted_glass"));
-        this.verticalSlabTranslucent("vertical_white_stained_glass_slab", mcRL("white_stained_glass"), mcRL("white_stained_glass"), mcRL("white_stained_glass"));
-        this.innerVerticalSlabTranslucent("vertical_white_stained_glass_slab", mcRL("white_stained_glass"), mcRL("white_stained_glass"), mcRL("white_stained_glass"));
-        this.outerVerticalSlabTranslucent("vertical_white_stained_glass_slab", mcRL("white_stained_glass"), mcRL("white_stained_glass"), mcRL("white_stained_glass"));
-        this.verticalSlabTranslucent("vertical_orange_stained_glass_slab", mcRL("orange_stained_glass"), mcRL("orange_stained_glass"), mcRL("orange_stained_glass"));
-        this.innerVerticalSlabTranslucent("vertical_orange_stained_glass_slab", mcRL("orange_stained_glass"), mcRL("orange_stained_glass"), mcRL("orange_stained_glass"));
-        this.outerVerticalSlabTranslucent("vertical_orange_stained_glass_slab", mcRL("orange_stained_glass"), mcRL("orange_stained_glass"), mcRL("orange_stained_glass"));
-        this.verticalSlabTranslucent("vertical_magenta_stained_glass_slab", mcRL("magenta_stained_glass"), mcRL("magenta_stained_glass"), mcRL("magenta_stained_glass"));
-        this.innerVerticalSlabTranslucent("vertical_magenta_stained_glass_slab", mcRL("magenta_stained_glass"), mcRL("magenta_stained_glass"), mcRL("magenta_stained_glass"));
-        this.outerVerticalSlabTranslucent("vertical_magenta_stained_glass_slab", mcRL("magenta_stained_glass"), mcRL("magenta_stained_glass"), mcRL("magenta_stained_glass"));
-        this.verticalSlabTranslucent("vertical_light_blue_stained_glass_slab", mcRL("light_blue_stained_glass"), mcRL("light_blue_stained_glass"), mcRL("light_blue_stained_glass"));
-        this.innerVerticalSlabTranslucent("vertical_light_blue_stained_glass_slab", mcRL("light_blue_stained_glass"), mcRL("light_blue_stained_glass"), mcRL("light_blue_stained_glass"));
-        this.outerVerticalSlabTranslucent("vertical_light_blue_stained_glass_slab", mcRL("light_blue_stained_glass"), mcRL("light_blue_stained_glass"), mcRL("light_blue_stained_glass"));
-        this.verticalSlabTranslucent("vertical_yellow_stained_glass_slab", mcRL("yellow_stained_glass"), mcRL("yellow_stained_glass"), mcRL("yellow_stained_glass"));
-        this.innerVerticalSlabTranslucent("vertical_yellow_stained_glass_slab", mcRL("yellow_stained_glass"), mcRL("yellow_stained_glass"), mcRL("yellow_stained_glass"));
-        this.outerVerticalSlabTranslucent("vertical_yellow_stained_glass_slab", mcRL("yellow_stained_glass"), mcRL("yellow_stained_glass"), mcRL("yellow_stained_glass"));
-        this.verticalSlabTranslucent("vertical_lime_stained_glass_slab", mcRL("lime_stained_glass"), mcRL("lime_stained_glass"), mcRL("lime_stained_glass"));
-        this.innerVerticalSlabTranslucent("vertical_lime_stained_glass_slab", mcRL("lime_stained_glass"), mcRL("lime_stained_glass"), mcRL("lime_stained_glass"));
-        this.outerVerticalSlabTranslucent("vertical_lime_stained_glass_slab", mcRL("lime_stained_glass"), mcRL("lime_stained_glass"), mcRL("lime_stained_glass"));
-        this.verticalSlabTranslucent("vertical_pink_stained_glass_slab", mcRL("pink_stained_glass"), mcRL("pink_stained_glass"), mcRL("pink_stained_glass"));
-        this.innerVerticalSlabTranslucent("vertical_pink_stained_glass_slab", mcRL("pink_stained_glass"), mcRL("pink_stained_glass"), mcRL("pink_stained_glass"));
-        this.outerVerticalSlabTranslucent("vertical_pink_stained_glass_slab", mcRL("pink_stained_glass"), mcRL("pink_stained_glass"), mcRL("pink_stained_glass"));
-        this.verticalSlabTranslucent("vertical_gray_stained_glass_slab", mcRL("gray_stained_glass"), mcRL("gray_stained_glass"), mcRL("gray_stained_glass"));
-        this.innerVerticalSlabTranslucent("vertical_gray_stained_glass_slab", mcRL("gray_stained_glass"), mcRL("gray_stained_glass"), mcRL("gray_stained_glass"));
-        this.outerVerticalSlabTranslucent("vertical_gray_stained_glass_slab", mcRL("gray_stained_glass"), mcRL("gray_stained_glass"), mcRL("gray_stained_glass"));
-        this.verticalSlabTranslucent("vertical_light_gray_stained_glass_slab", mcRL("light_gray_stained_glass"), mcRL("light_gray_stained_glass"), mcRL("light_gray_stained_glass"));
-        this.innerVerticalSlabTranslucent("vertical_light_gray_stained_glass_slab", mcRL("light_gray_stained_glass"), mcRL("light_gray_stained_glass"), mcRL("light_gray_stained_glass"));
-        this.outerVerticalSlabTranslucent("vertical_light_gray_stained_glass_slab", mcRL("light_gray_stained_glass"), mcRL("light_gray_stained_glass"), mcRL("light_gray_stained_glass"));
-        this.verticalSlabTranslucent("vertical_cyan_stained_glass_slab", mcRL("cyan_stained_glass"), mcRL("cyan_stained_glass"), mcRL("cyan_stained_glass"));
-        this.innerVerticalSlabTranslucent("vertical_cyan_stained_glass_slab", mcRL("cyan_stained_glass"), mcRL("cyan_stained_glass"), mcRL("cyan_stained_glass"));
-        this.outerVerticalSlabTranslucent("vertical_cyan_stained_glass_slab", mcRL("cyan_stained_glass"), mcRL("cyan_stained_glass"), mcRL("cyan_stained_glass"));
-        this.verticalSlabTranslucent("vertical_purple_stained_glass_slab", mcRL("purple_stained_glass"), mcRL("purple_stained_glass"), mcRL("purple_stained_glass"));
-        this.innerVerticalSlabTranslucent("vertical_purple_stained_glass_slab", mcRL("purple_stained_glass"), mcRL("purple_stained_glass"), mcRL("purple_stained_glass"));
-        this.outerVerticalSlabTranslucent("vertical_purple_stained_glass_slab", mcRL("purple_stained_glass"), mcRL("purple_stained_glass"), mcRL("purple_stained_glass"));
-        this.verticalSlabTranslucent("vertical_blue_stained_glass_slab", mcRL("blue_stained_glass"), mcRL("blue_stained_glass"), mcRL("blue_stained_glass"));
-        this.innerVerticalSlabTranslucent("vertical_blue_stained_glass_slab", mcRL("blue_stained_glass"), mcRL("blue_stained_glass"), mcRL("blue_stained_glass"));
-        this.outerVerticalSlabTranslucent("vertical_blue_stained_glass_slab", mcRL("blue_stained_glass"), mcRL("blue_stained_glass"), mcRL("blue_stained_glass"));
-        this.verticalSlabTranslucent("vertical_brown_stained_glass_slab", mcRL("brown_stained_glass"), mcRL("brown_stained_glass"), mcRL("brown_stained_glass"));
-        this.innerVerticalSlabTranslucent("vertical_brown_stained_glass_slab", mcRL("brown_stained_glass"), mcRL("brown_stained_glass"), mcRL("brown_stained_glass"));
-        this.outerVerticalSlabTranslucent("vertical_brown_stained_glass_slab", mcRL("brown_stained_glass"), mcRL("brown_stained_glass"), mcRL("brown_stained_glass"));
-        this.verticalSlabTranslucent("vertical_green_stained_glass_slab", mcRL("green_stained_glass"), mcRL("green_stained_glass"), mcRL("green_stained_glass"));
-        this.innerVerticalSlabTranslucent("vertical_green_stained_glass_slab", mcRL("green_stained_glass"), mcRL("green_stained_glass"), mcRL("green_stained_glass"));
-        this.outerVerticalSlabTranslucent("vertical_green_stained_glass_slab", mcRL("green_stained_glass"), mcRL("green_stained_glass"), mcRL("green_stained_glass"));
-        this.verticalSlabTranslucent("vertical_red_stained_glass_slab", mcRL("red_stained_glass"), mcRL("red_stained_glass"), mcRL("red_stained_glass"));
-        this.innerVerticalSlabTranslucent("vertical_red_stained_glass_slab", mcRL("red_stained_glass"), mcRL("red_stained_glass"), mcRL("red_stained_glass"));
-        this.outerVerticalSlabTranslucent("vertical_red_stained_glass_slab", mcRL("red_stained_glass"), mcRL("red_stained_glass"), mcRL("red_stained_glass"));
-        this.verticalSlabTranslucent("vertical_black_stained_glass_slab", mcRL("black_stained_glass"), mcRL("black_stained_glass"), mcRL("black_stained_glass"));
-        this.innerVerticalSlabTranslucent("vertical_black_stained_glass_slab", mcRL("black_stained_glass"), mcRL("black_stained_glass"), mcRL("black_stained_glass"));
-        this.outerVerticalSlabTranslucent("vertical_black_stained_glass_slab", mcRL("black_stained_glass"), mcRL("black_stained_glass"), mcRL("black_stained_glass"));
-        this.verticalSlab("vertical_sandstone_slab", mcRL("sandstone"), mcRL("sandstone_bottom"), mcRL("sandstone_top"));
-        this.innerVerticalSlab("vertical_sandstone_slab", mcRL("sandstone"), mcRL("sandstone_bottom"), mcRL("sandstone_top"));
-        this.outerVerticalSlab("vertical_sandstone_slab", mcRL("sandstone"), mcRL("sandstone_bottom"), mcRL("sandstone_top"));
-        this.verticalSlab("vertical_smooth_sandstone_slab", mcRL("sandstone_top"), mcRL("sandstone_top"), mcRL("sandstone_top"));
-        this.innerVerticalSlab("vertical_smooth_sandstone_slab", mcRL("sandstone_top"), mcRL("sandstone_top"), mcRL("sandstone_top"));
-        this.outerVerticalSlab("vertical_smooth_sandstone_slab", mcRL("sandstone_top"), mcRL("sandstone_top"), mcRL("sandstone_top"));
-        this.verticalSlab("vertical_cut_sandstone_slab", mcRL("cut_sandstone"), mcRL("sandstone_top"), mcRL("sandstone_top"));
-        this.innerVerticalSlab("vertical_cut_sandstone_slab", mcRL("cut_sandstone"), mcRL("sandstone_top"), mcRL("sandstone_top"));
-        this.outerVerticalSlab("vertical_cut_sandstone_slab", mcRL("cut_sandstone"), mcRL("sandstone_top"), mcRL("sandstone_top"));
-        this.verticalSlab("vertical_red_sandstone_slab", mcRL("red_sandstone"), mcRL("red_sandstone_bottom"), mcRL("red_sandstone_top"));
-        this.innerVerticalSlab("vertical_red_sandstone_slab", mcRL("red_sandstone"), mcRL("red_sandstone_bottom"), mcRL("red_sandstone_top"));
-        this.outerVerticalSlab("vertical_red_sandstone_slab", mcRL("red_sandstone"), mcRL("red_sandstone_bottom"), mcRL("red_sandstone_top"));
-        this.verticalSlab("vertical_smooth_red_sandstone_slab", mcRL("red_sandstone_top"), mcRL("red_sandstone_top"), mcRL("red_sandstone_top"));
-        this.innerVerticalSlab("vertical_smooth_red_sandstone_slab", mcRL("red_sandstone_top"), mcRL("red_sandstone_top"), mcRL("red_sandstone_top"));
-        this.outerVerticalSlab("vertical_smooth_red_sandstone_slab", mcRL("red_sandstone_top"), mcRL("red_sandstone_top"), mcRL("red_sandstone_top"));
-        this.verticalSlab("vertical_cut_red_sandstone_slab", mcRL("cut_red_sandstone"), mcRL("red_sandstone_top"), mcRL("red_sandstone_top"));
-        this.innerVerticalSlab("vertical_cut_red_sandstone_slab", mcRL("cut_red_sandstone"), mcRL("red_sandstone_top"), mcRL("red_sandstone_top"));
-        this.outerVerticalSlab("vertical_cut_red_sandstone_slab", mcRL("cut_red_sandstone"), mcRL("red_sandstone_top"), mcRL("red_sandstone_top"));
-        this.verticalSlab("vertical_cobbled_deepslate_slab", mcRL("cobbled_deepslate"), mcRL("cobbled_deepslate"), mcRL("cobbled_deepslate"));
-        this.innerVerticalSlab("vertical_cobbled_deepslate_slab", mcRL("cobbled_deepslate"), mcRL("cobbled_deepslate"), mcRL("cobbled_deepslate"));
-        this.outerVerticalSlab("vertical_cobbled_deepslate_slab", mcRL("cobbled_deepslate"), mcRL("cobbled_deepslate"), mcRL("cobbled_deepslate"));
-        this.verticalSlab("vertical_polished_deepslate_slab", mcRL("polished_deepslate"), mcRL("polished_deepslate"), mcRL("polished_deepslate"));
-        this.innerVerticalSlab("vertical_polished_deepslate_slab", mcRL("polished_deepslate"), mcRL("polished_deepslate"), mcRL("polished_deepslate"));
-        this.outerVerticalSlab("vertical_polished_deepslate_slab", mcRL("polished_deepslate"), mcRL("polished_deepslate"), mcRL("polished_deepslate"));
-        this.verticalSlab("vertical_deepslate_brick_slab", mcRL("deepslate_bricks"), mcRL("deepslate_bricks"), mcRL("deepslate_bricks"));
-        this.innerVerticalSlab("vertical_deepslate_brick_slab", mcRL("deepslate_bricks"), mcRL("deepslate_bricks"), mcRL("deepslate_bricks"));
-        this.outerVerticalSlab("vertical_deepslate_brick_slab", mcRL("deepslate_bricks"), mcRL("deepslate_bricks"), mcRL("deepslate_bricks"));
-        this.verticalSlab("vertical_deepslate_tile_slab", mcRL("deepslate_tiles"), mcRL("deepslate_tiles"), mcRL("deepslate_tiles"));
-        this.innerVerticalSlab("vertical_deepslate_tile_slab", mcRL("deepslate_tiles"), mcRL("deepslate_tiles"), mcRL("deepslate_tiles"));
-        this.outerVerticalSlab("vertical_deepslate_tile_slab", mcRL("deepslate_tiles"), mcRL("deepslate_tiles"), mcRL("deepslate_tiles"));
-        this.verticalSlab("vertical_blackstone_slab", mcRL("blackstone"), mcRL("blackstone"), mcRL("blackstone"));
-        this.innerVerticalSlab("vertical_blackstone_slab", mcRL("blackstone"), mcRL("blackstone"), mcRL("blackstone"));
-        this.outerVerticalSlab("vertical_blackstone_slab", mcRL("blackstone"), mcRL("blackstone"), mcRL("blackstone"));
-        this.verticalSlab("vertical_polished_blackstone_slab", mcRL("polished_blackstone"), mcRL("polished_blackstone"), mcRL("polished_blackstone"));
-        this.innerVerticalSlab("vertical_polished_blackstone_slab", mcRL("polished_blackstone"), mcRL("polished_blackstone"), mcRL("polished_blackstone"));
-        this.outerVerticalSlab("vertical_polished_blackstone_slab", mcRL("polished_blackstone"), mcRL("polished_blackstone"), mcRL("polished_blackstone"));
-        this.verticalSlab("vertical_polished_blackstone_brick_slab", mcRL("polished_blackstone_bricks"), mcRL("polished_blackstone_bricks"), mcRL("polished_blackstone_bricks"));
-        this.innerVerticalSlab("vertical_polished_blackstone_brick_slab", mcRL("polished_blackstone_bricks"), mcRL("polished_blackstone_bricks"), mcRL("polished_blackstone_bricks"));
-        this.outerVerticalSlab("vertical_polished_blackstone_brick_slab", mcRL("polished_blackstone_bricks"), mcRL("polished_blackstone_bricks"), mcRL("polished_blackstone_bricks"));
-        this.verticalSlab("vertical_netherrack_slab", mcRL("netherrack"), mcRL("netherrack"), mcRL("netherrack"));
-        this.innerVerticalSlab("vertical_netherrack_slab", mcRL("netherrack"), mcRL("netherrack"), mcRL("netherrack"));
-        this.outerVerticalSlab("vertical_netherrack_slab", mcRL("netherrack"), mcRL("netherrack"), mcRL("netherrack"));
-        this.verticalSlab("vertical_crimson_nylium_slab", mcRL("crimson_nylium_side"), mcRL("netherrack"), mcRL("crimson_nylium"));
-        this.innerVerticalSlab("vertical_crimson_nylium_slab", mcRL("crimson_nylium_side"), mcRL("netherrack"), mcRL("crimson_nylium"));
-        this.outerVerticalSlab("vertical_crimson_nylium_slab", mcRL("crimson_nylium_side"), mcRL("netherrack"), mcRL("crimson_nylium"));
-        this.verticalSlab("vertical_warped_nylium_slab", mcRL("warped_nylium_side"), mcRL("netherrack"), mcRL("warped_nylium"));
-        this.innerVerticalSlab("vertical_warped_nylium_slab", mcRL("warped_nylium_side"), mcRL("netherrack"), mcRL("warped_nylium"));
-        this.outerVerticalSlab("vertical_warped_nylium_slab", mcRL("warped_nylium_side"), mcRL("netherrack"), mcRL("warped_nylium"));
-        this.verticalSlab("vertical_nether_brick_slab", mcRL("nether_bricks"), mcRL("nether_bricks"), mcRL("nether_bricks"));
-        this.innerVerticalSlab("vertical_nether_brick_slab", mcRL("nether_bricks"), mcRL("nether_bricks"), mcRL("nether_bricks"));
-        this.outerVerticalSlab("vertical_nether_brick_slab", mcRL("nether_bricks"), mcRL("nether_bricks"), mcRL("nether_bricks"));
-        this.verticalSlab("vertical_red_nether_brick_slab", mcRL("red_nether_bricks"), mcRL("red_nether_bricks"), mcRL("red_nether_bricks"));
-        this.innerVerticalSlab("vertical_red_nether_brick_slab", mcRL("red_nether_bricks"), mcRL("red_nether_bricks"), mcRL("red_nether_bricks"));
-        this.outerVerticalSlab("vertical_red_nether_brick_slab", mcRL("red_nether_bricks"), mcRL("red_nether_bricks"), mcRL("red_nether_bricks"));
-        this.verticalSlab("vertical_quartz_slab", mcRL("quartz_block_side"), mcRL("quartz_block_top"), mcRL("quartz_block_top"));
-        this.innerVerticalSlab("vertical_quartz_slab", mcRL("quartz_block_side"), mcRL("quartz_block_top"), mcRL("quartz_block_top"));
-        this.outerVerticalSlab("vertical_quartz_slab", mcRL("quartz_block_side"), mcRL("quartz_block_top"), mcRL("quartz_block_top"));
-        this.verticalSlab("vertical_smooth_quartz_slab", mcRL("quartz_block_bottom"), mcRL("quartz_block_bottom"), mcRL("quartz_block_bottom"));
-        this.innerVerticalSlab("vertical_smooth_quartz_slab", mcRL("quartz_block_bottom"), mcRL("quartz_block_bottom"), mcRL("quartz_block_bottom"));
-        this.outerVerticalSlab("vertical_smooth_quartz_slab", mcRL("quartz_block_bottom"), mcRL("quartz_block_bottom"), mcRL("quartz_block_bottom"));
-        this.verticalSlab("vertical_end_stone_slab", mcRL("end_stone"), mcRL("end_stone"), mcRL("end_stone"));
-        this.innerVerticalSlab("vertical_end_stone_slab", mcRL("end_stone"), mcRL("end_stone"), mcRL("end_stone"));
-        this.outerVerticalSlab("vertical_end_stone_slab", mcRL("end_stone"), mcRL("end_stone"), mcRL("end_stone"));
-        this.verticalSlab("vertical_end_stone_brick_slab", mcRL("end_stone_bricks"), mcRL("end_stone_bricks"), mcRL("end_stone_bricks"));
-        this.innerVerticalSlab("vertical_end_stone_brick_slab", mcRL("end_stone_bricks"), mcRL("end_stone_bricks"), mcRL("end_stone_bricks"));
-        this.outerVerticalSlab("vertical_end_stone_brick_slab", mcRL("end_stone_bricks"), mcRL("end_stone_bricks"), mcRL("end_stone_bricks"));
-        this.verticalSlab("vertical_purpur_slab", mcRL("purpur_block"), mcRL("purpur_block"), mcRL("purpur_block"));
-        this.innerVerticalSlab("vertical_purpur_slab", mcRL("purpur_block"), mcRL("purpur_block"), mcRL("purpur_block"));
-        this.outerVerticalSlab("vertical_purpur_slab", mcRL("purpur_block"), mcRL("purpur_block"), mcRL("purpur_block"));
-        this.verticalSlab("vertical_prismarine_slab", mcRL("prismarine"), mcRL("prismarine"), mcRL("prismarine"));
-        this.innerVerticalSlab("vertical_prismarine_slab", mcRL("prismarine"), mcRL("prismarine"), mcRL("prismarine"));
-        this.outerVerticalSlab("vertical_prismarine_slab", mcRL("prismarine"), mcRL("prismarine"), mcRL("prismarine"));
-        this.verticalSlab("vertical_prismarine_brick_slab", mcRL("prismarine_bricks"), mcRL("prismarine_bricks"), mcRL("prismarine_bricks"));
-        this.innerVerticalSlab("vertical_prismarine_brick_slab", mcRL("prismarine_bricks"), mcRL("prismarine_bricks"), mcRL("prismarine_bricks"));
-        this.outerVerticalSlab("vertical_prismarine_brick_slab", mcRL("prismarine_bricks"), mcRL("prismarine_bricks"), mcRL("prismarine_bricks"));
-        this.verticalSlab("vertical_dark_prismarine_slab", mcRL("dark_prismarine"), mcRL("dark_prismarine"), mcRL("dark_prismarine"));
-        this.innerVerticalSlab("vertical_dark_prismarine_slab", mcRL("dark_prismarine"), mcRL("dark_prismarine"), mcRL("dark_prismarine"));
-        this.outerVerticalSlab("vertical_dark_prismarine_slab", mcRL("dark_prismarine"), mcRL("dark_prismarine"), mcRL("dark_prismarine"));
-        this.verticalSlab("vertical_oak_slab", mcRL("oak_planks"), mcRL("oak_planks"), mcRL("oak_planks"));
-        this.innerVerticalSlab("vertical_oak_slab", mcRL("oak_planks"), mcRL("oak_planks"), mcRL("oak_planks"));
-        this.outerVerticalSlab("vertical_oak_slab", mcRL("oak_planks"), mcRL("oak_planks"), mcRL("oak_planks"));
-        this.verticalSlab("vertical_spruce_slab", mcRL("spruce_planks"), mcRL("spruce_planks"), mcRL("spruce_planks"));
-        this.innerVerticalSlab("vertical_spruce_slab", mcRL("spruce_planks"), mcRL("spruce_planks"), mcRL("spruce_planks"));
-        this.outerVerticalSlab("vertical_spruce_slab", mcRL("spruce_planks"), mcRL("spruce_planks"), mcRL("spruce_planks"));
-        this.verticalSlab("vertical_birch_slab", mcRL("birch_planks"), mcRL("birch_planks"), mcRL("birch_planks"));
-        this.innerVerticalSlab("vertical_birch_slab", mcRL("birch_planks"), mcRL("birch_planks"), mcRL("birch_planks"));
-        this.outerVerticalSlab("vertical_birch_slab", mcRL("birch_planks"), mcRL("birch_planks"), mcRL("birch_planks"));
-        this.verticalSlab("vertical_jungle_slab", mcRL("jungle_planks"), mcRL("jungle_planks"), mcRL("jungle_planks"));
-        this.innerVerticalSlab("vertical_jungle_slab", mcRL("jungle_planks"), mcRL("jungle_planks"), mcRL("jungle_planks"));
-        this.outerVerticalSlab("vertical_jungle_slab", mcRL("jungle_planks"), mcRL("jungle_planks"), mcRL("jungle_planks"));
-        this.verticalSlab("vertical_acacia_slab", mcRL("acacia_planks"), mcRL("acacia_planks"), mcRL("acacia_planks"));
-        this.innerVerticalSlab("vertical_acacia_slab", mcRL("acacia_planks"), mcRL("acacia_planks"), mcRL("acacia_planks"));
-        this.outerVerticalSlab("vertical_acacia_slab", mcRL("acacia_planks"), mcRL("acacia_planks"), mcRL("acacia_planks"));
-        this.verticalSlab("vertical_dark_oak_slab", mcRL("dark_oak_planks"), mcRL("dark_oak_planks"), mcRL("dark_oak_planks"));
-        this.innerVerticalSlab("vertical_dark_oak_slab", mcRL("dark_oak_planks"), mcRL("dark_oak_planks"), mcRL("dark_oak_planks"));
-        this.outerVerticalSlab("vertical_dark_oak_slab", mcRL("dark_oak_planks"), mcRL("dark_oak_planks"), mcRL("dark_oak_planks"));
-        this.verticalSlab("vertical_mangrove_slab", mcRL("mangrove_planks"), mcRL("mangrove_planks"), mcRL("mangrove_planks"));
-        this.innerVerticalSlab("vertical_mangrove_slab", mcRL("mangrove_planks"), mcRL("mangrove_planks"), mcRL("mangrove_planks"));
-        this.outerVerticalSlab("vertical_mangrove_slab", mcRL("mangrove_planks"), mcRL("mangrove_planks"), mcRL("mangrove_planks"));
-        this.verticalSlab("vertical_cherry_slab", mcRL("cherry_planks"), mcRL("cherry_planks"), mcRL("cherry_planks"));
-        this.innerVerticalSlab("vertical_cherry_slab", mcRL("cherry_planks"), mcRL("cherry_planks"), mcRL("cherry_planks"));
-        this.outerVerticalSlab("vertical_cherry_slab", mcRL("cherry_planks"), mcRL("cherry_planks"), mcRL("cherry_planks"));
-        this.verticalSlab("vertical_bamboo_slab", mcRL("bamboo_planks"), mcRL("bamboo_planks"), mcRL("bamboo_planks"));
-        this.innerVerticalSlab("vertical_bamboo_slab", mcRL("bamboo_planks"), mcRL("bamboo_planks"), mcRL("bamboo_planks"));
-        this.outerVerticalSlab("vertical_bamboo_slab", mcRL("bamboo_planks"), mcRL("bamboo_planks"), mcRL("bamboo_planks"));
-        this.verticalSlab("vertical_bamboo_mosaic_slab", mcRL("bamboo_mosaic"), mcRL("bamboo_mosaic"), mcRL("bamboo_mosaic"));
-        this.innerVerticalSlab("vertical_bamboo_mosaic_slab", mcRL("bamboo_mosaic"), mcRL("bamboo_mosaic"), mcRL("bamboo_mosaic"));
-        this.outerVerticalSlab("vertical_bamboo_mosaic_slab", mcRL("bamboo_mosaic"), mcRL("bamboo_mosaic"), mcRL("bamboo_mosaic"));
-        this.verticalSlab("vertical_crimson_slab", mcRL("crimson_planks"), mcRL("crimson_planks"), mcRL("crimson_planks"));
-        this.innerVerticalSlab("vertical_crimson_slab", mcRL("crimson_planks"), mcRL("crimson_planks"), mcRL("crimson_planks"));
-        this.outerVerticalSlab("vertical_crimson_slab", mcRL("crimson_planks"), mcRL("crimson_planks"), mcRL("crimson_planks"));
-        this.verticalSlab("vertical_warped_slab", mcRL("warped_planks"), mcRL("warped_planks"), mcRL("warped_planks"));
-        this.innerVerticalSlab("vertical_warped_slab", mcRL("warped_planks"), mcRL("warped_planks"), mcRL("warped_planks"));
-        this.outerVerticalSlab("vertical_warped_slab", mcRL("warped_planks"), mcRL("warped_planks"), mcRL("warped_planks"));
-        this.verticalSlab("vertical_petrified_oak_slab", mcRL("oak_planks"), mcRL("oak_planks"), mcRL("oak_planks"));
-        this.innerVerticalSlab("vertical_petrified_oak_slab", mcRL("oak_planks"), mcRL("oak_planks"), mcRL("oak_planks"));
-        this.outerVerticalSlab("vertical_petrified_oak_slab", mcRL("oak_planks"), mcRL("oak_planks"), mcRL("oak_planks"));
-        this.verticalSlab("vertical_oak_wood_slab", mcRL("oak_log"), mcRL("oak_log"), mcRL("oak_log"));
-        this.innerVerticalSlab("vertical_oak_wood_slab", mcRL("oak_log"), mcRL("oak_log"), mcRL("oak_log"));
-        this.outerVerticalSlab("vertical_oak_wood_slab", mcRL("oak_log"), mcRL("oak_log"), mcRL("oak_log"));
-        this.verticalSlab("vertical_spruce_wood_slab", mcRL("spruce_log"), mcRL("spruce_log"), mcRL("spruce_log"));
-        this.innerVerticalSlab("vertical_spruce_wood_slab", mcRL("spruce_log"), mcRL("spruce_log"), mcRL("spruce_log"));
-        this.outerVerticalSlab("vertical_spruce_wood_slab", mcRL("spruce_log"), mcRL("spruce_log"), mcRL("spruce_log"));
-        this.verticalSlab("vertical_birch_wood_slab", mcRL("birch_log"), mcRL("birch_log"), mcRL("birch_log"));
-        this.innerVerticalSlab("vertical_birch_wood_slab", mcRL("birch_log"), mcRL("birch_log"), mcRL("birch_log"));
-        this.outerVerticalSlab("vertical_birch_wood_slab", mcRL("birch_log"), mcRL("birch_log"), mcRL("birch_log"));
-        this.verticalSlab("vertical_jungle_wood_slab", mcRL("jungle_log"), mcRL("jungle_log"), mcRL("jungle_log"));
-        this.innerVerticalSlab("vertical_jungle_wood_slab", mcRL("jungle_log"), mcRL("jungle_log"), mcRL("jungle_log"));
-        this.outerVerticalSlab("vertical_jungle_wood_slab", mcRL("jungle_log"), mcRL("jungle_log"), mcRL("jungle_log"));
-        this.verticalSlab("vertical_acacia_wood_slab", mcRL("acacia_log"), mcRL("acacia_log"), mcRL("acacia_log"));
-        this.innerVerticalSlab("vertical_acacia_wood_slab", mcRL("acacia_log"), mcRL("acacia_log"), mcRL("acacia_log"));
-        this.outerVerticalSlab("vertical_acacia_wood_slab", mcRL("acacia_log"), mcRL("acacia_log"), mcRL("acacia_log"));
-        this.verticalSlab("vertical_dark_oak_wood_slab", mcRL("dark_oak_log"), mcRL("dark_oak_log"), mcRL("dark_oak_log"));
-        this.innerVerticalSlab("vertical_dark_oak_wood_slab", mcRL("dark_oak_log"), mcRL("dark_oak_log"), mcRL("dark_oak_log"));
-        this.outerVerticalSlab("vertical_dark_oak_wood_slab", mcRL("dark_oak_log"), mcRL("dark_oak_log"), mcRL("dark_oak_log"));
-        this.verticalSlab("vertical_mangrove_wood_slab", mcRL("mangrove_log"), mcRL("mangrove_log"), mcRL("mangrove_log"));
-        this.innerVerticalSlab("vertical_mangrove_wood_slab", mcRL("mangrove_log"), mcRL("mangrove_log"), mcRL("mangrove_log"));
-        this.outerVerticalSlab("vertical_mangrove_wood_slab", mcRL("mangrove_log"), mcRL("mangrove_log"), mcRL("mangrove_log"));
-        this.verticalSlab("vertical_cherry_wood_slab", mcRL("cherry_log"), mcRL("cherry_log"), mcRL("cherry_log"));
-        this.innerVerticalSlab("vertical_cherry_wood_slab", mcRL("cherry_log"), mcRL("cherry_log"), mcRL("cherry_log"));
-        this.outerVerticalSlab("vertical_cherry_wood_slab", mcRL("cherry_log"), mcRL("cherry_log"), mcRL("cherry_log"));
-        this.verticalSlab("vertical_crimson_hyphae_slab", mcRL("crimson_stem"), mcRL("crimson_stem"), mcRL("crimson_stem"));
-        this.innerVerticalSlab("vertical_crimson_hyphae_slab", mcRL("crimson_stem"), mcRL("crimson_stem"), mcRL("crimson_stem"));
-        this.outerVerticalSlab("vertical_crimson_hyphae_slab", mcRL("crimson_stem"), mcRL("crimson_stem"), mcRL("crimson_stem"));
-        this.verticalSlab("vertical_warped_hyphae_slab", mcRL("warped_stem"), mcRL("warped_stem"), mcRL("warped_stem"));
-        this.innerVerticalSlab("vertical_warped_hyphae_slab", mcRL("warped_stem"), mcRL("warped_stem"), mcRL("warped_stem"));
-        this.outerVerticalSlab("vertical_warped_hyphae_slab", mcRL("warped_stem"), mcRL("warped_stem"), mcRL("warped_stem"));
-        this.verticalSlab("vertical_oxidized_cut_copper_slab", mcRL("oxidized_cut_copper"), mcRL("oxidized_cut_copper"), mcRL("oxidized_cut_copper"));
-        this.innerVerticalSlab("vertical_oxidized_cut_copper_slab", mcRL("oxidized_cut_copper"), mcRL("oxidized_cut_copper"), mcRL("oxidized_cut_copper"));
-        this.outerVerticalSlab("vertical_oxidized_cut_copper_slab", mcRL("oxidized_cut_copper"), mcRL("oxidized_cut_copper"), mcRL("oxidized_cut_copper"));
-        this.verticalSlab("vertical_weathered_cut_copper_slab", mcRL("weathered_cut_copper"), mcRL("weathered_cut_copper"), mcRL("weathered_cut_copper"));
-        this.innerVerticalSlab("vertical_weathered_cut_copper_slab", mcRL("weathered_cut_copper"), mcRL("weathered_cut_copper"), mcRL("weathered_cut_copper"));
-        this.outerVerticalSlab("vertical_weathered_cut_copper_slab", mcRL("weathered_cut_copper"), mcRL("weathered_cut_copper"), mcRL("weathered_cut_copper"));
-        this.verticalSlab("vertical_exposed_cut_copper_slab", mcRL("exposed_cut_copper"), mcRL("exposed_cut_copper"), mcRL("exposed_cut_copper"));
-        this.innerVerticalSlab("vertical_exposed_cut_copper_slab", mcRL("exposed_cut_copper"), mcRL("exposed_cut_copper"), mcRL("exposed_cut_copper"));
-        this.outerVerticalSlab("vertical_exposed_cut_copper_slab", mcRL("exposed_cut_copper"), mcRL("exposed_cut_copper"), mcRL("exposed_cut_copper"));
-        this.verticalSlab("vertical_cut_copper_slab", mcRL("cut_copper"), mcRL("cut_copper"), mcRL("cut_copper"));
-        this.innerVerticalSlab("vertical_cut_copper_slab", mcRL("cut_copper"), mcRL("cut_copper"), mcRL("cut_copper"));
-        this.outerVerticalSlab("vertical_cut_copper_slab", mcRL("cut_copper"), mcRL("cut_copper"), mcRL("cut_copper"));
-        this.verticalSlab("vertical_waxed_oxidized_cut_copper_slab", mcRL("oxidized_cut_copper"), mcRL("oxidized_cut_copper"), mcRL("oxidized_cut_copper"));
-        this.innerVerticalSlab("vertical_waxed_oxidized_cut_copper_slab", mcRL("oxidized_cut_copper"), mcRL("oxidized_cut_copper"), mcRL("oxidized_cut_copper"));
-        this.outerVerticalSlab("vertical_waxed_oxidized_cut_copper_slab", mcRL("oxidized_cut_copper"), mcRL("oxidized_cut_copper"), mcRL("oxidized_cut_copper"));
-        this.verticalSlab("vertical_waxed_weathered_cut_copper_slab", mcRL("weathered_cut_copper"), mcRL("weathered_cut_copper"), mcRL("weathered_cut_copper"));
-        this.innerVerticalSlab("vertical_waxed_weathered_cut_copper_slab", mcRL("weathered_cut_copper"), mcRL("weathered_cut_copper"), mcRL("weathered_cut_copper"));
-        this.outerVerticalSlab("vertical_waxed_weathered_cut_copper_slab", mcRL("weathered_cut_copper"), mcRL("weathered_cut_copper"), mcRL("weathered_cut_copper"));
-        this.verticalSlab("vertical_waxed_exposed_cut_copper_slab", mcRL("exposed_cut_copper"), mcRL("exposed_cut_copper"), mcRL("exposed_cut_copper"));
-        this.innerVerticalSlab("vertical_waxed_exposed_cut_copper_slab", mcRL("exposed_cut_copper"), mcRL("exposed_cut_copper"), mcRL("exposed_cut_copper"));
-        this.outerVerticalSlab("vertical_waxed_exposed_cut_copper_slab", mcRL("exposed_cut_copper"), mcRL("exposed_cut_copper"), mcRL("exposed_cut_copper"));
-        this.verticalSlab("vertical_waxed_cut_copper_slab", mcRL("cut_copper"), mcRL("cut_copper"), mcRL("cut_copper"));
-        this.innerVerticalSlab("vertical_waxed_cut_copper_slab", mcRL("cut_copper"), mcRL("cut_copper"), mcRL("cut_copper"));
-        this.outerVerticalSlab("vertical_waxed_cut_copper_slab", mcRL("cut_copper"), mcRL("cut_copper"), mcRL("cut_copper"));
-        this.stairs("tuff_stairs", mcRL("tuff"), mcRL("tuff"), mcRL("tuff"));
-        this.stairsInner("tuff_stairs", mcRL("tuff"), mcRL("tuff"), mcRL("tuff"));
-        this.stairsOuter("tuff_stairs", mcRL("tuff"), mcRL("tuff"), mcRL("tuff"));
-        this.stairs("calcite_stairs", mcRL("calcite"), mcRL("calcite"), mcRL("calcite"));
-        this.stairsInner("calcite_stairs", mcRL("calcite"), mcRL("calcite"), mcRL("calcite"));
-        this.stairsOuter("calcite_stairs", mcRL("calcite"), mcRL("calcite"), mcRL("calcite"));
-        this.stairs("dripstone_stairs", mcRL("dripstone_block"), mcRL("dripstone_block"), mcRL("dripstone_block"));
-        this.stairsInner("dripstone_stairs", mcRL("dripstone_block"), mcRL("dripstone_block"), mcRL("dripstone_block"));
-        this.stairsOuter("dripstone_stairs", mcRL("dripstone_block"), mcRL("dripstone_block"), mcRL("dripstone_block"));
-        this.stairs("mud_stairs", mcRL("mud"), mcRL("mud"), mcRL("mud"));
-        this.stairsInner("mud_stairs", mcRL("mud"), mcRL("mud"), mcRL("mud"));
-        this.stairsOuter("mud_stairs", mcRL("mud"), mcRL("mud"), mcRL("mud"));
-        this.stairs("packed_mud_stairs", mcRL("packed_mud"), mcRL("packed_mud"), mcRL("packed_mud"));
-        this.stairsInner("packed_mud_stairs", mcRL("packed_mud"), mcRL("packed_mud"), mcRL("packed_mud"));
-        this.stairsOuter("packed_mud_stairs", mcRL("packed_mud"), mcRL("packed_mud"), mcRL("packed_mud"));
-        this.stairs("oak_wood_stairs", mcRL("oak_log"), mcRL("oak_log"), mcRL("oak_log"));
-        this.stairsInner("oak_wood_stairs", mcRL("oak_log"), mcRL("oak_log"), mcRL("oak_log"));
-        this.stairsOuter("oak_wood_stairs", mcRL("oak_log"), mcRL("oak_log"), mcRL("oak_log"));
-        this.stairs("spruce_wood_stairs", mcRL("spruce_log"), mcRL("spruce_log"), mcRL("spruce_log"));
-        this.stairsInner("spruce_wood_stairs", mcRL("spruce_log"), mcRL("spruce_log"), mcRL("spruce_log"));
-        this.stairsOuter("spruce_wood_stairs", mcRL("spruce_log"), mcRL("spruce_log"), mcRL("spruce_log"));
-        this.stairs("birch_wood_stairs", mcRL("birch_log"), mcRL("birch_log"), mcRL("birch_log"));
-        this.stairsInner("birch_wood_stairs", mcRL("birch_log"), mcRL("birch_log"), mcRL("birch_log"));
-        this.stairsOuter("birch_wood_stairs", mcRL("birch_log"), mcRL("birch_log"), mcRL("birch_log"));
-        this.stairs("jungle_wood_stairs", mcRL("jungle_log"), mcRL("jungle_log"), mcRL("jungle_log"));
-        this.stairsInner("jungle_wood_stairs", mcRL("jungle_log"), mcRL("jungle_log"), mcRL("jungle_log"));
-        this.stairsOuter("jungle_wood_stairs", mcRL("jungle_log"), mcRL("jungle_log"), mcRL("jungle_log"));
-        this.stairs("acacia_wood_stairs", mcRL("acacia_log"), mcRL("acacia_log"), mcRL("acacia_log"));
-        this.stairsInner("acacia_wood_stairs", mcRL("acacia_log"), mcRL("acacia_log"), mcRL("acacia_log"));
-        this.stairsOuter("acacia_wood_stairs", mcRL("acacia_log"), mcRL("acacia_log"), mcRL("acacia_log"));
-        this.stairs("dark_oak_wood_stairs", mcRL("dark_oak_log"), mcRL("dark_oak_log"), mcRL("dark_oak_log"));
-        this.stairsInner("dark_oak_wood_stairs", mcRL("dark_oak_log"), mcRL("dark_oak_log"), mcRL("dark_oak_log"));
-        this.stairsOuter("dark_oak_wood_stairs", mcRL("dark_oak_log"), mcRL("dark_oak_log"), mcRL("dark_oak_log"));
-        this.stairs("mangrove_wood_stairs", mcRL("mangrove_log"), mcRL("mangrove_log"), mcRL("mangrove_log"));
-        this.stairsInner("mangrove_wood_stairs", mcRL("mangrove_log"), mcRL("mangrove_log"), mcRL("mangrove_log"));
-        this.stairsOuter("mangrove_wood_stairs", mcRL("mangrove_log"), mcRL("mangrove_log"), mcRL("mangrove_log"));
-        this.stairs("cherry_wood_stairs", mcRL("cherry_log"), mcRL("cherry_log"), mcRL("cherry_log"));
-        this.stairsInner("cherry_wood_stairs", mcRL("cherry_log"), mcRL("cherry_log"), mcRL("cherry_log"));
-        this.stairsOuter("cherry_wood_stairs", mcRL("cherry_log"), mcRL("cherry_log"), mcRL("cherry_log"));
-        this.stairs("crimson_hyphae_stairs", mcRL("crimson_stem"), mcRL("crimson_stem"), mcRL("crimson_stem"));
-        this.stairsInner("crimson_hyphae_stairs", mcRL("crimson_stem"), mcRL("crimson_stem"), mcRL("crimson_stem"));
-        this.stairsOuter("crimson_hyphae_stairs", mcRL("crimson_stem"), mcRL("crimson_stem"), mcRL("crimson_stem"));
-        this.stairs("warped_hyphae_stairs", mcRL("warped_stem"), mcRL("warped_stem"), mcRL("warped_stem"));
-        this.stairsInner("warped_hyphae_stairs", mcRL("warped_stem"), mcRL("warped_stem"), mcRL("warped_stem"));
-        this.stairsOuter("warped_hyphae_stairs", mcRL("warped_stem"), mcRL("warped_stem"), mcRL("warped_stem"));
-        this.stairs("dirt_stairs", mcRL("dirt"), mcRL("dirt"), mcRL("dirt"));
-        this.stairsInner("dirt_stairs", mcRL("dirt"), mcRL("dirt"), mcRL("dirt"));
-        this.stairsOuter("dirt_stairs", mcRL("dirt"), mcRL("dirt"), mcRL("dirt"));
-        this.stairs("coarse_dirt_stairs", mcRL("coarse_dirt"), mcRL("coarse_dirt"), mcRL("coarse_dirt"));
-        this.stairsInner("coarse_dirt_stairs", mcRL("coarse_dirt"), mcRL("coarse_dirt"), mcRL("coarse_dirt"));
-        this.stairsOuter("coarse_dirt_stairs", mcRL("coarse_dirt"), mcRL("coarse_dirt"), mcRL("coarse_dirt"));
-        this.stairs("rooted_dirt_stairs", mcRL("rooted_dirt"), mcRL("rooted_dirt"), mcRL("rooted_dirt"));
-        this.stairsInner("rooted_dirt_stairs", mcRL("rooted_dirt"), mcRL("rooted_dirt"), mcRL("rooted_dirt"));
-        this.stairsOuter("rooted_dirt_stairs", mcRL("rooted_dirt"), mcRL("rooted_dirt"), mcRL("rooted_dirt"));
-        this.stairs("netherrack_stairs", mcRL("netherrack"), mcRL("netherrack"), mcRL("netherrack"));
-        this.stairsInner("netherrack_stairs", mcRL("netherrack"), mcRL("netherrack"), mcRL("netherrack"));
-        this.stairsOuter("netherrack_stairs", mcRL("netherrack"), mcRL("netherrack"), mcRL("netherrack"));
-        this.stairs("end_stone_stairs", mcRL("end_stone"), mcRL("end_stone"), mcRL("end_stone"));
-        this.stairsInner("end_stone_stairs", mcRL("end_stone"), mcRL("end_stone"), mcRL("end_stone"));
-        this.stairsOuter("end_stone_stairs", mcRL("end_stone"), mcRL("end_stone"), mcRL("end_stone"));
-        this.corner("stone_corner", mcRL("stone"));
-        this.corner("cobblestone_corner", mcRL("cobblestone"));
-        this.corner("stone_brick_corner", mcRL("stone_bricks"));
-        this.corner("andesite_corner", mcRL("andesite"));
-        this.corner("polished_andesite_corner", mcRL("polished_andesite"));
-        this.corner("diorite_corner", mcRL("diorite"));
-        this.corner("polished_diorite_corner", mcRL("polished_diorite"));
-        this.corner("granite_corner", mcRL("granite"));
-        this.corner("polished_granite_corner", mcRL("polished_granite"));
-        this.corner("tuff_corner", mcRL("tuff"));
-        this.corner("calcite_corner", mcRL("calcite"));
-        this.corner("dripstone_corner", mcRL("dripstone_block"));
-        this.corner("mud_corner", mcRL("mud"));
-        this.corner("packed_mud_corner", mcRL("packed_mud"));
-        this.corner("mud_brick_corner", mcRL("mud_bricks"));
-        this.corner("oak_corner", mcRL("oak_planks"));
-        this.corner("spruce_corner", mcRL("spruce_planks"));
-        this.corner("birch_corner", mcRL("birch_planks"));
-        this.corner("crimson_corner", mcRL("crimson_planks"));
-        this.corner("jungle_corner", mcRL("jungle_planks"));
-        this.corner("acacia_corner", mcRL("acacia_planks"));
-        this.corner("dark_oak_corner", mcRL("dark_oak_planks"));
-        this.corner("mangrove_corner", mcRL("mangrove_planks"));
-        this.corner("cherry_corner", mcRL("cherry_planks"));
-        this.corner("bamboo_corner", mcRL("bamboo_planks"));
-        this.corner("bamboo_mosaic_corner", mcRL("bamboo_mosaic"));
-        this.corner("warped_corner", mcRL("warped_planks"));
-        this.corner("acacia_wood_corner", mcRL("acacia_log"));
-        this.corner("birch_wood_corner", mcRL("birch_log"));
-        this.corner("crimson_hyphae_corner", mcRL("crimson_stem"));
-        this.corner("dark_oak_wood_corner", mcRL("dark_oak_log"));
-        this.corner("mangrove_wood_corner", mcRL("mangrove_log"));
-        this.corner("cherry_wood_corner", mcRL("cherry_log"));
-        this.corner("jungle_wood_corner", mcRL("jungle_log"));
-        this.corner("oak_wood_corner", mcRL("oak_log"));
-        this.corner("spruce_wood_corner", mcRL("spruce_log"));
-        this.corner("warped_hyphae_corner", mcRL("warped_stem"));
-        this.corner("netherrack_corner", mcRL("netherrack"));
-        this.corner("nether_brick_corner", mcRL("nether_bricks"));
-        this.corner("red_nether_brick_corner", mcRL("red_nether_bricks"));
-        this.corner("blackstone_corner", mcRL("blackstone"));
-        this.corner("polished_blackstone_corner", mcRL("polished_blackstone"));
-        this.corner("polished_blackstone_brick_corner", mcRL("polished_blackstone_bricks"));
-        this.corner("end_stone_corner", mcRL("end_stone"));
-        this.corner("end_stone_brick_corner", mcRL("end_stone_bricks"));
-        this.corner("purpur_corner", mcRL("purpur_block"));
-    }
+	private boolean shouldSkipTextureName(String textureName) {
+		return textureName.contains("grass_block")
+				|| textureName.contains("dirt_path")
+				|| textureName.contains("podzol")
+				|| textureName.contains("mycelium")
+				|| textureName.contains("crimson_nylium")
+				|| textureName.contains("warped_nylium");
+	}
 
-    public void cubeAllTranslucent(String name, ResourceLocation texture) {
-        singleTexture(name, mcRL("cube_all"), "all", texture).renderType("translucent");
-    }
+	@Override
+	protected void registerModels() {
+		for (RegistryObject<Block> block : ESPSlabs.BLOCKS.getEntries()) {
+			Block currentBlock = block.get();
+			String blockName = block.getId().getPath();
+			String textureName = blockName.replaceAll("_slab", "");
 
-    private void sideBottomTop(String name, ResourceLocation parent, ResourceLocation side, ResourceLocation bottom, ResourceLocation top) {
-        withExistingParent(name, parent)
-                .texture("side", side)
-                .texture("bottom", bottom)
-                .texture("top", top);
-    }
+			if (textureName.contains("_wood")) {
+				textureName = textureName.replaceAll("_wood", "_log");
+			}
 
-    private void sideBottomTopTranslucent(String name, ResourceLocation parent, ResourceLocation side, ResourceLocation bottom, ResourceLocation top) {
-        withExistingParent(name, parent)
-                .renderType("translucent")
-                .texture("side", side)
-                .texture("bottom", bottom)
-                .texture("top", top);
-    }
+			if (textureName.contains("_hyphae")) {
+				textureName = textureName.replaceAll("_hyphae", "_stem");
+			}
 
-    public void slabTranslucent(String name, ResourceLocation side, ResourceLocation bottom, ResourceLocation top) {
-        sideBottomTopTranslucent(name, mcRL("slab"), side, bottom, top);
-    }
+			if (shouldSkipTextureName(textureName)) {
+				continue;
+			}
 
-    public void slabTopTranslucent(String name, ResourceLocation side, ResourceLocation bottom, ResourceLocation top) {
-        sideBottomTopTranslucent(name + "_topg", mcRL("slab_top"), side, bottom, top);
-    }
+			ResourceLocation texture = mcRL(textureName.contains("dripstone") ? textureName + "_block" : textureName);
+			if (currentBlock instanceof GlassSlabBlock) {
+				this.espSlabTranslucent(blockName, texture, texture, texture);
+				this.espSlabTopTranslucent(blockName, texture, texture, texture);
+			} else {
+				this.espSlab(blockName, texture, texture, texture);
+				this.espSlabTop(blockName, texture, texture, texture);
+			}
+		}
 
-    public ModelFile corner(String name, ResourceLocation texture) {
-        return withExistingParent(name, espRL("corner")).texture("block", texture);
-    }
+		for (RegistryObject<Block> block : ESPVerticalSlabs.BLOCKS.getEntries()) {
+			Block currentBlock = block.get();
+			String blockName = block.getId().getPath();
+			String textureName = blockName.replaceAll("(oak|spruce|birch|jungle|acacia|dark_oak|mangrove|cherry|bamboo|crimson|warped)_slab", "$1_planks")
+					.replaceAll("vertical_|waxed_|smooth_|_slab", "");
 
-    public void verticalSlab(String name, ResourceLocation side, ResourceLocation bottom, ResourceLocation top) {
-        sideBottomTop(name, espRL("vertical_slab"), side, bottom, top);
-    }
+			if (textureName.contains("_wood")) {
+				textureName = textureName.replaceAll("_wood", "_log");
+			}
 
-    public void innerVerticalSlab(String name, ResourceLocation side, ResourceLocation bottom, ResourceLocation top) {
-        sideBottomTop("inner_" + name, espRL("inner_vertical_slab"), side, bottom, top);
-    }
+			if (textureName.contains("_hyphae")) {
+				textureName = textureName.replaceAll("_hyphae", "_stem");
+			}
 
-    public void outerVerticalSlab(String name, ResourceLocation side, ResourceLocation bottom, ResourceLocation top) {
-        sideBottomTop("outer_" + name, espRL("outer_vertical_slab"), side, bottom, top);
-    }
+			if (shouldSkipTextureName(textureName)) {
+				continue;
+			}
 
-    public void verticalSlabTranslucent(String name, ResourceLocation side, ResourceLocation bottom, ResourceLocation top) {
-        sideBottomTopTranslucent(name, espRL("vertical_slab"), side, bottom, top);
-    }
+			ResourceLocation texture = mcRL(textureName.contains("purpur") || textureName.contains("dripstone") ? textureName + "_block" : textureName.contains("brick") || textureName.contains("tile") ? textureName + "s" : textureName);
+			ResourceLocation sideTexture = mcRL(textureName.contains("quartz") ? textureName + "_block_side" : textureName + "_side");
+			ResourceLocation topTexture = mcRL(textureName.contains("quartz") ? textureName + "_block_top" : textureName + "_top");
+			ResourceLocation bottomTexture = mcRL(textureName.contains("quartz") ? textureName + "_block_bottom" : textureName + "_top");
+			if (textureName.contains("sandstone")) {
+				if (textureName.equals("sandstone") || textureName.equals("red_sandstone")) {
+					this.verticalSlab(blockName, texture, bottomTexture, topTexture);
+					this.innerVerticalSlab(blockName, texture, bottomTexture, topTexture);
+					this.outerVerticalSlab(blockName, texture, bottomTexture, topTexture);
+				}
+				if (blockName.equals("smooth_sandstone") || blockName.equals("smooth_red_sandstone")) {
+					this.verticalSlab(blockName, topTexture, topTexture, topTexture);
+					this.innerVerticalSlab(blockName, topTexture, topTexture, topTexture);
+					this.outerVerticalSlab(blockName, topTexture, topTexture, topTexture);
+				}
+				if (textureName.equals("cut_sandstone") || textureName.equals("cut_red_sandstone")) {
+					ResourceLocation cutTexture = mcRL(textureName.contains("red_") ? "red_sandstone_top" : "sandstone_top");
+					this.verticalSlab(blockName, texture, cutTexture, cutTexture);
+					this.innerVerticalSlab(blockName, texture, cutTexture, cutTexture);
+					this.outerVerticalSlab(blockName, texture, cutTexture, cutTexture);
+				}
+			} else if (textureName.contains("quartz")) {
+				if (blockName.contains("smooth_quartz")) {
+					this.verticalSlab(blockName, bottomTexture, bottomTexture, bottomTexture);
+					this.innerVerticalSlab(blockName, bottomTexture, bottomTexture, bottomTexture);
+					this.outerVerticalSlab(blockName, bottomTexture, bottomTexture, bottomTexture);
+				} else {
+					this.verticalSlab(blockName, sideTexture, topTexture, topTexture);
+					this.innerVerticalSlab(blockName, sideTexture, topTexture, topTexture);
+					this.outerVerticalSlab(blockName, sideTexture, topTexture, topTexture);
+				}
+			} else if (currentBlock instanceof GlassVerticalSlabBlock) {
+				this.verticalSlabTranslucent(blockName, texture, texture, texture);
+				this.innerVerticalSlabTranslucent(blockName, texture, texture, texture);
+				this.outerVerticalSlabTranslucent(blockName, texture, texture, texture);
 
-    public void innerVerticalSlabTranslucent(String name, ResourceLocation side, ResourceLocation bottom, ResourceLocation top) {
-        sideBottomTopTranslucent("inner_" + name, espRL("inner_vertical_slab"), side, bottom, top);
-    }
+			} else {
+				this.verticalSlab(blockName, texture, texture, texture);
+				this.innerVerticalSlab(blockName, texture, texture, texture);
+				this.outerVerticalSlab(blockName, texture, texture, texture);
+			}
+		}
 
-    public void outerVerticalSlabTranslucent(String name, ResourceLocation side, ResourceLocation bottom, ResourceLocation top) {
-        sideBottomTopTranslucent("outer_" + name, espRL("outer_vertical_slab"), side, bottom, top);
-    }
+		for (RegistryObject<Block> block : ESPStairs.BLOCKS.getEntries()) {
+			Block currentBlock = block.get();
+			String blockName = block.getId().getPath();
+			String textureName = blockName.replaceAll("_stairs", "");
 
-    private ResourceLocation mcRL(String location) {
-        return new ResourceLocation("minecraft", BLOCK_FOLDER + "/" + location);
-    }
+			if (textureName.contains("_wood")) {
+				textureName = textureName.replaceAll("_wood", "_log");
+			}
 
-    private ResourceLocation espRL(String location) {
-        return new ResourceLocation("extendedslabs", BLOCK_FOLDER + "/" + location);
-    }
+			if (textureName.contains("_hyphae")) {
+				textureName = textureName.replaceAll("_hyphae", "_stem");
+			}
+
+			if (shouldSkipTextureName(textureName)) {
+				continue;
+			}
+
+
+			ResourceLocation texture = mcRL(textureName.contains("purpur") || textureName.contains("dripstone") ? textureName + "_block" : textureName.contains("brick") || textureName.contains("tile") ? textureName + "s" : textureName);
+			if (textureName.contains("sandstone")) {
+				if (textureName.equals("cut_sandstone") || textureName.equals("cut_red_sandstone")) {
+					ResourceLocation cutTexture = mcRL(textureName.contains("red_") ? "red_sandstone_top" : "sandstone_top");
+					this.stairs(blockName, texture, cutTexture, cutTexture);
+					this.stairsInner(blockName, texture, cutTexture, cutTexture);
+					this.stairsOuter(blockName, texture, cutTexture, cutTexture);
+				}
+			} else if (currentBlock instanceof GlassStairBlock) {
+				this.stairsTranslucent(blockName, texture, texture, texture);
+				this.stairsInnerTranslucent(blockName, texture, texture, texture);
+				this.stairsOuterTranslucent(blockName, texture, texture, texture);
+
+			} else {
+				this.stairs(blockName, texture, texture, texture);
+				this.stairsInner(blockName, texture, texture, texture);
+				this.stairsOuter(blockName, texture, texture, texture);
+			}
+		}
+
+		for (RegistryObject<Block> block : ESPCorners.BLOCKS.getEntries()) {
+			Block currentBlock = block.get();
+			String blockName = block.getId().getPath();
+			String textureName = blockName.replaceAll("(oak|spruce|birch|jungle|acacia|dark_oak|mangrove|cherry|bamboo|crimson|warped)_corner", "$1_planks")
+					.replaceAll("waxed_|smooth_|_corner", "");
+
+			if (textureName.contains("_wood")) {
+				textureName = textureName.replaceAll("_wood", "_log");
+			}
+
+			if (textureName.contains("_hyphae")) {
+				textureName = textureName.replaceAll("_hyphae", "_stem");
+			}
+
+			if (shouldSkipTextureName(textureName)) {
+				continue;
+			}
+
+			ResourceLocation texture = mcRL(textureName.contains("purpur") || textureName.contains("dripstone") ? textureName + "_block" : textureName.contains("brick") || textureName.contains("tile") ? textureName + "s" : textureName);
+			ResourceLocation sideTexture = mcRL(textureName.contains("quartz") ? textureName + "_block_side" : textureName + "_side");
+			ResourceLocation topTexture = mcRL(textureName.contains("quartz") ? textureName + "_block_top" : textureName + "_top");
+			ResourceLocation bottomTexture = mcRL(textureName.contains("quartz") ? textureName + "_block_bottom" : textureName + "_top");
+			if (textureName.contains("sandstone")) {
+				if (textureName.equals("sandstone") || textureName.equals("red_sandstone")) {
+					this.corner(blockName, texture, bottomTexture, topTexture);
+				}
+				if (blockName.equals("smooth_sandstone") || blockName.equals("smooth_red_sandstone")) {
+					this.corner(blockName, topTexture, topTexture, topTexture);
+				}
+				if (textureName.equals("cut_sandstone") || textureName.equals("cut_red_sandstone")) {
+					ResourceLocation cutTexture = mcRL(textureName.contains("red_") ? "red_sandstone_top" : "sandstone_top");
+					this.corner(blockName, texture, cutTexture, cutTexture);
+				}
+			} else if (textureName.contains("quartz")) {
+				if (blockName.contains("smooth_quartz")) {
+					this.corner(blockName, bottomTexture, bottomTexture, bottomTexture);
+				} else {
+					this.corner(blockName, sideTexture, topTexture, topTexture);
+				}
+			} else if (currentBlock instanceof GlassCornerBlock) {
+				this.cornerTranslucent(blockName, texture);
+			} else {
+				this.corner(blockName, texture);
+			}
+		}
+	}
+
+	public void cubeAllTranslucent(String name, ResourceLocation texture) {
+		singleTexture(name, mcRL("cube_all"), "all", texture).renderType("translucent");
+	}
+
+	private void sideBottomTop(String name, ResourceLocation parent, ResourceLocation side, ResourceLocation bottom, ResourceLocation top) {
+		withExistingParent(name, parent)
+				.texture("side", side)
+				.texture("bottom", bottom)
+				.texture("top", top);
+	}
+
+	private void sideBottomTopTranslucent(String name, ResourceLocation parent, ResourceLocation side, ResourceLocation bottom, ResourceLocation top) {
+		withExistingParent(name, parent)
+				.renderType("translucent")
+				.texture("side", side)
+				.texture("bottom", bottom)
+				.texture("top", top);
+	}
+
+	public ModelFile corner(String name, ResourceLocation side, ResourceLocation bottom, ResourceLocation top) {
+		return withExistingParent(name, espRL("corner")).texture("side", side).texture("bottom", bottom).texture("top", top);
+	}
+
+	public ModelFile cornerTranslucent(String name, ResourceLocation side, ResourceLocation bottom, ResourceLocation top) {
+		return withExistingParent(name, espRL("corner")).texture("side", side).texture("bottom", bottom).texture("top", top).renderType("translucent");
+	}
+
+	public ModelFile corner(String name, ResourceLocation texture) {
+		return corner(name, texture, texture, texture);
+	}
+
+	public ModelFile cornerTranslucent(String name, ResourceLocation texture) {
+		return cornerTranslucent(name, texture, texture, texture);
+	}
+
+	public void stairsTranslucent(String name, ResourceLocation side, ResourceLocation bottom, ResourceLocation top) {
+		sideBottomTopTranslucent(name, mcRL("stairs"), side, bottom, top);
+	}
+
+	public void stairsOuterTranslucent(String name, ResourceLocation side, ResourceLocation bottom, ResourceLocation top) {
+		sideBottomTopTranslucent(name, mcRL("outer_stairs"), side, bottom, top);
+	}
+
+	public void stairsInnerTranslucent(String name, ResourceLocation side, ResourceLocation bottom, ResourceLocation top) {
+		sideBottomTopTranslucent(name, mcRL("inner_stairs"), side, bottom, top);
+	}
+
+	public void espSlab(String name, ResourceLocation side, ResourceLocation bottom, ResourceLocation top) {
+		sideBottomTop(name, mcRL("slab"), side, bottom, top);
+	}
+
+	public void espSlabTop(String name, ResourceLocation side, ResourceLocation bottom, ResourceLocation top) {
+		sideBottomTop(name + "_top", mcRL("slab_top"), side, bottom, top);
+	}
+
+	public void espSlabTranslucent(String name, ResourceLocation side, ResourceLocation bottom, ResourceLocation top) {
+		sideBottomTopTranslucent(name, mcRL("slab"), side, bottom, top);
+	}
+
+	public void espSlabTopTranslucent(String name, ResourceLocation side, ResourceLocation bottom, ResourceLocation top) {
+		sideBottomTopTranslucent(name + "_top", mcRL("slab_top"), side, bottom, top);
+	}
+
+	public void verticalSlab(String name, ResourceLocation side, ResourceLocation bottom, ResourceLocation top) {
+		sideBottomTop(name, espRL("vertical_slab"), side, bottom, top);
+	}
+
+	public void innerVerticalSlab(String name, ResourceLocation side, ResourceLocation bottom, ResourceLocation top) {
+		sideBottomTop("inner_" + name, espRL("inner_vertical_slab"), side, bottom, top);
+	}
+
+	public void outerVerticalSlab(String name, ResourceLocation side, ResourceLocation bottom, ResourceLocation top) {
+		sideBottomTop("outer_" + name, espRL("outer_vertical_slab"), side, bottom, top);
+	}
+
+	public void verticalSlabTranslucent(String name, ResourceLocation side, ResourceLocation bottom, ResourceLocation top) {
+		sideBottomTopTranslucent(name, espRL("vertical_slab"), side, bottom, top);
+	}
+
+	public void innerVerticalSlabTranslucent(String name, ResourceLocation side, ResourceLocation bottom, ResourceLocation top) {
+		sideBottomTopTranslucent("inner_" + name, espRL("inner_vertical_slab"), side, bottom, top);
+	}
+
+	public void outerVerticalSlabTranslucent(String name, ResourceLocation side, ResourceLocation bottom, ResourceLocation top) {
+		sideBottomTopTranslucent("outer_" + name, espRL("outer_vertical_slab"), side, bottom, top);
+	}
+
+	private ResourceLocation mcRL(String location) {
+		return new ResourceLocation("minecraft", BLOCK_FOLDER + "/" + location);
+	}
+
+	private ResourceLocation espRL(String location) {
+		return new ResourceLocation("extendedslabs", BLOCK_FOLDER + "/" + location);
+	}
 }

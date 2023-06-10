@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "extendedslabs:magenta_stained_glass_corner"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "extendedslabs:blocks/magenta_stained_glass_corner"
+}

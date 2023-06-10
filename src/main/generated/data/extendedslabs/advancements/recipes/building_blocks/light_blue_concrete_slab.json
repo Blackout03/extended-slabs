@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_light_blue_concrete": {
+    "has_item": {
       "conditions": {
         "items": [
           {
@@ -22,7 +22,7 @@
   },
   "requirements": [
     [
-      "has_light_blue_concrete",
+      "has_item",
       "has_the_recipe"
     ]
   ],
@@ -30,5 +30,6 @@
     "recipes": [
       "extendedslabs:light_blue_concrete_slab"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "extendedslabs:smooth_stone_stairs"
+    }
+  ],
+  "result": {
+    "item": "extendedslabs:smooth_stone_corner"
+  }
+}

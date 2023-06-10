@@ -30,5 +30,6 @@
     "recipes": [
       "extendedslabs:cut_red_sandstone_vertical_slab_from_red_sandstone_stonecutting"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

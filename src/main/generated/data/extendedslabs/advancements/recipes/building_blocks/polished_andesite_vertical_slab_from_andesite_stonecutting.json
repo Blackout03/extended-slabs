@@ -30,5 +30,6 @@
     "recipes": [
       "extendedslabs:polished_andesite_vertical_slab_from_andesite_stonecutting"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

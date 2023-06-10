@@ -30,5 +30,6 @@
     "recipes": [
       "extendedslabs:waxed_oxidized_cut_copper_vertical_slab_from_waxed_oxidized_cut_copper_stonecutting"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

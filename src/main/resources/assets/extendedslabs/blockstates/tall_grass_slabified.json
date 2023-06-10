@@ -1,0 +1,10 @@
+{
+	"variants": {
+		"half=lower": {
+			"model": "extendedslabs:block/slabified/tall_grass_bottom"
+		},
+		"half=upper": {
+			"model": "extendedslabs:block/slabified/tall_grass_top"
+		}
+	}
+}

@@ -1,15 +1,47 @@
 package com.blackout.extendedslabs.blocks.glass;
 
+import com.blackout.extendedslabs.blocks.IBlockCharacteristics;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.BeaconBeamBlock;
+import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.NotNull;
 
-public class StainedGlassSlabBlock extends GlassSlabBlock implements BeaconBeamBlock {
+import java.util.List;
+import java.util.function.Supplier;
+
+public class StainedGlassSlabBlock extends GlassSlabBlock implements BeaconBeamBlock, IBlockCharacteristics {
+    private final List<TagKey<Block>> characteristics;
+    public Block material;
+    public Supplier<Block> materialVerticalSlab;
     private final DyeColor color;
 
-    public StainedGlassSlabBlock(DyeColor color, Properties builder) {
-        super(builder);
+
+    public StainedGlassSlabBlock(List<TagKey<Block>> characteristics, Block material, Supplier<Block> materialVerticalSlab, DyeColor color, Properties builder) {
+        super(IBlockCharacteristics.tag(), material, materialVerticalSlab, builder);
+        this.characteristics = characteristics;
+        this.material = material;
+        this.materialVerticalSlab = materialVerticalSlab;
         this.color = color;
+    }
+
+    public StainedGlassSlabBlock(Block material, Supplier<Block> materialVerticalSlab, DyeColor color, Properties builder) {
+        this(IBlockCharacteristics.tag(), material, materialVerticalSlab, color, builder);
+        this.material = material;
+        this.materialVerticalSlab = materialVerticalSlab;
+    }
+
+    @Override
+    public List<TagKey<Block>> getCharacteristics() {
+        return characteristics;
+    }
+
+    public Block getMaterial() {
+        return material;
+    }
+
+    public Supplier<Block> getMaterialVerticalSlab() {
+        return materialVerticalSlab;
     }
 
     public @NotNull DyeColor getColor() {

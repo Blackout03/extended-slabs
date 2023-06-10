@@ -1,19 +1,36 @@
 package com.blackout.extendedslabs.blocks.glass;
 
+import com.blackout.extendedslabs.blocks.IBlockCharacteristics;
 import net.minecraft.core.BlockPos;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
 
-public class TintedGlassVerticalSlabBlock extends GlassVerticalSlabBlock {
+import java.util.List;
+
+public class TintedGlassVerticalSlabBlock extends GlassVerticalSlabBlock implements IBlockCharacteristics {
+	private final List<TagKey<Block>> characteristics;
 	public Block material;
 	public Block materialSlab;
 
-	public TintedGlassVerticalSlabBlock(Block material, Block materialSlab, Properties builder) {
+	public TintedGlassVerticalSlabBlock(List<TagKey<Block>> characteristics, Block material, Block materialSlab, Properties builder) {
 		super(material, materialSlab, builder);
+		this.characteristics = characteristics;
 		this.material = material;
 		this.materialSlab = materialSlab;
+	}
+
+	public TintedGlassVerticalSlabBlock(Block material, Block materialSlab, Properties builder) {
+		this(IBlockCharacteristics.tag(), material, materialSlab, builder);
+		this.material = material;
+		this.materialSlab = materialSlab;
+	}
+
+	@Override
+	public List<TagKey<Block>> getCharacteristics() {
+		return characteristics;
 	}
 
 	public Block getMaterial() {

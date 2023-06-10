@@ -1,6 +1,8 @@
 {
   "parent": "extendedslabs:block/corner",
   "textures": {
-    "block": "minecraft:block/bamboo_planks"
+    "bottom": "minecraft:block/bamboo_planks",
+    "side": "minecraft:block/bamboo_planks",
+    "top": "minecraft:block/bamboo_planks"
   }
 }

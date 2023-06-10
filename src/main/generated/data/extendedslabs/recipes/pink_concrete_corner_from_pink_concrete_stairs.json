@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "extendedslabs:pink_concrete_stairs"
+    }
+  ],
+  "result": {
+    "item": "extendedslabs:pink_concrete_corner"
+  }
+}

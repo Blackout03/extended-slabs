@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "minecraft:deepslate_brick_stairs"
+    }
+  ],
+  "result": {
+    "item": "extendedslabs:deepslate_brick_corner"
+  }
+}

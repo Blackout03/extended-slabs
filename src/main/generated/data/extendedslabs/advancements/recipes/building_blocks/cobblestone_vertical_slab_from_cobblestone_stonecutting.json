@@ -30,5 +30,6 @@
     "recipes": [
       "extendedslabs:cobblestone_vertical_slab_from_cobblestone_stonecutting"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

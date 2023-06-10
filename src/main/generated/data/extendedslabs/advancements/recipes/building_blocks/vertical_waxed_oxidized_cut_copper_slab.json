@@ -1,13 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_the_recipe": {
-      "conditions": {
-        "recipe": "extendedslabs:vertical_waxed_oxidized_cut_copper_slab"
-      },
-      "trigger": "minecraft:recipe_unlocked"
-    },
-    "has_waxed_oxidized_cut_copper": {
+    "has_item": {
       "conditions": {
         "items": [
           {
@@ -18,11 +12,17 @@
         ]
       },
       "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "extendedslabs:vertical_waxed_oxidized_cut_copper_slab"
+      },
+      "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_waxed_oxidized_cut_copper",
+      "has_item",
       "has_the_recipe"
     ]
   ],
@@ -30,5 +30,6 @@
     "recipes": [
       "extendedslabs:vertical_waxed_oxidized_cut_copper_slab"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

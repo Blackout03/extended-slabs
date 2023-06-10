@@ -1,9 +1,13 @@
 package com.blackout.extendedslabs.blocks.copper;
 
-import com.blackout.extendedslabs.blocks.VerticalSlabBlock;
+import com.blackout.extendedslabs.blocks.IBlockCharacteristics;
+import com.blackout.extendedslabs.blocks.ESPVerticalSlabBlock;
+import com.blackout.extendedslabs.blocks.shapes.VerticalSlabShape;
 import com.blackout.extendedslabs.util.CopperStateMap;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.TagKey;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -16,18 +20,33 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
 import java.util.Optional;
 
-public class WeatheringCopperVerticalSlabBlock extends VerticalSlabBlock implements WeatheringCopper {
+public class WeatheringCopperVerticalSlabBlock extends ESPVerticalSlabBlock implements WeatheringCopper, IBlockCharacteristics {
+    private final List<TagKey<Block>> characteristics;
     public Block material;
     public Block materialSlab;
-    private final WeatherState weatherState;
+    private WeatherState weatherState;
 
-    public WeatheringCopperVerticalSlabBlock(Block material, Block materialSlab, Properties properties, WeatherState weatherState) {
-        super(material, materialSlab, properties);
+    public WeatheringCopperVerticalSlabBlock(List<TagKey<Block>> characteristics, Block material, Block materialSlab, Properties builder, WeatherState weatherState) {
+        super(material, materialSlab, builder);
+        this.characteristics = characteristics;
         this.material = material;
         this.materialSlab = materialSlab;
-        this.weatherState = weatherState;
+        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(SHAPE, VerticalSlabShape.STRAIGHT).setValue(WATERLOGGED, Boolean.FALSE));
+    }
+
+    public WeatheringCopperVerticalSlabBlock(Block material, Block materialSlab, Properties builder, WeatherState weatherState) {
+        this(IBlockCharacteristics.tag(), material, materialSlab, builder, weatherState);
+        this.material = material;
+        this.materialSlab = materialSlab;
+        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(SHAPE, VerticalSlabShape.STRAIGHT).setValue(WATERLOGGED, Boolean.FALSE));
+    }
+
+    @Override
+    public List<TagKey<Block>> getCharacteristics() {
+        return characteristics;
     }
 
     public Block getMaterial() {

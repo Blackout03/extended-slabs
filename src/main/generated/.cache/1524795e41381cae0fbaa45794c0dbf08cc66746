@@ -1,9 +1,9 @@
-// 1.19.4	2023-05-13T02:45:36.0563432	Tags for minecraft:block mod id extendedslabs
-ac318e688c2dd6090e9303ba2e09497d23c53632 data/minecraft/tags/blocks/impermeable.json
-7044f747e22e2a478063b4ff4eaa2929ba64398f data/minecraft/tags/blocks/mineable/axe.json
-504ca18dc889fb50ae9274dd3c9c46766564b5ee data/minecraft/tags/blocks/mineable/pickaxe.json
-ff4cda0f738c3cb31317070aac30b482fc8499ed data/minecraft/tags/blocks/mineable/shovel.json
-c8e78536e7ae881349041ccbbfb18d950d60127f data/minecraft/tags/blocks/needs_stone_tool.json
+// 1.20	2023-06-11T00:51:25.1471621	Tags for minecraft:block mod id extendedslabs
+eb56cfe7a757e6d3753f42a1241f32518562539b data/minecraft/tags/blocks/impermeable.json
+9a19a3215d82a43bb5e2ce35a3f9af1c03978b5d data/minecraft/tags/blocks/mineable/axe.json
+8958e03116d869da333257c8b4f8148c3911927e data/minecraft/tags/blocks/mineable/pickaxe.json
+dadb7f51ecf384b451c0844fd06b240225637e9e data/minecraft/tags/blocks/mineable/shovel.json
+2344a16bbbba8f30cfa719403d59dcf9beb5cb3d data/minecraft/tags/blocks/needs_stone_tool.json
 ff240a01987984d9f31dada20f46be98843f478a data/minecraft/tags/blocks/slabs.json
-d7725a4227a5203ef768aec757f551a45727a741 data/minecraft/tags/blocks/stairs.json
-1c41548c68de80a4ebf36083b3ccb722ce9914ec data/minecraft/tags/blocks/wool.json
+ba2388861fe5f0f0581abcc05e0e2a69144d3339 data/minecraft/tags/blocks/stairs.json
+f09b3261f761720933b44ff0c44f1390b280610a data/minecraft/tags/blocks/wool.json

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "extendedslabs:brown_wool_stairs"
+    }
+  ],
+  "result": {
+    "item": "extendedslabs:brown_wool_corner"
+  }
+}

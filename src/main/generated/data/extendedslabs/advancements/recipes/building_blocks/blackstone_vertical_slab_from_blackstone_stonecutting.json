@@ -30,5 +30,6 @@
     "recipes": [
       "extendedslabs:blackstone_vertical_slab_from_blackstone_stonecutting"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }
