@@ -2,14 +2,8 @@ package com.blackout.extendedslabs.datagen.recipes;
 
 import com.blackout.extendedslabs.ExtendedSlabs;
 import com.blackout.extendedslabs.blocks.ESPSlabBlock;
-import com.blackout.extendedslabs.blocks.ESPVerticalSlabBlock;
 import com.blackout.extendedslabs.blocks.falling.FallingSlabBlock;
-import com.blackout.extendedslabs.blocks.falling.FallingVerticalSlabBlock;
-import com.blackout.extendedslabs.blocks.path.PathSlabBlock;
-import com.blackout.extendedslabs.blocks.path.PathVerticalSlabBlock;
-import com.blackout.extendedslabs.init.ESPSlabifiedBlocks;
-import com.blackout.extendedslabs.init.ESPSlabs;
-import com.blackout.extendedslabs.init.ESPVerticalSlabs;
+import com.blackout.extendedslabs.registry.ESPSlabs;
 import net.minecraft.advancements.critereon.EntityPredicate;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.advancements.critereon.ItemPredicate;

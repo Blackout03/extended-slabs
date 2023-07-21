@@ -2,7 +2,7 @@
   "parent": "extendedslabs:block/inner_vertical_slab",
   "textures": {
     "bottom": "minecraft:block/sandstone_top",
-    "side": "minecraft:block/sandstone",
+    "side": "minecraft:block/sandstone_top",
     "top": "minecraft:block/sandstone_top"
   }
 }

@@ -1,13 +1,12 @@
 package com.blackout.extendedslabs.blocks.slabified;
 
-import com.blackout.extendedslabs.blocks.NaturalSlabBlock;
-import com.blackout.extendedslabs.init.ESPSlabifiedBlocks;
+import com.blackout.extendedslabs.registry.ESPSlabifiedBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
@@ -17,14 +16,17 @@ import net.minecraft.world.level.block.state.properties.SlabType;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class TallGrassBlockSlabified extends TallGrassBlock {
+public class TallGrassBlockSlabified extends TallGrassBlock implements ISlabified {
+	final Block blockOf;
 	protected static final VoxelShape SHAPE = Block.box(2.0D, -8.0D, 2.0D, 14.0D, 5.0D, 14.0D);
 
-	final String ITEM;
-
-	public TallGrassBlockSlabified(Properties properties, String item) {
+	public TallGrassBlockSlabified(Properties properties, Block blockOf) {
 		super(properties);
-		this.ITEM = item;
+		this.blockOf = blockOf;
+	}
+
+	public Block getBlockOf() {
+		return blockOf;
 	}
 
 	@Override
@@ -39,7 +41,8 @@ public class TallGrassBlockSlabified extends TallGrassBlock {
 
 	@Override
 	public boolean canSurvive(BlockState blockState, LevelReader levelReader, BlockPos blockPos) {
-		return (levelReader.getBlockState(blockPos.below()).getBlock() instanceof NaturalSlabBlock
+		return levelReader.getBlockState(blockPos.below()).is(BlockTags.SLABS)
+				&& (levelReader.getBlockState(blockPos.below()).canSustainPlant(levelReader, blockPos, Direction.UP, this)
 				&& levelReader.getBlockState(blockPos.below()).getValue(SlabBlock.TYPE) == SlabType.BOTTOM);
 	}
 
@@ -52,15 +55,7 @@ public class TallGrassBlockSlabified extends TallGrassBlock {
 	}
 
 	@Override
-	public ItemStack getCloneItemStack(BlockGetter p_49823_, BlockPos p_49824_, BlockState p_49825_) {
-		switch (ITEM) {
-			case "grass" -> {
-				return new ItemStack(Items.GRASS);
-			}
-			case "fern" -> {
-				return new ItemStack(Items.FERN);
-			}
-		}
-		return new ItemStack(Items.AIR);
+	public ItemStack getCloneItemStack(BlockGetter blockGetter, BlockPos blockPos, BlockState blockState) {
+		return new ItemStack(blockOf.asItem());
 	}
 }

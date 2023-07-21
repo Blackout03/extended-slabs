@@ -1,6 +1,8 @@
 {
   "pack": {
-    "description": "Extended Slab Resources",
-    "pack_format": 9
+    "description":  {
+      "text": "${modName} Resources"
+    },
+    "pack_format": ${packVersion}
   }
 }

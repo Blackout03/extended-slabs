@@ -1,0 +1,7 @@
+{
+  "parent": "extendedslabs:block/slabified/cross",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "cross": "minecraft:block/white_tulip"
+  }
+}

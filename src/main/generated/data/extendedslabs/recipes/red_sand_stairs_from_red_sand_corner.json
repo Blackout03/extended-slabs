@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "extendedslabs:red_sand_corner"
+    }
+  ],
+  "result": {
+    "item": "extendedslabs:red_sand_stairs"
+  }
+}

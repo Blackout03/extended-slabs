@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "extendedslabs:cyan_concrete_powder_corner"
+    }
+  ],
+  "result": {
+    "item": "extendedslabs:cyan_concrete_powder_stairs"
+  }
+}

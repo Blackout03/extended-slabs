@@ -1,0 +1,56 @@
+package com.blackout.extendedslabs.events.placehandlers;
+
+import com.blackout.extendedslabs.registry.ESPSlabifiedBlocks;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SlabBlock;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.SlabType;
+import net.minecraftforge.common.IPlantable;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+
+public class CactusBlockSlabifiedPlaceHandler {
+	public static void placeCactusBlock(PlayerInteractEvent.RightClickBlock event, ItemStack held, Block block) {
+		Player player = event.getEntity();
+		Level level = event.getLevel();
+		BlockPos blockPos = event.getPos();
+		BlockState blockState = level.getBlockState(blockPos);
+		Direction direction = event.getFace();
+		BlockPos relativePos = blockPos.relative(direction);
+
+		if (block instanceof IPlantable plantable && (direction == Direction.UP && (blockState.canSustainPlant(level, blockPos, Direction.UP, plantable)
+				&& ((blockState.is(BlockTags.SLABS) && blockState.getValue(SlabBlock.TYPE) == SlabType.BOTTOM)
+				|| blockState.is(ESPSlabifiedBlocks.CACTUS.get()))) && level.isEmptyBlock(relativePos))) {
+			boolean anyDirectionTrue = false;
+			for (Direction direction1 : Direction.Plane.HORIZONTAL) {
+				BlockState directionState1 = level.getBlockState(blockPos.relative(direction1));
+				BlockState directionBelowState1 = level.getBlockState(relativePos.relative(direction1));
+				if ((((directionState1.isSolid() && !directionState1.is(BlockTags.SLABS)) || (directionBelowState1.isSolid() && !directionBelowState1.is(BlockTags.SLABS)))
+						|| (directionState1.is(BlockTags.SLABS) && (directionState1.getValue(SlabBlock.TYPE) == SlabType.TOP || directionState1.getValue(SlabBlock.TYPE) == SlabType.DOUBLE))
+						|| (directionBelowState1.is(BlockTags.SLABS) && (directionBelowState1.getValue(SlabBlock.TYPE) == SlabType.BOTTOM || directionBelowState1.getValue(SlabBlock.TYPE) == SlabType.DOUBLE)))) {
+					anyDirectionTrue = true;
+				}
+			}
+
+			if (!anyDirectionTrue) {
+				level.setBlockAndUpdate(relativePos, block.defaultBlockState());
+
+				SoundType soundType = block.getSoundType(block.defaultBlockState(), level, blockPos, player);
+				level.playSound(null, blockPos.getX(), blockPos.getY(), blockPos.getZ(), soundType.getPlaceSound(), SoundSource.BLOCKS, soundType.getVolume(), soundType.getPitch() - 0.2F);
+				player.swing(event.getHand());
+
+				if (!player.isCreative()) {
+					held.shrink(1);
+				}
+				event.setCanceled(true);
+			}
+		}
+	}
+}

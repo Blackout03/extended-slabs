@@ -5,27 +5,67 @@
       "bonus_rolls": 0.0,
       "entries": [
         {
-          "type": "minecraft:item",
-          "functions": [
+          "type": "minecraft:alternatives",
+          "children": [
             {
-              "add": false,
+              "type": "minecraft:item",
               "conditions": [
                 {
-                  "block": "extendedslabs:warped_nylium_slab",
-                  "condition": "minecraft:block_state_property",
-                  "properties": {
-                    "type": "double"
+                  "condition": "minecraft:match_tool",
+                  "predicate": {
+                    "enchantments": [
+                      {
+                        "enchantment": "minecraft:silk_touch",
+                        "levels": {
+                          "min": 1
+                        }
+                      }
+                    ]
                   }
                 }
               ],
-              "count": 2.0,
-              "function": "minecraft:set_count"
+              "functions": [
+                {
+                  "add": false,
+                  "conditions": [
+                    {
+                      "block": "extendedslabs:warped_nylium_slab",
+                      "condition": "minecraft:block_state_property",
+                      "properties": {
+                        "type": "double"
+                      }
+                    }
+                  ],
+                  "count": 2.0,
+                  "function": "minecraft:set_count"
+                },
+                {
+                  "function": "minecraft:explosion_decay"
+                }
+              ],
+              "name": "extendedslabs:warped_nylium_slab"
             },
             {
-              "function": "minecraft:explosion_decay"
+              "type": "minecraft:item",
+              "functions": [
+                {
+                  "add": false,
+                  "conditions": [
+                    {
+                      "block": "extendedslabs:warped_nylium_slab",
+                      "condition": "minecraft:block_state_property",
+                      "properties": {
+                        "type": "double"
+                      }
+                    }
+                  ],
+                  "count": 2.0,
+                  "function": "minecraft:set_count"
+                }
+              ],
+              "name": "extendedslabs:netherrack_slab"
             }
-          ],
-          "name": "extendedslabs:warped_nylium_slab"
+          ]
         }
       ],
       "rolls": 1.0

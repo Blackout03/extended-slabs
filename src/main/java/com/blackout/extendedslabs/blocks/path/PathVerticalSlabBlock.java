@@ -31,7 +31,7 @@ import org.jetbrains.annotations.NotNull;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class PathVerticalSlabBlock extends Block implements SimpleWaterloggedBlock, IBlockCharacteristics {
+public class PathVerticalSlabBlock extends ESPVerticalSlabBlock implements SimpleWaterloggedBlock, IBlockCharacteristics {
     private final List<TagKey<Block>> characteristics;
     public Block material;
     public Block materialSlab;
@@ -50,7 +50,7 @@ public class PathVerticalSlabBlock extends Block implements SimpleWaterloggedBlo
     protected static final VoxelShape WEST_OUTER_SHAPE = Block.box(0.0D, 0.0D, 8.0D, 8.0D, 15.0D, 16.0D);
 
     public PathVerticalSlabBlock(List<TagKey<Block>> characteristics, Block material, Block materialSlab, Properties builder) {
-        super(builder);
+        super(characteristics, material, materialSlab, builder);
         this.characteristics = characteristics;
         this.material = material;
         this.materialSlab = materialSlab;
@@ -212,11 +212,11 @@ public class PathVerticalSlabBlock extends Block implements SimpleWaterloggedBlo
 
     @Override
     public boolean canPlaceLiquid(@NotNull BlockGetter worldIn, @NotNull BlockPos pos, @NotNull BlockState state, @NotNull Fluid fluidIn) {
-        return SimpleWaterloggedBlock.super.canPlaceLiquid(worldIn, pos, state, fluidIn);
+        return super.canPlaceLiquid(worldIn, pos, state, fluidIn);
     }
 
     @Override
     public boolean placeLiquid(@NotNull LevelAccessor worldIn, @NotNull BlockPos pos, @NotNull BlockState state, @NotNull FluidState fluidStateIn) {
-        return SimpleWaterloggedBlock.super.placeLiquid(worldIn, pos, state, fluidStateIn);
+        return super.placeLiquid(worldIn, pos, state, fluidStateIn);
     }
 }

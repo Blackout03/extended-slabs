@@ -9,10 +9,10 @@ import com.blackout.extendedslabs.blocks.glass.GlassSlabBlock;
 import com.blackout.extendedslabs.blocks.glass.GlassStairBlock;
 import com.blackout.extendedslabs.blocks.glass.GlassVerticalSlabBlock;
 import com.blackout.extendedslabs.blocks.shapes.VerticalSlabShape;
-import com.blackout.extendedslabs.init.ESPCorners;
-import com.blackout.extendedslabs.init.ESPSlabs;
-import com.blackout.extendedslabs.init.ESPStairs;
-import com.blackout.extendedslabs.init.ESPVerticalSlabs;
+import com.blackout.extendedslabs.registry.ESPCorners;
+import com.blackout.extendedslabs.registry.ESPSlabs;
+import com.blackout.extendedslabs.registry.ESPStairs;
+import com.blackout.extendedslabs.registry.ESPVerticalSlabs;
 import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
@@ -117,10 +117,10 @@ public class ESPBlockStateProvider extends BlockStateProvider {
 			ResourceLocation topTexture = mcRL(textureName.contains("quartz") ? textureName + "_block_top" : textureName + "_top");
 			ResourceLocation bottomTexture = mcRL(textureName.contains("quartz") ? textureName + "_block_bottom" : textureName + "_top");
 			if (textureName.contains("sandstone")) {
-				if (textureName.equals("sandstone") || textureName.equals("red_sandstone")) {
+				if ((textureName.equals("sandstone") || textureName.equals("red_sandstone")) && !blockName.contains("smooth")) {
 					this.verticalSlabBlock(currentBlock, texture, bottomTexture, topTexture);
 				}
-				if (blockName.equals("smooth_sandstone") || blockName.equals("smooth_red_sandstone")) {
+				if (blockName.contains("smooth")) {
 					this.verticalSlabBlock(currentBlock, topTexture, topTexture, topTexture);
 				}
 				if (textureName.equals("cut_sandstone") || textureName.equals("cut_red_sandstone")) {
@@ -195,10 +195,10 @@ public class ESPBlockStateProvider extends BlockStateProvider {
 			ResourceLocation topTexture = mcRL(textureName.contains("quartz") ? textureName + "_block_top" : textureName + "_top");
 			ResourceLocation bottomTexture = mcRL(textureName.contains("quartz") ? textureName + "_block_bottom" : textureName + "_top");
 			if (textureName.contains("sandstone")) {
-				if (textureName.equals("sandstone") || textureName.equals("red_sandstone")) {
+				if ((textureName.equals("sandstone") || textureName.equals("red_sandstone")) && !blockName.contains("smooth")) {
 					this.cornerBlock(currentBlock, texture, bottomTexture, topTexture);
 				}
-				if (blockName.equals("smooth_sandstone") || blockName.equals("smooth_red_sandstone")) {
+				if (blockName.contains("smooth")) {
 					this.cornerBlock(currentBlock, topTexture, topTexture, topTexture);
 				}
 				if (textureName.equals("cut_sandstone") || textureName.equals("cut_red_sandstone")) {

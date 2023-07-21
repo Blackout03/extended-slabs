@@ -1,5 +1,6 @@
 package com.blackout.extendedslabs.blocks.glass;
 
+import com.blackout.extendedslabs.blocks.ESPSlabBlock;
 import com.blackout.extendedslabs.blocks.IBlockCharacteristics;
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.TagKey;
@@ -14,13 +15,13 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 import java.util.function.Supplier;
 
-public class GlassSlabBlock extends SlabBlock implements IBlockCharacteristics {
+public class GlassSlabBlock extends ESPSlabBlock implements IBlockCharacteristics {
 	private final List<TagKey<Block>> characteristics;
 	public Block material;
 	public Supplier<Block> materialVerticalSlab;
 
 	public GlassSlabBlock(List<TagKey<Block>> characteristics, Block material, Supplier<Block> materialVerticalSlab, Properties properties) {
-		super(properties);
+		super(characteristics, material, materialVerticalSlab, properties);
 		this.characteristics = characteristics;
 		this.material = material;
 		this.materialVerticalSlab = materialVerticalSlab;

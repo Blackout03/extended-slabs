@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "extendedslabs:gravel_stairs"
+    }
+  ],
+  "result": {
+    "item": "extendedslabs:gravel_corner"
+  }
+}

@@ -3,8 +3,7 @@ package com.blackout.extendedslabs.datagen.recipes;
 import com.blackout.extendedslabs.ExtendedSlabs;
 import com.blackout.extendedslabs.blocks.ESPVerticalSlabBlock;
 import com.blackout.extendedslabs.blocks.falling.FallingVerticalSlabBlock;
-import com.blackout.extendedslabs.blocks.path.PathVerticalSlabBlock;
-import com.blackout.extendedslabs.init.ESPVerticalSlabs;
+import com.blackout.extendedslabs.registry.ESPVerticalSlabs;
 import net.minecraft.advancements.critereon.EntityPredicate;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.advancements.critereon.ItemPredicate;
@@ -27,10 +26,6 @@ public class ESPVerticalSlabRecipeProvider {
 		final Collection<RegistryObject<Block>> blocks = ESPVerticalSlabs.BLOCKS.getEntries();
 		for (RegistryObject<Block> block : blocks) {
 			if (block.get() instanceof ESPVerticalSlabBlock verticalSlabBlock) {
-				generateVerticalSlabRecipes(verticalSlabBlock.asItem(), verticalSlabBlock.getMaterial().asItem(), consumer);
-				generateVerticalSlabFromSlabRecipes(verticalSlabBlock.asItem(), verticalSlabBlock.getMaterialSlab().asItem(), consumer);
-			}
-			if (block.get() instanceof PathVerticalSlabBlock verticalSlabBlock) {
 				generateVerticalSlabRecipes(verticalSlabBlock.asItem(), verticalSlabBlock.getMaterial().asItem(), consumer);
 				generateVerticalSlabFromSlabRecipes(verticalSlabBlock.asItem(), verticalSlabBlock.getMaterialSlab().asItem(), consumer);
 			}

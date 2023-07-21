@@ -1,7 +1,7 @@
 package com.blackout.extendedslabs.datagen.loottables;
 
 import com.blackout.extendedslabs.ExtendedSlabs;
-import com.blackout.extendedslabs.init.ESPStairs;
+import com.blackout.extendedslabs.registry.ESPStairs;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.level.block.Block;

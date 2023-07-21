@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "extendedslabs:vertical_dirt_path_slab"
+          "name": "extendedslabs:vertical_dirt_slab"
         }
       ],
       "rolls": 1.0

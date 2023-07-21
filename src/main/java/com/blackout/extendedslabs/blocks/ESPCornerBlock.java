@@ -1,9 +1,13 @@
 package com.blackout.extendedslabs.blocks;
 
+import com.blackout.extendedslabs.registry.ESPCorners;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
@@ -20,6 +24,8 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraftforge.common.ToolAction;
+import net.minecraftforge.common.ToolActions;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
@@ -115,5 +121,26 @@ public class ESPCornerBlock extends HorizontalDirectionalBlock implements Simple
     @Override
     public boolean placeLiquid(@NotNull LevelAccessor worldIn, @NotNull BlockPos pos, @NotNull BlockState state, @NotNull FluidState fluidStateIn) {
         return SimpleWaterloggedBlock.super.placeLiquid(worldIn, pos, state, fluidStateIn);
+    }
+
+    @Override
+    public @Nullable BlockState getToolModifiedState(BlockState state, UseOnContext context, ToolAction toolAction, boolean simulate) {
+        ItemStack itemStack = context.getItemInHand();
+        if (!itemStack.canPerformAction(toolAction))
+            return null;
+
+        if (ToolActions.HOE_TILL == toolAction) {
+            Block block = state.getBlock();
+            if (block == ESPCorners.ROOTED_DIRT_CORNER.get()) {
+                if (!simulate && !context.getLevel().isClientSide) {
+                    Block.popResourceFromFace(context.getLevel(), context.getClickedPos(), context.getClickedFace(), new ItemStack(Items.HANGING_ROOTS));
+                }
+                return ESPCorners.DIRT_CORNER.get().withPropertiesOf(state);
+            } else if ((block == ESPCorners.DIRT_CORNER.get() || block == ESPCorners.COARSE_DIRT_CORNER.get())
+                    && context.getLevel().getBlockState(context.getClickedPos().above()).isAir()) {
+                return block == ESPCorners.COARSE_DIRT_CORNER.get() ? ESPCorners.DIRT_CORNER.get().withPropertiesOf(state) : null;
+            }
+        }
+        return null;
     }
 }

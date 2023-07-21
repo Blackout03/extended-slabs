@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "extendedslabs:vertical_lime_stained_glass_slab"
+    }
+  ],
+  "result": {
+    "item": "extendedslabs:lime_stained_glass_slab"
+  }
+}

@@ -1,10 +1,10 @@
 package com.blackout.extendedslabs.events;
 
 import com.blackout.extendedslabs.ExtendedSlabs;
-import com.blackout.extendedslabs.init.ESPCorners;
-import com.blackout.extendedslabs.init.ESPSlabs;
-import com.blackout.extendedslabs.init.ESPStairs;
-import com.blackout.extendedslabs.init.ESPVerticalSlabs;
+import com.blackout.extendedslabs.registry.ESPCorners;
+import com.blackout.extendedslabs.registry.ESPSlabs;
+import com.blackout.extendedslabs.registry.ESPStairs;
+import com.blackout.extendedslabs.registry.ESPVerticalSlabs;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;

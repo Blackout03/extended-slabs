@@ -3,14 +3,19 @@ package com.blackout.extendedslabs.blocks;
 import com.blackout.extendedslabs.blocks.falling.FallingVerticalSlabBlock;
 import com.blackout.extendedslabs.blocks.path.PathVerticalSlabBlock;
 import com.blackout.extendedslabs.blocks.shapes.VerticalSlabShape;
+import com.blackout.extendedslabs.registry.ESPVerticalSlabs;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -25,6 +30,8 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraftforge.common.ToolAction;
+import net.minecraftforge.common.ToolActions;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
@@ -216,5 +223,36 @@ public class ESPVerticalSlabBlock extends Block implements SimpleWaterloggedBloc
 	@Override
 	public boolean placeLiquid(@NotNull LevelAccessor worldIn, @NotNull BlockPos pos, @NotNull BlockState state, @NotNull FluidState fluidStateIn) {
 		return SimpleWaterloggedBlock.super.placeLiquid(worldIn, pos, state, fluidStateIn);
+	}
+
+	@Override
+	public @Nullable BlockState getToolModifiedState(BlockState state, UseOnContext context, ToolAction toolAction, boolean simulate) {
+		ItemStack itemStack = context.getItemInHand();
+		if (!itemStack.canPerformAction(toolAction))
+			return null;
+
+		if (ToolActions.SHOVEL_FLATTEN == toolAction) {
+			if (this.equals(ESPVerticalSlabs.GRASS_BLOCK_VERTICAL.get())
+					|| this.equals(ESPVerticalSlabs.DIRT_VERTICAL.get())
+					|| this.equals(ESPVerticalSlabs.PODZOL_VERTICAL.get())
+					|| this.equals(ESPVerticalSlabs.COARSE_DIRT_VERTICAL.get())
+					|| this.equals(ESPVerticalSlabs.MYCELIUM_VERTICAL.get())
+					|| this.equals(ESPVerticalSlabs.ROOTED_DIRT_VERTICAL.get())) {
+				return ESPVerticalSlabs.DIRT_PATH_VERTICAL.get().withPropertiesOf(state);
+			}
+		} else if (ToolActions.HOE_TILL == toolAction) {
+			Block block = state.getBlock();
+			if (block == ESPVerticalSlabs.ROOTED_DIRT_VERTICAL.get()) {
+				if (!simulate && !context.getLevel().isClientSide) {
+					Block.popResourceFromFace(context.getLevel(), context.getClickedPos(), context.getClickedFace(), new ItemStack(Items.HANGING_ROOTS));
+				}
+				return ESPVerticalSlabs.DIRT_VERTICAL.get().withPropertiesOf(state);
+			} else if ((block == ESPVerticalSlabs.GRASS_BLOCK_VERTICAL.get() || block == ESPVerticalSlabs.DIRT_PATH_VERTICAL.get()
+					|| block == ESPVerticalSlabs.DIRT_VERTICAL.get() || block == ESPVerticalSlabs.COARSE_DIRT_VERTICAL.get())
+					&& context.getLevel().getBlockState(context.getClickedPos().above()).isAir()) {
+				return block == ESPVerticalSlabs.COARSE_DIRT_VERTICAL.get() ? ESPVerticalSlabs.DIRT_VERTICAL.get().withPropertiesOf(state) : null;
+			}
+		}
+		return null;
 	}
 }

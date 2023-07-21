@@ -2,7 +2,8 @@ package com.blackout.extendedslabs.datagen.recipes;
 
 import com.blackout.extendedslabs.ExtendedSlabs;
 import com.blackout.extendedslabs.blocks.ESPCornerBlock;
-import com.blackout.extendedslabs.init.ESPCorners;
+import com.blackout.extendedslabs.blocks.falling.FallingCornerBlock;
+import com.blackout.extendedslabs.registry.ESPCorners;
 import net.minecraft.advancements.critereon.EntityPredicate;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.advancements.critereon.ItemPredicate;
@@ -25,6 +26,8 @@ public class ESPCornerRecipeProvider {
 		final Collection<RegistryObject<Block>> blocks = ESPCorners.BLOCKS.getEntries();
 		for (RegistryObject<Block> block : blocks) {
 			if (block.get() instanceof ESPCornerBlock cornerBlock) {
+				generateCornerFromStairRecipes(cornerBlock.asItem(), cornerBlock.getMaterialStair().asItem(), consumer);
+			} else if (block.get() instanceof FallingCornerBlock cornerBlock) {
 				generateCornerFromStairRecipes(cornerBlock.asItem(), cornerBlock.getMaterialStair().asItem(), consumer);
 			}
 		}

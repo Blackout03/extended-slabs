@@ -5,10 +5,10 @@ import com.blackout.extendedslabs.blocks.glass.GlassCornerBlock;
 import com.blackout.extendedslabs.blocks.glass.GlassSlabBlock;
 import com.blackout.extendedslabs.blocks.glass.GlassStairBlock;
 import com.blackout.extendedslabs.blocks.glass.GlassVerticalSlabBlock;
-import com.blackout.extendedslabs.init.ESPCorners;
-import com.blackout.extendedslabs.init.ESPSlabs;
-import com.blackout.extendedslabs.init.ESPStairs;
-import com.blackout.extendedslabs.init.ESPVerticalSlabs;
+import com.blackout.extendedslabs.registry.ESPCorners;
+import com.blackout.extendedslabs.registry.ESPSlabs;
+import com.blackout.extendedslabs.registry.ESPStairs;
+import com.blackout.extendedslabs.registry.ESPVerticalSlabs;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
@@ -89,7 +89,7 @@ public class ESPBlockModelProvider extends BlockModelProvider {
 					this.innerVerticalSlab(blockName, texture, bottomTexture, topTexture);
 					this.outerVerticalSlab(blockName, texture, bottomTexture, topTexture);
 				}
-				if (blockName.equals("smooth_sandstone") || blockName.equals("smooth_red_sandstone")) {
+				if (blockName.contains("smooth_sandstone") || blockName.contains("smooth_red_sandstone")) {
 					this.verticalSlab(blockName, topTexture, topTexture, topTexture);
 					this.innerVerticalSlab(blockName, topTexture, topTexture, topTexture);
 					this.outerVerticalSlab(blockName, topTexture, topTexture, topTexture);
@@ -186,7 +186,7 @@ public class ESPBlockModelProvider extends BlockModelProvider {
 				if (textureName.equals("sandstone") || textureName.equals("red_sandstone")) {
 					this.corner(blockName, texture, bottomTexture, topTexture);
 				}
-				if (blockName.equals("smooth_sandstone") || blockName.equals("smooth_red_sandstone")) {
+				if (blockName.contains("smooth_sandstone") || blockName.contains("smooth_red_sandstone")) {
 					this.corner(blockName, topTexture, topTexture, topTexture);
 				}
 				if (textureName.equals("cut_sandstone") || textureName.equals("cut_red_sandstone")) {

@@ -1,16 +1,16 @@
 package com.blackout.extendedslabs.blocks.falling;
 
 import com.blackout.extendedslabs.blocks.IBlockCharacteristics;
+import com.blackout.extendedslabs.blocks.slabified.ISlabified;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.FallingBlock;
-import net.minecraft.world.level.block.SimpleWaterloggedBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -24,6 +24,8 @@ import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraftforge.common.IPlantable;
+import net.minecraftforge.common.PlantType;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
@@ -67,7 +69,18 @@ public class FallingSlabBlock extends FallingBlock implements SimpleWaterloggedB
         return materialVerticalSlab;
     }
 
-    @SuppressWarnings("deprecation")
+    @Override
+    public boolean canSustainPlant(BlockState state, BlockGetter world, BlockPos pos, Direction facing, IPlantable plantable) {
+        BlockState plant = plantable.getPlant(world, pos.relative(facing));
+        PlantType type = plantable.getPlantType(world, pos.relative(facing));
+        if (state.getValue(SlabBlock.TYPE) == SlabType.TOP || state.getValue(SlabBlock.TYPE) == SlabType.DOUBLE) {
+            return super.canSustainPlant(state, world, pos, facing, plantable);
+        } else if (state.is(BlockTags.SAND)) {
+            return plant.getBlock() instanceof ISlabified && (PlantType.BEACH.equals(type) || PlantType.DESERT.equals(type) || plant.getBlock() instanceof DeadBushBlock);
+        }
+        return false;
+    }
+
     public boolean useShapeForLightOcclusion(BlockState state) {
         return state.getValue(TYPE) != SlabType.DOUBLE;
     }
@@ -76,7 +89,6 @@ public class FallingSlabBlock extends FallingBlock implements SimpleWaterloggedB
         builder.add(TYPE, WATERLOGGED);
     }
 
-    @SuppressWarnings("deprecation")
     public @NotNull VoxelShape getShape(BlockState state, @NotNull BlockGetter worldIn, @NotNull BlockPos pos, @NotNull CollisionContext context) {
         SlabType slabtype = state.getValue(TYPE);
         return switch (slabtype) {
@@ -100,7 +112,6 @@ public class FallingSlabBlock extends FallingBlock implements SimpleWaterloggedB
         }
     }
 
-    @SuppressWarnings("deprecation")
     public boolean canBeReplaced(BlockState state, BlockPlaceContext useContext) {
         ItemStack itemstack = useContext.getItemInHand();
         SlabType slabtype = state.getValue(TYPE);
@@ -121,7 +132,6 @@ public class FallingSlabBlock extends FallingBlock implements SimpleWaterloggedB
         }
     }
 
-    @SuppressWarnings("deprecation")
     public @NotNull FluidState getFluidState(BlockState state) {
         return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
     }
@@ -148,7 +158,6 @@ public class FallingSlabBlock extends FallingBlock implements SimpleWaterloggedB
         return super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
     }
 
-    @SuppressWarnings("deprecation")
     public boolean isPathfindable(@NotNull BlockState state, @NotNull BlockGetter worldIn, @NotNull BlockPos pos, @NotNull PathComputationType type) {
         if (type == PathComputationType.WATER) {
             return worldIn.getFluidState(pos).is(Fluids.WATER);
