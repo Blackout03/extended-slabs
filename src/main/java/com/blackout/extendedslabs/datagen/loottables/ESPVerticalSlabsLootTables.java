@@ -2,12 +2,13 @@ package com.blackout.extendedslabs.datagen.loottables;
 
 import com.blackout.extendedslabs.ExtendedSlabs;
 import com.blackout.extendedslabs.registry.ESPVerticalSlabs;
+import net.minecraft.core.Holder;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
@@ -31,8 +32,8 @@ public class ESPVerticalSlabsLootTables extends BlockLootSubProvider {
 
 	@Override
 	protected void generate() {
-		List<Block> blocks = new ArrayList<>(ForgeRegistries.BLOCKS.getValues());
-		final Collection<RegistryObject<Block>> validBlocks = ESPVerticalSlabs.BLOCKS.getEntries();
+		List<Block> blocks = new ArrayList<>(BuiltInRegistries.BLOCK.stream().toList());
+		final Collection<DeferredHolder<Block, ? extends Block>> validBlocks = ESPVerticalSlabs.BLOCKS.getEntries();
 		blocks.removeIf(block -> name(block) != null && validBlocks.stream().noneMatch(registryObject -> registryObject.getId().equals(name(block))));
 
 		// Generate loot tables for specific blocks
@@ -61,12 +62,12 @@ public class ESPVerticalSlabsLootTables extends BlockLootSubProvider {
 	}
 
 	private ResourceLocation name(Block block) {
-		return Objects.requireNonNull(ForgeRegistries.BLOCKS.getKey(block));
+		return Objects.requireNonNull(BuiltInRegistries.BLOCK.getKey(block));
 	}
 
 	@Override
 	protected @NotNull Iterable<Block> getKnownBlocks() {
-		return ESPVerticalSlabs.BLOCKS.getEntries().stream().map(RegistryObject::get)::iterator;
+		return ESPVerticalSlabs.BLOCKS.getEntries().stream().map(Holder::value)::iterator;
 	}
 }
 

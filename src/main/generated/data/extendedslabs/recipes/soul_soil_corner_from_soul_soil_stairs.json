@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "extendedslabs:soul_soil_stairs"
+    }
+  ],
+  "result": {
+    "item": "extendedslabs:soul_soil_corner"
+  }
+}

@@ -3,7 +3,6 @@ package com.blackout.extendedslabs.util;
 import com.blackout.extendedslabs.registry.ESPCorners;
 import com.blackout.extendedslabs.registry.ESPVerticalSlabs;
 import net.minecraft.world.level.block.Block;
-
 import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;

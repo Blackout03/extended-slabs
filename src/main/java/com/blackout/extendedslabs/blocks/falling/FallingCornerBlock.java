@@ -4,6 +4,7 @@ import com.blackout.extendedslabs.blocks.IBlockCharacteristics;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
@@ -23,11 +24,12 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.function.Supplier;
 
 public class FallingCornerBlock extends FallingBlock implements SimpleWaterloggedBlock, IBlockCharacteristics {
     private final List<TagKey<Block>> characteristics;
     public Block material;
-    public Block materialStair;
+    public Supplier<Block> materialStair;
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
@@ -41,16 +43,16 @@ public class FallingCornerBlock extends FallingBlock implements SimpleWaterlogge
     protected static final VoxelShape SOUTH_OUTER_SHAPE = Block.box(8.0D, 0.0D, 8.0D, 16.0D, 16.0D, 16.0D);
     protected static final VoxelShape WEST_OUTER_SHAPE = Block.box(0.0D, 0.0D, 8.0D, 8.0D, 16.0D, 16.0D);
 
-    public FallingCornerBlock(List<TagKey<Block>> characteristics, Block material, Block materialStair, Properties builder) {
-        super(builder);
+    public FallingCornerBlock(List<TagKey<Block>> characteristics, Block material, Supplier<Block> materialStair) {
+        super(Block.Properties.copy(material));
         this.characteristics = characteristics;
         this.material = material;
         this.materialStair = materialStair;
         this.registerDefaultState(this.stateDefinition.any().setValue(WATERLOGGED, false));
     }
 
-    public FallingCornerBlock(Block material, Block materialStair, Properties builder) {
-        this(IBlockCharacteristics.tag(), material, materialStair, builder);
+    public FallingCornerBlock(Block material, Supplier<Block> materialStair) {
+        this(IBlockCharacteristics.tag(), material, materialStair);
         this.registerDefaultState(this.stateDefinition.any().setValue(WATERLOGGED, false));
     }
 
@@ -64,7 +66,7 @@ public class FallingCornerBlock extends FallingBlock implements SimpleWaterlogge
     }
 
     public Block getMaterialStair() {
-        return materialStair;
+        return materialStair.get();
     }
 
     @Override
@@ -115,12 +117,12 @@ public class FallingCornerBlock extends FallingBlock implements SimpleWaterlogge
     }
 
     @Override
-    public boolean canPlaceLiquid(@NotNull BlockGetter worldIn, @NotNull BlockPos pos, @NotNull BlockState state, @NotNull Fluid fluidIn) {
-        return SimpleWaterloggedBlock.super.canPlaceLiquid(worldIn, pos, state, fluidIn);
+    public boolean placeLiquid(@NotNull LevelAccessor worldIn, @NotNull BlockPos pos, @NotNull BlockState state, @NotNull FluidState fluidStateIn) {
+        return SimpleWaterloggedBlock.super.placeLiquid(worldIn, pos, state, fluidStateIn);
     }
 
     @Override
-    public boolean placeLiquid(@NotNull LevelAccessor worldIn, @NotNull BlockPos pos, @NotNull BlockState state, @NotNull FluidState fluidStateIn) {
-        return SimpleWaterloggedBlock.super.placeLiquid(worldIn, pos, state, fluidStateIn);
+    public boolean canPlaceLiquid(@Nullable Player player, @NotNull BlockGetter worldIn, @NotNull BlockPos pos, @NotNull BlockState state, @NotNull Fluid fluidIn) {
+        return SimpleWaterloggedBlock.super.canPlaceLiquid(player, worldIn, pos, state, fluidIn);
     }
 }

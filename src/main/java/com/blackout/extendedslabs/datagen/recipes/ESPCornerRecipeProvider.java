@@ -4,27 +4,25 @@ import com.blackout.extendedslabs.ExtendedSlabs;
 import com.blackout.extendedslabs.blocks.ESPCornerBlock;
 import com.blackout.extendedslabs.blocks.falling.FallingCornerBlock;
 import com.blackout.extendedslabs.registry.ESPCorners;
-import net.minecraft.advancements.critereon.EntityPredicate;
-import net.minecraft.advancements.critereon.InventoryChangeTrigger;
-import net.minecraft.advancements.critereon.ItemPredicate;
-import net.minecraft.advancements.critereon.MinMaxBounds;
-import net.minecraft.data.recipes.FinishedRecipe;
-import net.minecraft.data.recipes.RecipeCategory;
-import net.minecraft.data.recipes.ShapelessRecipeBuilder;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.data.PackOutput;
+import net.minecraft.data.recipes.*;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
-import org.jetbrains.annotations.NotNull;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 import java.util.Collection;
-import java.util.function.Consumer;
+import java.util.concurrent.CompletableFuture;
 
-public class ESPCornerRecipeProvider {
-	public static void recipes(@NotNull Consumer<FinishedRecipe> consumer) {
-		final Collection<RegistryObject<Block>> blocks = ESPCorners.BLOCKS.getEntries();
-		for (RegistryObject<Block> block : blocks) {
+public abstract class ESPCornerRecipeProvider extends RecipeProvider {
+	public ESPCornerRecipeProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> provider) {
+		super(output, provider);
+	}
+
+	public static void recipes(RecipeOutput consumer) {
+		final Collection<DeferredHolder<Block, ? extends Block>> blocks = ESPCorners.BLOCKS.getEntries();
+		for (DeferredHolder<Block, ? extends Block> block : blocks) {
 			if (block.get() instanceof ESPCornerBlock cornerBlock) {
 				generateCornerFromStairRecipes(cornerBlock.asItem(), cornerBlock.getMaterialStair().asItem(), consumer);
 			} else if (block.get() instanceof FallingCornerBlock cornerBlock) {
@@ -33,20 +31,16 @@ public class ESPCornerRecipeProvider {
 		}
 	}
 
-	public static void generateCornerFromStairRecipes(Item output, Item input, Consumer<FinishedRecipe> consumer) {
-		ExtendedSlabs.LOGGER.info(ForgeRegistries.ITEMS.getKey(output.asItem()) + " from " + ForgeRegistries.ITEMS.getKey(input.asItem()));
+	public static void generateCornerFromStairRecipes(Item output, Item input, RecipeOutput consumer) {
+		ExtendedSlabs.LOGGER.info(BuiltInRegistries.ITEM.getKey(output.asItem()) + " from " + BuiltInRegistries.ITEM.getKey(input.asItem()));
 
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, output)
 				.requires(input)
 				.unlockedBy("has_item", has(input))
-				.save(consumer, ExtendedSlabs.MODID + ":" + output + "_from_" + input);
+				.save(consumer, ExtendedSlabs.MODID + ":" + stripPrefix(output) + "_from_" + stripPrefix(input));
 	}
 
-	protected static InventoryChangeTrigger.TriggerInstance has(ItemLike p_125978_) {
-		return inventoryTrigger(ItemPredicate.Builder.item().of(p_125978_).build());
-	}
-
-	protected static InventoryChangeTrigger.TriggerInstance inventoryTrigger(ItemPredicate... p_126012_) {
-		return new InventoryChangeTrigger.TriggerInstance(EntityPredicate.wrap(EntityPredicate.ANY), MinMaxBounds.Ints.ANY, MinMaxBounds.Ints.ANY, MinMaxBounds.Ints.ANY, p_126012_);
+	public static String stripPrefix(Item input) {
+		return input.toString().replaceAll(ExtendedSlabs.MODID + ":", "").replaceAll("minecraft:", "");
 	}
 }

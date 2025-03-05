@@ -16,15 +16,15 @@ public class TintedGlassSlabBlock extends GlassSlabBlock implements IBlockCharac
 	public Block material;
 	public Supplier<Block> materialVerticalSlab;
 
-	public TintedGlassSlabBlock(List<TagKey<Block>> characteristics, Block material, Supplier<Block> materialVerticalSlab, Properties properties) {
-		super(characteristics, material, materialVerticalSlab, properties);
+	public TintedGlassSlabBlock(List<TagKey<Block>> characteristics, Block material, Supplier<Block> materialVerticalSlab) {
+		super(characteristics, material, materialVerticalSlab);
 		this.characteristics = characteristics;
 		this.material = material;
 		this.materialVerticalSlab = materialVerticalSlab;
 	}
 
-	public TintedGlassSlabBlock(Block material, Supplier<Block> materialVerticalSlab, Properties properties) {
-		this(IBlockCharacteristics.tag(), material, materialVerticalSlab, properties);
+	public TintedGlassSlabBlock(Block material, Supplier<Block> materialVerticalSlab) {
+		this(IBlockCharacteristics.tag(), material, materialVerticalSlab);
 		this.material = material;
 		this.materialVerticalSlab = materialVerticalSlab;
 	}
@@ -38,8 +38,8 @@ public class TintedGlassSlabBlock extends GlassSlabBlock implements IBlockCharac
 		return material;
 	}
 
-	public Supplier<Block> getMaterialVerticalSlab() {
-		return materialVerticalSlab;
+	public Block getMaterialVerticalSlab() {
+		return materialVerticalSlab.get();
 	}
 
 	public boolean propagatesSkylightDown(@NotNull BlockState blockState, @NotNull BlockGetter blockReader, @NotNull BlockPos blockPos) {

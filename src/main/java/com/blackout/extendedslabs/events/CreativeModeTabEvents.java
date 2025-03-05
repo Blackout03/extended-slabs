@@ -11,10 +11,9 @@ import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import java.util.List;
 
 @Mod.EventBusSubscriber(modid = ExtendedSlabs.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -24,41 +23,65 @@ public class CreativeModeTabEvents {
 		putAfter(event, CreativeModeTabs.BUILDING_BLOCKS, Blocks.OAK_WOOD,
 				List.of(ESPCorners.OAK_WOOD_CORNER.get(), ESPVerticalSlabs.OAK_WOOD_VERTICAL.get(),
 						ESPSlabs.OAK_WOOD_SLAB.get(), ESPStairs.OAK_WOOD_STAIRS.get()));
+		putAfter(event, CreativeModeTabs.BUILDING_BLOCKS, Blocks.STRIPPED_OAK_WOOD,
+				List.of(ESPCorners.STRIPPED_OAK_WOOD_CORNER.get(), ESPVerticalSlabs.STRIPPED_OAK_WOOD_VERTICAL.get(),
+						ESPSlabs.STRIPPED_OAK_WOOD_SLAB.get(), ESPStairs.STRIPPED_OAK_WOOD_STAIRS.get()));
 		putAfter(event, CreativeModeTabs.BUILDING_BLOCKS, Blocks.OAK_SLAB,
 				List.of(ESPCorners.OAK_CORNER.get(), ESPVerticalSlabs.OAK_VERTICAL.get()));
 		putAfter(event, CreativeModeTabs.BUILDING_BLOCKS, Blocks.SPRUCE_WOOD,
 				List.of(ESPCorners.SPRUCE_WOOD_CORNER.get(), ESPVerticalSlabs.SPRUCE_WOOD_VERTICAL.get(),
 						ESPSlabs.SPRUCE_WOOD_SLAB.get(), ESPStairs.SPRUCE_WOOD_STAIRS.get()));
+		putAfter(event, CreativeModeTabs.BUILDING_BLOCKS, Blocks.STRIPPED_SPRUCE_WOOD,
+				List.of(ESPCorners.STRIPPED_SPRUCE_WOOD_CORNER.get(), ESPVerticalSlabs.STRIPPED_SPRUCE_WOOD_VERTICAL.get(),
+						ESPSlabs.STRIPPED_SPRUCE_WOOD_SLAB.get(), ESPStairs.STRIPPED_SPRUCE_WOOD_STAIRS.get()));
 		putAfter(event, CreativeModeTabs.BUILDING_BLOCKS, Blocks.SPRUCE_SLAB,
 				List.of(ESPCorners.SPRUCE_CORNER.get(), ESPVerticalSlabs.SPRUCE_VERTICAL.get()));
 		putAfter(event, CreativeModeTabs.BUILDING_BLOCKS, Blocks.BIRCH_WOOD,
 				List.of(ESPCorners.BIRCH_WOOD_CORNER.get(), ESPVerticalSlabs.BIRCH_WOOD_VERTICAL.get(),
 						ESPSlabs.BIRCH_WOOD_SLAB.get(), ESPStairs.BIRCH_WOOD_STAIRS.get()));
+		putAfter(event, CreativeModeTabs.BUILDING_BLOCKS, Blocks.STRIPPED_BIRCH_WOOD,
+				List.of(ESPCorners.STRIPPED_BIRCH_WOOD_CORNER.get(), ESPVerticalSlabs.STRIPPED_BIRCH_WOOD_VERTICAL.get(),
+						ESPSlabs.STRIPPED_BIRCH_WOOD_SLAB.get(), ESPStairs.STRIPPED_BIRCH_WOOD_STAIRS.get()));
 		putAfter(event, CreativeModeTabs.BUILDING_BLOCKS, Blocks.BIRCH_SLAB,
 				List.of(ESPCorners.BIRCH_CORNER.get(), ESPVerticalSlabs.BIRCH_VERTICAL.get()));
 		putAfter(event, CreativeModeTabs.BUILDING_BLOCKS, Blocks.JUNGLE_WOOD,
 				List.of(ESPCorners.JUNGLE_WOOD_CORNER.get(), ESPVerticalSlabs.JUNGLE_WOOD_VERTICAL.get(),
 						ESPSlabs.JUNGLE_WOOD_SLAB.get(), ESPStairs.JUNGLE_WOOD_STAIRS.get()));
+		putAfter(event, CreativeModeTabs.BUILDING_BLOCKS, Blocks.STRIPPED_JUNGLE_WOOD,
+				List.of(ESPCorners.STRIPPED_JUNGLE_WOOD_CORNER.get(), ESPVerticalSlabs.STRIPPED_JUNGLE_WOOD_VERTICAL.get(),
+						ESPSlabs.STRIPPED_JUNGLE_WOOD_SLAB.get(), ESPStairs.STRIPPED_JUNGLE_WOOD_STAIRS.get()));
 		putAfter(event, CreativeModeTabs.BUILDING_BLOCKS, Blocks.JUNGLE_SLAB,
 				List.of(ESPCorners.JUNGLE_CORNER.get(), ESPVerticalSlabs.JUNGLE_VERTICAL.get()));
 		putAfter(event, CreativeModeTabs.BUILDING_BLOCKS, Blocks.ACACIA_WOOD,
 				List.of(ESPCorners.ACACIA_WOOD_CORNER.get(), ESPVerticalSlabs.ACACIA_WOOD_VERTICAL.get(),
 						ESPSlabs.ACACIA_WOOD_SLAB.get(), ESPStairs.ACACIA_WOOD_STAIRS.get()));
+		putAfter(event, CreativeModeTabs.BUILDING_BLOCKS, Blocks.STRIPPED_ACACIA_WOOD,
+				List.of(ESPCorners.STRIPPED_ACACIA_WOOD_CORNER.get(), ESPVerticalSlabs.STRIPPED_ACACIA_WOOD_VERTICAL.get(),
+						ESPSlabs.STRIPPED_ACACIA_WOOD_SLAB.get(), ESPStairs.STRIPPED_ACACIA_WOOD_STAIRS.get()));
 		putAfter(event, CreativeModeTabs.BUILDING_BLOCKS, Blocks.ACACIA_SLAB,
 				List.of(ESPCorners.ACACIA_CORNER.get(), ESPVerticalSlabs.ACACIA_VERTICAL.get()));
 		putAfter(event, CreativeModeTabs.BUILDING_BLOCKS, Blocks.DARK_OAK_WOOD,
 				List.of(ESPCorners.DARK_OAK_WOOD_CORNER.get(), ESPVerticalSlabs.DARK_OAK_WOOD_VERTICAL.get(),
 						ESPSlabs.DARK_OAK_WOOD_SLAB.get(), ESPStairs.DARK_OAK_WOOD_STAIRS.get()));
+		putAfter(event, CreativeModeTabs.BUILDING_BLOCKS, Blocks.STRIPPED_DARK_OAK_WOOD,
+				List.of(ESPCorners.STRIPPED_DARK_OAK_WOOD_CORNER.get(), ESPVerticalSlabs.STRIPPED_DARK_OAK_WOOD_VERTICAL.get(),
+						ESPSlabs.STRIPPED_DARK_OAK_WOOD_SLAB.get(), ESPStairs.STRIPPED_DARK_OAK_WOOD_STAIRS.get()));
 		putAfter(event, CreativeModeTabs.BUILDING_BLOCKS, Blocks.DARK_OAK_SLAB,
 				List.of(ESPCorners.DARK_OAK_CORNER.get(), ESPVerticalSlabs.DARK_OAK_VERTICAL.get()));
 		putAfter(event, CreativeModeTabs.BUILDING_BLOCKS, Blocks.MANGROVE_WOOD,
 				List.of(ESPCorners.MANGROVE_WOOD_CORNER.get(), ESPVerticalSlabs.MANGROVE_WOOD_VERTICAL.get(),
 						ESPSlabs.MANGROVE_WOOD_SLAB.get(), ESPStairs.MANGROVE_WOOD_STAIRS.get()));
+		putAfter(event, CreativeModeTabs.BUILDING_BLOCKS, Blocks.STRIPPED_MANGROVE_WOOD,
+				List.of(ESPCorners.STRIPPED_MANGROVE_WOOD_CORNER.get(), ESPVerticalSlabs.STRIPPED_MANGROVE_WOOD_VERTICAL.get(),
+						ESPSlabs.STRIPPED_MANGROVE_WOOD_SLAB.get(), ESPStairs.STRIPPED_MANGROVE_WOOD_STAIRS.get()));
 		putAfter(event, CreativeModeTabs.BUILDING_BLOCKS, Blocks.MANGROVE_SLAB,
 				List.of(ESPCorners.MANGROVE_CORNER.get(), ESPVerticalSlabs.MANGROVE_VERTICAL.get()));
 		putAfter(event, CreativeModeTabs.BUILDING_BLOCKS, Blocks.CHERRY_WOOD,
 				List.of(ESPCorners.CHERRY_WOOD_CORNER.get(), ESPVerticalSlabs.CHERRY_WOOD_VERTICAL.get(),
 						ESPSlabs.CHERRY_WOOD_SLAB.get(), ESPStairs.CHERRY_WOOD_STAIRS.get()));
+		putAfter(event, CreativeModeTabs.BUILDING_BLOCKS, Blocks.STRIPPED_CHERRY_WOOD,
+				List.of(ESPCorners.STRIPPED_CHERRY_WOOD_CORNER.get(), ESPVerticalSlabs.STRIPPED_CHERRY_WOOD_VERTICAL.get(),
+						ESPSlabs.STRIPPED_CHERRY_WOOD_SLAB.get(), ESPStairs.STRIPPED_CHERRY_WOOD_STAIRS.get()));
 		putAfter(event, CreativeModeTabs.BUILDING_BLOCKS, Blocks.CHERRY_SLAB,
 				List.of(ESPCorners.CHERRY_CORNER.get(), ESPVerticalSlabs.CHERRY_VERTICAL.get()));
 		putAfter(event, CreativeModeTabs.BUILDING_BLOCKS, Blocks.BAMBOO_MOSAIC_SLAB,
@@ -67,11 +90,17 @@ public class CreativeModeTabEvents {
 		putAfter(event, CreativeModeTabs.BUILDING_BLOCKS, Blocks.CRIMSON_HYPHAE,
 				List.of(ESPCorners.CRIMSON_HYPHAE_CORNER.get(), ESPVerticalSlabs.CRIMSON_HYPHAE_VERTICAL.get(),
 						ESPSlabs.CRIMSON_HYPHAE_SLAB.get(), ESPStairs.CRIMSON_HYPHAE_STAIRS.get()));
+		putAfter(event, CreativeModeTabs.BUILDING_BLOCKS, Blocks.STRIPPED_CRIMSON_HYPHAE,
+				List.of(ESPCorners.STRIPPED_CRIMSON_HYPHAE_CORNER.get(), ESPVerticalSlabs.STRIPPED_CRIMSON_HYPHAE_VERTICAL.get(),
+						ESPSlabs.STRIPPED_CRIMSON_HYPHAE_SLAB.get(), ESPStairs.STRIPPED_CRIMSON_HYPHAE_STAIRS.get()));
 		putAfter(event, CreativeModeTabs.BUILDING_BLOCKS, Blocks.CRIMSON_SLAB,
 				List.of(ESPCorners.CRIMSON_CORNER.get(), ESPVerticalSlabs.CRIMSON_VERTICAL.get()));
 		putAfter(event, CreativeModeTabs.BUILDING_BLOCKS, Blocks.WARPED_HYPHAE,
 				List.of(ESPCorners.WARPED_HYPHAE_CORNER.get(), ESPVerticalSlabs.WARPED_HYPHAE_VERTICAL.get(),
 						ESPSlabs.WARPED_HYPHAE_SLAB.get(), ESPStairs.WARPED_HYPHAE_STAIRS.get()));
+		putAfter(event, CreativeModeTabs.BUILDING_BLOCKS, Blocks.STRIPPED_WARPED_HYPHAE,
+				List.of(ESPCorners.STRIPPED_WARPED_HYPHAE_CORNER.get(), ESPVerticalSlabs.STRIPPED_WARPED_HYPHAE_VERTICAL.get(),
+						ESPSlabs.STRIPPED_WARPED_HYPHAE_SLAB.get(), ESPStairs.STRIPPED_WARPED_HYPHAE_STAIRS.get()));
 		putAfter(event, CreativeModeTabs.BUILDING_BLOCKS, Blocks.WARPED_SLAB,
 				List.of(ESPCorners.WARPED_CORNER.get(), ESPVerticalSlabs.WARPED_VERTICAL.get()));
 		putAfter(event, CreativeModeTabs.BUILDING_BLOCKS, Blocks.STONE_SLAB,
@@ -80,6 +109,10 @@ public class CreativeModeTabEvents {
 				List.of(ESPCorners.COBBLESTONE_CORNER.get(), ESPVerticalSlabs.COBBLESTONE_VERTICAL.get()));
 		putAfter(event, CreativeModeTabs.BUILDING_BLOCKS, Blocks.MOSSY_COBBLESTONE_SLAB,
 				List.of(ESPCorners.MOSSY_COBBLESTONE_CORNER.get(), ESPVerticalSlabs.MOSSY_COBBLESTONE_VERTICAL.get()));
+		putAfter(event, CreativeModeTabs.BUILDING_BLOCKS, Blocks.SMOOTH_STONE,
+				List.of(ESPStairs.SMOOTH_STONE_STAIRS.get(), ESPVerticalSlabs.MOSSY_COBBLESTONE_VERTICAL.get()));
+		putAfter(event, CreativeModeTabs.BUILDING_BLOCKS, Blocks.SMOOTH_STONE_SLAB,
+				List.of(ESPCorners.SMOOTH_STONE_CORNER.get(), ESPVerticalSlabs.MOSSY_COBBLESTONE_VERTICAL.get()));
 		putAfter(event, CreativeModeTabs.BUILDING_BLOCKS, Blocks.STONE_BRICK_SLAB,
 				List.of(ESPCorners.STONE_BRICK_CORNER.get(), ESPVerticalSlabs.STONE_BRICK_VERTICAL.get()));
 		putAfter(event, CreativeModeTabs.BUILDING_BLOCKS, Blocks.MOSSY_STONE_BRICK_SLAB,
@@ -127,12 +160,15 @@ public class CreativeModeTabEvents {
 				List.of(ESPStairs.CUT_RED_SANDSTONE_STAIRS.get()));
 		putAfter(event, CreativeModeTabs.BUILDING_BLOCKS, Blocks.CUT_RED_SANDSTONE_SLAB,
 				List.of(ESPCorners.CUT_RED_SANDSTONE_CORNER.get(), ESPVerticalSlabs.CUT_RED_SANDSTONE_VERTICAL.get()));
+		putAfter(event, CreativeModeTabs.BUILDING_BLOCKS, Blocks.SEA_LANTERN,
+				List.of(ESPCorners.SEA_LANTERN_CORNER.get(), ESPVerticalSlabs.SEA_LANTERN_VERTICAL.get(),
+						ESPSlabs.SEA_LANTERN_SLAB.get(), ESPStairs.SEA_LANTERN_STAIRS.get()));
 		putAfter(event, CreativeModeTabs.BUILDING_BLOCKS, Blocks.PRISMARINE_SLAB,
-				List.of(ESPVerticalSlabs.PRISMARINE_VERTICAL.get()));
+				List.of(ESPCorners.PRISMARINE_CORNER.get(), ESPVerticalSlabs.PRISMARINE_VERTICAL.get()));
 		putAfter(event, CreativeModeTabs.BUILDING_BLOCKS, Blocks.PRISMARINE_BRICK_SLAB,
-				List.of(ESPVerticalSlabs.PRISMARINE_BRICK_VERTICAL.get()));
+				List.of(ESPCorners.PRISMARINE_BRICK_CORNER.get(), ESPVerticalSlabs.PRISMARINE_BRICK_VERTICAL.get()));
 		putAfter(event, CreativeModeTabs.BUILDING_BLOCKS, Blocks.DARK_PRISMARINE_SLAB,
-				List.of(ESPVerticalSlabs.DARK_PRISMARINE_VERTICAL.get()));
+				List.of(ESPCorners.DARK_PRISMARINE_CORNER.get(), ESPVerticalSlabs.DARK_PRISMARINE_VERTICAL.get()));
 		putAfter(event, CreativeModeTabs.BUILDING_BLOCKS, Blocks.NETHERRACK,
 				List.of(ESPCorners.NETHERRACK_CORNER.get(), ESPVerticalSlabs.NETHERRACK_VERTICAL.get(),
 						ESPSlabs.NETHERRACK_SLAB.get(), ESPStairs.NETHERRACK_STAIRS.get()));
@@ -146,6 +182,9 @@ public class CreativeModeTabEvents {
 				List.of(ESPCorners.POLISHED_BLACKSTONE_CORNER.get(), ESPVerticalSlabs.POLISHED_BLACKSTONE_VERTICAL.get()));
 		putAfter(event, CreativeModeTabs.BUILDING_BLOCKS, Blocks.POLISHED_BLACKSTONE_BRICK_SLAB,
 				List.of(ESPCorners.POLISHED_BLACKSTONE_BRICK_CORNER.get(), ESPVerticalSlabs.POLISHED_BLACKSTONE_BRICK_VERTICAL.get()));
+		putAfter(event, CreativeModeTabs.BUILDING_BLOCKS, Blocks.SMOOTH_BASALT,
+				List.of(ESPCorners.SMOOTH_BASALT_CORNER.get(), ESPVerticalSlabs.SMOOTH_BASALT_VERTICAL.get(),
+						ESPSlabs.SMOOTH_BASALT_SLAB.get(), ESPStairs.SMOOTH_BASALT_STAIRS.get()));
 		putAfter(event, CreativeModeTabs.BUILDING_BLOCKS, Blocks.END_STONE,
 				List.of(ESPCorners.END_STONE_CORNER.get(), ESPVerticalSlabs.END_STONE_VERTICAL.get(),
 						ESPSlabs.END_STONE_SLAB.get(), ESPStairs.END_STONE_STAIRS.get()));
@@ -155,8 +194,14 @@ public class CreativeModeTabEvents {
 				List.of(ESPCorners.PURPUR_CORNER.get(), ESPVerticalSlabs.PURPUR_VERTICAL.get()));
 		putAfter(event, CreativeModeTabs.BUILDING_BLOCKS, Blocks.QUARTZ_SLAB,
 				List.of(ESPCorners.QUARTZ_CORNER.get(), ESPVerticalSlabs.QUARTZ_VERTICAL.get()));
+		putAfter(event, CreativeModeTabs.BUILDING_BLOCKS, Blocks.QUARTZ_BRICKS,
+				List.of(ESPCorners.QUARTZ_BRICK_CORNER.get(), ESPVerticalSlabs.QUARTZ_BRICK_VERTICAL.get(),
+						ESPSlabs.QUARTZ_BRICK_SLAB.get(), ESPStairs.QUARTZ_BRICK_STAIRS.get()));
 		putAfter(event, CreativeModeTabs.BUILDING_BLOCKS, Blocks.SMOOTH_QUARTZ_SLAB,
 				List.of(ESPCorners.SMOOTH_QUARTZ_CORNER.get(), ESPVerticalSlabs.SMOOTH_QUARTZ_VERTICAL.get()));
+		putAfter(event, CreativeModeTabs.BUILDING_BLOCKS, Blocks.AMETHYST_BLOCK,
+				List.of(ESPCorners.AMETHYST_CORNER.get(), ESPVerticalSlabs.AMETHYST_VERTICAL.get(),
+						ESPSlabs.AMETHYST_SLAB.get(), ESPStairs.AMETHYST_STAIRS.get()));
 		putAfter(event, CreativeModeTabs.BUILDING_BLOCKS, Blocks.CUT_COPPER_SLAB,
 				List.of(ESPCorners.CUT_COPPER_CORNER.get(), ESPVerticalSlabs.CUT_COPPER_VERTICAL.get()));
 		putAfter(event, CreativeModeTabs.BUILDING_BLOCKS, Blocks.EXPOSED_CUT_COPPER_SLAB,

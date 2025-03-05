@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "extendedslabs:stripped_dark_oak_wood_stairs"
+    }
+  ],
+  "result": {
+    "item": "extendedslabs:stripped_dark_oak_wood_corner"
+  }
+}

@@ -3,6 +3,8 @@ package com.blackout.extendedslabs.datagen.loottables;
 import com.blackout.extendedslabs.ExtendedSlabs;
 import com.blackout.extendedslabs.registry.ESPSlabs;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
+import net.minecraft.core.Holder;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.flag.FeatureFlags;
@@ -16,8 +18,7 @@ import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
@@ -41,8 +42,8 @@ public class ESPSlabsLootTables extends BlockLootSubProvider {
 
 	@Override
 	protected void generate() {
-		List<Block> blocks = new ArrayList<>(ForgeRegistries.BLOCKS.getValues());
-		final Collection<RegistryObject<Block>> validBlocks = ESPSlabs.BLOCKS.getEntries();
+		List<Block> blocks = new ArrayList<>(BuiltInRegistries.BLOCK.stream().toList());
+		final Collection<DeferredHolder<Block, ? extends Block>> validBlocks = ESPSlabs.BLOCKS.getEntries();
 		blocks.removeIf(block -> name(block) != null && validBlocks.stream().noneMatch(registryObject -> registryObject.getId().equals(name(block))));
 
 		// Generate loot tables for specific blocks
@@ -72,6 +73,10 @@ public class ESPSlabsLootTables extends BlockLootSubProvider {
 
 	public void dropSelf(@NotNull Block block) {
 		add(block, createSlabItemTable(block));
+	}
+
+	protected void dropOther(Block pBlock, Block pDrop) {
+		add(pBlock, createSlabItemTable(pDrop));
 	}
 
 	public void dropSelfSilk(@NotNull Block block, ItemLike item) {
@@ -108,11 +113,11 @@ public class ESPSlabsLootTables extends BlockLootSubProvider {
 	}
 
 	private ResourceLocation name(Block block) {
-		return Objects.requireNonNull(ForgeRegistries.BLOCKS.getKey(block));
+		return Objects.requireNonNull(BuiltInRegistries.BLOCK.getKey(block));
 	}
 
 	@Override
 	protected @NotNull Iterable<Block> getKnownBlocks() {
-		return ESPSlabs.BLOCKS.getEntries().stream().map(RegistryObject::get)::iterator;
+		return ESPSlabs.BLOCKS.getEntries().stream().map(Holder::value)::iterator;
 	}
 }

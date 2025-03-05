@@ -1,10 +1,12 @@
 package com.blackout.extendedslabs.events.placehandlers;
 
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import org.apache.logging.log4j.util.TriConsumer;
 
 import java.util.HashMap;
@@ -15,9 +17,10 @@ public class BlockSlabifiedPlaceHandler {
 	public static final Map<ResourceLocation, Supplier<Block>> PLACE_ENTRIES = new HashMap<>();
 	public static final Map<Class<? extends Block>, TriConsumer<PlayerInteractEvent.RightClickBlock, ItemStack, Block>> HANDLERS = new HashMap<>();
 
+	@SubscribeEvent
 	public static void onBlockEntityPlace(PlayerInteractEvent.RightClickBlock event) {
 		ItemStack held = event.getItemStack();
-		ResourceLocation rl = ForgeRegistries.ITEMS.getKey(held.getItem());
+		ResourceLocation rl = BuiltInRegistries.ITEM.getKey(held.getItem());
 
 		if (PLACE_ENTRIES.containsKey(rl)) {
 			Block slabifiedBlock = PLACE_ENTRIES.get(rl).get();

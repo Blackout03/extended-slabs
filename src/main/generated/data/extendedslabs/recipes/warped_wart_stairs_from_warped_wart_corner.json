@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "extendedslabs:warped_wart_corner"
+    }
+  ],
+  "result": {
+    "item": "extendedslabs:warped_wart_stairs"
+  }
+}

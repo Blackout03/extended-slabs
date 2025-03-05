@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "extendedslabs:vertical_nether_wart_slab"
+    }
+  ],
+  "result": {
+    "item": "extendedslabs:nether_wart_slab"
+  }
+}

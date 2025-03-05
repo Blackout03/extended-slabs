@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "extendedslabs:block/magma_slab"
+    },
+    "type=double": {
+      "model": "minecraft:block/magma_block"
+    },
+    "type=top": {
+      "model": "extendedslabs:block/magma_slab_top"
+    }
+  }
+}

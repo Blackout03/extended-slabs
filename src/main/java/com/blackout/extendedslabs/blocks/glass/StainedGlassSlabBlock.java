@@ -17,16 +17,16 @@ public class StainedGlassSlabBlock extends GlassSlabBlock implements BeaconBeamB
     private final DyeColor color;
 
 
-    public StainedGlassSlabBlock(List<TagKey<Block>> characteristics, Block material, Supplier<Block> materialVerticalSlab, DyeColor color, Properties builder) {
-        super(IBlockCharacteristics.tag(), material, materialVerticalSlab, builder);
+    public StainedGlassSlabBlock(List<TagKey<Block>> characteristics, Block material, Supplier<Block> materialVerticalSlab, DyeColor color) {
+        super(IBlockCharacteristics.tag(), material, materialVerticalSlab);
         this.characteristics = characteristics;
         this.material = material;
         this.materialVerticalSlab = materialVerticalSlab;
         this.color = color;
     }
 
-    public StainedGlassSlabBlock(Block material, Supplier<Block> materialVerticalSlab, DyeColor color, Properties builder) {
-        this(IBlockCharacteristics.tag(), material, materialVerticalSlab, color, builder);
+    public StainedGlassSlabBlock(Block material, Supplier<Block> materialVerticalSlab, DyeColor color) {
+        this(IBlockCharacteristics.tag(), material, materialVerticalSlab, color);
         this.material = material;
         this.materialVerticalSlab = materialVerticalSlab;
     }
@@ -40,8 +40,8 @@ public class StainedGlassSlabBlock extends GlassSlabBlock implements BeaconBeamB
         return material;
     }
 
-    public Supplier<Block> getMaterialVerticalSlab() {
-        return materialVerticalSlab;
+    public Block getMaterialVerticalSlab() {
+        return materialVerticalSlab.get();
     }
 
     public @NotNull DyeColor getColor() {

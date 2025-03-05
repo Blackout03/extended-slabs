@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "extendedslabs:honeycomb_stairs"
+    }
+  ],
+  "result": {
+    "item": "extendedslabs:honeycomb_corner"
+  }
+}

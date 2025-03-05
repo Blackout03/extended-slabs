@@ -1,11 +1,18 @@
 {
   "values": [
-    "extendedslabs:dirt_slab",
+    "extendedslabs:dirt_path_stairs",
     "extendedslabs:grass_block_slab",
-    "extendedslabs:podzol_slab",
-    "extendedslabs:coarse_dirt_slab",
-    "extendedslabs:mycelium_slab",
+    "extendedslabs:podzol_stairs",
     "extendedslabs:rooted_dirt_slab",
-    "extendedslabs:mud_slab"
+    "extendedslabs:rooted_dirt_stairs",
+    "extendedslabs:podzol_slab",
+    "extendedslabs:mud_slab",
+    "extendedslabs:mud_stairs",
+    "extendedslabs:grass_block_stairs",
+    "extendedslabs:mycelium_slab",
+    "extendedslabs:dirt_stairs",
+    "extendedslabs:dirt_slab",
+    "extendedslabs:coarse_dirt_stairs",
+    "extendedslabs:coarse_dirt_slab"
   ]
 }

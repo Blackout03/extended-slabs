@@ -14,8 +14,8 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.block.state.properties.SlabType;
-import net.minecraftforge.common.IPlantable;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.neoforged.neoforge.common.IPlantable;
+import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 
 public class DoublePlantBlockSlabifiedPlaceHandler {
 	public static void placeDoublePlantBlock(PlayerInteractEvent.RightClickBlock event, ItemStack held, Block block) {

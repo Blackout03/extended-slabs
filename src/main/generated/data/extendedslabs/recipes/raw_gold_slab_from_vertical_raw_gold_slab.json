@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "extendedslabs:vertical_raw_gold_slab"
+    }
+  ],
+  "result": {
+    "item": "extendedslabs:raw_gold_slab"
+  }
+}

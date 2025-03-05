@@ -4,28 +4,32 @@ import com.blackout.extendedslabs.blocks.slabified.ISlabified;
 import com.blackout.extendedslabs.registry.ESPSlabs;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DeadBushBlock;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.SlabType;
-import net.minecraftforge.common.IPlantable;
-import net.minecraftforge.common.PlantType;
-import net.minecraftforge.common.ToolAction;
-import net.minecraftforge.common.ToolActions;
-import net.minecraftforge.common.extensions.IForgeBlock;
+import net.neoforged.neoforge.common.IPlantable;
+import net.neoforged.neoforge.common.PlantType;
+import net.neoforged.neoforge.common.ToolAction;
+import net.neoforged.neoforge.common.ToolActions;
+import net.neoforged.neoforge.common.extensions.IBlockExtension;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.function.Supplier;
 
-public class ESPSlabBlock extends SlabBlock implements IBlockCharacteristics, IForgeBlock {
+public class ESPSlabBlock extends SlabBlock implements IBlockCharacteristics, IBlockExtension {
 	private final List<TagKey<Block>> characteristics;
 	public Block material;
 	public Supplier<Block> materialVerticalSlab;
@@ -38,8 +42,15 @@ public class ESPSlabBlock extends SlabBlock implements IBlockCharacteristics, IF
 		this.registerDefaultState(this.defaultBlockState().setValue(TYPE, SlabType.BOTTOM).setValue(WATERLOGGED, Boolean.FALSE));
 	}
 
-	public ESPSlabBlock(Block material, Supplier<Block> materialVerticalSlab, Properties properties) {
-		this(IBlockCharacteristics.tag(), material, materialVerticalSlab, properties);
+	public ESPSlabBlock(List<TagKey<Block>> characteristics, Block material, Supplier<Block> materialVerticalSlab) {
+		this(characteristics, material, materialVerticalSlab, Block.Properties.copy(material));
+		this.material = material;
+		this.materialVerticalSlab = materialVerticalSlab;
+		this.registerDefaultState(this.defaultBlockState().setValue(TYPE, SlabType.BOTTOM).setValue(WATERLOGGED, Boolean.FALSE));
+	}
+
+	public ESPSlabBlock(Block material, Supplier<Block> materialVerticalSlab) {
+		this(IBlockCharacteristics.tag(), material, materialVerticalSlab, Block.Properties.copy(material));
 		this.material = material;
 		this.materialVerticalSlab = materialVerticalSlab;
 		this.registerDefaultState(this.defaultBlockState().setValue(TYPE, SlabType.BOTTOM).setValue(WATERLOGGED, Boolean.FALSE));
@@ -54,8 +65,18 @@ public class ESPSlabBlock extends SlabBlock implements IBlockCharacteristics, IF
 		return material;
 	}
 
-	public Supplier<Block> getMaterialVerticalSlab() {
-		return materialVerticalSlab;
+	public Block getMaterialVerticalSlab() {
+		return materialVerticalSlab.get();
+	}
+
+	@Override
+	public void animateTick(BlockState p_221789_, Level p_221790_, BlockPos p_221791_, RandomSource p_221792_) {
+		super.animateTick(p_221789_, p_221790_, p_221791_, p_221792_);
+		if (this.getMaterial() == Blocks.MYCELIUM) {
+			if (p_221792_.nextInt(10) == 0) {
+				p_221790_.addParticle(ParticleTypes.MYCELIUM, (double) p_221791_.getX() + p_221792_.nextDouble(), (double) p_221791_.getY() + 1.1D, (double) p_221791_.getZ() + p_221792_.nextDouble(), 0.0D, 0.0D, 0.0D);
+			}
+		}
 	}
 
 	@Override

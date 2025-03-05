@@ -4,27 +4,27 @@ import com.blackout.extendedslabs.ExtendedSlabs;
 import com.blackout.extendedslabs.blocks.ESPVerticalSlabBlock;
 import com.blackout.extendedslabs.blocks.falling.FallingVerticalSlabBlock;
 import com.blackout.extendedslabs.registry.ESPVerticalSlabs;
-import net.minecraft.advancements.critereon.EntityPredicate;
-import net.minecraft.advancements.critereon.InventoryChangeTrigger;
-import net.minecraft.advancements.critereon.ItemPredicate;
-import net.minecraft.advancements.critereon.MinMaxBounds;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
-import org.jetbrains.annotations.NotNull;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 import java.util.Collection;
-import java.util.function.Consumer;
+import java.util.concurrent.CompletableFuture;
 
-public class ESPVerticalSlabRecipeProvider {
-	public static void recipes(@NotNull Consumer<FinishedRecipe> consumer) {
-		final Collection<RegistryObject<Block>> blocks = ESPVerticalSlabs.BLOCKS.getEntries();
-		for (RegistryObject<Block> block : blocks) {
+public abstract class ESPVerticalSlabRecipeProvider extends RecipeProvider {
+	public ESPVerticalSlabRecipeProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> provider) {
+		super(output, provider);
+	}
+
+	public static void recipes(RecipeOutput consumer) {
+		final Collection<DeferredHolder<Block, ? extends Block>> blocks = ESPVerticalSlabs.BLOCKS.getEntries();
+		for (DeferredHolder<Block, ? extends Block> block : blocks) {
 			if (block.get() instanceof ESPVerticalSlabBlock verticalSlabBlock) {
 				generateVerticalSlabRecipes(verticalSlabBlock.asItem(), verticalSlabBlock.getMaterial().asItem(), consumer);
 				generateVerticalSlabFromSlabRecipes(verticalSlabBlock.asItem(), verticalSlabBlock.getMaterialSlab().asItem(), consumer);
@@ -84,8 +84,8 @@ public class ESPVerticalSlabRecipeProvider {
 		SingleItemRecipeBuilder.stonecutting(Ingredient.of(Blocks.DEEPSLATE_TILES), RecipeCategory.BUILDING_BLOCKS, ESPVerticalSlabs.DEEPSLATE_TILE_VERTICAL.get(), 2).unlockedBy("has_deepslate_tiles", has(Blocks.DEEPSLATE_TILES)).save(consumer,  ExtendedSlabs.MODID + ":deepslate_tile_vertical_slab_from_deepslate_tiles_stonecutting");
 	}
 
-	public static void generateVerticalSlabRecipes(Item output, Item input, Consumer<FinishedRecipe> consumer) {
-		ExtendedSlabs.LOGGER.info(ForgeRegistries.ITEMS.getKey(output.asItem()));
+	public static void generateVerticalSlabRecipes(Item output, Item input, RecipeOutput consumer) {
+		ExtendedSlabs.LOGGER.info(BuiltInRegistries.ITEM.getKey(output.asItem()));
 
 		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, output, 6)
 				.define('#', input)
@@ -96,20 +96,16 @@ public class ESPVerticalSlabRecipeProvider {
 				.save(consumer);
 	}
 
-	public static void generateVerticalSlabFromSlabRecipes(Item output, Item input, Consumer<FinishedRecipe> consumer) {
-		ExtendedSlabs.LOGGER.info(ForgeRegistries.ITEMS.getKey(output.asItem()) + " from " + ForgeRegistries.ITEMS.getKey(input.asItem()));
+	public static void generateVerticalSlabFromSlabRecipes(Item output, Item input, RecipeOutput consumer) {
+		ExtendedSlabs.LOGGER.info(BuiltInRegistries.ITEM.getKey(output.asItem()) + " from " + BuiltInRegistries.ITEM.getKey(input.asItem()));
 
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, output)
 				.requires(input)
 				.unlockedBy("has_item", has(input))
-				.save(consumer, ExtendedSlabs.MODID + ":" + output + "_from_" + input);
+				.save(consumer, ExtendedSlabs.MODID + ":" + stripPrefix(output) + "_from_" + stripPrefix(input));
 	}
 
-	protected static InventoryChangeTrigger.TriggerInstance has(ItemLike p_125978_) {
-		return inventoryTrigger(ItemPredicate.Builder.item().of(p_125978_).build());
-	}
-
-	protected static InventoryChangeTrigger.TriggerInstance inventoryTrigger(ItemPredicate... p_126012_) {
-		return new InventoryChangeTrigger.TriggerInstance(EntityPredicate.wrap(EntityPredicate.ANY), MinMaxBounds.Ints.ANY, MinMaxBounds.Ints.ANY, MinMaxBounds.Ints.ANY, p_126012_);
+	public static String stripPrefix(Item input) {
+		return input.toString().replaceAll(ExtendedSlabs.MODID + ":", "").replaceAll("minecraft:", "");
 	}
 }

@@ -1,0 +1,94 @@
+{
+  "variants": {
+    "facing=east,shape=inner_left": {
+      "model": "extendedslabs:block/inner_vertical_stripped_warped_hyphae_slab",
+      "uvlock": true,
+      "y": 270
+    },
+    "facing=east,shape=inner_right": {
+      "model": "extendedslabs:block/inner_vertical_stripped_warped_hyphae_slab"
+    },
+    "facing=east,shape=outer_left": {
+      "model": "extendedslabs:block/outer_vertical_stripped_warped_hyphae_slab",
+      "uvlock": true,
+      "y": 270
+    },
+    "facing=east,shape=outer_right": {
+      "model": "extendedslabs:block/outer_vertical_stripped_warped_hyphae_slab"
+    },
+    "facing=east,shape=straight": {
+      "model": "extendedslabs:block/vertical_stripped_warped_hyphae_slab"
+    },
+    "facing=north,shape=inner_left": {
+      "model": "extendedslabs:block/inner_vertical_stripped_warped_hyphae_slab",
+      "uvlock": true,
+      "y": 180
+    },
+    "facing=north,shape=inner_right": {
+      "model": "extendedslabs:block/inner_vertical_stripped_warped_hyphae_slab",
+      "uvlock": true,
+      "y": 270
+    },
+    "facing=north,shape=outer_left": {
+      "model": "extendedslabs:block/outer_vertical_stripped_warped_hyphae_slab",
+      "uvlock": true,
+      "y": 180
+    },
+    "facing=north,shape=outer_right": {
+      "model": "extendedslabs:block/outer_vertical_stripped_warped_hyphae_slab",
+      "uvlock": true,
+      "y": 270
+    },
+    "facing=north,shape=straight": {
+      "model": "extendedslabs:block/vertical_stripped_warped_hyphae_slab",
+      "uvlock": true,
+      "y": 270
+    },
+    "facing=south,shape=inner_left": {
+      "model": "extendedslabs:block/inner_vertical_stripped_warped_hyphae_slab"
+    },
+    "facing=south,shape=inner_right": {
+      "model": "extendedslabs:block/inner_vertical_stripped_warped_hyphae_slab",
+      "uvlock": true,
+      "y": 90
+    },
+    "facing=south,shape=outer_left": {
+      "model": "extendedslabs:block/outer_vertical_stripped_warped_hyphae_slab"
+    },
+    "facing=south,shape=outer_right": {
+      "model": "extendedslabs:block/outer_vertical_stripped_warped_hyphae_slab",
+      "uvlock": true,
+      "y": 90
+    },
+    "facing=south,shape=straight": {
+      "model": "extendedslabs:block/vertical_stripped_warped_hyphae_slab",
+      "uvlock": true,
+      "y": 90
+    },
+    "facing=west,shape=inner_left": {
+      "model": "extendedslabs:block/inner_vertical_stripped_warped_hyphae_slab",
+      "uvlock": true,
+      "y": 90
+    },
+    "facing=west,shape=inner_right": {
+      "model": "extendedslabs:block/inner_vertical_stripped_warped_hyphae_slab",
+      "uvlock": true,
+      "y": 180
+    },
+    "facing=west,shape=outer_left": {
+      "model": "extendedslabs:block/outer_vertical_stripped_warped_hyphae_slab",
+      "uvlock": true,
+      "y": 90
+    },
+    "facing=west,shape=outer_right": {
+      "model": "extendedslabs:block/outer_vertical_stripped_warped_hyphae_slab",
+      "uvlock": true,
+      "y": 180
+    },
+    "facing=west,shape=straight": {
+      "model": "extendedslabs:block/vertical_stripped_warped_hyphae_slab",
+      "uvlock": true,
+      "y": 180
+    }
+  }
+}

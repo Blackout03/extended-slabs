@@ -1,6 +1,5 @@
 package com.blackout.extendedslabs.blocks.slabified;
 
-import com.blackout.extendedslabs.blocks.falling.FallingSlabBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.BlockTags;

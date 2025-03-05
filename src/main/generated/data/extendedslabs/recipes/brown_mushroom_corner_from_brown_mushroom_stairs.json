@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "extendedslabs:brown_mushroom_stairs"
+    }
+  ],
+  "result": {
+    "item": "extendedslabs:brown_mushroom_corner"
+  }
+}

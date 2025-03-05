@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "extendedslabs:block/brown_mushroom_slab"
+    },
+    "type=double": {
+      "model": "minecraft:block/brown_mushroom_block_inventory"
+    },
+    "type=top": {
+      "model": "extendedslabs:block/brown_mushroom_slab_top"
+    }
+  }
+}

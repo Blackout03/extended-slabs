@@ -15,7 +15,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 import java.util.function.Supplier;
 
-public class PathSlabBlock extends ESPSlabBlock {
+public class PathSlabBlock extends ESPSlabBlock implements IBlockCharacteristics {
     private final List<TagKey<Block>> characteristics;
     public Block material;
     public Supplier<Block> materialVerticalSlab;
@@ -23,15 +23,15 @@ public class PathSlabBlock extends ESPSlabBlock {
     protected static final VoxelShape BOTTOM_SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 7.0D, 16.0D);
     protected static final VoxelShape TOP_SHAPE = Block.box(0.0D, 8.0D, 0.0D, 16.0D, 15.0D, 16.0D);
 
-    public PathSlabBlock(List<TagKey<Block>> characteristics, Block material, Supplier<Block> materialVerticalSlab, Properties properties) {
-        super(characteristics, material, materialVerticalSlab, properties);
+    public PathSlabBlock(List<TagKey<Block>> characteristics, Block material, Supplier<Block> materialVerticalSlab) {
+        super(characteristics, material, materialVerticalSlab);
         this.material = material;
         this.materialVerticalSlab = materialVerticalSlab;
         this.characteristics = characteristics;
     }
 
-    public PathSlabBlock(Block material, Supplier<Block> materialVerticalSlab, Properties properties) {
-        this(IBlockCharacteristics.tag(), material, materialVerticalSlab, properties);
+    public PathSlabBlock(Block material, Supplier<Block> materialVerticalSlab) {
+        this(IBlockCharacteristics.tag(), material, materialVerticalSlab);
         this.material = material;
         this.materialVerticalSlab = materialVerticalSlab;
     }
@@ -45,8 +45,8 @@ public class PathSlabBlock extends ESPSlabBlock {
         return material;
     }
 
-    public Supplier<Block> getMaterialVerticalSlab() {
-        return materialVerticalSlab;
+    public Block getMaterialVerticalSlab() {
+        return materialVerticalSlab.get();
     }
 
     @Override

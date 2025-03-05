@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "extendedslabs:crying_obsidian_stairs"
+    }
+  ],
+  "result": {
+    "item": "extendedslabs:crying_obsidian_corner"
+  }
+}

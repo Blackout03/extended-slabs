@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "extendedslabs:sculk_stairs"
+    }
+  ],
+  "result": {
+    "item": "extendedslabs:sculk_corner"
+  }
+}

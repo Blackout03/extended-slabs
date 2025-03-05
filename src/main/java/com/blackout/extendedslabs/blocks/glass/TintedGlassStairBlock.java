@@ -16,15 +16,15 @@ public class TintedGlassStairBlock extends GlassStairBlock implements IBlockChar
 	public Block material;
 	public Supplier<Block> materialCorner;
 
-	public TintedGlassStairBlock(List<TagKey<Block>> characteristics, Block material, Supplier<Block> materialCorner, Supplier<BlockState> state, Properties builder) {
-		super(material, materialCorner, state, builder);
+	public TintedGlassStairBlock(List<TagKey<Block>> characteristics, Block material, Supplier<Block> materialCorner) {
+		super(material, materialCorner);
 		this.characteristics = characteristics;
 		this.material = material;
 		this.materialCorner = materialCorner;
 	}
 
-	public TintedGlassStairBlock(Block material, Supplier<Block> materialCorner, Supplier<BlockState> state, Properties builder) {
-		this(IBlockCharacteristics.tag(), material, materialCorner, state, builder);
+	public TintedGlassStairBlock(Block material, Supplier<Block> materialCorner) {
+		this(IBlockCharacteristics.tag(), material, materialCorner);
 		this.material = material;
 		this.materialCorner = materialCorner;
 	}
@@ -38,8 +38,8 @@ public class TintedGlassStairBlock extends GlassStairBlock implements IBlockChar
 		return material;
 	}
 
-	public Supplier<Block> getMaterialCorner() {
-		return materialCorner;
+	public Block getMaterialCorner() {
+		return materialCorner.get();
 	}
 
 	public boolean propagatesSkylightDown(@NotNull BlockState blockState, @NotNull BlockGetter blockReader, @NotNull BlockPos blockPos) {

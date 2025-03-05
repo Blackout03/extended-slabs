@@ -14,6 +14,7 @@ import com.blackout.extendedslabs.registry.ESPSlabs;
 import com.blackout.extendedslabs.registry.ESPStairs;
 import com.blackout.extendedslabs.registry.ESPVerticalSlabs;
 import net.minecraft.core.Direction;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
@@ -24,13 +25,9 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.Half;
 import net.minecraft.world.level.block.state.properties.SlabType;
 import net.minecraft.world.level.block.state.properties.StairsShape;
-import net.minecraftforge.client.model.generators.BlockStateProvider;
-import net.minecraftforge.client.model.generators.ConfiguredModel;
-import net.minecraftforge.client.model.generators.ModelFile;
-import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
-
+import net.neoforged.neoforge.client.model.generators.*;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import java.util.Objects;
 import java.util.function.Function;
 
@@ -39,7 +36,7 @@ public class ESPBlockStateProvider extends BlockStateProvider {
 
 	public ESPBlockStateProvider(PackOutput output, ExistingFileHelper exFileHelper) {
 		super(output, ExtendedSlabs.MODID, exFileHelper);
-		this.espBlockModels = new ESPBlockModelProvider(output, exFileHelper) {
+		espBlockModels = new ESPBlockModelProvider(output, exFileHelper) {
 			@Override
 			protected void registerModels() {
 			}
@@ -57,10 +54,11 @@ public class ESPBlockStateProvider extends BlockStateProvider {
 
 	@Override
 	protected void registerStatesAndModels() {
-		for (RegistryObject<Block> block : ESPSlabs.BLOCKS.getEntries()) {
+		for (DeferredHolder<Block, ? extends Block> block : ESPSlabs.BLOCKS.getEntries()) {
 			Block currentBlock = block.get();
 			String blockName = block.getId().getPath();
-			String textureName = blockName.replaceAll("_slab", "");
+			String textureName = blockName.replaceAll("smooth_(?!basalt)|_slab", "");
+			String originalTextureName = textureName;
 
 			if (textureName.contains("_wood")) {
 				textureName = textureName.replaceAll("_wood", "_log");
@@ -74,31 +72,44 @@ public class ESPBlockStateProvider extends BlockStateProvider {
 				continue;
 			}
 
-			ResourceLocation texture = mcRL(textureName.contains("dripstone") ? textureName + "_block" : textureName);
+			ResourceLocation texture = mcRL(textureName.equals("moss") || textureName.contains("dripstone") || textureName.contains("wart") || textureName.contains("amethyst") || textureName.contains("honeycomb") || textureName.contains("raw_") || textureName.contains("snow") ? textureName + "_block" : textureName.contains("brick") ? textureName + "s" : textureName);
+			ResourceLocation originalTexture = mcRL(originalTextureName);
 			if (currentBlock instanceof FallingSlabBlock fallingBlock) {
-				this.fallingSlabBlock(fallingBlock, texture, texture, texture, texture);
+				fallingSlabBlock(fallingBlock, texture, texture);
 			} else {
 				SlabBlock slabBlock = (SlabBlock) currentBlock;
 				if (textureName.contains("podzol")
 						|| textureName.contains("mycelium")
-						|| textureName.contains("nylium")) {
+						|| textureName.contains("nylium")
+						|| textureName.contains("froglight")) {
 					ResourceLocation doubleSlab = mcRL(textureName);
 					ResourceLocation topSlab = espRL(textureName + "_slab_top");
 					ResourceLocation bottomSlab = espRL(textureName + "_slab");
-					this.slabBlock(slabBlock, doubleSlab, topSlab, bottomSlab);
+					slabBlock(slabBlock, doubleSlab, topSlab, bottomSlab);
+				} else if (textureName.contains("hay")
+						|| textureName.contains("magma")
+						|| textureName.contains("dried_kelp")) {
+					String blockTextureName = textureName + "_block";
+					ResourceLocation doubleSlab = mcRL(blockTextureName);
+					ResourceLocation topSlab = espRL(textureName + "_slab_top");
+					ResourceLocation bottomSlab = espRL(textureName + "_slab");
+					slabBlock(slabBlock, doubleSlab, topSlab, bottomSlab);
+				} else if (textureName.contains("mushroom")) {
+					String doubleSlabTexture = textureName.contains("_mushroom") ? textureName + "_block" : textureName;
+					slabBlock(slabBlock, mcRL(doubleSlabTexture + "_inventory"), mcRL(doubleSlabTexture));
 				} else if (slabBlock instanceof GlassSlabBlock) {
 					slabBlockTranslucent(slabBlock, texture);
 				} else {
-					this.slabBlock(slabBlock, texture, texture, texture, texture);
+					slabBlock(slabBlock, textureName.contains("_log") || textureName.contains("_stem") ? originalTexture : texture, textureName.contains("snow") ? originalTexture : texture);
 				}
 			}
 		}
 
-		for (RegistryObject<Block> block : ESPVerticalSlabs.BLOCKS.getEntries()) {
+		for (DeferredHolder<Block, ? extends Block> block : ESPVerticalSlabs.BLOCKS.getEntries()) {
 			Block currentBlock = block.get();
 			String blockName = block.getId().getPath();
 			String textureName = blockName.replaceAll("(oak|spruce|birch|jungle|acacia|dark_oak|mangrove|cherry|bamboo|crimson|warped)_slab", "$1_planks")
-					.replaceAll("vertical_|petrified_|waxed_|smooth_|_slab", "");
+					.replaceAll("vertical_|petrified_|waxed_|smooth_(?!stone|basalt)|_slab", "");
 
 			if (textureName.contains("_wood")) {
 				textureName = textureName.replaceAll("_wood", "_log");
@@ -112,38 +123,40 @@ public class ESPBlockStateProvider extends BlockStateProvider {
 				continue;
 			}
 
-			ResourceLocation texture = mcRL(textureName.contains("purpur") || textureName.contains("dripstone") ? textureName + "_block" : textureName.contains("brick") || textureName.contains("tile") ? textureName + "s" : textureName);
-			ResourceLocation sideTexture = mcRL(textureName.contains("quartz") ? textureName + "_block_side" : textureName + "_side");
-			ResourceLocation topTexture = mcRL(textureName.contains("quartz") ? textureName + "_block_top" : textureName + "_top");
-			ResourceLocation bottomTexture = mcRL(textureName.contains("quartz") ? textureName + "_block_bottom" : textureName + "_top");
+			ResourceLocation texture = mcRL(textureName.equals("moss") || textureName.contains("_mushroom") || textureName.contains("purpur") || textureName.contains("dripstone") || textureName.contains("wart") || textureName.contains("amethyst") || textureName.contains("honeycomb") || textureName.contains("raw_") ? textureName + "_block" : textureName.contains("brick") || textureName.contains("tile") ? textureName + "s" : textureName);
+			ResourceLocation sideTexture = mcRL((textureName.contains("quartz") || textureName.contains("hay")) ? textureName + "_block_side" : textureName + "_side");
+			ResourceLocation topTexture = mcRL((textureName.contains("quartz") || textureName.contains("hay")) ? textureName + "_block_top" : textureName + "_top");
+			ResourceLocation bottomTexture = mcRL(textureName.contains("dried_kelp") ? textureName + "_bottom" : textureName.contains("quartz") ? textureName + "_block_bottom" : textureName + "_top");
 			if (textureName.contains("sandstone")) {
 				if ((textureName.equals("sandstone") || textureName.equals("red_sandstone")) && !blockName.contains("smooth")) {
-					this.verticalSlabBlock(currentBlock, texture, bottomTexture, topTexture);
+					verticalSlabBlock(currentBlock, texture, bottomTexture, topTexture);
 				}
 				if (blockName.contains("smooth")) {
-					this.verticalSlabBlock(currentBlock, topTexture, topTexture, topTexture);
+					verticalSlabBlock(currentBlock, topTexture);
 				}
 				if (textureName.equals("cut_sandstone") || textureName.equals("cut_red_sandstone")) {
 					ResourceLocation cutTexture = mcRL(textureName.contains("red_") ? "red_sandstone_top" : "sandstone_top");
-					this.verticalSlabBlock(currentBlock, texture, cutTexture, cutTexture);
+					verticalSlabBlock(currentBlock, texture, cutTexture, cutTexture);
 				}
-			} else if (textureName.contains("quartz")) {
+			} else if (blockName.contains("dried_kelp")) {
+				verticalSlabBlock(currentBlock, sideTexture, bottomTexture, topTexture);
+			} else if ((textureName.contains("quartz") && !textureName.contains("brick")) || textureName.contains("hay") || textureName.contains("froglight")) {
 				if (blockName.contains("smooth_quartz")) {
-					this.verticalSlabBlock(currentBlock, bottomTexture, bottomTexture, bottomTexture);
+					verticalSlabBlock(currentBlock, bottomTexture);
 				} else {
-					this.verticalSlabBlock(currentBlock, sideTexture, topTexture, topTexture);
+					verticalSlabBlock(currentBlock, sideTexture, topTexture, topTexture);
 				}
 			} else if (currentBlock instanceof GlassVerticalSlabBlock) {
-				this.verticalSlabBlockTranslucent(currentBlock, texture, texture, texture);
+				verticalSlabBlockTranslucent(currentBlock, texture);
 			} else {
-				this.verticalSlabBlock(currentBlock, texture, texture, texture);
+				verticalSlabBlock(currentBlock, texture);
 			}
 		}
 
-		for (RegistryObject<Block> block : ESPStairs.BLOCKS.getEntries()) {
+		for (DeferredHolder<Block, ? extends Block> block : ESPStairs.BLOCKS.getEntries()) {
 			Block currentBlock = block.get();
 			String blockName = block.getId().getPath();
-			String textureName = blockName.replaceAll("_stairs", "");
+			String textureName = blockName.replaceAll("smooth_(?!basalt)|_stairs", "");
 
 			if (textureName.contains("_wood")) {
 				textureName = textureName.replaceAll("_wood", "_log");
@@ -157,26 +170,33 @@ public class ESPBlockStateProvider extends BlockStateProvider {
 				continue;
 			}
 
-			ResourceLocation texture = mcRL(textureName.contains("purpur") || textureName.contains("dripstone") ? textureName + "_block" : textureName.contains("brick") || textureName.contains("tile") ? textureName + "s" : textureName);
+			ResourceLocation texture = mcRL(textureName.equals("moss") || textureName.contains("_mushroom") || textureName.contains("purpur") || textureName.contains("dripstone") || textureName.contains("wart") || textureName.contains("amethyst") || textureName.contains("honeycomb") || textureName.contains("raw_") ? textureName + "_block" : textureName.contains("brick") || textureName.contains("tile") ? textureName + "s" : textureName);
+			ResourceLocation sideTexture = mcRL(textureName.contains("hay") ? textureName + "_block_side" : textureName + "_side");
+			ResourceLocation topTexture = mcRL(textureName.contains("hay") ? textureName + "_block_top" : textureName + "_top");
+			ResourceLocation bottomTexture = mcRL(textureName.contains("dried_kelp") ? textureName + "_bottom" : textureName + "_top");
 			if (textureName.contains("sandstone")) {
 				if (textureName.equals("cut_sandstone") || textureName.equals("cut_red_sandstone")) {
 					ResourceLocation cutTexture = mcRL(textureName.contains("red_") ? "red_sandstone_top" : "sandstone_top");
-					this.stairsBlock(currentBlock, texture, cutTexture, cutTexture);
+					stairsBlock(currentBlock, texture, cutTexture, cutTexture);
 				}
+			} else if (textureName.contains("dried_kelp")) {
+				stairsBlock(currentBlock, sideTexture, bottomTexture, topTexture);
+			} else if (textureName.contains("hay") || textureName.contains("froglight")) {
+				stairsBlock(currentBlock, sideTexture, topTexture, topTexture);
 			} else if (currentBlock instanceof FallingStairBlock) {
-				this.fallingStairsBlock(currentBlock, texture);
+				fallingStairsBlock(currentBlock, texture);
 			} else if (currentBlock instanceof GlassStairBlock stairBlock) {
-				this.stairsBlockWithRenderType(stairBlock, texture, texture, texture, "translucent");
+				stairBlockTranslucent(stairBlock, texture);
 			} else {
-				this.stairsBlock(currentBlock, texture, texture, texture);
+				stairsBlock(currentBlock, texture);
 			}
 		}
 
-		for (RegistryObject<Block> block : ESPCorners.BLOCKS.getEntries()) {
+		for (DeferredHolder<Block, ? extends Block> block : ESPCorners.BLOCKS.getEntries()) {
 			Block currentBlock = block.get();
 			String blockName = block.getId().getPath();
 			String textureName = blockName.replaceAll("(oak|spruce|birch|jungle|acacia|dark_oak|mangrove|cherry|bamboo|crimson|warped)_corner", "$1_planks")
-					.replaceAll("petrified_|waxed_|smooth_|_corner", "");
+					.replaceAll("petrified_|waxed_|smooth_(?!stone|basalt)|_corner", "");
 
 			if (textureName.contains("_wood")) {
 				textureName = textureName.replaceAll("_wood", "_log");
@@ -190,31 +210,33 @@ public class ESPBlockStateProvider extends BlockStateProvider {
 				continue;
 			}
 
-			ResourceLocation texture = mcRL(textureName.contains("purpur") || textureName.contains("dripstone") ? textureName + "_block" : textureName.contains("brick") || textureName.contains("tile") ? textureName + "s" : textureName);
-			ResourceLocation sideTexture = mcRL(textureName.contains("quartz") ? textureName + "_block_side" : textureName + "_side");
-			ResourceLocation topTexture = mcRL(textureName.contains("quartz") ? textureName + "_block_top" : textureName + "_top");
-			ResourceLocation bottomTexture = mcRL(textureName.contains("quartz") ? textureName + "_block_bottom" : textureName + "_top");
+			ResourceLocation texture = mcRL(textureName.equals("moss") || textureName.contains("_mushroom") || textureName.contains("purpur") || textureName.contains("dripstone") || textureName.contains("wart") || textureName.contains("amethyst") || textureName.contains("honeycomb") || textureName.contains("raw_") ? textureName + "_block" : textureName.contains("brick") || textureName.contains("tile") ? textureName + "s" : textureName);
+			ResourceLocation sideTexture = mcRL((textureName.contains("quartz") || textureName.contains("hay")) ? textureName + "_block_side" : textureName + "_side");
+			ResourceLocation topTexture = mcRL((textureName.contains("quartz") || textureName.contains("hay")) ? textureName + "_block_top" : textureName + "_top");
+			ResourceLocation bottomTexture = mcRL(textureName.contains("dried_kelp") ? textureName + "_bottom" : textureName.contains("quartz") ? textureName + "_block_bottom" : textureName + "_top");
 			if (textureName.contains("sandstone")) {
 				if ((textureName.equals("sandstone") || textureName.equals("red_sandstone")) && !blockName.contains("smooth")) {
-					this.cornerBlock(currentBlock, texture, bottomTexture, topTexture);
+					cornerBlock(currentBlock, texture, bottomTexture, topTexture);
 				}
 				if (blockName.contains("smooth")) {
-					this.cornerBlock(currentBlock, topTexture, topTexture, topTexture);
+					cornerBlock(currentBlock, topTexture);
 				}
 				if (textureName.equals("cut_sandstone") || textureName.equals("cut_red_sandstone")) {
 					ResourceLocation cutTexture = mcRL(textureName.contains("red_") ? "red_sandstone_top" : "sandstone_top");
-					this.cornerBlock(currentBlock, texture, cutTexture, cutTexture);
+					cornerBlock(currentBlock, texture, cutTexture, cutTexture);
 				}
-			} else if (textureName.contains("quartz")) {
+			} else if (blockName.contains("dried_kelp")) {
+				cornerBlock(currentBlock, sideTexture, bottomTexture, topTexture);
+			} else if ((textureName.contains("quartz") && !textureName.contains("brick")) || textureName.contains("hay") || textureName.contains("froglight")) {
 				if (blockName.contains("smooth_quartz")) {
-					this.cornerBlock(currentBlock, bottomTexture, bottomTexture, bottomTexture);
+					cornerBlock(currentBlock, bottomTexture);
 				} else {
-					this.cornerBlock(currentBlock, sideTexture, topTexture, topTexture);
+					cornerBlock(currentBlock, sideTexture, topTexture, topTexture);
 				}
 			} else if (currentBlock instanceof GlassCornerBlock) {
-				this.cornerBlockTranslucent(currentBlock, texture);
+				cornerBlockTranslucent(currentBlock, texture);
 			} else {
-				this.cornerBlock(currentBlock, texture);
+				cornerBlock(currentBlock, texture);
 			}
 		}
 	}
@@ -234,8 +256,19 @@ public class ESPBlockStateProvider extends BlockStateProvider {
 	private void slabBlockInternalTranslucent(SlabBlock block, ResourceLocation side, ResourceLocation bottom, ResourceLocation top) {
 		ModelFile slab = models().slab(name(block), side, bottom, top).renderType("translucent");
 		ModelFile slabTop = models().slabTop(name(block) + "_top", side, bottom, top).renderType("translucent");
-		ModelFile doubleSlab = models().getExistingFile(new ResourceLocation("minecraft", name(block).replaceAll("_slab", "")));
+		ModelFile doubleSlab = models().cubeBottomTop(name(block) + "_double", side, bottom, top).renderType("translucent");
 		slabBlock(block, slab, slabTop, doubleSlab);
+	}
+
+	private void stairBlockTranslucent(StairBlock block, ResourceLocation texture) {
+		stairBlockInternalTranslucent(block, texture, texture, texture);
+	}
+
+	private void stairBlockInternalTranslucent(StairBlock block, ResourceLocation side, ResourceLocation bottom, ResourceLocation top) {
+		ModelFile stairs = models().stairsTranslucent(name(block), side, bottom, top);
+		ModelFile stairsInner = models().stairsInnerTranslucent(name(block) + "_inner", side, bottom, top);
+		ModelFile stairsOuter = models().stairsOuterTranslucent(name(block) + "_outer", side, bottom, top);
+		stairsBlock(block, stairs, stairsInner, stairsOuter);
 	}
 
 	public void stairsBlock (Block block, ResourceLocation side, ResourceLocation bottom, ResourceLocation top){
@@ -316,7 +349,11 @@ public class ESPBlockStateProvider extends BlockStateProvider {
 	}
 
 	private String name (Block block){
-		return Objects.requireNonNull(ForgeRegistries.BLOCKS.getKey(block)).getPath();
+		return Objects.requireNonNull(BuiltInRegistries.BLOCK.getKey(block)).getPath();
+	}
+
+	public void fallingSlabBlock (FallingSlabBlock block, ResourceLocation doubleslab, ResourceLocation texture){
+		fallingSlabBlock(block, doubleslab, texture, texture, texture);
 	}
 
 	public void fallingSlabBlock (FallingSlabBlock block, ResourceLocation doubleslab, ResourceLocation side, ResourceLocation bottom, ResourceLocation top){
@@ -345,14 +382,18 @@ public class ESPBlockStateProvider extends BlockStateProvider {
 		verticalSlabBlock(block, verticalSlab, verticalSlabInner, verticalSlabOuter);
 	}
 
+	public void verticalSlabBlockTranslucent (Block block, ResourceLocation texture){
+		verticalSlabBlockTranslucent(block, texture, texture, texture);
+	}
+
 	public void verticalSlabBlockTranslucent (Block block, ResourceLocation side, ResourceLocation bottom, ResourceLocation top){
 		verticalSlabBlockInternalTranslucent(block, name(block), side, bottom, top);
 	}
 
 	private void verticalSlabBlockInternalTranslucent (Block block, String baseName, ResourceLocation side, ResourceLocation bottom, ResourceLocation top){
-		ModelFile verticalSlab = models().withExistingParent(baseName, espRL("vertical_slab")).texture("side", side).texture("bottom", bottom).texture("top", top).renderType("translucent");
-		ModelFile verticalSlabInner = models().withExistingParent("inner_" + baseName, espRL("inner_vertical_slab")).texture("side", side).texture("bottom", bottom).texture("top", top).renderType("translucent");
-		ModelFile verticalSlabOuter = models().withExistingParent("outer_" + baseName, espRL("outer_vertical_slab")).texture("side", side).texture("bottom", bottom).texture("top", top).renderType("translucent");
+		ModelFile verticalSlab = models().withExistingParent(baseName, espRL("vertical_glass_slab_base")).texture("side", side).texture("bottom", bottom).texture("top", top).renderType("translucent");
+		ModelFile verticalSlabInner = models().withExistingParent("inner_" + baseName, espRL("inner_vertical_glass_slab_base")).texture("side", side).texture("bottom", bottom).texture("top", top).renderType("translucent");
+		ModelFile verticalSlabOuter = models().withExistingParent("outer_" + baseName, espRL("outer_vertical_glass_slab_base")).texture("side", side).texture("bottom", bottom).texture("top", top).renderType("translucent");
 		verticalSlabBlock(block, verticalSlab, verticalSlabInner, verticalSlabOuter);
 	}
 
@@ -387,6 +428,6 @@ public class ESPBlockStateProvider extends BlockStateProvider {
 	}
 
 	private ResourceLocation key (Block block){
-		return ForgeRegistries.BLOCKS.getKey(block);
+		return BuiltInRegistries.BLOCK.getKey(block);
 	}
 }

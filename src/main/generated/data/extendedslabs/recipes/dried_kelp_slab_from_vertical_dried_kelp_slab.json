@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "extendedslabs:vertical_dried_kelp_slab"
+    }
+  ],
+  "result": {
+    "item": "extendedslabs:dried_kelp_slab"
+  }
+}

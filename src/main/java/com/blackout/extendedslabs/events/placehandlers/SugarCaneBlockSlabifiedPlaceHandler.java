@@ -16,8 +16,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.SlabType;
 import net.minecraft.world.level.material.FluidState;
-import net.minecraftforge.common.IPlantable;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.neoforged.neoforge.common.IPlantable;
+import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 
 public class SugarCaneBlockSlabifiedPlaceHandler {
 	public static void placeSugarCaneBlock(PlayerInteractEvent.RightClickBlock event, ItemStack held, Block block) {
@@ -31,7 +31,7 @@ public class SugarCaneBlockSlabifiedPlaceHandler {
 		if (block instanceof IPlantable plantable && (direction == Direction.UP && (blockState.canSustainPlant(level, blockPos, Direction.UP, plantable)
 				&& ((blockState.is(BlockTags.SLABS) && blockState.getValue(SlabBlock.TYPE) == SlabType.BOTTOM)
 				|| blockState.is(ESPSlabifiedBlocks.SUGAR_CANE.get()))) && level.isEmptyBlock(relativePos))) {
-			boolean waterAnyDirection = blockState.getValue(BlockStateProperties.WATERLOGGED);
+			boolean waterAnyDirection = false;
 			for (Direction direction1 : Direction.Plane.HORIZONTAL) {
 				if (!waterAnyDirection) {
 					BlockState belowState1 = level.getBlockState(blockPos.relative(direction1));
@@ -42,7 +42,7 @@ public class SugarCaneBlockSlabifiedPlaceHandler {
 				}
 			}
 
-			if (waterAnyDirection) {
+			if (waterAnyDirection || blockState.is(ESPSlabifiedBlocks.SUGAR_CANE.get())) {
 				level.setBlockAndUpdate(relativePos, block.defaultBlockState());
 
 				SoundType soundType = block.getSoundType(block.defaultBlockState(), level, blockPos, player);

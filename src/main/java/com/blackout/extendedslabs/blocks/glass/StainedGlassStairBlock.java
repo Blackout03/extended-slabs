@@ -17,16 +17,16 @@ public class StainedGlassStairBlock extends GlassStairBlock implements BeaconBea
 	public Supplier<Block> materialCorner;
 	private final DyeColor color;
 
-	public StainedGlassStairBlock(List<TagKey<Block>> characteristics, Block material, Supplier<Block> materialCorner, DyeColor color, Supplier<BlockState> state, Properties builder) {
-		super(material, materialCorner, state, builder);
+	public StainedGlassStairBlock(List<TagKey<Block>> characteristics, Block material, Supplier<Block> materialCorner, DyeColor color) {
+		super(material, materialCorner);
 		this.characteristics = characteristics;
 		this.material = material;
 		this.materialCorner = materialCorner;
 		this.color = color;
 	}
 
-	public StainedGlassStairBlock(Block material, Supplier<Block> materialCorner, DyeColor color, Supplier<BlockState> state, Properties builder) {
-		this(IBlockCharacteristics.tag(), material, materialCorner, color, state, builder);
+	public StainedGlassStairBlock(Block material, Supplier<Block> materialCorner, DyeColor color) {
+		this(IBlockCharacteristics.tag(), material, materialCorner, color);
 		this.material = material;
 		this.materialCorner = materialCorner;
 	}
@@ -40,8 +40,8 @@ public class StainedGlassStairBlock extends GlassStairBlock implements BeaconBea
 		return material;
 	}
 
-	public Supplier<Block> getMaterialCorner() {
-		return materialCorner;
+	public Block getMaterialCorner() {
+		return materialCorner.get();
 	}
 
 	public @NotNull DyeColor getColor() {

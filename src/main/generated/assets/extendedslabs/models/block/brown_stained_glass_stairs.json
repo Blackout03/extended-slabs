@@ -1,5 +1,5 @@
 {
-  "parent": "minecraft:block/stairs",
+  "parent": "extendedslabs:block/glass_stairs_base",
   "render_type": "minecraft:translucent",
   "textures": {
     "bottom": "minecraft:block/brown_stained_glass",

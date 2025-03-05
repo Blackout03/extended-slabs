@@ -4,7 +4,7 @@
       "model": "extendedslabs:block/glass_slab"
     },
     "type=double": {
-      "model": "minecraft:block/glass"
+      "model": "extendedslabs:block/glass_slab_double"
     },
     "type=top": {
       "model": "extendedslabs:block/glass_slab_top"

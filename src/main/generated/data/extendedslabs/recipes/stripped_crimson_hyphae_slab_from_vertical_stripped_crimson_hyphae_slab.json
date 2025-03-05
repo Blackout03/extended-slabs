@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "extendedslabs:vertical_stripped_crimson_hyphae_slab"
+    }
+  ],
+  "result": {
+    "item": "extendedslabs:stripped_crimson_hyphae_slab"
+  }
+}

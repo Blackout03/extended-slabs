@@ -1,10 +1,12 @@
 package com.blackout.extendedslabs.blocks.slabified;
 
 import com.blackout.extendedslabs.blocks.falling.FallingSlabBlock;
+import com.blackout.extendedslabs.registry.ESPSlabifiedBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
@@ -20,7 +22,10 @@ import net.minecraft.world.level.block.state.properties.SlabType;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.common.ForgeHooks;
+import net.neoforged.neoforge.common.CommonHooks;
+import net.neoforged.neoforge.common.IPlantable;
+
+import java.util.Iterator;
 
 public class SugarCaneBlockSlabified extends SugarCaneBlock implements ISlabified {
     final Block blockOf;
@@ -59,10 +64,10 @@ public class SugarCaneBlockSlabified extends SugarCaneBlock implements ISlabifie
 
 			if (i < 3) {
 				int j = blockState.getValue(AGE);
-				if (ForgeHooks.onCropsGrowPre(serverLevel, blockPos, blockState, true)) {
+				if (CommonHooks.onCropsGrowPre(serverLevel, blockPos, blockState, true)) {
 					if (j == 15) {
 						serverLevel.setBlockAndUpdate(blockPos.above(), this.defaultBlockState());
-						ForgeHooks.onCropsGrowPost(serverLevel, blockPos.above(), this.defaultBlockState());
+						CommonHooks.onCropsGrowPost(serverLevel, blockPos.above(), this.defaultBlockState());
 						serverLevel.setBlock(blockPos, blockState.setValue(AGE, 0), 4);
 					} else {
 						serverLevel.setBlock(blockPos, blockState.setValue(AGE, j + 1), 4);
@@ -107,6 +112,28 @@ public class SugarCaneBlockSlabified extends SugarCaneBlock implements ISlabifie
 
 			return false;
 		}
+	}
+
+	@Override
+	public boolean canSustainPlant(BlockState state, BlockGetter world, BlockPos pos, Direction facing, IPlantable plantable) {
+		BlockState plant = plantable.getPlant(world, pos.relative(facing));
+
+		if (plant.getBlock() == ESPSlabifiedBlocks.SUGAR_CANE.get()) {
+			boolean isBeach = state.is(BlockTags.SLABS) && ((state.is(BlockTags.DIRT) || state.is(BlockTags.SAND)) && state.getValue(SlabBlock.TYPE) == SlabType.BOTTOM);
+			boolean hasWater = false;
+
+			for (Direction face : Direction.Plane.HORIZONTAL) {
+				BlockState adjacentBlockState = world.getBlockState(pos.relative(face));
+				FluidState adjacentFluidState = world.getFluidState(pos.relative(face));
+				hasWater = adjacentBlockState.is(Blocks.FROSTED_ICE) || adjacentFluidState.is(FluidTags.WATER);
+				if (hasWater) {
+					break;
+				}
+			}
+
+			return (isBeach && hasWater) || state.is(ESPSlabifiedBlocks.SUGAR_CANE.get());
+		}
+		return false;
 	}
 
 	@Override

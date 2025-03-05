@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "extendedslabs:glowstone_corner"
+    }
+  ],
+  "result": {
+    "item": "extendedslabs:glowstone_stairs"
+  }
+}

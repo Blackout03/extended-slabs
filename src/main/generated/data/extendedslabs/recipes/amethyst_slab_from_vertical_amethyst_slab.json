@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "extendedslabs:vertical_amethyst_slab"
+    }
+  ],
+  "result": {
+    "item": "extendedslabs:amethyst_slab"
+  }
+}

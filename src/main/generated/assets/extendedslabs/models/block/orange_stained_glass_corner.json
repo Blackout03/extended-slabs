@@ -1,5 +1,5 @@
 {
-  "parent": "extendedslabs:block/corner",
+  "parent": "extendedslabs:block/glass_corner_base",
   "render_type": "minecraft:translucent",
   "textures": {
     "bottom": "minecraft:block/orange_stained_glass",

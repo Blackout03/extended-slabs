@@ -3,13 +3,16 @@ package com.blackout.extendedslabs.blocks.glass;
 import com.blackout.extendedslabs.blocks.ESPSlabBlock;
 import com.blackout.extendedslabs.blocks.IBlockCharacteristics;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -20,15 +23,15 @@ public class GlassSlabBlock extends ESPSlabBlock implements IBlockCharacteristic
 	public Block material;
 	public Supplier<Block> materialVerticalSlab;
 
-	public GlassSlabBlock(List<TagKey<Block>> characteristics, Block material, Supplier<Block> materialVerticalSlab, Properties properties) {
-		super(characteristics, material, materialVerticalSlab, properties);
+	public GlassSlabBlock(List<TagKey<Block>> characteristics, Block material, Supplier<Block> materialVerticalSlab) {
+		super(characteristics, material, materialVerticalSlab);
 		this.characteristics = characteristics;
 		this.material = material;
 		this.materialVerticalSlab = materialVerticalSlab;
 	}
 
-	public GlassSlabBlock(Block material, Supplier<Block> materialVerticalSlab, Properties properties) {
-		this(IBlockCharacteristics.tag(), material, materialVerticalSlab, properties);
+	public GlassSlabBlock(Block material, Supplier<Block> materialVerticalSlab) {
+		this(IBlockCharacteristics.tag(), material, materialVerticalSlab);
 		this.material = material;
 		this.materialVerticalSlab = materialVerticalSlab;
 	}
@@ -42,8 +45,8 @@ public class GlassSlabBlock extends ESPSlabBlock implements IBlockCharacteristic
 		return material;
 	}
 
-	public Supplier<Block> getMaterialVerticalSlab() {
-		return materialVerticalSlab;
+	public Block getMaterialVerticalSlab() {
+		return materialVerticalSlab.get();
 	}
 
 	@OnlyIn(Dist.CLIENT)

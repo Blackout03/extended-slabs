@@ -4,7 +4,7 @@
       "model": "extendedslabs:block/dark_oak_wood_slab"
     },
     "type=double": {
-      "model": "minecraft:block/dark_oak_log"
+      "model": "minecraft:block/dark_oak_wood"
     },
     "type=top": {
       "model": "extendedslabs:block/dark_oak_wood_slab_top"

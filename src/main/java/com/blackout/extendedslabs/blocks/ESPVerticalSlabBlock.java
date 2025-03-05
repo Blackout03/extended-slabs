@@ -6,7 +6,10 @@ import com.blackout.extendedslabs.blocks.shapes.VerticalSlabShape;
 import com.blackout.extendedslabs.registry.ESPVerticalSlabs;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.tags.TagKey;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -30,17 +33,18 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.common.ToolAction;
-import net.minecraftforge.common.ToolActions;
+import net.neoforged.neoforge.common.ToolAction;
+import net.neoforged.neoforge.common.ToolActions;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.function.Supplier;
 
 public class ESPVerticalSlabBlock extends Block implements SimpleWaterloggedBlock, IBlockCharacteristics {
 	private final List<TagKey<Block>> characteristics;
 	public Block material;
-	public Block materialSlab;
+	public Supplier<Block> materialSlab;
 	public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 	public static final EnumProperty<VerticalSlabShape> SHAPE = EnumProperty.create("shape", VerticalSlabShape.class);
@@ -55,16 +59,23 @@ public class ESPVerticalSlabBlock extends Block implements SimpleWaterloggedBloc
 	protected static final VoxelShape SOUTH_OUTER_SHAPE = Block.box(8.0D, 0.0D, 8.0D, 16.0D, 16.0D, 16.0D);
 	protected static final VoxelShape WEST_OUTER_SHAPE = Block.box(0.0D, 0.0D, 8.0D, 8.0D, 16.0D, 16.0D);
 
-	public ESPVerticalSlabBlock(List<TagKey<Block>> characteristics, Block material, Block materialSlab, Properties builder) {
-		super(builder);
+	public ESPVerticalSlabBlock(List<TagKey<Block>> characteristics, Block material, Supplier<Block> materialSlab, Properties properties) {
+		super(properties);
 		this.characteristics = characteristics;
 		this.material = material;
 		this.materialSlab = materialSlab;
 		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(SHAPE, VerticalSlabShape.STRAIGHT).setValue(WATERLOGGED, Boolean.FALSE));
 	}
 
-	public ESPVerticalSlabBlock(Block material, Block materialSlab, Properties builder) {
-		this(IBlockCharacteristics.tag(), material, materialSlab, builder);
+	public ESPVerticalSlabBlock(List<TagKey<Block>> characteristics, Block material, Supplier<Block> materialSlab) {
+		this(characteristics, material, materialSlab, Block.Properties.copy(material));
+		this.material = material;
+		this.materialSlab = materialSlab;
+		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(SHAPE, VerticalSlabShape.STRAIGHT).setValue(WATERLOGGED, Boolean.FALSE));
+	}
+
+	public ESPVerticalSlabBlock(Block material, Supplier<Block> materialSlab) {
+		this(IBlockCharacteristics.tag(), material, materialSlab, Block.Properties.copy(material));
 		this.material = material;
 		this.materialSlab = materialSlab;
 		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(SHAPE, VerticalSlabShape.STRAIGHT).setValue(WATERLOGGED, Boolean.FALSE));
@@ -80,7 +91,17 @@ public class ESPVerticalSlabBlock extends Block implements SimpleWaterloggedBloc
 	}
 
 	public Block getMaterialSlab() {
-		return materialSlab;
+		return materialSlab.get();
+	}
+
+	@Override
+	public void animateTick(BlockState p_221789_, Level p_221790_, BlockPos p_221791_, RandomSource p_221792_) {
+		super.animateTick(p_221789_, p_221790_, p_221791_, p_221792_);
+		if (this.getMaterial() == Blocks.MYCELIUM) {
+			if (p_221792_.nextInt(10) == 0) {
+				p_221790_.addParticle(ParticleTypes.MYCELIUM, (double) p_221791_.getX() + p_221792_.nextDouble(), (double) p_221791_.getY() + 1.1D, (double) p_221791_.getZ() + p_221792_.nextDouble(), 0.0D, 0.0D, 0.0D);
+			}
+		}
 	}
 
 	@Override
@@ -107,7 +128,7 @@ public class ESPVerticalSlabBlock extends Block implements SimpleWaterloggedBloc
 		}
 	}
 
-	private static VoxelShape getStraightFacingShapes(Direction facing) {
+	protected static VoxelShape getStraightFacingShapes(Direction facing) {
 		return switch (facing) {
 			case WEST -> WEST_SHAPE;
 			case EAST -> EAST_SHAPE;
@@ -116,7 +137,7 @@ public class ESPVerticalSlabBlock extends Block implements SimpleWaterloggedBloc
 		};
 	}
 
-	private static VoxelShape getOuterLeftFacingShapes(Direction facing) {
+	protected static VoxelShape getOuterLeftFacingShapes(Direction facing) {
 		return switch (facing) {
 			case WEST -> WEST_OUTER_SHAPE;
 			case EAST -> EAST_OUTER_SHAPE;
@@ -125,7 +146,7 @@ public class ESPVerticalSlabBlock extends Block implements SimpleWaterloggedBloc
 		};
 	}
 
-	private static VoxelShape getInnerLeftFacingShapes(Direction facing) {
+	protected static VoxelShape getInnerLeftFacingShapes(Direction facing) {
 		return switch (facing) {
 			case WEST -> Shapes.or(WEST_SHAPE, SOUTH_SHAPE);
 			case EAST -> Shapes.or(EAST_SHAPE, NORTH_SHAPE);
@@ -134,7 +155,7 @@ public class ESPVerticalSlabBlock extends Block implements SimpleWaterloggedBloc
 		};
 	}
 
-	private static VoxelShape getOuterRightFacingShapes(Direction facing) {
+	protected static VoxelShape getOuterRightFacingShapes(Direction facing) {
 		return switch (facing) {
 			case WEST -> NORTH_OUTER_SHAPE;
 			case EAST -> SOUTH_OUTER_SHAPE;
@@ -143,7 +164,7 @@ public class ESPVerticalSlabBlock extends Block implements SimpleWaterloggedBloc
 		};
 	}
 
-	private static VoxelShape getInnerRightFacingShapes(Direction facing) {
+	protected static VoxelShape getInnerRightFacingShapes(Direction facing) {
 		return switch (facing) {
 			case WEST -> Shapes.or(WEST_SHAPE, NORTH_SHAPE);
 			case EAST -> Shapes.or(EAST_SHAPE, SOUTH_SHAPE);
@@ -216,13 +237,13 @@ public class ESPVerticalSlabBlock extends Block implements SimpleWaterloggedBloc
 	}
 
 	@Override
-	public boolean canPlaceLiquid(@NotNull BlockGetter worldIn, @NotNull BlockPos pos, @NotNull BlockState state, @NotNull Fluid fluidIn) {
-		return SimpleWaterloggedBlock.super.canPlaceLiquid(worldIn, pos, state, fluidIn);
+	public boolean placeLiquid(@NotNull LevelAccessor worldIn, @NotNull BlockPos pos, @NotNull BlockState state, @NotNull FluidState fluidStateIn) {
+		return SimpleWaterloggedBlock.super.placeLiquid(worldIn, pos, state, fluidStateIn);
 	}
 
 	@Override
-	public boolean placeLiquid(@NotNull LevelAccessor worldIn, @NotNull BlockPos pos, @NotNull BlockState state, @NotNull FluidState fluidStateIn) {
-		return SimpleWaterloggedBlock.super.placeLiquid(worldIn, pos, state, fluidStateIn);
+	public boolean canPlaceLiquid(@Nullable Player player, @NotNull BlockGetter worldIn, @NotNull BlockPos pos, @NotNull BlockState state, @NotNull Fluid fluidIn) {
+		return SimpleWaterloggedBlock.super.canPlaceLiquid(player, worldIn, pos, state, fluidIn);
 	}
 
 	@Override

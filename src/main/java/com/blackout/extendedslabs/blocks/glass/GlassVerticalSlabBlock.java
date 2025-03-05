@@ -3,30 +3,35 @@ package com.blackout.extendedslabs.blocks.glass;
 import com.blackout.extendedslabs.blocks.IBlockCharacteristics;
 import com.blackout.extendedslabs.blocks.ESPVerticalSlabBlock;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
+import java.util.function.Supplier;
 
 public class GlassVerticalSlabBlock extends ESPVerticalSlabBlock implements IBlockCharacteristics {
 	private final List<TagKey<Block>> characteristics;
 	public Block material;
-	public Block materialSlab;
+	public Supplier<Block> materialSlab;
 
-	public GlassVerticalSlabBlock(List<TagKey<Block>> characteristics, Block material, Block materialSlab, Properties builder) {
-		super(material, materialSlab, builder);
+	public GlassVerticalSlabBlock(List<TagKey<Block>> characteristics, Block material, Supplier<Block> materialSlab) {
+		super(material, materialSlab);
 		this.characteristics = characteristics;
 		this.material = material;
 		this.materialSlab = materialSlab;
 	}
 
-	public GlassVerticalSlabBlock(Block material, Block materialSlab, Properties builder) {
-		this(IBlockCharacteristics.tag(), material, materialSlab, builder);
+	public GlassVerticalSlabBlock(Block material, Supplier<Block> materialSlab) {
+		this(IBlockCharacteristics.tag(), material, materialSlab);
 		this.material = material;
 		this.materialSlab = materialSlab;
 	}
@@ -41,7 +46,7 @@ public class GlassVerticalSlabBlock extends ESPVerticalSlabBlock implements IBlo
 	}
 
 	public Block getMaterialSlab() {
-		return materialSlab;
+		return materialSlab.get();
 	}
 
 	@OnlyIn(Dist.CLIENT)

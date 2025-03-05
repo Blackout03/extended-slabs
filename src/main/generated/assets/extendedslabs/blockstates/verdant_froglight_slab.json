@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "extendedslabs:block/verdant_froglight_slab"
+    },
+    "type=double": {
+      "model": "minecraft:block/verdant_froglight"
+    },
+    "type=top": {
+      "model": "extendedslabs:block/verdant_froglight_slab_top"
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "extendedslabs:vertical_honeycomb_slab"
+    }
+  ],
+  "result": {
+    "item": "extendedslabs:honeycomb_slab"
+  }
+}

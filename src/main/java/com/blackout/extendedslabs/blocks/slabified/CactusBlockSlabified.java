@@ -20,8 +20,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.SlabType;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.common.ForgeHooks;
-import net.minecraftforge.common.IPlantable;
+import net.neoforged.neoforge.common.CommonHooks;
+import net.neoforged.neoforge.common.IPlantable;
 
 public class CactusBlockSlabified extends CactusBlock implements ISlabified {
     final Block blockOf;
@@ -57,7 +57,7 @@ public class CactusBlockSlabified extends CactusBlock implements ISlabified {
 
 			if (i < 3) {
 				int j = blockState.getValue(AGE);
-				if(ForgeHooks.onCropsGrowPre(serverLevel, blockPos1, blockState, true)) {
+				if(CommonHooks.onCropsGrowPre(serverLevel, blockPos1, blockState, true)) {
 					if (j == 15) {
 						serverLevel.setBlockAndUpdate(blockPos1, this.defaultBlockState());
 						BlockState blockState1 = blockState.setValue(AGE, 0);
@@ -66,7 +66,7 @@ public class CactusBlockSlabified extends CactusBlock implements ISlabified {
 					} else {
 						serverLevel.setBlock(blockPos, blockState.setValue(AGE, j + 1), 4);
 					}
-					ForgeHooks.onCropsGrowPost(serverLevel, blockPos, blockState);
+					CommonHooks.onCropsGrowPost(serverLevel, blockPos, blockState);
 				}
 			}
 		}
@@ -99,12 +99,10 @@ public class CactusBlockSlabified extends CactusBlock implements ISlabified {
 			BlockState belowState1 = levelReader.getBlockState(belowPos.relative(direction));
 			if (((blockState1.isSolid() && !blockState1.is(BlockTags.SLABS)) || levelReader.getFluidState(blockPos.relative(direction)).is(FluidTags.LAVA))
 			&& (blockState1.is(BlockTags.SLABS) && (blockState1.getValue(SlabBlock.TYPE) == SlabType.BOTTOM || blockState1.getValue(SlabBlock.TYPE) == SlabType.DOUBLE))) {
-				ExtendedSlabs.LOGGER.debug("blockState1: " + blockPos);
 				return false;
 			}
 			if (((belowState1.isSolid() && !belowState1.is(BlockTags.SLABS)) || levelReader.getFluidState(belowPos.relative(direction)).is(FluidTags.LAVA))
 			&& (belowState1.is(BlockTags.SLABS) && (belowState1.getValue(SlabBlock.TYPE) == SlabType.TOP || belowState1.getValue(SlabBlock.TYPE) == SlabType.DOUBLE))) {
-				ExtendedSlabs.LOGGER.debug("belowState1: " + belowPos);
 				return false;
 			}
 		}

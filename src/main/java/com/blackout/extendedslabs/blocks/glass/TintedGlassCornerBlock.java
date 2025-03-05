@@ -9,21 +9,22 @@ import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
+import java.util.function.Supplier;
 
 public class TintedGlassCornerBlock extends GlassCornerBlock implements IBlockCharacteristics {
 	private final List<TagKey<Block>> characteristics;
 	public Block material;
-	public Block materialSlab;
+	public Supplier<Block> materialSlab;
 
-	public TintedGlassCornerBlock(List<TagKey<Block>> characteristics, Block material, Block materialSlab, Properties builder) {
-		super(material, materialSlab, builder);
+	public TintedGlassCornerBlock(List<TagKey<Block>> characteristics, Block material, Supplier<Block> materialSlab) {
+		super(material, materialSlab);
 		this.characteristics = characteristics;
 		this.material = material;
 		this.materialSlab = materialSlab;
 	}
 
-	public TintedGlassCornerBlock(Block material, Block materialSlab, Properties builder) {
-		this(IBlockCharacteristics.tag(), material, materialSlab, builder);
+	public TintedGlassCornerBlock(Block material, Supplier<Block> materialSlab) {
+		this(IBlockCharacteristics.tag(), material, materialSlab);
 		this.material = material;
 		this.materialSlab = materialSlab;
 	}
@@ -38,7 +39,7 @@ public class TintedGlassCornerBlock extends GlassCornerBlock implements IBlockCh
 	}
 
 	public Block getMaterialSlab() {
-		return materialSlab;
+		return materialSlab.get();
 	}
 
 	public boolean propagatesSkylightDown(@NotNull BlockState blockState, @NotNull BlockGetter blockReader, @NotNull BlockPos blockPos) {

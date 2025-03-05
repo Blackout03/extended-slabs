@@ -20,7 +20,6 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
-import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -30,11 +29,12 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.function.Supplier;
 
 public class PathVerticalSlabBlock extends ESPVerticalSlabBlock implements SimpleWaterloggedBlock, IBlockCharacteristics {
     private final List<TagKey<Block>> characteristics;
     public Block material;
-    public Block materialSlab;
+    public Supplier<Block> materialSlab;
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public static final EnumProperty<VerticalSlabShape> SHAPE = EnumProperty.create("shape", VerticalSlabShape.class);
@@ -49,16 +49,16 @@ public class PathVerticalSlabBlock extends ESPVerticalSlabBlock implements Simpl
     protected static final VoxelShape SOUTH_OUTER_SHAPE = Block.box(8.0D, 0.0D, 8.0D, 16.0D, 15.0D, 16.0D);
     protected static final VoxelShape WEST_OUTER_SHAPE = Block.box(0.0D, 0.0D, 8.0D, 8.0D, 15.0D, 16.0D);
 
-    public PathVerticalSlabBlock(List<TagKey<Block>> characteristics, Block material, Block materialSlab, Properties builder) {
-        super(characteristics, material, materialSlab, builder);
+    public PathVerticalSlabBlock(List<TagKey<Block>> characteristics, Block material, Supplier<Block> materialSlab) {
+        super(characteristics, material, materialSlab);
         this.characteristics = characteristics;
         this.material = material;
         this.materialSlab = materialSlab;
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(SHAPE, VerticalSlabShape.STRAIGHT).setValue(WATERLOGGED, Boolean.FALSE));
     }
 
-    public PathVerticalSlabBlock(Block material, Block materialSlab, Properties builder) {
-        this(IBlockCharacteristics.tag(), material, materialSlab, builder);
+    public PathVerticalSlabBlock(Block material, Supplier<Block> materialSlab) {
+        this(IBlockCharacteristics.tag(), material, materialSlab);
         this.material = material;
         this.materialSlab = materialSlab;
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(SHAPE, VerticalSlabShape.STRAIGHT).setValue(WATERLOGGED, Boolean.FALSE));
@@ -74,7 +74,7 @@ public class PathVerticalSlabBlock extends ESPVerticalSlabBlock implements Simpl
     }
 
     public Block getMaterialSlab() {
-        return materialSlab;
+        return materialSlab.get();
     }
 
 
@@ -102,7 +102,7 @@ public class PathVerticalSlabBlock extends ESPVerticalSlabBlock implements Simpl
         }
     }
 
-    private static VoxelShape getStraightFacingShapes(Direction facing) {
+    protected static VoxelShape getStraightFacingShapes(Direction facing) {
         return switch (facing) {
             case WEST -> WEST_SHAPE;
             case EAST -> EAST_SHAPE;
@@ -111,7 +111,7 @@ public class PathVerticalSlabBlock extends ESPVerticalSlabBlock implements Simpl
         };
     }
 
-    private static VoxelShape getOuterLeftFacingShapes(Direction facing) {
+    protected static VoxelShape getOuterLeftFacingShapes(Direction facing) {
         return switch (facing) {
             case WEST -> WEST_OUTER_SHAPE;
             case EAST -> EAST_OUTER_SHAPE;
@@ -120,7 +120,7 @@ public class PathVerticalSlabBlock extends ESPVerticalSlabBlock implements Simpl
         };
     }
 
-    private static VoxelShape getInnerLeftFacingShapes(Direction facing) {
+    protected static VoxelShape getInnerLeftFacingShapes(Direction facing) {
         return switch (facing) {
             case WEST -> Shapes.or(WEST_SHAPE, SOUTH_SHAPE);
             case EAST -> Shapes.or(EAST_SHAPE, NORTH_SHAPE);
@@ -129,7 +129,7 @@ public class PathVerticalSlabBlock extends ESPVerticalSlabBlock implements Simpl
         };
     }
 
-    private static VoxelShape getOuterRightFacingShapes(Direction facing) {
+    protected static VoxelShape getOuterRightFacingShapes(Direction facing) {
         return switch (facing) {
             case WEST -> NORTH_OUTER_SHAPE;
             case EAST -> SOUTH_OUTER_SHAPE;
@@ -138,7 +138,7 @@ public class PathVerticalSlabBlock extends ESPVerticalSlabBlock implements Simpl
         };
     }
 
-    private static VoxelShape getInnerRightFacingShapes(Direction facing) {
+    protected static VoxelShape getInnerRightFacingShapes(Direction facing) {
         return switch (facing) {
             case WEST -> Shapes.or(WEST_SHAPE, NORTH_SHAPE);
             case EAST -> Shapes.or(EAST_SHAPE, SOUTH_SHAPE);
@@ -202,21 +202,5 @@ public class PathVerticalSlabBlock extends ESPVerticalSlabBlock implements Simpl
             worldIn.getFluidTicks().willTickThisTick(currentPos, Fluids.WATER);
         }
         return facing.getAxis().isHorizontal() ? stateIn.setValue(SHAPE, getSlabShape(stateIn, (Level) worldIn, currentPos)) : super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
-    }
-
-    @Override
-    @SuppressWarnings("deprecation")
-    public @NotNull FluidState getFluidState(BlockState state) {
-        return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
-    }
-
-    @Override
-    public boolean canPlaceLiquid(@NotNull BlockGetter worldIn, @NotNull BlockPos pos, @NotNull BlockState state, @NotNull Fluid fluidIn) {
-        return super.canPlaceLiquid(worldIn, pos, state, fluidIn);
-    }
-
-    @Override
-    public boolean placeLiquid(@NotNull LevelAccessor worldIn, @NotNull BlockPos pos, @NotNull BlockState state, @NotNull FluidState fluidStateIn) {
-        return super.placeLiquid(worldIn, pos, state, fluidStateIn);
     }
 }

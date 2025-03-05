@@ -1,12 +1,17 @@
-// 1.20.1	2023-07-21T05:59:03.2504288	Tags for minecraft:block mod id extendedslabs
-eeea5d02b07838e7e860434a319fe63e8f489ba7 data/minecraft/tags/blocks/dirt.json
-28382e305af2b322851f39a5557e49ba456ff731 data/minecraft/tags/blocks/impermeable.json
-3a748785ebc73fbbd74d42e0d19d2a5795ef7fe9 data/minecraft/tags/blocks/mineable/axe.json
-a6643f5d0659ea675fe5f5b62087c17ec7e19f7b data/minecraft/tags/blocks/mineable/pickaxe.json
-f7f194efbd94aae59d13491794bc3677994a92f3 data/minecraft/tags/blocks/mineable/shovel.json
-973fc85e018c2c920cae6e9313f52a3f8b235b09 data/minecraft/tags/blocks/needs_stone_tool.json
-6417ec77075e397aff9a4f6e7c219f235d881fa0 data/minecraft/tags/blocks/sand.json
-ff240a01987984d9f31dada20f46be98843f478a data/minecraft/tags/blocks/slabs.json
-ba2388861fe5f0f0581abcc05e0e2a69144d3339 data/minecraft/tags/blocks/stairs.json
-b43ded5ab275b85657d2cd39aefc5298b6f9de40 data/minecraft/tags/blocks/terracotta.json
-679a617a0e1a9c687fdc2643f79651e74e69ac81 data/minecraft/tags/blocks/wool.json
+// 1.20.2	2025-03-06T00:05:05.4335063	Tags for minecraft:block mod id extendedslabs
+3e391c845735b8585cb521f0fc8e93212e177048 data/extendedslabs/tags/blocks/bubble_column/drag_down.json
+7a604e1b0e73cedb1ebaff467c831f8298562ae4 data/extendedslabs/tags/blocks/bubble_column/drag_up.json
+7f086dcaff59c748a170e7cc860bccf348856c51 data/extendedslabs/tags/blocks/corners.json
+e3400ad27a6038add89fc69b7728bb95164ac142 data/extendedslabs/tags/blocks/vertical_slabs.json
+2b160f479a22de9772f8e513b5050f035f7848b8 data/minecraft/tags/blocks/dirt.json
+6ceb03f287858ce91ebbb90a63e32dce531732f4 data/minecraft/tags/blocks/impermeable.json
+4827017d900f407c5109b1219707e6f1b7a89c68 data/minecraft/tags/blocks/mineable/axe.json
+69f5bce544599c62029a849b8ca525715f8aee0e data/minecraft/tags/blocks/mineable/hoe.json
+cb129e69d05a9e9f7096d4d1e93f51bcd407446f data/minecraft/tags/blocks/mineable/pickaxe.json
+cef3fee03b7ac9633afaf8a0dbf6d4c449691180 data/minecraft/tags/blocks/mineable/shovel.json
+49c0fc5d5f6b66742fff4cab391c90b9a5f14030 data/minecraft/tags/blocks/needs_stone_tool.json
+5fc097a6ce9737755082ce76d041f16d1794813a data/minecraft/tags/blocks/sand.json
+5c5269c26698ce806ed2ff1064fb56c2dc4fa52e data/minecraft/tags/blocks/slabs.json
+551682bbc4d13d6a084d357f45503eb0e5a882c7 data/minecraft/tags/blocks/stairs.json
+c046d5c9fac81a2975bd001ff8db4da194d16f93 data/minecraft/tags/blocks/terracotta.json
+988324db7251fb0f745c574ffb23d2f63b63d4f7 data/minecraft/tags/blocks/wool.json

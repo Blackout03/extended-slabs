@@ -5,24 +5,24 @@ import com.blackout.extendedslabs.datagen.recipes.ESPRecipeProvider;
 import com.blackout.extendedslabs.events.placehandlers.*;
 import com.blackout.extendedslabs.registry.*;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.data.event.GatherDataEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.ModContainer;
-import net.minecraftforge.fml.ModList;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.forgespi.language.IModInfo;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.ModContainer;
+import net.neoforged.fml.ModList;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.event.lifecycle.InterModEnqueueEvent;
+import net.neoforged.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.data.event.GatherDataEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
+import net.neoforged.neoforgespi.language.IModInfo;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.util.TriConsumer;
@@ -64,9 +64,8 @@ public class ExtendedSlabs {
 		ESPSlabifiedBlocks.BLOCKS.register(modEventBus);
 		ESPCreativeTabs.CREATIVE_MODE_TAB.register(modEventBus);
 
-		IEventBus forgeBus = MinecraftForge.EVENT_BUS;
-		forgeBus.addListener(BlockSlabifiedPlaceHandler::onBlockEntityPlace);
-		forgeBus.register(this);
+		IEventBus neoBus = NeoForge.EVENT_BUS;
+		neoBus.register(BlockSlabifiedPlaceHandler.class);
 	}
 
 	private void gatherData(final GatherDataEvent event) {
@@ -80,7 +79,7 @@ public class ExtendedSlabs {
 		dataGenerator.addProvider(event.includeClient(), new ESPItemModelGenerator(output, existing));
 		dataGenerator.addProvider(event.includeClient(), new ESPBlockStateProvider(output, existing));
 		dataGenerator.addProvider(event.includeServer(), new ESPBlockTagsProvider(output, provider, existing));
-		dataGenerator.addProvider(event.includeServer(), new ESPRecipeProvider(output));
+		dataGenerator.addProvider(event.includeServer(), new ESPRecipeProvider(output, provider));
 		dataGenerator.addProvider(event.includeClient(), new ESPLangProvider(output));
 	}
 
@@ -109,6 +108,6 @@ public class ExtendedSlabs {
 	}
 
 	private void registerPlaceEntry(Item item, Block slabifiedBlock, TriConsumer<PlayerInteractEvent.RightClickBlock, ItemStack, Block> handler) {
-		BlockSlabifiedPlaceHandler.registerPlaceEntry(ForgeRegistries.ITEMS.getKey(item), () -> slabifiedBlock, handler);
+		BlockSlabifiedPlaceHandler.registerPlaceEntry(BuiltInRegistries.ITEM.getKey(item), () -> slabifiedBlock, handler);
 	}
 }

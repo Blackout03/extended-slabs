@@ -3,17 +3,9 @@ package com.blackout.extendedslabs.blocks.falling;
 import com.blackout.extendedslabs.blocks.IBlockCharacteristics;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.TagKey;
-import net.minecraft.util.RandomSource;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Explosion;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
@@ -22,11 +14,10 @@ import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.pathfinder.PathComputationType;
-import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-
+import net.neoforged.neoforge.common.IPlantable;
 import java.util.List;
 import java.util.function.Supplier;
 import java.util.stream.IntStream;
@@ -52,8 +43,6 @@ public class FallingStairBlock extends FallingBlock implements SimpleWaterlogged
 	protected static final VoxelShape[] TOP_SHAPES = makeShapes(TOP_AABB, OCTET_NNN, OCTET_PNN, OCTET_NNP, OCTET_PNP);
 	protected static final VoxelShape[] BOTTOM_SHAPES = makeShapes(BOTTOM_AABB, OCTET_NPN, OCTET_PPN, OCTET_NPP, OCTET_PPP);
 	private static final int[] SHAPE_BY_STATE = new int[]{12, 5, 3, 10, 14, 13, 7, 11, 13, 7, 11, 14, 8, 4, 1, 2, 4, 1, 2, 8};
-	private Block base;
-	private BlockState baseState;
 
 	private static VoxelShape[] makeShapes(VoxelShape p_56934_, VoxelShape p_56935_, VoxelShape p_56936_, VoxelShape p_56937_, VoxelShape p_56938_) {
 		return IntStream.range(0, 16).mapToObj((p_56945_) -> makeStairShape(p_56945_, p_56934_, p_56935_, p_56936_, p_56937_, p_56938_)).toArray(VoxelShape[]::new);
@@ -80,25 +69,20 @@ public class FallingStairBlock extends FallingBlock implements SimpleWaterlogged
 		return voxelshape;
 	}
 
-	public FallingStairBlock(List<TagKey<Block>> characteristics, Block material, Supplier<Block> materialCorner, Supplier<BlockState> state, Properties properties) {
-		super(properties);
+	public FallingStairBlock(List<TagKey<Block>> characteristics, Block material, Supplier<Block> materialCorner) {
+		super(Block.Properties.copy(material));
 		this.characteristics = characteristics;
 		this.material = material;
 		this.materialCorner = materialCorner;
-		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(HALF, Half.BOTTOM).setValue(SHAPE, StairsShape.STRAIGHT).setValue(WATERLOGGED, Boolean.valueOf(false)));
-		this.base = Blocks.AIR; // These are unused, fields are redirected
-		this.baseState = Blocks.AIR.defaultBlockState();
-		this.stateSupplier = state;
+		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(HALF, Half.BOTTOM).setValue(SHAPE, StairsShape.STRAIGHT).setValue(WATERLOGGED, Boolean.FALSE));
+		this.stateSupplier = () -> Block.stateById(1);
 	}
 
-	public FallingStairBlock(Block material, Supplier<Block> materialCorner, Supplier<BlockState> state, Properties properties) {
-		this(IBlockCharacteristics.tag(), material, materialCorner, state, properties);
+	public FallingStairBlock(Block material, Supplier<Block> materialCorner) {
+		this(IBlockCharacteristics.tag(), material, materialCorner);
 		this.material = material;
 		this.materialCorner = materialCorner;
-		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(HALF, Half.BOTTOM).setValue(SHAPE, StairsShape.STRAIGHT).setValue(WATERLOGGED, Boolean.valueOf(false)));
-		this.base = Blocks.AIR; // These are unused, fields are redirected
-		this.baseState = Blocks.AIR.defaultBlockState();
-		this.stateSupplier = state;
+		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(HALF, Half.BOTTOM).setValue(SHAPE, StairsShape.STRAIGHT).setValue(WATERLOGGED, Boolean.FALSE));
 	}
 
 	@Override
@@ -110,8 +94,16 @@ public class FallingStairBlock extends FallingBlock implements SimpleWaterlogged
 		return material;
 	}
 
-	public Supplier<Block> getMaterialCorner() {
-		return materialCorner;
+	public Block getMaterialCorner() {
+		return materialCorner.get();
+	}
+
+	@Override
+	public boolean canSustainPlant(BlockState state, BlockGetter world, BlockPos pos, Direction facing, IPlantable plantable) {
+		if (state.getValue(HALF) == Half.TOP) {
+			return super.canSustainPlant(state, world, pos, facing, plantable);
+		}
+		return false;
 	}
 
 	public boolean useShapeForLightOcclusion(BlockState p_56967_) {
@@ -126,64 +118,11 @@ public class FallingStairBlock extends FallingBlock implements SimpleWaterlogged
 		return p_56983_.getValue(SHAPE).ordinal() * 4 + p_56983_.getValue(FACING).get2DDataValue();
 	}
 
-	public void animateTick(BlockState p_222518_, Level p_222519_, BlockPos p_222520_, RandomSource p_222521_) {
-		this.base.animateTick(p_222518_, p_222519_, p_222520_, p_222521_);
-	}
-
-	public void attack(BlockState p_56896_, Level p_56897_, BlockPos p_56898_, Player p_56899_) {
-		this.baseState.attack(p_56897_, p_56898_, p_56899_);
-	}
-
-	public void destroy(LevelAccessor p_56882_, BlockPos p_56883_, BlockState p_56884_) {
-		this.base.destroy(p_56882_, p_56883_, p_56884_);
-	}
-
-	public float getExplosionResistance() {
-		return this.base.getExplosionResistance();
-	}
-
-	public void onPlace(BlockState p_56961_, Level p_56962_, BlockPos p_56963_, BlockState p_56964_, boolean p_56965_) {
-		if (!p_56961_.is(p_56961_.getBlock())) {
-			p_56962_.neighborChanged(this.baseState, p_56963_, Blocks.AIR, p_56963_, false);
-			this.base.onPlace(this.baseState, p_56962_, p_56963_, p_56964_, false);
-		}
-	}
-
-	public void onRemove(BlockState p_56908_, Level p_56909_, BlockPos p_56910_, BlockState p_56911_, boolean p_56912_) {
-		if (!p_56908_.is(p_56911_.getBlock())) {
-			this.baseState.onRemove(p_56909_, p_56910_, p_56911_, p_56912_);
-		}
-	}
-
-	public void stepOn(Level p_154720_, BlockPos p_154721_, BlockState p_154722_, Entity p_154723_) {
-		this.base.stepOn(p_154720_, p_154721_, p_154722_, p_154723_);
-	}
-
-	public boolean isRandomlyTicking(BlockState p_56947_) {
-		return this.base.isRandomlyTicking(p_56947_);
-	}
-
-	public void randomTick(BlockState p_222523_, ServerLevel p_222524_, BlockPos p_222525_, RandomSource p_222526_) {
-		this.base.randomTick(p_222523_, p_222524_, p_222525_, p_222526_);
-	}
-
-	public void tick(BlockState p_222513_, ServerLevel p_222514_, BlockPos p_222515_, RandomSource p_222516_) {
-		this.base.tick(p_222513_, p_222514_, p_222515_, p_222516_);
-	}
-
-	public InteractionResult use(BlockState p_56901_, Level p_56902_, BlockPos p_56903_, Player p_56904_, InteractionHand p_56905_, BlockHitResult p_56906_) {
-		return this.baseState.use(p_56902_, p_56904_, p_56905_, p_56906_);
-	}
-
-	public void wasExploded(Level p_56878_, BlockPos p_56879_, Explosion p_56880_) {
-		this.base.wasExploded(p_56878_, p_56879_, p_56880_);
-	}
-
 	public BlockState getStateForPlacement(BlockPlaceContext p_56872_) {
 		Direction direction = p_56872_.getClickedFace();
 		BlockPos blockpos = p_56872_.getClickedPos();
 		FluidState fluidstate = p_56872_.getLevel().getFluidState(blockpos);
-		BlockState blockstate = this.defaultBlockState().setValue(FACING, p_56872_.getHorizontalDirection()).setValue(HALF, direction != Direction.DOWN && (direction == Direction.UP || !(p_56872_.getClickLocation().y - (double)blockpos.getY() > 0.5D)) ? Half.BOTTOM : Half.TOP).setValue(WATERLOGGED, Boolean.valueOf(fluidstate.getType() == Fluids.WATER));
+		BlockState blockstate = this.defaultBlockState().setValue(FACING, p_56872_.getHorizontalDirection()).setValue(HALF, direction != Direction.DOWN && (direction == Direction.UP || !(p_56872_.getClickLocation().y - (double)blockpos.getY() > 0.5D)) ? Half.BOTTOM : Half.TOP).setValue(WATERLOGGED, fluidstate.getType() == Fluids.WATER);
 		return blockstate.setValue(SHAPE, getStairsShape(blockstate, p_56872_.getLevel(), blockpos));
 	}
 
@@ -243,34 +182,32 @@ public class FallingStairBlock extends FallingBlock implements SimpleWaterlogged
 		switch (p_56920_) {
 			case LEFT_RIGHT:
 				if (direction.getAxis() == Direction.Axis.Z) {
-					switch (stairsshape) {
-						case INNER_LEFT:
-							return p_56919_.rotate(Rotation.CLOCKWISE_180).setValue(SHAPE, StairsShape.INNER_RIGHT);
-						case INNER_RIGHT:
-							return p_56919_.rotate(Rotation.CLOCKWISE_180).setValue(SHAPE, StairsShape.INNER_LEFT);
-						case OUTER_LEFT:
-							return p_56919_.rotate(Rotation.CLOCKWISE_180).setValue(SHAPE, StairsShape.OUTER_RIGHT);
-						case OUTER_RIGHT:
-							return p_56919_.rotate(Rotation.CLOCKWISE_180).setValue(SHAPE, StairsShape.OUTER_LEFT);
-						default:
-							return p_56919_.rotate(Rotation.CLOCKWISE_180);
-					}
+					return switch (stairsshape) {
+						case INNER_LEFT ->
+								p_56919_.rotate(Rotation.CLOCKWISE_180).setValue(SHAPE, StairsShape.INNER_RIGHT);
+						case INNER_RIGHT ->
+								p_56919_.rotate(Rotation.CLOCKWISE_180).setValue(SHAPE, StairsShape.INNER_LEFT);
+						case OUTER_LEFT ->
+								p_56919_.rotate(Rotation.CLOCKWISE_180).setValue(SHAPE, StairsShape.OUTER_RIGHT);
+						case OUTER_RIGHT ->
+								p_56919_.rotate(Rotation.CLOCKWISE_180).setValue(SHAPE, StairsShape.OUTER_LEFT);
+						default -> p_56919_.rotate(Rotation.CLOCKWISE_180);
+					};
 				}
 				break;
 			case FRONT_BACK:
 				if (direction.getAxis() == Direction.Axis.X) {
-					switch (stairsshape) {
-						case INNER_LEFT:
-							return p_56919_.rotate(Rotation.CLOCKWISE_180).setValue(SHAPE, StairsShape.INNER_LEFT);
-						case INNER_RIGHT:
-							return p_56919_.rotate(Rotation.CLOCKWISE_180).setValue(SHAPE, StairsShape.INNER_RIGHT);
-						case OUTER_LEFT:
-							return p_56919_.rotate(Rotation.CLOCKWISE_180).setValue(SHAPE, StairsShape.OUTER_RIGHT);
-						case OUTER_RIGHT:
-							return p_56919_.rotate(Rotation.CLOCKWISE_180).setValue(SHAPE, StairsShape.OUTER_LEFT);
-						case STRAIGHT:
-							return p_56919_.rotate(Rotation.CLOCKWISE_180);
-					}
+					return switch (stairsshape) {
+						case INNER_LEFT ->
+								p_56919_.rotate(Rotation.CLOCKWISE_180).setValue(SHAPE, StairsShape.INNER_LEFT);
+						case INNER_RIGHT ->
+								p_56919_.rotate(Rotation.CLOCKWISE_180).setValue(SHAPE, StairsShape.INNER_RIGHT);
+						case OUTER_LEFT ->
+								p_56919_.rotate(Rotation.CLOCKWISE_180).setValue(SHAPE, StairsShape.OUTER_RIGHT);
+						case OUTER_RIGHT ->
+								p_56919_.rotate(Rotation.CLOCKWISE_180).setValue(SHAPE, StairsShape.OUTER_LEFT);
+						case STRAIGHT -> p_56919_.rotate(Rotation.CLOCKWISE_180);
+					};
 				}
 		}
 

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "extendedslabs:verdant_froglight_corner"
+    }
+  ],
+  "result": {
+    "item": "extendedslabs:verdant_froglight_stairs"
+  }
+}

@@ -1,30 +1,33 @@
 modLoader="javafml"
-loaderVersion="${loaderVersionRange}"
+loaderVersion="[1,)"
 issueTrackerURL="https://github.com/Blackout03/extended-slabs/issues"
-license="${modLicense}"
+license="All Rights Reserved"
 
 [[mods]]
-modId="${modId}"
-version="${modVersion}"
-displayName="${modName}"
+modId="extendedslabs"
+version="${file.jarVersion}"
+displayName="Extended Slabs +"
 updateJSONURL="https://forge.curseupdate.com/374492/extendedslabs"
 displayURL="https://www.curseforge.com/minecraft/mc-mods/extended-slabs-plus"
-authors="${modAuthor}"
-description='''${modDescription}'''
+authors="Blackout"
+description='''This mod adds vertical slabs and more to Minecraft.'''
 itemIcon="extendedslabs:vertical_dirt_path_slab"
 logoFile="icon.png"
 credits="Thinkverse"
 
-[[dependencies.${modId}]]
-modId="forge"
+[[mixins]]
+config = "META-INF/extendedslabs.mixins.json"
+
+[[dependencies.extendedslabs]]
+modId="neoforge"
 mandatory=true
-versionRange="${neoVersionRange}"
+versionRange="[20.2,)"
 ordering="NONE"
 side="BOTH"
 
-[[dependencies.${modId}]]
+[[dependencies.extendedslabs]]
 modId="minecraft"
 mandatory=true
-versionRange="${minecraftVersionRange}"
+versionRange="[1.20.2,1.21)"
 ordering="NONE"
 side="BOTH"

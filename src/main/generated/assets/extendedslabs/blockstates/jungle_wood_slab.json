@@ -4,7 +4,7 @@
       "model": "extendedslabs:block/jungle_wood_slab"
     },
     "type=double": {
-      "model": "minecraft:block/jungle_log"
+      "model": "minecraft:block/jungle_wood"
     },
     "type=top": {
       "model": "extendedslabs:block/jungle_wood_slab_top"

@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "extendedslabs:block/honeycomb_slab"
+    },
+    "type=double": {
+      "model": "minecraft:block/honeycomb_block"
+    },
+    "type=top": {
+      "model": "extendedslabs:block/honeycomb_slab_top"
+    }
+  }
+}

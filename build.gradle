@@ -1,123 +1,73 @@
 plugins {
+	id 'java-library'
 	id 'eclipse'
 	id 'idea'
 	id 'maven-publish'
-	id 'net.neoforged.gradle' version '[6.0.18,6.2)'
-	id 'org.parchmentmc.librarian.forgegradle' version '1.+'
+	id 'net.neoforged.gradle.userdev' version '7.0.116'
 }
 
 version = "${minecraftVersion}-${modVersion}"
-group = 'com.blackout.extendedslabs'
+group = 'com.blackout'
 base.archivesName = modId
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
-println "Java: ${System.getProperty 'java.version'}, JVM: ${System.getProperty 'java.vm.version'} (${System.getProperty 'java.vendor'}), Arch: ${System.getProperty 'os.arch'}"
-minecraft {
-	mappings channel: mappingsChannel, version: mappingsVersion
-	copyIdeResources = true
-	runs {
-		client {
-			workingDirectory project.file("run")
-			property "forge.logging.markers", "SCAN,REGISTRIES,REGISTRYDUMP"
-			property "forge.logging.console.level", "debug"
-			mods {
-				"${modId}" {
-					source sourceSets.main
-				}
-			}
-		}
-		server {
-			workingDirectory project.file("run")
-			property "forge.logging.markers", "SCAN,REGISTRIES,REGISTRYDUMP"
-			property "forge.logging.console.level", "debug"
-			mods {
-				"${modId}" {
-					source sourceSets.main
-				}
-			}
-		}
-		data {
-			workingDirectory project.file("run")
-			property "forge.logging.markers", "SCAN,REGISTRIES,REGISTRYDUMP"
-			property "forge.logging.console.level", "debug"
-			args '--mod', "${modId}",
-					'--all',
-					'--output', file('src/main/generated/'),
-					'--existing', file('src/main/resources/')
-			mods {
-				"${modId}" {
-					source sourceSets.main
-				}
-			}
-		}
+runs {
+	configureEach {
+		systemProperty "forge.logging.markers", "SCAN,REGISTRIES,REGISTRYDUMP"
+		systemProperty "forge.logging.console.level","debug"
+		modSource project.sourceSets.main
+	}
+
+	client {
+		programArguments = ['--username', "Blackout${new Random().nextInt(1000)}"]
+	}
+
+	server {
+		programArgument "--nogui"
+	}
+
+	data {
+		programArguments.addAll "--mod",
+				project.modId, "--all",
+				"--output",
+				file("src/main/generated/").getAbsolutePath(),
+				"--existing",
+				file("src/main/resources/").getAbsolutePath()
 	}
 }
 
-sourceSets {
-	main.resources.srcDirs += 'src/main/generated'
-}
+sourceSets.main.resources { srcDir 'src/main/generated' }
 
 dependencies {
-	minecraft "net.neoforged:forge:${minecraftVersion}-${neoVersion}"
+	implementation "net.neoforged:neoforge:${neoVersion}"
 
-	implementation fg.deobf("mezz.jei:jei-${minecraftVersion}-common-api:${jeiVersion}")
-	implementation fg.deobf("mezz.jei:jei-${minecraftVersion}-forge-api:${jeiVersion}")
-	implementation fg.deobf("mezz.jei:jei-${minecraftVersion}-forge:${jeiVersion}")
+//	implementation fg.deobf("mezz.jei:jei-${minecraftVersion}-common-api:${jeiVersion}")
+//	implementation fg.deobf("mezz.jei:jei-${minecraftVersion}-forge-api:${jeiVersion}")
+//	implementation fg.deobf("mezz.jei:jei-${minecraftVersion}-forge:${jeiVersion}")
 //	implementation fg.deobf("curse.maven:just-enough-resources-jer-240630:${jerVersion}")
 
 //	implementation fg.deobf("curse.maven:configured-457570:${configuredVersion}")
-	implementation fg.deobf("curse.maven:catalogue-459701:${catalogueVersion}")
+//	implementation fg.deobf("curse.maven:catalogue-459701:${catalogueVersion}")
 
-	implementation fg.deobf("curse.maven:the-one-probe-245211:${topVersion}")
+//	implementation fg.deobf("curse.maven:the-one-probe-245211:${topVersion}")
 }
 
-repositories {
-	maven {
-		name = "Progwml6 maven"
-		url = "https://dvs1.progwml6.com/files/maven/"
+publishing {
+	publications {
+		register('mavenJava', MavenPublication) {
+			from components.java
+		}
 	}
-	maven {
-		name = "ModMaven"
-		url = "https://modmaven.k-4u.nl"
-	}
-	maven {
-		name = "CurseForge"
-		url = "https://www.cursemaven.com"
-	}
-}
-
-tasks.named('processResources', ProcessResources).configure {
-	var replaceProperties = [
-			minecraftVersion: minecraftVersion, minecraftVersionRange: minecraftVersionRange,
-			neoVersion: neoVersion, neoVersionRange: neoVersionRange,
-			loaderVersionRange: loaderVersionRange,
-			modId: modId, modName: modName, modLicense: modLicense, modVersion: modVersion,
-			modAuthor: modAuthor, modDescription: modDescription, packVersion: packVersion,
-	]
-	inputs.properties replaceProperties
-
-	filesMatching(['META-INF/mods.toml', 'pack.mcmeta']) {
-		expand replaceProperties + [project: project]
+	repositories {
+		maven {
+			url "file://${project.projectDir}/repo"
+		}
 	}
 }
 
-tasks.named('jar', Jar).configure {
-	manifest {
-		attributes([
-				"Specification-Title"   : modName,
-				"Specification-Vendor"  : modAuthor,
-				"Specification-Version" : "1",
-				"Implementation-Title"  : project.name,
-				"Implementation-Version": project.jar.archiveVersion,
-				"Implementation-Vendor" : modAuthor
-		])
-	}
-
-	preserveFileTimestamps = false
-	reproducibleFileOrder = true
-
-	finalizedBy('reobfJar')
+tasks.withType(JavaCompile).configureEach {
+	options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
 }
 
 processResources {

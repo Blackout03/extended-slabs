@@ -1,6 +1,8 @@
 {
   "values": [
-    "extendedslabs:sand_slab",
-    "extendedslabs:red_sand_slab"
+    "extendedslabs:sand_stairs",
+    "extendedslabs:red_sand_stairs",
+    "extendedslabs:red_sand_slab",
+    "extendedslabs:sand_slab"
   ]
 }

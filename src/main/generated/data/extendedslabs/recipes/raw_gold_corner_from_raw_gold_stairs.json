@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "extendedslabs:raw_gold_stairs"
+    }
+  ],
+  "result": {
+    "item": "extendedslabs:raw_gold_corner"
+  }
+}

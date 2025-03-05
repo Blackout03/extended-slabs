@@ -19,26 +19,26 @@ import net.minecraft.world.level.block.WeatheringCopper;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.NotNull;
-
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Supplier;
 
 public class WeatheringCopperVerticalSlabBlock extends ESPVerticalSlabBlock implements WeatheringCopper, IBlockCharacteristics {
     private final List<TagKey<Block>> characteristics;
     public Block material;
-    public Block materialSlab;
+    public Supplier<Block> materialSlab;
     private WeatherState weatherState;
 
-    public WeatheringCopperVerticalSlabBlock(List<TagKey<Block>> characteristics, Block material, Block materialSlab, Properties builder, WeatherState weatherState) {
-        super(material, materialSlab, builder);
+    public WeatheringCopperVerticalSlabBlock(List<TagKey<Block>> characteristics, Block material, Supplier<Block> materialSlab, WeatherState weatherState) {
+        super(material, materialSlab);
         this.characteristics = characteristics;
         this.material = material;
         this.materialSlab = materialSlab;
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(SHAPE, VerticalSlabShape.STRAIGHT).setValue(WATERLOGGED, Boolean.FALSE));
     }
 
-    public WeatheringCopperVerticalSlabBlock(Block material, Block materialSlab, Properties builder, WeatherState weatherState) {
-        this(IBlockCharacteristics.tag(), material, materialSlab, builder, weatherState);
+    public WeatheringCopperVerticalSlabBlock(Block material, Supplier<Block> materialSlab, WeatherState weatherState) {
+        this(IBlockCharacteristics.tag(), material, materialSlab, weatherState);
         this.material = material;
         this.materialSlab = materialSlab;
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(SHAPE, VerticalSlabShape.STRAIGHT).setValue(WATERLOGGED, Boolean.FALSE));
@@ -54,7 +54,7 @@ public class WeatheringCopperVerticalSlabBlock extends ESPVerticalSlabBlock impl
     }
 
     public Block getMaterialSlab() {
-        return materialSlab;
+        return materialSlab.get();
     }
 
     @Override

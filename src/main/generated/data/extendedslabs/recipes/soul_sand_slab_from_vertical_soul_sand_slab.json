@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "extendedslabs:vertical_soul_sand_slab"
+    }
+  ],
+  "result": {
+    "item": "extendedslabs:soul_sand_slab"
+  }
+}

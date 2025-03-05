@@ -6,16 +6,15 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.RegistryObject;
-
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
 import java.util.Collection;
 import java.util.Random;
 
 public class ESPCreativeTabs {
 	public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TAB = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, ExtendedSlabs.MODID);
 
-	public static final RegistryObject<CreativeModeTab> EXTENDED_SLABS = CREATIVE_MODE_TAB.register("extended_slabs",
+	public static final DeferredHolder<CreativeModeTab, CreativeModeTab> EXTENDED_SLABS = CREATIVE_MODE_TAB.register("extended_slabs",
 			() -> CreativeModeTab.builder()
 					.title(Component.translatable("itemGroup.extendedslabs"))
 					.icon(ESPCreativeTabs::makeIcon)
@@ -27,8 +26,8 @@ public class ESPCreativeTabs {
 					})
 					.build());
 
-	private static void add(final CreativeModeTab.Output output, final Collection<RegistryObject<Item>> items) {
-		items.stream().map(RegistryObject::get).forEach(output::accept);
+	private static void add(final CreativeModeTab.Output output, final Collection<DeferredHolder<Item, ? extends Item>> items) {
+		items.stream().map(DeferredHolder::get).forEach(output::accept);
 	}
 
 	public static ItemStack makeIcon() {

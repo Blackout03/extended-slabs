@@ -4,7 +4,7 @@
       "model": "extendedslabs:block/acacia_wood_slab"
     },
     "type=double": {
-      "model": "minecraft:block/acacia_log"
+      "model": "minecraft:block/acacia_wood"
     },
     "type=top": {
       "model": "extendedslabs:block/acacia_wood_slab_top"

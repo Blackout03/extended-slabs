@@ -1,5 +1,5 @@
 {
-  "parent": "extendedslabs:block/outer_vertical_slab",
+  "parent": "extendedslabs:block/outer_vertical_glass_slab_base",
   "render_type": "minecraft:translucent",
   "textures": {
     "bottom": "minecraft:block/green_stained_glass",
