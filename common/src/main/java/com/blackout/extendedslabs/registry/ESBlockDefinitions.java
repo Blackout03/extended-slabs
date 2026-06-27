@@ -89,12 +89,6 @@ public class ESBlockDefinitions {
 
 		initialized = true;
 		ESBlockFamilies.init();
-		ESSlabs.init();
-		ESVerticalSlabs.init();
-		ESStairs.init();
-		ESCorners.init();
-		ESWalls.init();
-		ESButtons.init();
 		registerCreativeTabs();
 	}
 
@@ -105,7 +99,7 @@ public class ESBlockDefinitions {
 
 		extendedSlabsTab = CREATIVE_MODE_TABS.register("extended_slabs", () -> CreativeModeTab.builder()
 				.title(Component.translatable("itemGroup.extendedslabs"))
-				.icon(() -> new ItemStack(ESSlabs.DIRT_SLAB.get()))
+				.icon(() -> new ItemStack(ESBlockFamilies.DIRT.slab().get()))
 				.displayItems((featureFlagSet, output) -> ORDERED_ITEMS.stream().map(RegistrySupplier::get).forEach(output::accept))
 				.build());
 	}
