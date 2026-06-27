@@ -2,7 +2,6 @@ package com.blackout.extendedslabs.platform;
 
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -31,14 +30,28 @@ public class ModRegistry<T> {
 		return entries;
 	}
 
-	public record Entry<T>(String id, Supplier<T> supplier) implements RegistrySupplier<T> {
-		@Override
-		public T get() {
-			return supplier.get();
+	public static class Entry<T> implements RegistrySupplier<T> {
+		private final String id;
+		private final Supplier<T> supplier;
+		private T value;
+
+		public Entry(String id, Supplier<T> supplier) {
+			this.id = id;
+			this.supplier = supplier;
 		}
 
-		public ResourceLocation location(String modId) {
-			return ResourceLocation.fromNamespaceAndPath(modId, id);
+		@Override
+		public String id() {
+			return id;
+		}
+
+		@Override
+		public T get() {
+			if (value == null) {
+				value = supplier.get();
+			}
+
+			return value;
 		}
 	}
 }

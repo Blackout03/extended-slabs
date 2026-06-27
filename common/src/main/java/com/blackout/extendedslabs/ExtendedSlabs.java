@@ -1,11 +1,6 @@
 package com.blackout.extendedslabs;
 
-import com.blackout.extendedslabs.registry.ESPCorners;
-import com.blackout.extendedslabs.registry.ESPCreativeTabs;
-import com.blackout.extendedslabs.registry.ESPSlabifiedBlocks;
-import com.blackout.extendedslabs.registry.ESPSlabs;
-import com.blackout.extendedslabs.registry.ESPStairs;
-import com.blackout.extendedslabs.registry.ESPVerticalSlabs;
+import com.blackout.extendedslabs.registry.ESBlockDefinitions;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -24,11 +19,6 @@ public class ExtendedSlabs {
 		initialized = true;
 		LOGGER.debug("Initializing " + MODNAME + " (" + MODID + ")");
 
-		ESPSlabs.init();
-		ESPVerticalSlabs.init();
-		ESPStairs.init();
-		ESPCorners.init();
-		ESPSlabifiedBlocks.init();
-		ESPCreativeTabs.init();
+		ESBlockDefinitions.init();
 	}
 }

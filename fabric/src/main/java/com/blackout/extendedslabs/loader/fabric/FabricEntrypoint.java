@@ -7,5 +7,6 @@ public class FabricEntrypoint implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		ExtendedSlabs.init();
+		FabricRegistryBridge.register();
 	}
 }
