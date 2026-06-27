@@ -12,11 +12,11 @@ subprojects {
 	group = 'com.blackout.extendedslabs'
 	base.archivesName = "${modId}-${project.name}"
 
-	java.toolchain.languageVersion = JavaLanguageVersion.of(25)
+	java.toolchain.languageVersion = JavaLanguageVersion.of(26)
 
 	tasks.withType(JavaCompile).configureEach {
 		options.encoding = 'UTF-8'
-		options.release = 25
+		options.release = 26
 	}
 
 	tasks.withType(ProcessResources).configureEach {

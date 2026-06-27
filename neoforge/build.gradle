@@ -15,7 +15,18 @@ neoForge {
 			gameDirectory = file('run')
 		}
 		data {
-			data()
+			clientData()
+			serverData()
+			gameDirectory = file('run')
+			programArguments.addAll '--mod', modId, '--all', '--output', file('src/main/generated/').absolutePath, '--existing', file('src/main/resources/').absolutePath
+		}
+		clientData {
+			clientData()
+			gameDirectory = file('run')
+			programArguments.addAll '--mod', modId, '--all', '--output', file('src/main/generated/').absolutePath, '--existing', file('src/main/resources/').absolutePath
+		}
+		serverData {
+			serverData()
 			gameDirectory = file('run')
 			programArguments.addAll '--mod', modId, '--all', '--output', file('src/main/generated/').absolutePath, '--existing', file('src/main/resources/').absolutePath
 		}
