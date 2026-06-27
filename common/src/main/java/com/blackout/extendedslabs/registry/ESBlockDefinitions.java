@@ -24,6 +24,7 @@ public class ESBlockDefinitions {
 	public static final ModRegistry<Block> BLOCKS = PlatformRegistry.create(Registries.BLOCK);
 	public static final ModRegistry<Item> ITEMS = PlatformRegistry.create(Registries.ITEM);
 	public static final ModRegistry<CreativeModeTab> CREATIVE_MODE_TABS = PlatformRegistry.create(Registries.CREATIVE_MODE_TAB);
+	private static final List<BlockDefinition> BLOCK_DEFINITIONS = new ArrayList<>();
 	private static final List<RegistrySupplier<Item>> ORDERED_ITEMS = new ArrayList<>();
 
 	public static final RegistrySupplier<Block> DIRT_SLAB = slab("dirt_slab", Blocks.DIRT);
@@ -49,20 +50,23 @@ public class ESBlockDefinitions {
 			.build());
 
 	private static RegistrySupplier<Block> slab(String id, Block source) {
-		RegistrySupplier<Block> block = BLOCKS.register(id, () -> new SlabBlock(BlockBehaviour.Properties.copy(source)));
-		blockItem(id, block);
-		return block;
+		return block(id, source, BlockType.SLAB, () -> new SlabBlock(BlockBehaviour.Properties.copy(source)));
 	}
 
 	private static RegistrySupplier<Block> stairs(String id, Block source) {
-		RegistrySupplier<Block> block = BLOCKS.register(id, () -> new StairBlock(source.defaultBlockState(), BlockBehaviour.Properties.copy(source)));
-		blockItem(id, block);
+		return block(id, source, BlockType.STAIRS, () -> new StairBlock(source.defaultBlockState(), BlockBehaviour.Properties.copy(source)));
+	}
+
+	private static RegistrySupplier<Block> block(String id, Block source, BlockType type, Supplier<Block> supplier) {
+		RegistrySupplier<Block> block = BLOCKS.register(id, supplier);
+		RegistrySupplier<Item> item = ITEMS.register(id, () -> new BlockItem(block.get(), new Item.Properties()));
+		BLOCK_DEFINITIONS.add(new BlockDefinition(id, source, type, block, item));
+		ORDERED_ITEMS.add(item);
 		return block;
 	}
 
-	private static void blockItem(String id, Supplier<Block> block) {
-		RegistrySupplier<Item> item = ITEMS.register(id, () -> new BlockItem(block.get(), new Item.Properties()));
-		ORDERED_ITEMS.add(item);
+	public static Collection<BlockDefinition> blocks() {
+		return BLOCK_DEFINITIONS;
 	}
 
 	public static Collection<RegistrySupplier<Item>> orderedItems() {
@@ -70,5 +74,16 @@ public class ESBlockDefinitions {
 	}
 
 	public static void init() {
+	}
+
+	public enum BlockType {
+		SLAB,
+		STAIRS
+	}
+
+	public record BlockDefinition(String id, Block source, BlockType type, RegistrySupplier<Block> block, RegistrySupplier<Item> item) {
+		public String textureName() {
+			return id.replaceAll("_(slab|stairs)$", "");
+		}
 	}
 }

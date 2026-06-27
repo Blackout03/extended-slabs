@@ -5,6 +5,22 @@ plugins {
 neoForge {
 	version = neoVersion
 
+	runs {
+		client {
+			client()
+			gameDirectory = file('run')
+		}
+		server {
+			server()
+			gameDirectory = file('run')
+		}
+		data {
+			data()
+			gameDirectory = file('run')
+			programArguments.addAll '--mod', modId, '--all', '--output', file('src/main/generated/').absolutePath, '--existing', file('src/main/resources/').absolutePath
+		}
+	}
+
 	mods {
 		"${modId}" {
 			sourceSet sourceSets.main
@@ -20,5 +36,6 @@ sourceSets {
 	main {
 		java.srcDir project(':common').sourceSets.main.java.srcDirs
 		resources.srcDir project(':common').sourceSets.main.resources.srcDirs
+		resources.srcDir 'src/main/generated'
 	}
 }
