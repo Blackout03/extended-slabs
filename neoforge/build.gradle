@@ -28,10 +28,6 @@ neoForge {
 	}
 }
 
-dependencies {
-	implementation project(':common')
-}
-
 sourceSets {
 	main {
 		java.srcDir project(':common').sourceSets.main.java.srcDirs

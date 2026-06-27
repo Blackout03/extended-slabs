@@ -54,5 +54,8 @@ dependencyResolutionManagement {
 rootProject.name = 'extended-slabs'
 
 include 'common'
-include 'fabric'
 include 'neoforge'
+
+if (providers.gradleProperty('enableFabric').map { it.toBoolean() }.getOrElse(false)) {
+	include 'fabric'
+}
