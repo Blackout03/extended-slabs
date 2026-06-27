@@ -1,0 +1,14 @@
+plugins {
+	id 'fabric-loom' version '1.10-SNAPSHOT'
+}
+
+dependencies {
+	minecraft "com.mojang:minecraft:${minecraftVersion}"
+	mappings loom.officialMojangMappings()
+}
+
+sourceSets {
+	main {
+		resources.srcDirs += ['src/main/generated']
+	}
+}
