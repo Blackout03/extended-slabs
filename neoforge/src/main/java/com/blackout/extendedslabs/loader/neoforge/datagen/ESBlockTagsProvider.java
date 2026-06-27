@@ -5,7 +5,8 @@ import com.blackout.extendedslabs.registry.ESBlockDefinitions;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.BlockTagsProvider;
-import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
 
@@ -19,7 +20,9 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 	@Override
 	protected void addTags(HolderLookup.Provider provider) {
 		for (ESBlockDefinitions.BlockDefinition definition : ESBlockDefinitions.blocks()) {
-			tag(BlockTags.MINEABLE_WITH_PICKAXE).add(definition.block().get());
+			for (TagKey<Block> tag : definition.tags()) {
+				tag(tag).add(definition.block().get());
+			}
 		}
 	}
 }
