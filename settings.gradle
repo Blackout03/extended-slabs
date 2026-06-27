@@ -1,6 +1,11 @@
 pluginManagement {
 	repositories {
 		gradlePluginPortal()
+		mavenCentral()
+		maven {
+			name = 'Fabric'
+			url = 'https://maven.fabricmc.net/'
+		}
 		maven {
 			name = 'NeoForged'
 			url = 'https://maven.neoforged.net/releases'
@@ -12,6 +17,43 @@ pluginManagement {
 	}
 }
 
-plugins {
-	id 'org.gradle.toolchains.foojay-resolver-convention' version '0.5.0'
+dependencyResolutionManagement {
+	repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+	repositories {
+		mavenCentral()
+		maven {
+			name = 'Fabric'
+			url = 'https://maven.fabricmc.net/'
+		}
+		maven {
+			name = 'NeoForged'
+			url = 'https://maven.neoforged.net/releases'
+		}
+		maven {
+			name = 'Parchment'
+			url = 'https://maven.parchmentmc.org'
+		}
+		maven {
+			name = 'CurseForge'
+			url = 'https://www.cursemaven.com'
+		}
+		maven {
+			name = 'Progwml6 maven'
+			url = 'https://dvs1.progwml6.com/files/maven/'
+		}
+		maven {
+			name = 'ModMaven'
+			url = 'https://modmaven.k-4u.nl'
+		}
+	}
 }
+
+plugins {
+	id 'org.gradle.toolchains.foojay-resolver-convention' version '0.8.0'
+}
+
+rootProject.name = 'extended-slabs'
+
+include 'common'
+include 'fabric'
+include 'neoforge'
