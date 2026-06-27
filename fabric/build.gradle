@@ -6,31 +6,12 @@ dependencies {
 	minecraft "com.mojang:minecraft:${minecraftVersion}"
 	mappings loom.officialMojangMappings()
 	modImplementation "net.fabricmc:fabric-loader:${fabricLoaderVersion}"
-	modImplementation "net.fabricmc.fabric-api:fabric-api:${fabricApiVersion}"
 	implementation project(':common')
 }
 
-loom {
-	runs {
-		client {
-			client()
-			setConfigName('Fabric Client')
-			ideConfigGenerated(true)
-			runDir('run')
-		}
-		server {
-			server()
-			setConfigName('Fabric Server')
-			ideConfigGenerated(true)
-			runDir('run')
-		}
+sourceSets {
+	main {
+		java.srcDir project(':common').sourceSets.main.java.srcDirs
+		resources.srcDir project(':common').sourceSets.main.resources.srcDirs
 	}
-}
-
-processResources {
-	from project(':common').sourceSets.main.resources
-}
-
-compileJava {
-	source project(':common').sourceSets.main.allSource
 }

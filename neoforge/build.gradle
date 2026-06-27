@@ -5,22 +5,6 @@ plugins {
 neoForge {
 	version = neoVersion
 
-	runs {
-		client {
-			client()
-			gameDirectory = file('run')
-		}
-		server {
-			server()
-			gameDirectory = file('run')
-		}
-		data {
-			data()
-			gameDirectory = file('run')
-			programArguments.addAll '--mod', modId, '--all', '--output', file('src/main/generated/').absolutePath, '--existing', file('src/main/resources/').absolutePath
-		}
-	}
-
 	mods {
 		"${modId}" {
 			sourceSet sourceSets.main

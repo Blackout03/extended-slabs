@@ -5,6 +5,6 @@ import net.minecraft.resources.ResourceKey;
 
 public class PlatformRegistry {
 	public static <T> ModRegistry<T> create(ResourceKey<? extends Registry<T>> registryKey) {
-		return new ModRegistry<>(registryKey);
+		return RegistryDispatcher.create(registryKey);
 	}
 }

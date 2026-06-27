@@ -1,0 +1,20 @@
+{
+	"schemaVersion": 1,
+	"id": "extendedslabs",
+	"version": "${modVersion}",
+	"name": "${modName}",
+	"description": "${modDescription}",
+	"authors": ["${modAuthor}"],
+	"license": "${modLicense}",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.blackout.extendedslabs.loader.fabric.FabricEntrypoint"
+		]
+	},
+	"depends": {
+		"fabricloader": ">=${fabricLoaderVersion}",
+		"minecraft": "${minecraftVersionRange}",
+		"java": ">=21"
+	}
+}
