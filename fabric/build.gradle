@@ -1,16 +1,11 @@
 plugins {
-	id 'fabric-loom' version '1.17.+'
-}
-
-loom {
-	noIntermediateMappings()
+	id 'net.fabricmc.fabric-loom' version '1.17.+'
 }
 
 dependencies {
 	minecraft "com.mojang:minecraft:${minecraftVersion}"
-	mappings loom.layered {
-	}
-	modImplementation "net.fabricmc:fabric-loader:${fabricLoaderVersion}"
+	implementation "net.fabricmc:fabric-loader:${fabricLoaderVersion}"
+	implementation project(':common')
 }
 
 sourceSets {
