@@ -20,8 +20,8 @@ public class ESBlockTagsProvider extends BlockTagsProvider {
 	@Override
 	protected void addTags(HolderLookup.Provider provider) {
 		for (ESBlockDefinitions.BlockDefinition definition : ESBlockDefinitions.blocks()) {
-			for (TagKey<Block> tag : definition.tags()) {
-				tag(tag).add(definition.block().get());
+			for (TagKey<Block> blockTag : definition.tags()) {
+				tag(blockTag).add(definition.block().get());
 			}
 		}
 	}

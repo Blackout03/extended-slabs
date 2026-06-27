@@ -9,8 +9,10 @@ import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.ButtonBlock;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.StairBlock;
+import net.minecraft.world.level.block.WallBlock;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
@@ -31,6 +33,8 @@ public class ESBlockStateProvider extends BlockStateProvider {
 				case VERTICAL_SLAB -> verticalSlabBlock(definition.block().get(), definition, texture, texture, texture);
 				case STAIRS -> stairsBlock((StairBlock) definition.block().get(), texture);
 				case CORNER -> cornerBlock(definition.block().get(), definition, texture, texture, texture);
+				case WALL -> wallBlock((WallBlock) definition.block().get(), texture);
+				case BUTTON -> buttonBlock((ButtonBlock) definition.block().get(), texture);
 			}
 		}
 	}

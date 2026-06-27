@@ -22,36 +22,23 @@ public class ESRecipeProvider extends RecipeProvider {
 			ItemLike result = definition.item().get();
 			ItemLike ingredient = definition.originalBlock().asItem() == Items.AIR ? Items.STONE : definition.originalBlock().asItem();
 
-			switch (definition.type()) {
-				case SLAB -> ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result, 6)
-						.define('#', ingredient)
-						.pattern("###")
-						.unlockedBy("has_ingredient", has(ingredient))
-						.save(recipeOutput);
-				case VERTICAL_SLAB -> {
-					ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result, 6)
-							.define('#', ingredient)
-							.pattern("#")
-							.pattern("#")
-							.pattern("#")
-							.unlockedBy("has_ingredient", has(ingredient))
-							.save(recipeOutput);
-					ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, result)
-							.requires(definition.slabVariant().get())
-							.unlockedBy("has_slab", has(definition.slabVariant().get()))
-							.save(recipeOutput, ExtendedSlabs.MODID + ":" + definition.id() + "_from_" + definition.slabVariant().id());
+			if (definition.type() == ESBlockDefinitions.BlockType.SLAB) {
+				ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result, 6).define('#', ingredient).pattern("###").unlockedBy("has_ingredient", has(ingredient)).save(recipeOutput);
+			} else if (definition.type() == ESBlockDefinitions.BlockType.VERTICAL_SLAB) {
+				ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result, 6).define('#', ingredient).pattern("#").pattern("#").pattern("#").unlockedBy("has_ingredient", has(ingredient)).save(recipeOutput);
+				if (definition.slabVariant() != null) {
+					ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, result).requires(definition.slabVariant().get()).unlockedBy("has_slab", has(definition.slabVariant().get())).save(recipeOutput, ExtendedSlabs.MODID + ":" + definition.id() + "_from_" + definition.slabVariant().id());
 				}
-				case STAIRS -> ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result, 4)
-						.define('#', ingredient)
-						.pattern("#  ")
-						.pattern("## ")
-						.pattern("###")
-						.unlockedBy("has_ingredient", has(ingredient))
-						.save(recipeOutput);
-				case CORNER -> ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, result)
-						.requires(definition.stairVariant().get())
-						.unlockedBy("has_stairs", has(definition.stairVariant().get()))
-						.save(recipeOutput);
+			} else if (definition.type() == ESBlockDefinitions.BlockType.STAIRS) {
+				ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result, 4).define('#', ingredient).pattern("#  ").pattern("## ").pattern("###").unlockedBy("has_ingredient", has(ingredient)).save(recipeOutput);
+			} else if (definition.type() == ESBlockDefinitions.BlockType.CORNER) {
+				if (definition.stairVariant() != null) {
+					ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, result).requires(definition.stairVariant().get()).unlockedBy("has_stairs", has(definition.stairVariant().get())).save(recipeOutput);
+				}
+			} else if (definition.type() == ESBlockDefinitions.BlockType.WALL) {
+				ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, result, 6).define('#', ingredient).pattern("###").pattern("###").unlockedBy("has_ingredient", has(ingredient)).save(recipeOutput);
+			} else if (definition.type() == ESBlockDefinitions.BlockType.BUTTON) {
+				ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, result).define('#', ingredient).pattern("#").unlockedBy("has_ingredient", has(ingredient)).save(recipeOutput);
 			}
 		}
 	}

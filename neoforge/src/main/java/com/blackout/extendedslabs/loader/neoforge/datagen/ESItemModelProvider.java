@@ -14,7 +14,11 @@ public class ESItemModelProvider extends ItemModelProvider {
 	@Override
 	protected void registerModels() {
 		for (ESBlockDefinitions.BlockDefinition definition : ESBlockDefinitions.blocks()) {
-			withExistingParent(definition.id(), modLoc("block/" + definition.id()));
+			if (definition.type() == ESBlockDefinitions.BlockType.WALL || definition.type() == ESBlockDefinitions.BlockType.BUTTON) {
+				withExistingParent(definition.id(), modLoc("block/" + definition.id() + "_inventory"));
+			} else {
+				withExistingParent(definition.id(), modLoc("block/" + definition.id()));
+			}
 		}
 	}
 }

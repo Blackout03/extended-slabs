@@ -7,17 +7,18 @@ import com.blackout.extendedslabs.platform.PlatformRegistry;
 import com.blackout.extendedslabs.platform.RegistrySupplier;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.ButtonBlock;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.StairBlock;
+import net.minecraft.world.level.block.WallBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.properties.BlockSetType;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -30,67 +31,15 @@ public class ESBlockDefinitions {
 	public static final ModRegistry<CreativeModeTab> CREATIVE_MODE_TABS = PlatformRegistry.create(Registries.CREATIVE_MODE_TAB);
 	private static final List<BlockDefinition> BLOCK_DEFINITIONS = new ArrayList<>();
 	private static final List<RegistrySupplier<Item>> ORDERED_ITEMS = new ArrayList<>();
+	private static RegistrySupplier<CreativeModeTab> extendedSlabsTab;
+	private static boolean initialized;
 
-	private static final BlockFamily DIRT = family("dirt", Blocks.DIRT, BlockTags.MINEABLE_WITH_SHOVEL);
-	private static final BlockFamily COARSE_DIRT = family("coarse_dirt", Blocks.COARSE_DIRT, BlockTags.MINEABLE_WITH_SHOVEL);
-	private static final BlockFamily ROOTED_DIRT = family("rooted_dirt", Blocks.ROOTED_DIRT, BlockTags.MINEABLE_WITH_SHOVEL);
-	private static final BlockFamily TUFF = family("tuff", Blocks.TUFF, BlockTags.MINEABLE_WITH_PICKAXE);
-	private static final BlockFamily CALCITE = family("calcite", Blocks.CALCITE, BlockTags.MINEABLE_WITH_PICKAXE);
-	private static final BlockFamily MUD = family("mud", Blocks.MUD, BlockTags.MINEABLE_WITH_SHOVEL);
-	private static final BlockFamily PACKED_MUD = family("packed_mud", Blocks.PACKED_MUD, BlockTags.MINEABLE_WITH_PICKAXE);
+	public static FamilyBuilder family(String name, Block originalBlock, TagKey<Block> tag) {
+		return family(name, name, originalBlock, tag);
+	}
 
-	public static final RegistrySupplier<Block> DIRT_SLAB = DIRT.slab();
-	public static final RegistrySupplier<Block> COARSE_DIRT_SLAB = COARSE_DIRT.slab();
-	public static final RegistrySupplier<Block> ROOTED_DIRT_SLAB = ROOTED_DIRT.slab();
-	public static final RegistrySupplier<Block> TUFF_SLAB = TUFF.slab();
-	public static final RegistrySupplier<Block> CALCITE_SLAB = CALCITE.slab();
-	public static final RegistrySupplier<Block> MUD_SLAB = MUD.slab();
-	public static final RegistrySupplier<Block> PACKED_MUD_SLAB = PACKED_MUD.slab();
-
-	public static final RegistrySupplier<Block> DIRT_VERTICAL = DIRT.verticalSlab();
-	public static final RegistrySupplier<Block> COARSE_DIRT_VERTICAL = COARSE_DIRT.verticalSlab();
-	public static final RegistrySupplier<Block> ROOTED_DIRT_VERTICAL = ROOTED_DIRT.verticalSlab();
-	public static final RegistrySupplier<Block> TUFF_VERTICAL = TUFF.verticalSlab();
-	public static final RegistrySupplier<Block> CALCITE_VERTICAL = CALCITE.verticalSlab();
-	public static final RegistrySupplier<Block> MUD_VERTICAL = MUD.verticalSlab();
-	public static final RegistrySupplier<Block> PACKED_MUD_VERTICAL = PACKED_MUD.verticalSlab();
-
-	public static final RegistrySupplier<Block> DIRT_STAIRS = DIRT.stairs();
-	public static final RegistrySupplier<Block> COARSE_DIRT_STAIRS = COARSE_DIRT.stairs();
-	public static final RegistrySupplier<Block> ROOTED_DIRT_STAIRS = ROOTED_DIRT.stairs();
-	public static final RegistrySupplier<Block> TUFF_STAIRS = TUFF.stairs();
-	public static final RegistrySupplier<Block> CALCITE_STAIRS = CALCITE.stairs();
-	public static final RegistrySupplier<Block> MUD_STAIRS = MUD.stairs();
-	public static final RegistrySupplier<Block> PACKED_MUD_STAIRS = PACKED_MUD.stairs();
-
-	public static final RegistrySupplier<Block> DIRT_CORNER = DIRT.corner();
-	public static final RegistrySupplier<Block> COARSE_DIRT_CORNER = COARSE_DIRT.corner();
-	public static final RegistrySupplier<Block> ROOTED_DIRT_CORNER = ROOTED_DIRT.corner();
-	public static final RegistrySupplier<Block> TUFF_CORNER = TUFF.corner();
-	public static final RegistrySupplier<Block> CALCITE_CORNER = CALCITE.corner();
-	public static final RegistrySupplier<Block> MUD_CORNER = MUD.corner();
-	public static final RegistrySupplier<Block> PACKED_MUD_CORNER = PACKED_MUD.corner();
-
-	public static final RegistrySupplier<CreativeModeTab> EXTENDED_SLABS_TAB = CREATIVE_MODE_TABS.register("extended_slabs", () -> CreativeModeTab.builder()
-			.title(Component.translatable("itemGroup.extendedslabs"))
-			.icon(() -> new ItemStack(DIRT_SLAB.get()))
-			.displayItems((featureFlagSet, output) -> ORDERED_ITEMS.stream().map(RegistrySupplier::get).forEach(output::accept))
-			.build());
-
-	private static BlockFamily family(String name, Block originalBlock, TagKey<Block> tag) {
-		List<TagKey<Block>> tags = List.of(tag);
-		BlockDefinition slab = block(name + "_slab", originalBlock, BlockType.SLAB, tags, name, () -> new SlabBlock(BlockBehaviour.Properties.copy(originalBlock)));
-		BlockDefinition verticalSlab = block("vertical_" + name + "_slab", originalBlock, BlockType.VERTICAL_SLAB, tags, name, () -> new ESPVerticalSlabBlock(tags, originalBlock, slab.block().get(), BlockBehaviour.Properties.copy(originalBlock)));
-		BlockDefinition stairs = block(name + "_stairs", originalBlock, BlockType.STAIRS, tags, name, () -> new StairBlock(originalBlock.defaultBlockState(), BlockBehaviour.Properties.copy(originalBlock)));
-		BlockDefinition corner = block(name + "_corner", originalBlock, BlockType.CORNER, tags, name, () -> new ESPCornerBlock(tags, originalBlock, stairs.block().get(), BlockBehaviour.Properties.copy(originalBlock)));
-		BlockFamily family = new BlockFamily(originalBlock, tags, slab.block(), verticalSlab.block(), stairs.block(), corner.block());
-
-		slab.bindFamily(family);
-		verticalSlab.bindFamily(family);
-		stairs.bindFamily(family);
-		corner.bindFamily(family);
-
-		return family;
+	public static FamilyBuilder family(String idName, String textureName, Block originalBlock, TagKey<Block> tag) {
+		return new FamilyBuilder(idName, textureName, originalBlock, List.of(tag));
 	}
 
 	private static BlockDefinition block(String id, Block originalBlock, BlockType type, List<TagKey<Block>> tags, String textureName, Supplier<Block> supplier) {
@@ -104,25 +53,182 @@ public class ESBlockDefinitions {
 		return definition;
 	}
 
+	private static RegistrySupplier<Block> existingBlock(String id, Block block) {
+		return new RegistrySupplier<>() {
+			@Override
+			public String id() {
+				return id;
+			}
+
+			@Override
+			public Block get() {
+				return block;
+			}
+		};
+	}
+
 	public static Collection<BlockDefinition> blocks() {
+		init();
 		return BLOCK_DEFINITIONS;
 	}
 
 	public static Collection<RegistrySupplier<Item>> orderedItems() {
+		init();
 		return ORDERED_ITEMS;
 	}
 
+	public static RegistrySupplier<CreativeModeTab> extendedSlabsTab() {
+		init();
+		return extendedSlabsTab;
+	}
+
 	public static void init() {
+		if (initialized) {
+			return;
+		}
+
+		initialized = true;
+		ESBlockFamilies.init();
+		ESSlabs.init();
+		ESVerticalSlabs.init();
+		ESStairs.init();
+		ESCorners.init();
+		ESWalls.init();
+		ESButtons.init();
+		registerCreativeTabs();
+	}
+
+	private static void registerCreativeTabs() {
+		if (extendedSlabsTab != null) {
+			return;
+		}
+
+		extendedSlabsTab = CREATIVE_MODE_TABS.register("extended_slabs", () -> CreativeModeTab.builder()
+				.title(Component.translatable("itemGroup.extendedslabs"))
+				.icon(() -> new ItemStack(ESSlabs.DIRT_SLAB.get()))
+				.displayItems((featureFlagSet, output) -> ORDERED_ITEMS.stream().map(RegistrySupplier::get).forEach(output::accept))
+				.build());
 	}
 
 	public enum BlockType {
 		SLAB,
 		VERTICAL_SLAB,
 		STAIRS,
-		CORNER
+		CORNER,
+		WALL,
+		BUTTON
 	}
 
-	public record BlockFamily(Block originalBlock, List<TagKey<Block>> tags, RegistrySupplier<Block> slab, RegistrySupplier<Block> verticalSlab, RegistrySupplier<Block> stairs, RegistrySupplier<Block> corner) {
+	public record BlockFamily(Block originalBlock, List<TagKey<Block>> tags, RegistrySupplier<Block> slab, RegistrySupplier<Block> verticalSlab, RegistrySupplier<Block> stairs, RegistrySupplier<Block> corner, RegistrySupplier<Block> wall, RegistrySupplier<Block> button) {
+	}
+
+	public static class FamilyBuilder {
+		private final String idName;
+		private final String textureName;
+		private final Block originalBlock;
+		private final List<TagKey<Block>> tags;
+		private final List<BlockDefinition> definitions = new ArrayList<>();
+		private RegistrySupplier<Block> slab;
+		private RegistrySupplier<Block> verticalSlab;
+		private RegistrySupplier<Block> stairs;
+		private RegistrySupplier<Block> corner;
+		private RegistrySupplier<Block> wall;
+		private RegistrySupplier<Block> button;
+
+		private FamilyBuilder(String idName, String textureName, Block originalBlock, List<TagKey<Block>> tags) {
+			this.idName = idName;
+			this.textureName = textureName;
+			this.originalBlock = originalBlock;
+			this.tags = tags;
+		}
+
+		public FamilyBuilder slab() {
+			BlockDefinition definition = block(idName + "_slab", originalBlock, BlockType.SLAB, tags, textureName, () -> new SlabBlock(BlockBehaviour.Properties.copy(originalBlock)));
+			slab = definition.block();
+			definitions.add(definition);
+			return this;
+		}
+
+		public FamilyBuilder slab(Block existingBlock) {
+			return slab(idName + "_slab", existingBlock);
+		}
+
+		public FamilyBuilder slab(String id, Block existingBlock) {
+			slab = existingBlock(id, existingBlock);
+			return this;
+		}
+
+		public FamilyBuilder verticalSlab() {
+			BlockDefinition definition = block("vertical_" + idName + "_slab", originalBlock, BlockType.VERTICAL_SLAB, tags, textureName, () -> new ESPVerticalSlabBlock(tags, originalBlock, slab != null ? slab.get() : originalBlock, BlockBehaviour.Properties.copy(originalBlock)));
+			verticalSlab = definition.block();
+			definitions.add(definition);
+			return this;
+		}
+
+		public FamilyBuilder stairs() {
+			BlockDefinition definition = block(idName + "_stairs", originalBlock, BlockType.STAIRS, tags, textureName, () -> new StairBlock(originalBlock.defaultBlockState(), BlockBehaviour.Properties.copy(originalBlock)));
+			stairs = definition.block();
+			definitions.add(definition);
+			return this;
+		}
+
+		public FamilyBuilder stairs(Block existingBlock) {
+			return stairs(idName + "_stairs", existingBlock);
+		}
+
+		public FamilyBuilder stairs(String id, Block existingBlock) {
+			stairs = existingBlock(id, existingBlock);
+			return this;
+		}
+
+		public FamilyBuilder corner() {
+			BlockDefinition definition = block(idName + "_corner", originalBlock, BlockType.CORNER, tags, textureName, () -> new ESPCornerBlock(tags, originalBlock, stairs != null ? stairs.get() : originalBlock, BlockBehaviour.Properties.copy(originalBlock)));
+			corner = definition.block();
+			definitions.add(definition);
+			return this;
+		}
+
+		public FamilyBuilder wall() {
+			BlockDefinition definition = block(idName + "_wall", originalBlock, BlockType.WALL, tags, textureName, () -> new WallBlock(BlockBehaviour.Properties.copy(originalBlock)));
+			wall = definition.block();
+			definitions.add(definition);
+			return this;
+		}
+
+		public FamilyBuilder wall(Block existingBlock) {
+			return wall(idName + "_wall", existingBlock);
+		}
+
+		public FamilyBuilder wall(String id, Block existingBlock) {
+			wall = existingBlock(id, existingBlock);
+			return this;
+		}
+
+		public FamilyBuilder button() {
+			BlockDefinition definition = block(idName + "_button", originalBlock, BlockType.BUTTON, tags, textureName, () -> new ButtonBlock(BlockSetType.STONE, 20, BlockBehaviour.Properties.copy(originalBlock).noCollission().strength(0.5F)));
+			button = definition.block();
+			definitions.add(definition);
+			return this;
+		}
+
+		public FamilyBuilder button(Block existingBlock) {
+			return button(idName + "_button", existingBlock);
+		}
+
+		public FamilyBuilder button(String id, Block existingBlock) {
+			button = existingBlock(id, existingBlock);
+			return this;
+		}
+
+		public BlockFamily build() {
+			BlockFamily family = new BlockFamily(originalBlock, tags, slab, verticalSlab, stairs, corner, wall, button);
+
+			for (BlockDefinition definition : definitions) {
+				definition.bindFamily(family);
+			}
+
+			return family;
+		}
 	}
 
 	public static class BlockDefinition {
@@ -195,6 +301,14 @@ public class ESBlockDefinitions {
 
 		public RegistrySupplier<Block> cornerVariant() {
 			return family.corner();
+		}
+
+		public RegistrySupplier<Block> wallVariant() {
+			return family.wall();
+		}
+
+		public RegistrySupplier<Block> buttonVariant() {
+			return family.button();
 		}
 	}
 }
