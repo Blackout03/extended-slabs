@@ -2,11 +2,15 @@ plugins {
 	id 'fabric-loom' version '1.17.+'
 }
 
+loom {
+	noIntermediateMappings()
+}
+
 dependencies {
 	minecraft "com.mojang:minecraft:${minecraftVersion}"
-	mappings loom.officialMojangMappings()
+	mappings loom.layered {
+	}
 	modImplementation "net.fabricmc:fabric-loader:${fabricLoaderVersion}"
-	implementation project(':common')
 }
 
 sourceSets {

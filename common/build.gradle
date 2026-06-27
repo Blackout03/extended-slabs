@@ -1,21 +1,19 @@
+plugins {
+	id 'fabric-loom' version '1.17.+'
+}
+
+loom {
+	noIntermediateMappings()
+}
+
+dependencies {
+	minecraft "com.mojang:minecraft:${minecraftVersion}"
+	mappings loom.layered {
+	}
+}
+
 sourceSets {
 	main {
 		resources.srcDirs += ['src/main/generated']
 	}
-}
-
-tasks.withType(JavaCompile).configureEach {
-	enabled = false
-}
-
-tasks.withType(ProcessResources).configureEach {
-	enabled = false
-}
-
-tasks.withType(Jar).configureEach {
-	enabled = false
-}
-
-tasks.withType(Javadoc).configureEach {
-	enabled = false
 }
