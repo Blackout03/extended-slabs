@@ -1,0 +1,36 @@
+plugins {
+	id 'fabric-loom' version '1.10-SNAPSHOT'
+}
+
+dependencies {
+	minecraft "com.mojang:minecraft:${minecraftVersion}"
+	mappings loom.officialMojangMappings()
+	modImplementation "net.fabricmc:fabric-loader:${fabricLoaderVersion}"
+	modImplementation "net.fabricmc.fabric-api:fabric-api:${fabricApiVersion}"
+	implementation project(':common')
+}
+
+loom {
+	runs {
+		client {
+			client()
+			setConfigName('Fabric Client')
+			ideConfigGenerated(true)
+			runDir('run')
+		}
+		server {
+			server()
+			setConfigName('Fabric Server')
+			ideConfigGenerated(true)
+			runDir('run')
+		}
+	}
+}
+
+processResources {
+	from project(':common').sourceSets.main.resources
+}
+
+compileJava {
+	source project(':common').sourceSets.main.allSource
+}
