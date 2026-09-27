@@ -12,7 +12,6 @@ public class FabricRegistryBridge {
 		RegistryDispatcher.registries().forEach(FabricRegistryBridge::registerRegistry);
 	}
 
-	@SuppressWarnings({"rawtypes", "unchecked"})
 	private static void registerRegistry(ModRegistry registry) {
 		Registry target = getTargetRegistry(registry);
 
@@ -22,7 +21,6 @@ public class FabricRegistryBridge {
 		}
 	}
 
-	@SuppressWarnings("rawtypes")
 	private static Registry getTargetRegistry(ModRegistry registry) {
 		if (registry.registryKey() == Registries.BLOCK) {
 			return BuiltInRegistries.BLOCK;

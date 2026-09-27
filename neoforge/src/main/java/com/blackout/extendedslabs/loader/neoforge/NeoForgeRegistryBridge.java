@@ -15,7 +15,7 @@ public class NeoForgeRegistryBridge {
 		DeferredRegister<T> deferredRegister = DeferredRegister.create(registry.registryKey(), ExtendedSlabs.MODID);
 
 		for (ModRegistry.Entry<T> entry : registry.entries()) {
-			deferredRegister.register(entry.id(), entry::get);
+			deferredRegister.register(entry.id(), entry);
 		}
 
 		deferredRegister.register(modEventBus);

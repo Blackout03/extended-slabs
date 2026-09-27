@@ -10,7 +10,7 @@ displayURL="https://www.curseforge.com/minecraft/mc-mods/extended-slabs-plus"
 authors="${modAuthor}"
 description='''${modDescription}'''
 itemIcon="extendedslabs:vertical_dirt_path_slab"
-logoFile="icon.png"
+iconFile="icon.png"
 credits="Thinkverse"
 
 [[dependencies.${modId}]]
