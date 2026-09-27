@@ -1,0 +1,11 @@
+{
+  "required": true,
+  "package": "com.blackout.extendedslabs.loader.fabric.mixin",
+  "compatibilityLevel": "JAVA_25",
+  "mixins": [
+    "CreativeModeTabMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

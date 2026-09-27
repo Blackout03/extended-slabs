@@ -7,6 +7,9 @@
 	"authors": ["${modAuthor}"],
 	"license": "${modLicense}",
 	"environment": "*",
+	"mixins": [
+		"extendedslabs.mixins.json"
+	],
 	"entrypoints": {
 		"main": [
 			"com.blackout.extendedslabs.loader.fabric.FabricEntrypoint"
