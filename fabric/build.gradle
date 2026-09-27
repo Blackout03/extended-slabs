@@ -5,6 +5,11 @@ plugins {
 dependencies {
 	minecraft "com.mojang:minecraft:${minecraftVersion}"
 	implementation "net.fabricmc:fabric-loader:${fabricLoaderVersion}"
+	implementation "net.fabricmc.fabric-api:fabric-api:${fabricApiVersion}"
+
+	compileOnly "mezz.jei:jei-${minecraftVersion}-fabric-api:${jeiVersion}"
+	runtimeOnly "mezz.jei:jei-${minecraftVersion}-fabric:${jeiVersion}"
+
 	implementation project(':common')
 }
 
@@ -12,5 +17,7 @@ sourceSets {
 	main {
 		java.srcDir project(':common').sourceSets.main.java.srcDirs
 		resources.srcDir project(':common').sourceSets.main.resources.srcDirs
+		resources.srcDir project(':neoforge').file('src/main/generated')
+		resources.srcDir project(':neoforge').file('src/main/resources')
 	}
 }

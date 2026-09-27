@@ -1,9 +1,0 @@
-{
-  "parent": "minecraft:block/stairs",
-  "render_type": "minecraft:translucent",
-  "textures": {
-    "bottom": "minecraft:block/green_stained_glass",
-    "side": "minecraft:block/green_stained_glass",
-    "top": "minecraft:block/green_stained_glass"
-  }
-}

@@ -8,5 +8,6 @@ public class FabricEntrypoint implements ModInitializer {
 	public void onInitialize() {
 		ExtendedSlabs.init();
 		FabricRegistryBridge.register();
+		FabricCreativeTabs.register();
 	}
 }

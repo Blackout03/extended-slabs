@@ -1,8 +1,0 @@
-{
-  "parent": "extendedslabs:block/corner",
-  "textures": {
-    "bottom": "minecraft:block/crimson_stem",
-    "side": "minecraft:block/crimson_stem",
-    "top": "minecraft:block/crimson_stem"
-  }
-}

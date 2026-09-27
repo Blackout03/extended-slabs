@@ -1,8 +1,0 @@
-{
-  "parent": "extendedslabs:block/corner",
-  "textures": {
-    "bottom": "minecraft:block/gravel",
-    "side": "minecraft:block/gravel",
-    "top": "minecraft:block/gravel"
-  }
-}

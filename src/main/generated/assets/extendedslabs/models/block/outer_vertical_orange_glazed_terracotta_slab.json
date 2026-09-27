@@ -1,8 +1,0 @@
-{
-  "parent": "extendedslabs:block/outer_vertical_slab",
-  "textures": {
-    "bottom": "minecraft:block/orange_glazed_terracotta",
-    "side": "minecraft:block/orange_glazed_terracotta",
-    "top": "minecraft:block/orange_glazed_terracotta"
-  }
-}

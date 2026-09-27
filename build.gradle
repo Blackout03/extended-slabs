@@ -8,6 +8,17 @@ subprojects {
 	apply plugin: 'java-library'
 	apply plugin: 'maven-publish'
 
+	repositories {
+		maven {
+			name = "Jared's maven"
+			url = "https://maven.blamejared.com/"
+		}
+		maven {
+			name = "ModMaven"
+			url = "https://modmaven.dev"
+		}
+	}
+
 	version = "${minecraftVersion}-${modVersion}"
 	group = 'com.blackout.extendedslabs'
 	base.archivesName = "${modId}-${project.name}"
@@ -25,9 +36,9 @@ subprojects {
 				minecraftVersionRange: minecraftVersionRange,
 				neoVersion: neoVersion,
 				neoVersionRange: neoVersionRange,
-				neoLoaderVersionRange: neoLoaderVersionRange,
 				fabricLoaderVersion: fabricLoaderVersion,
 				fabricApiVersion: fabricApiVersion,
+				jeiVersion: jeiVersion,
 				modId: modId,
 				modName: modName,
 				modLicense: modLicense,

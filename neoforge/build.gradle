@@ -39,6 +39,11 @@ neoForge {
 	}
 }
 
+dependencies {
+	compileOnly "mezz.jei:jei-${minecraftVersion}-neoforge-api:${jeiVersion}"
+	runtimeOnly "mezz.jei:jei-${minecraftVersion}-neoforge:${jeiVersion}"
+}
+
 sourceSets {
 	main {
 		java.srcDir project(':common').sourceSets.main.java.srcDirs

@@ -10,11 +10,18 @@
 	"entrypoints": {
 		"main": [
 			"com.blackout.extendedslabs.loader.fabric.FabricEntrypoint"
+		],
+		"jei_mod_plugin": [
+			"com.blackout.extendedslabs.compat.jei.ESJeiPlugin"
 		]
 	},
 	"depends": {
 		"fabricloader": ">=${fabricLoaderVersion}",
-		"minecraft": "${minecraftVersionRange}",
-		"java": ">=21"
+		"fabric-api": ">=${fabricApiVersion}",
+		"minecraft": "${minecraftVersion}",
+		"java": ">=25"
+	},
+	"suggests": {
+		"jei": ">=${jeiVersion}"
 	}
 }

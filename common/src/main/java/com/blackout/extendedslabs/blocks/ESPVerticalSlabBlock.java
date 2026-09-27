@@ -4,10 +4,10 @@ import com.blackout.extendedslabs.blocks.shapes.VerticalSlabShape;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.TagKey;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
@@ -15,7 +15,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
@@ -27,7 +26,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import java.util.List;
 
 public class ESPVerticalSlabBlock extends Block implements SimpleWaterloggedBlock {
-	public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
+	public static final EnumProperty<Direction> FACING = HorizontalDirectionalBlock.FACING;
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 	public static final EnumProperty<VerticalSlabShape> SHAPE = EnumProperty.create("shape", VerticalSlabShape.class);
 
@@ -78,7 +77,6 @@ public class ESPVerticalSlabBlock extends Block implements SimpleWaterloggedBloc
 	}
 
 	@Override
-	@SuppressWarnings("deprecation")
 	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
 		VerticalSlabShape shape = state.getValue(SHAPE);
 		Direction facing = state.getValue(FACING);
@@ -136,7 +134,7 @@ public class ESPVerticalSlabBlock extends Block implements SimpleWaterloggedBloc
 		};
 	}
 
-	private static VerticalSlabShape getSlabShape(BlockState state, Level level, BlockPos pos) {
+	private static VerticalSlabShape getSlabShape(BlockState state, LevelReader level, BlockPos pos) {
 		Direction direction = state.getValue(FACING);
 		BlockState forward = level.getBlockState(pos.relative(direction));
 		if (isBlockVerticalSlab(forward)) {
@@ -157,7 +155,7 @@ public class ESPVerticalSlabBlock extends Block implements SimpleWaterloggedBloc
 		return VerticalSlabShape.STRAIGHT;
 	}
 
-	private static boolean isDifferentVerticalSlab(BlockState state, Level level, BlockPos pos, Direction direction) {
+	private static boolean isDifferentVerticalSlab(BlockState state, LevelReader level, BlockPos pos, Direction direction) {
 		BlockState other = level.getBlockState(pos.relative(direction));
 		return !isBlockVerticalSlab(other) || other.getValue(FACING) != state.getValue(FACING);
 	}
@@ -167,24 +165,22 @@ public class ESPVerticalSlabBlock extends Block implements SimpleWaterloggedBloc
 	}
 
 	@Override
-	@SuppressWarnings("deprecation")
-	public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor level, BlockPos pos, BlockPos neighborPos) {
+	public BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess ticks, BlockPos pos, Direction directionToNeighbour, BlockPos neighbourPos, BlockState neighbourState, RandomSource random) {
 		if (state.getValue(WATERLOGGED)) {
-			level.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
+			ticks.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
 		}
 
-		return direction.getAxis().isHorizontal() ? state.setValue(SHAPE, getSlabShape(state, (Level) level, pos)) : super.updateShape(state, direction, neighborState, level, pos, neighborPos);
+		return directionToNeighbour.getAxis().isHorizontal() ? state.setValue(SHAPE, getSlabShape(state, (Level) level, pos)) : super.updateShape(state, level, ticks, pos, directionToNeighbour, neighbourPos, neighbourState, random);
 	}
 
 	@Override
-	@SuppressWarnings("deprecation")
 	public FluidState getFluidState(BlockState state) {
 		return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
 	}
 
 	@Override
-	public boolean canPlaceLiquid(BlockGetter world, BlockPos pos, BlockState state, Fluid fluid) {
-		return SimpleWaterloggedBlock.super.canPlaceLiquid(world, pos, state, fluid);
+	public boolean canPlaceLiquid(LivingEntity user, BlockGetter level, BlockPos pos, BlockState state, Fluid type) {
+		return SimpleWaterloggedBlock.super.canPlaceLiquid(user, level, pos, state, type);
 	}
 
 	@Override

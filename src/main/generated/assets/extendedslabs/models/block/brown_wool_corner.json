@@ -1,8 +1,0 @@
-{
-  "parent": "extendedslabs:block/corner",
-  "textures": {
-    "bottom": "minecraft:block/brown_wool",
-    "side": "minecraft:block/brown_wool",
-    "top": "minecraft:block/brown_wool"
-  }
-}

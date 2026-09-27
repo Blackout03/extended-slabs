@@ -1,17 +1,16 @@
 package com.blackout.extendedslabs.registry;
 
-import com.blackout.extendedslabs.blocks.ESPCornerBlock;
+import com.blackout.extendedslabs.ExtendedSlabs;
 import com.blackout.extendedslabs.blocks.ESPVerticalSlabBlock;
 import com.blackout.extendedslabs.platform.ModRegistry;
 import com.blackout.extendedslabs.platform.PlatformRegistry;
 import com.blackout.extendedslabs.platform.RegistrySupplier;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.network.chat.Component;
+import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.ButtonBlock;
 import net.minecraft.world.level.block.SlabBlock;
@@ -23,15 +22,17 @@ import net.minecraft.world.level.block.state.properties.BlockSetType;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
 import java.util.function.Supplier;
 
 public class ESBlockDefinitions {
 	public static final ModRegistry<Block> BLOCKS = PlatformRegistry.create(Registries.BLOCK);
 	public static final ModRegistry<Item> ITEMS = PlatformRegistry.create(Registries.ITEM);
-	public static final ModRegistry<CreativeModeTab> CREATIVE_MODE_TABS = PlatformRegistry.create(Registries.CREATIVE_MODE_TAB);
 	private static final List<BlockDefinition> BLOCK_DEFINITIONS = new ArrayList<>();
 	private static final List<RegistrySupplier<Item>> ORDERED_ITEMS = new ArrayList<>();
-	private static RegistrySupplier<CreativeModeTab> extendedSlabsTab;
 	private static boolean initialized;
 
 	public static FamilyBuilder family(String name, Block originalBlock, TagKey<Block> tag) {
@@ -44,13 +45,23 @@ public class ESBlockDefinitions {
 
 	private static BlockDefinition block(String id, Block originalBlock, BlockType type, List<TagKey<Block>> tags, String textureName, Supplier<Block> supplier) {
 		RegistrySupplier<Block> block = BLOCKS.register(id, supplier);
-		RegistrySupplier<Item> item = ITEMS.register(id, () -> new BlockItem(block.get(), new Item.Properties()));
+		RegistrySupplier<Item> item = ITEMS.register(id, () -> new BlockItem(block.get(), itemProperties(id)));
 		BlockDefinition definition = new BlockDefinition(id, originalBlock, type, tags, textureName, block, item);
 
 		BLOCK_DEFINITIONS.add(definition);
 		ORDERED_ITEMS.add(item);
 
 		return definition;
+	}
+
+	private static Item.Properties itemProperties(String id) {
+		ResourceKey<Item> itemKey = ResourceKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(ExtendedSlabs.MODID, id));
+		return new Item.Properties().setId(itemKey);
+	}
+
+	private static BlockBehaviour.Properties blockProperties(Block originalBlock, String id) {
+		ResourceKey<Block> blockKey = ResourceKey.create(Registries.BLOCK, Identifier.fromNamespaceAndPath(ExtendedSlabs.MODID, id));
+		return BlockBehaviour.Properties.ofLegacyCopy(originalBlock).setId(blockKey);
 	}
 
 	private static RegistrySupplier<Block> existingBlock(String id, Block block) {
@@ -77,11 +88,6 @@ public class ESBlockDefinitions {
 		return ORDERED_ITEMS;
 	}
 
-	public static RegistrySupplier<CreativeModeTab> extendedSlabsTab() {
-		init();
-		return extendedSlabsTab;
-	}
-
 	public static void init() {
 		if (initialized) {
 			return;
@@ -89,19 +95,6 @@ public class ESBlockDefinitions {
 
 		initialized = true;
 		ESBlockFamilies.init();
-		registerCreativeTabs();
-	}
-
-	private static void registerCreativeTabs() {
-		if (extendedSlabsTab != null) {
-			return;
-		}
-
-		extendedSlabsTab = CREATIVE_MODE_TABS.register("extended_slabs", () -> CreativeModeTab.builder()
-				.title(Component.translatable("itemGroup.extendedslabs"))
-				.icon(() -> new ItemStack(ESBlockFamilies.DIRT.slab().get()))
-				.displayItems((featureFlagSet, output) -> ORDERED_ITEMS.stream().map(RegistrySupplier::get).forEach(output::accept))
-				.build());
 	}
 
 	public enum BlockType {
@@ -137,7 +130,8 @@ public class ESBlockDefinitions {
 		}
 
 		public FamilyBuilder slab() {
-			BlockDefinition definition = block(idName + "_slab", originalBlock, BlockType.SLAB, tags, textureName, () -> new SlabBlock(BlockBehaviour.Properties.copy(originalBlock)));
+			String id = idName + "_slab";
+			BlockDefinition definition = block(id, originalBlock, BlockType.SLAB, tags, textureName, () -> new SlabBlock(blockProperties(originalBlock, id)));
 			slab = definition.block();
 			definitions.add(definition);
 			return this;
@@ -153,18 +147,19 @@ public class ESBlockDefinitions {
 		}
 
 		public FamilyBuilder verticalSlab() {
-			BlockDefinition definition = block("vertical_" + idName + "_slab", originalBlock, BlockType.VERTICAL_SLAB, tags, textureName, () -> new ESPVerticalSlabBlock(tags, originalBlock, slab != null ? slab.get() : originalBlock, BlockBehaviour.Properties.copy(originalBlock)));
+			String id = "vertical_" + idName + "_slab";
+			BlockDefinition definition = block(id, originalBlock, BlockType.VERTICAL_SLAB, tags, textureName, () -> new ESPVerticalSlabBlock(tags, originalBlock, slab != null ? slab.get() : originalBlock, blockProperties(originalBlock, id)));
 			verticalSlab = definition.block();
 			definitions.add(definition);
 			return this;
 		}
 
-		public FamilyBuilder stairs() {
-			BlockDefinition definition = block(idName + "_stairs", originalBlock, BlockType.STAIRS, tags, textureName, () -> new StairBlock(originalBlock.defaultBlockState(), BlockBehaviour.Properties.copy(originalBlock)));
-			stairs = definition.block();
-			definitions.add(definition);
-			return this;
-		}
+//		public FamilyBuilder stairs() {
+//			BlockDefinition definition = block(idName + "_stairs", originalBlock, BlockType.STAIRS, tags, textureName, () -> new StairBlock(originalBlock.defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(originalBlock)));
+//			stairs = definition.block();
+//			definitions.add(definition);
+//			return this;
+//		}
 
 		public FamilyBuilder stairs(Block existingBlock) {
 			return stairs(idName + "_stairs", existingBlock);
@@ -175,18 +170,21 @@ public class ESBlockDefinitions {
 			return this;
 		}
 
-		public FamilyBuilder corner() {
-			BlockDefinition definition = block(idName + "_corner", originalBlock, BlockType.CORNER, tags, textureName, () -> new ESPCornerBlock(tags, originalBlock, stairs != null ? stairs.get() : originalBlock, BlockBehaviour.Properties.copy(originalBlock)));
-			corner = definition.block();
-			definitions.add(definition);
-			return this;
-		}
+//		public FamilyBuilder corner() {
+//			BlockDefinition definition = block(idName + "_corner", originalBlock, BlockType.CORNER, tags, textureName, () -> new ESPCornerBlock(tags, originalBlock, stairs != null ? stairs.get() : originalBlock, BlockBehaviour.Properties.copy(originalBlock)));
+//			corner = definition.block();
+//			definitions.add(definition);
+//			return this;
+//		}
 
 		public FamilyBuilder wall() {
-			BlockDefinition definition = block(idName + "_wall", originalBlock, BlockType.WALL, tags, textureName, () -> new WallBlock(BlockBehaviour.Properties.copy(originalBlock)));
-			wall = definition.block();
-			definitions.add(definition);
+			ExtendedSlabs.LOGGER.warn("Skipping generated wall block for {} because wall models/blockstates are not implemented yet", idName);
 			return this;
+
+//			BlockDefinition definition = block(idName + "_wall", originalBlock, BlockType.WALL, tags, textureName, () -> new WallBlock(blockProperties(originalBlock, idName + "_wall")));
+//			wall = definition.block();
+//			definitions.add(definition);
+//			return this;
 		}
 
 		public FamilyBuilder wall(Block existingBlock) {
@@ -198,12 +196,12 @@ public class ESBlockDefinitions {
 			return this;
 		}
 
-		public FamilyBuilder button() {
-			BlockDefinition definition = block(idName + "_button", originalBlock, BlockType.BUTTON, tags, textureName, () -> new ButtonBlock(BlockSetType.STONE, 20, BlockBehaviour.Properties.copy(originalBlock).noCollission().strength(0.5F)));
-			button = definition.block();
-			definitions.add(definition);
-			return this;
-		}
+//		public FamilyBuilder button() {
+//			BlockDefinition definition = block(idName + "_button", originalBlock, BlockType.BUTTON, tags, textureName, () -> new ButtonBlock(BlockSetType.STONE, 20, BlockBehaviour.Properties.ofFullCopy(originalBlock).noCollision().strength(0.5F)));
+//			button = definition.block();
+//			definitions.add(definition);
+//			return this;
+//		}
 
 		public FamilyBuilder button(Block existingBlock) {
 			return button(idName + "_button", existingBlock);

@@ -1,8 +1,0 @@
-{
-  "parent": "extendedslabs:block/inner_vertical_slab",
-  "textures": {
-    "bottom": "minecraft:block/light_gray_terracotta",
-    "side": "minecraft:block/light_gray_terracotta",
-    "top": "minecraft:block/light_gray_terracotta"
-  }
-}

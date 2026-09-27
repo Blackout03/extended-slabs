@@ -1,8 +1,0 @@
-{
-  "parent": "extendedslabs:block/outer_vertical_slab",
-  "textures": {
-    "bottom": "minecraft:block/light_blue_wool",
-    "side": "minecraft:block/light_blue_wool",
-    "top": "minecraft:block/light_blue_wool"
-  }
-}
