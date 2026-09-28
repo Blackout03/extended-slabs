@@ -15,6 +15,7 @@ import net.minecraft.client.data.models.blockstates.PropertyDispatch;
 import net.minecraft.client.data.models.model.ModelTemplate;
 import net.minecraft.client.data.models.model.TextureMapping;
 import net.minecraft.client.data.models.model.TextureSlot;
+import net.minecraft.client.data.models.model.TexturedModel;
 import net.minecraft.client.resources.model.sprite.Material;
 import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
@@ -63,12 +64,25 @@ public class ESBlockStateProvider extends ModelProvider {
 		return new ModelTemplate(Optional.of(Identifier.fromNamespaceAndPath(ExtendedSlabs.MODID, "block/" + parent)), Optional.empty(), requiredTextureKeys);
 	}
 
-	private Identifier mcLoc(String entry) {
-		return Identifier.fromNamespaceAndPath("minecraft", entry);
-	}
-
 	private Identifier modLoc(String entry) {
 		return Identifier.fromNamespaceAndPath(ExtendedSlabs.MODID, entry);
+	}
+
+	private TextureMapping baseBlockTextures(Block block) {
+		TexturedModel texturedModel = BlockModelGenerators.TEXTURED_MODELS.get(block);
+
+		if (texturedModel != null) {
+			return texturedModel.getMapping();
+		}
+
+		return TextureMapping.cube(block);
+	}
+
+	private BlockModelGenerators.BlockFamilyProvider familyWithBaseBlockTextures(
+			BlockModelGenerators blockModels,
+			Block originalBlock
+	) {
+		return blockModels.new BlockFamilyProvider(baseBlockTextures(originalBlock));
 	}
 
 	private void createESSlab(BlockModelGenerators blockModels, ESBlockDefinitions.BlockDefinition definition) {
@@ -80,48 +94,44 @@ public class ESBlockStateProvider extends ModelProvider {
 	private void createESStairs(BlockModelGenerators blockModels, ESBlockDefinitions.BlockDefinition definition) {
 		StairBlock stairs = (StairBlock) definition.block().get();
 
-		blockModels.familyWithExistingFullBlock(definition.originalBlock()).stairs(stairs);
+		familyWithBaseBlockTextures(blockModels, definition.originalBlock()).stairs(stairs);
 	}
 
 	private void createESWall(BlockModelGenerators blockModels, ESBlockDefinitions.BlockDefinition definition) {
 		WallBlock wall = (WallBlock) definition.block().get();
 
-		blockModels.familyWithExistingFullBlock(definition.originalBlock()).wall(wall);
+		familyWithBaseBlockTextures(blockModels, definition.originalBlock()).wall(wall);
 	}
 
 	private void createESFence(BlockModelGenerators blockModels, ESBlockDefinitions.BlockDefinition definition) {
 		FenceBlock fence = (FenceBlock) definition.block().get();
 
-		blockModels.familyWithExistingFullBlock(definition.originalBlock()).fence(fence);
+		familyWithBaseBlockTextures(blockModels, definition.originalBlock()).fence(fence);
 	}
 
 	private void createESFenceGate(BlockModelGenerators blockModels, ESBlockDefinitions.BlockDefinition definition) {
 		FenceGateBlock fenceGate = (FenceGateBlock) definition.block().get();
 
-		blockModels.familyWithExistingFullBlock(definition.originalBlock()).fenceGate(fenceGate);
+		familyWithBaseBlockTextures(blockModels, definition.originalBlock()).fenceGate(fenceGate);
 	}
 
 	private void createESButton(BlockModelGenerators blockModels, ESBlockDefinitions.BlockDefinition definition) {
 		ButtonBlock button = (ButtonBlock) definition.block().get();
 
-		blockModels.familyWithExistingFullBlock(definition.originalBlock()).button(button);
+		familyWithBaseBlockTextures(blockModels, definition.originalBlock()).button(button);
 	}
 
 	private void createESPressurePlate(BlockModelGenerators blockModels, ESBlockDefinitions.BlockDefinition definition) {
 		PressurePlateBlock pressurePlate = (PressurePlateBlock) definition.block().get();
 
-		blockModels.familyWithExistingFullBlock(definition.originalBlock()).pressurePlate(pressurePlate);
+		familyWithBaseBlockTextures(blockModels, definition.originalBlock()).pressurePlate(pressurePlate);
 	}
 
 	private void createESVerticalSlab(BlockModelGenerators blockModels, ESBlockDefinitions.BlockDefinition definition) {
 		Block block = definition.block().get();
 		String name = definition.id();
 
-		Material texture = new Material(mcLoc("block/" + definition.textureName()));
-		TextureMapping textures = new TextureMapping()
-				.put(TextureSlot.SIDE, texture)
-				.put(TextureSlot.BOTTOM, texture)
-				.put(TextureSlot.TOP, texture);
+		TextureMapping textures = baseBlockTextures(definition.originalBlock());
 
 		Identifier verticalSlab = VERTICAL_SLAB.create(modLoc("block/" + name), textures, blockModels.modelOutput);
 		Identifier verticalSlabInner = INNER_VERTICAL_SLAB.create(modLoc("block/inner_" + name), textures, blockModels.modelOutput);
@@ -135,11 +145,7 @@ public class ESBlockStateProvider extends ModelProvider {
 		Block block = definition.block().get();
 		String name = definition.id();
 
-		Material texture = new Material(mcLoc("block/" + definition.textureName()));
-		TextureMapping textures = new TextureMapping()
-				.put(TextureSlot.SIDE, texture)
-				.put(TextureSlot.BOTTOM, texture)
-				.put(TextureSlot.TOP, texture);
+		TextureMapping textures = baseBlockTextures(definition.originalBlock());
 
 		Identifier corner = CORNER.create(modLoc("block/" + name), textures, blockModels.modelOutput);
 		MultiVariant model = BlockModelGenerators.plainVariant(corner);

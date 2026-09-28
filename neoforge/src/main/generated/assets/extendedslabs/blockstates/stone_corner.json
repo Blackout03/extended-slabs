@@ -1,0 +1,22 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "extendedslabs:block/stone_corner",
+      "uvlock": true,
+      "y": 90
+    },
+    "facing=north": {
+      "model": "extendedslabs:block/stone_corner"
+    },
+    "facing=south": {
+      "model": "extendedslabs:block/stone_corner",
+      "uvlock": true,
+      "y": 180
+    },
+    "facing=west": {
+      "model": "extendedslabs:block/stone_corner",
+      "uvlock": true,
+      "y": 270
+    }
+  }
+}

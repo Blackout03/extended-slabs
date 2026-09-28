@@ -43,7 +43,11 @@ public class ESBlockDefinitions {
 	}
 
 	public static FamilyBuilder family(String idName, String textureName, Block originalBlock, TagKey<Block> tag) {
-		return new FamilyBuilder(idName, textureName, originalBlock, List.of(tag));
+		return family(idName, textureName, originalBlock, List.of(tag));
+	}
+
+	public static FamilyBuilder family(String idName, String textureName, Block originalBlock, List<TagKey<Block>> tags) {
+		return new FamilyBuilder(idName, textureName, originalBlock, List.copyOf(tags));
 	}
 
 	private static BlockDefinition block(String id, Block originalBlock, BlockType type, List<TagKey<Block>> tags, String textureName, Supplier<Block> supplier) {
@@ -299,6 +303,46 @@ public class ESBlockDefinitions {
 
 		public FamilyBuilder pressurePlate(String id, Block existingBlock) {
 			pressurePlate = existingBlock(id, existingBlock);
+			return this;
+		}
+
+		public FamilyBuilder complete() {
+			if (slab == null) {
+				slab();
+			}
+
+			if (verticalSlab == null) {
+				verticalSlab();
+			}
+
+			if (stairs == null) {
+				stairs();
+			}
+
+			if (corner == null) {
+				corner();
+			}
+
+			if (wall == null) {
+				wall();
+			}
+
+			if (fence == null) {
+				fence();
+			}
+
+			if (fenceGate == null) {
+				fenceGate();
+			}
+
+			if (button == null) {
+				button();
+			}
+
+			if (pressurePlate == null) {
+				pressurePlate();
+			}
+
 			return this;
 		}
 

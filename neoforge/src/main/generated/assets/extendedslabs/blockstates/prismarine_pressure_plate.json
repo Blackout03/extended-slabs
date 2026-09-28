@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=false": {
+      "model": "extendedslabs:block/prismarine_pressure_plate"
+    },
+    "powered=true": {
+      "model": "extendedslabs:block/prismarine_pressure_plate_down"
+    }
+  }
+}
