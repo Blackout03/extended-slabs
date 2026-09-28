@@ -21,6 +21,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.ButtonBlock;
 import net.minecraft.world.level.block.FenceBlock;
 import net.minecraft.world.level.block.FenceGateBlock;
@@ -29,6 +30,7 @@ import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.WallBlock;
 
+import java.util.Map;
 import java.util.Optional;
 
 public class ESBlockStateProvider extends ModelProvider {
@@ -36,6 +38,13 @@ public class ESBlockStateProvider extends ModelProvider {
 	private static final ModelTemplate INNER_VERTICAL_SLAB = block("inner_vertical_slab", TextureSlot.BOTTOM, TextureSlot.TOP, TextureSlot.SIDE);
 	private static final ModelTemplate OUTER_VERTICAL_SLAB = block("outer_vertical_slab", TextureSlot.BOTTOM, TextureSlot.TOP, TextureSlot.SIDE);
 	private static final ModelTemplate CORNER = block("corner", TextureSlot.BOTTOM, TextureSlot.TOP, TextureSlot.SIDE);
+
+	private static final Map<Block, Block> WAXED_TEXTURE_SOURCES = Map.of(
+			Blocks.CUT_COPPER.waxed().unaffected(), Blocks.CUT_COPPER.weathering().unaffected(),
+			Blocks.CUT_COPPER.waxed().exposed(), Blocks.CUT_COPPER.weathering().exposed(),
+			Blocks.CUT_COPPER.waxed().weathered(), Blocks.CUT_COPPER.weathering().weathered(),
+			Blocks.CUT_COPPER.waxed().oxidized(), Blocks.CUT_COPPER.weathering().oxidized()
+	);
 
 	public ESBlockStateProvider(PackOutput packOutput) {
 		super(packOutput, ExtendedSlabs.MODID);
@@ -69,13 +78,60 @@ public class ESBlockStateProvider extends ModelProvider {
 	}
 
 	private TextureMapping baseBlockTextures(Block block) {
-		TexturedModel texturedModel = BlockModelGenerators.TEXTURED_MODELS.get(block);
+		Block textureSource = WAXED_TEXTURE_SOURCES.getOrDefault(block, block);
+		TexturedModel texturedModel = BlockModelGenerators.TEXTURED_MODELS.get(textureSource);
+		TextureMapping originalTextures = texturedModel != null
+				? texturedModel.getMapping()
+				: TextureMapping.cube(textureSource);
 
-		if (texturedModel != null) {
-			return texturedModel.getMapping();
+		Material side = firstTexture(
+				originalTextures,
+				TextureSlot.SIDE,
+				TextureSlot.WALL,
+				TextureSlot.TEXTURE,
+				TextureSlot.ALL
+		);
+		Material top = firstTexture(
+				originalTextures,
+				TextureSlot.TOP,
+				TextureSlot.END,
+				TextureSlot.ALL
+		);
+		Material bottom = firstTexture(
+				originalTextures,
+				TextureSlot.BOTTOM,
+				TextureSlot.END,
+				TextureSlot.ALL
+		);
+
+		if (top == null) {
+			top = side;
 		}
 
-		return TextureMapping.cube(block);
+		if (bottom == null) {
+			bottom = side;
+		}
+
+		return new TextureMapping()
+				.put(TextureSlot.ALL, side)
+				.put(TextureSlot.TEXTURE, side)
+				.put(TextureSlot.PARTICLE, side)
+				.put(TextureSlot.WALL, side)
+				.put(TextureSlot.SIDE, side)
+				.put(TextureSlot.TOP, top)
+				.put(TextureSlot.BOTTOM, bottom)
+				.put(TextureSlot.END, top);
+	}
+
+	private Material firstTexture(TextureMapping textures, TextureSlot... slots) {
+		for (TextureSlot slot : slots) {
+			try {
+				return textures.get(slot);
+			} catch (IllegalStateException ignored) {
+			}
+		}
+
+		return null;
 	}
 
 	private BlockModelGenerators.BlockFamilyProvider familyWithBaseBlockTextures(
