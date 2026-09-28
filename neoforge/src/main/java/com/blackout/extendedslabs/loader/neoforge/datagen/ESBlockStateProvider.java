@@ -52,6 +52,10 @@ public class ESBlockStateProvider extends ModelProvider {
 
 	@Override
 	protected void registerModels(BlockModelGenerators blockModels, ItemModelGenerators itemModels) {
+		int generatedBlocks = 0;
+
+		ExtendedSlabs.LOGGER.info("[Datagen/Blockstates] Starting blockstate and model generation");
+
 		for (ESBlockDefinitions.BlockDefinition definition : ESBlockDefinitions.blocks()) {
 			switch (definition.type()) {
 				case SLAB -> createESSlab(blockModels, definition);
@@ -63,10 +67,13 @@ public class ESBlockStateProvider extends ModelProvider {
 				case FENCE_GATE -> createESFenceGate(blockModels, definition);
 				case BUTTON -> createESButton(blockModels, definition);
 				case PRESSURE_PLATE -> createESPressurePlate(blockModels, definition);
-				default -> {
-				}
 			}
+
+			generatedBlocks++;
+			ExtendedSlabs.LOGGER.info("[Datagen/Blockstates] Generated extendedslabs:{} ({})", definition.id(), definition.type());
 		}
+
+		ExtendedSlabs.LOGGER.info("[Datagen/Blockstates] Finished blockstate and model generation for {} blocks", generatedBlocks);
 	}
 
 	private static ModelTemplate block(String parent, TextureSlot... requiredTextureKeys) {
@@ -112,6 +119,7 @@ public class ESBlockStateProvider extends ModelProvider {
 			bottom = side;
 		}
 
+		assert side != null;
 		return new TextureMapping()
 				.put(TextureSlot.ALL, side)
 				.put(TextureSlot.TEXTURE, side)

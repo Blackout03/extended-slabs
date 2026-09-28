@@ -4,10 +4,9 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.BlockFamilies;
 import net.minecraft.data.BlockFamily;
 import net.minecraft.resources.Identifier;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.WeatheringCopper;
 
 import java.util.Comparator;
 import java.util.List;
@@ -27,12 +26,12 @@ public class ESBlockFamilies {
 	);
 
 	private static final List<ExtraFamily> EXTRA_FAMILIES = List.of(
-			new ExtraFamily("dirt", Blocks.DIRT, BlockTags.MINEABLE_WITH_SHOVEL),
-			new ExtraFamily("coarse_dirt", Blocks.COARSE_DIRT, BlockTags.MINEABLE_WITH_SHOVEL),
-			new ExtraFamily("rooted_dirt", Blocks.ROOTED_DIRT, BlockTags.MINEABLE_WITH_SHOVEL),
-			new ExtraFamily("calcite", Blocks.CALCITE, BlockTags.MINEABLE_WITH_PICKAXE),
-			new ExtraFamily("mud", Blocks.MUD, BlockTags.MINEABLE_WITH_SHOVEL),
-			new ExtraFamily("packed_mud", Blocks.PACKED_MUD, BlockTags.MINEABLE_WITH_PICKAXE)
+			new ExtraFamily(Blocks.DIRT),
+			new ExtraFamily(Blocks.COARSE_DIRT),
+			new ExtraFamily(Blocks.ROOTED_DIRT),
+			new ExtraFamily(Blocks.CALCITE),
+			new ExtraFamily(Blocks.MUD),
+			new ExtraFamily(Blocks.PACKED_MUD)
 	);
 
 	static {
@@ -46,19 +45,12 @@ public class ESBlockFamilies {
 	}
 
 	private static void registerExtraFamily(ExtraFamily family) {
-		ESBlockDefinitions.family(
-						family.idName(),
-						blockId(family.originalBlock()),
-						family.originalBlock(),
-						family.tag()
-				)
-				.complete()
-				.build();
+		String idName = blockId(family.originalBlock());
+		ESBlockDefinitions.family(idName, idName, family.originalBlock(), List.of()).complete().build();
 	}
 
 	private static boolean isNotExtraFamily(BlockFamily family) {
-		return EXTRA_FAMILIES.stream()
-				.noneMatch(extraFamily -> extraFamily.originalBlock() == family.getBaseBlock());
+		return EXTRA_FAMILIES.stream().noneMatch(extraFamily -> extraFamily.originalBlock() == family.getBaseBlock());
 	}
 
 	private static boolean hasSupportedVariant(BlockFamily family) {
@@ -70,12 +62,7 @@ public class ESBlockFamilies {
 		String textureName = blockId(originalBlock);
 		String idName = familyId(family);
 
-		ESBlockDefinitions.FamilyBuilder builder = ESBlockDefinitions.family(
-				idName,
-				textureName,
-				originalBlock,
-				List.of()
-		);
+		ESBlockDefinitions.FamilyBuilder builder = ESBlockDefinitions.family(idName, textureName, originalBlock, List.of());
 
 		useExistingSlab(builder, family);
 		useExistingStairs(builder, family);
@@ -84,8 +71,56 @@ public class ESBlockFamilies {
 		useExistingFenceGate(builder, family);
 		useExistingButton(builder, family);
 		useExistingPressurePlate(builder, family);
+		configureCopper(builder, originalBlock);
 
 		builder.complete().build();
+	}
+
+	private static void configureCopper(
+			ESBlockDefinitions.FamilyBuilder builder,
+			Block originalBlock
+	) {
+		CopperState copperState = copperState(originalBlock);
+
+		if (copperState != null) {
+			builder.copper(copperState.weatherState(), copperState.waxed());
+		}
+	}
+
+	private static CopperState copperState(Block block) {
+		if (block == Blocks.CUT_COPPER.weathering().unaffected()) {
+			return new CopperState(WeatheringCopper.WeatherState.UNAFFECTED, false);
+		}
+
+		if (block == Blocks.CUT_COPPER.weathering().exposed()) {
+			return new CopperState(WeatheringCopper.WeatherState.EXPOSED, false);
+		}
+
+		if (block == Blocks.CUT_COPPER.weathering().weathered()) {
+			return new CopperState(WeatheringCopper.WeatherState.WEATHERED, false);
+		}
+
+		if (block == Blocks.CUT_COPPER.weathering().oxidized()) {
+			return new CopperState(WeatheringCopper.WeatherState.OXIDIZED, false);
+		}
+
+		if (block == Blocks.CUT_COPPER.waxed().unaffected()) {
+			return new CopperState(WeatheringCopper.WeatherState.UNAFFECTED, true);
+		}
+
+		if (block == Blocks.CUT_COPPER.waxed().exposed()) {
+			return new CopperState(WeatheringCopper.WeatherState.EXPOSED, true);
+		}
+
+		if (block == Blocks.CUT_COPPER.waxed().weathered()) {
+			return new CopperState(WeatheringCopper.WeatherState.WEATHERED, true);
+		}
+
+		if (block == Blocks.CUT_COPPER.waxed().oxidized()) {
+			return new CopperState(WeatheringCopper.WeatherState.OXIDIZED, true);
+		}
+
+		return null;
 	}
 
 	private static void useExistingSlab(ESBlockDefinitions.FamilyBuilder builder, BlockFamily family) {
@@ -204,10 +239,9 @@ public class ESBlockFamilies {
 	public static void init() {
 	}
 
-	private record ExtraFamily(
-			String idName,
-			Block originalBlock,
-			TagKey<Block> tag
-	) {
+	private record ExtraFamily(Block originalBlock) {
+	}
+
+	private record CopperState(WeatheringCopper.WeatherState weatherState, boolean waxed) {
 	}
 }

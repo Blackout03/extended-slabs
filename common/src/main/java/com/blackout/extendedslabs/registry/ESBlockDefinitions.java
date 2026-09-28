@@ -6,6 +6,7 @@ import com.blackout.extendedslabs.blocks.ESPCornerBlock;
 import com.blackout.extendedslabs.blocks.ESPPressurePlateBlock;
 import com.blackout.extendedslabs.blocks.ESPStairBlock;
 import com.blackout.extendedslabs.blocks.ESPVerticalSlabBlock;
+import com.blackout.extendedslabs.blocks.ESPWeatheringBlocks;
 import com.blackout.extendedslabs.platform.ModRegistry;
 import com.blackout.extendedslabs.platform.PlatformRegistry;
 import com.blackout.extendedslabs.platform.RegistrySupplier;
@@ -21,6 +22,7 @@ import net.minecraft.world.level.block.FenceBlock;
 import net.minecraft.world.level.block.FenceGateBlock;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.WallBlock;
+import net.minecraft.world.level.block.WeatheringCopper;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.WoodType;
@@ -135,6 +137,8 @@ public class ESBlockDefinitions {
 	public record BlockFamily(
 			Block originalBlock,
 			List<TagKey<Block>> tags,
+			WeatheringCopper.WeatherState weatherState,
+			boolean waxed,
 			RegistrySupplier<Block> slab,
 			RegistrySupplier<Block> verticalSlab,
 			RegistrySupplier<Block> stairs,
@@ -145,6 +149,13 @@ public class ESBlockDefinitions {
 			RegistrySupplier<Block> button,
 			RegistrySupplier<Block> pressurePlate
 	) {
+		public boolean isWeatheringCopper() {
+			return weatherState != null && !waxed;
+		}
+
+		public boolean isWaxedCopper() {
+			return weatherState != null && waxed;
+		}
 	}
 
 	public static class FamilyBuilder {
@@ -153,6 +164,8 @@ public class ESBlockDefinitions {
 		private final Block originalBlock;
 		private final List<TagKey<Block>> tags;
 		private final List<BlockDefinition> definitions = new ArrayList<>();
+		private WeatheringCopper.WeatherState weatherState;
+		private boolean waxed;
 		private RegistrySupplier<Block> slab;
 		private RegistrySupplier<Block> verticalSlab;
 		private RegistrySupplier<Block> stairs;
@@ -168,6 +181,10 @@ public class ESBlockDefinitions {
 			this.textureName = textureName;
 			this.originalBlock = originalBlock;
 			this.tags = tags;
+		}
+
+		private boolean createsWeatheringBlock() {
+			return weatherState != null && !waxed;
 		}
 
 		public FamilyBuilder slab() {
@@ -189,7 +206,16 @@ public class ESBlockDefinitions {
 
 		public FamilyBuilder verticalSlab() {
 			String id = "vertical_" + idName + "_slab";
-			BlockDefinition definition = block(id, originalBlock, BlockType.VERTICAL_SLAB, tags, textureName, () -> new ESPVerticalSlabBlock(tags, originalBlock, slab != null ? slab.get() : originalBlock, blockProperties(originalBlock, id)));
+			BlockDefinition definition = block(
+					id,
+					originalBlock,
+					BlockType.VERTICAL_SLAB,
+					tags,
+					textureName,
+					() -> createsWeatheringBlock()
+							? new ESPWeatheringBlocks.VerticalSlab(tags, originalBlock, slab != null ? slab.get() : originalBlock, weatherState, blockProperties(originalBlock, id))
+							: new ESPVerticalSlabBlock(tags, originalBlock, slab != null ? slab.get() : originalBlock, blockProperties(originalBlock, id))
+			);
 			verticalSlab = definition.block();
 			definitions.add(definition);
 			return this;
@@ -214,7 +240,16 @@ public class ESBlockDefinitions {
 
 		public FamilyBuilder corner() {
 			String id = idName + "_corner";
-			BlockDefinition definition = block(id, originalBlock, BlockType.CORNER, tags, textureName, () -> new ESPCornerBlock(tags, originalBlock, stairs != null ? stairs.get() : originalBlock, blockProperties(originalBlock, id)));
+			BlockDefinition definition = block(
+					id,
+					originalBlock,
+					BlockType.CORNER,
+					tags,
+					textureName,
+					() -> createsWeatheringBlock()
+							? new ESPWeatheringBlocks.Corner(tags, originalBlock, stairs != null ? stairs.get() : originalBlock, weatherState, blockProperties(originalBlock, id))
+							: new ESPCornerBlock(tags, originalBlock, stairs != null ? stairs.get() : originalBlock, blockProperties(originalBlock, id))
+			);
 			corner = definition.block();
 			definitions.add(definition);
 			return this;
@@ -222,7 +257,16 @@ public class ESBlockDefinitions {
 
 		public FamilyBuilder wall() {
 			String id = idName + "_wall";
-			BlockDefinition definition = block(id, originalBlock, BlockType.WALL, tags, textureName, () -> new WallBlock(blockProperties(originalBlock, id).forceSolidOn()));
+			BlockDefinition definition = block(
+					id,
+					originalBlock,
+					BlockType.WALL,
+					tags,
+					textureName,
+					() -> createsWeatheringBlock()
+							? new ESPWeatheringBlocks.Wall(weatherState, blockProperties(originalBlock, id).forceSolidOn())
+							: new WallBlock(blockProperties(originalBlock, id).forceSolidOn())
+			);
 			wall = definition.block();
 			definitions.add(definition);
 			return this;
@@ -239,7 +283,16 @@ public class ESBlockDefinitions {
 
 		public FamilyBuilder fence() {
 			String id = idName + "_fence";
-			BlockDefinition definition = block(id, originalBlock, BlockType.FENCE, tags, textureName, () -> new FenceBlock(blockProperties(originalBlock, id).forceSolidOn()));
+			BlockDefinition definition = block(
+					id,
+					originalBlock,
+					BlockType.FENCE,
+					tags,
+					textureName,
+					() -> createsWeatheringBlock()
+							? new ESPWeatheringBlocks.Fence(weatherState, blockProperties(originalBlock, id).forceSolidOn())
+							: new FenceBlock(blockProperties(originalBlock, id).forceSolidOn())
+			);
 			fence = definition.block();
 			definitions.add(definition);
 			return this;
@@ -257,7 +310,16 @@ public class ESBlockDefinitions {
 		public FamilyBuilder fenceGate() {
 			String id = idName + "_fence_gate";
 			WoodType fenceGateType = nonWoodFenceGateType(id, originalBlock);
-			BlockDefinition definition = block(id, originalBlock, BlockType.FENCE_GATE, tags, textureName, () -> new FenceGateBlock(fenceGateType, blockProperties(originalBlock, id).forceSolidOn()));
+			BlockDefinition definition = block(
+					id,
+					originalBlock,
+					BlockType.FENCE_GATE,
+					tags,
+					textureName,
+					() -> createsWeatheringBlock()
+							? new ESPWeatheringBlocks.FenceGate(fenceGateType, weatherState, blockProperties(originalBlock, id).forceSolidOn())
+							: new FenceGateBlock(fenceGateType, blockProperties(originalBlock, id).forceSolidOn())
+			);
 			fenceGate = definition.block();
 			definitions.add(definition);
 			return this;
@@ -274,7 +336,16 @@ public class ESBlockDefinitions {
 
 		public FamilyBuilder button() {
 			String id = idName + "_button";
-			BlockDefinition definition = block(id, originalBlock, BlockType.BUTTON, tags, textureName, () -> new ESPButtonBlock(tags, originalBlock, BlockSetType.STONE, 20, blockProperties(originalBlock, id).noCollision().strength(0.5F)));
+			BlockDefinition definition = block(
+					id,
+					originalBlock,
+					BlockType.BUTTON,
+					tags,
+					textureName,
+					() -> createsWeatheringBlock()
+							? new ESPWeatheringBlocks.Button(tags, originalBlock, BlockSetType.STONE, 20, weatherState, blockProperties(originalBlock, id).noCollision().strength(0.5F))
+							: new ESPButtonBlock(tags, originalBlock, BlockSetType.STONE, 20, blockProperties(originalBlock, id).noCollision().strength(0.5F))
+			);
 			button = definition.block();
 			definitions.add(definition);
 			return this;
@@ -291,7 +362,16 @@ public class ESBlockDefinitions {
 
 		public FamilyBuilder pressurePlate() {
 			String id = idName + "_pressure_plate";
-			BlockDefinition definition = block(id, originalBlock, BlockType.PRESSURE_PLATE, tags, textureName, () -> new ESPPressurePlateBlock(tags, originalBlock, BlockSetType.STONE, blockProperties(originalBlock, id).noCollision().strength(0.5F)));
+			BlockDefinition definition = block(
+					id,
+					originalBlock,
+					BlockType.PRESSURE_PLATE,
+					tags,
+					textureName,
+					() -> createsWeatheringBlock()
+							? new ESPWeatheringBlocks.PressurePlate(tags, originalBlock, BlockSetType.STONE, weatherState, blockProperties(originalBlock, id).noCollision().strength(0.5F))
+							: new ESPPressurePlateBlock(tags, originalBlock, BlockSetType.STONE, blockProperties(originalBlock, id).noCollision().strength(0.5F))
+			);
 			pressurePlate = definition.block();
 			definitions.add(definition);
 			return this;
@@ -303,6 +383,12 @@ public class ESBlockDefinitions {
 
 		public FamilyBuilder pressurePlate(String id, Block existingBlock) {
 			pressurePlate = existingBlock(id, existingBlock);
+			return this;
+		}
+
+		public FamilyBuilder copper(WeatheringCopper.WeatherState weatherState, boolean waxed) {
+			this.weatherState = weatherState;
+			this.waxed = waxed;
 			return this;
 		}
 
@@ -350,6 +436,8 @@ public class ESBlockDefinitions {
 			BlockFamily family = new BlockFamily(
 					originalBlock,
 					tags,
+					weatherState,
+					waxed,
 					slab,
 					verticalSlab,
 					stairs,
