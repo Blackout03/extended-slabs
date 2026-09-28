@@ -8,14 +8,17 @@ neoForge {
 	runs {
 		client {
 			client()
+			disableIdeRun()
 			gameDirectory = file('run')
 		}
 		server {
 			server()
+			disableIdeRun()
 			gameDirectory = file('run')
 		}
 		clientData {
 			clientData()
+			disableIdeRun()
 			gameDirectory = file('run')
 			programArguments.addAll '--mod', modId, '--all', '--output', file('src/main/generated/').absolutePath, '--existing', file('src/main/resources/').absolutePath
 		}
