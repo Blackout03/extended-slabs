@@ -12,6 +12,8 @@ public class FabricEntrypoint implements ModInitializer {
 		FabricRegistryBridge.register();
 		registerCopperFamilies();
 		FabricCreativeTabs.register();
+
+		ExtendedSlabs.LOGGER.info("Fabric platform loaded");
 	}
 
 	private static void registerCopperFamilies() {

@@ -10,5 +10,7 @@ public class NeoForgeEntrypoint {
 		ExtendedSlabs.init();
 		NeoForgeRegistryBridge.register(modEventBus);
 		NeoForgeCreativeTabs.register(modEventBus);
+
+		ExtendedSlabs.LOGGER.info("NeoForge platform loaded");
 	}
 }

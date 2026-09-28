@@ -32,13 +32,55 @@ def platformColors = [
 def resetColor = '\u001B[0m'
 def bracketGrey = ansiColor('#808080')
 def messageWhite = ansiColor('#FFFFFF')
+def timeGreen = ansiColor('#238636')
+def infoBlue = ansiColor('#58A6FF')
+def warningOrange = ansiColor('#FFA845')
+def errorRed = ansiColor('#F85149')
+def extendedSlabsColor = ansiColor('#D4BF50')
+def datagenColor = ansiColor('#6F5A8F')
+
+def datagenProviderColors = [
+		'Blockstates'     : ansiColor('#55B996'),
+		'Block Tags'      : ansiColor('#9EB955'),
+		'Copper Data Maps': ansiColor('#B96A55')
+].asImmutable()
+
+def colorizeDatagenMessage = { String message ->
+	def providerMatcher = message =~ /^\s*\[Datagen\/(Blockstates|Block Tags|Copper Data Maps)]\s*(.*)\u0024/
+
+	if (providerMatcher.matches()) {
+		String provider = providerMatcher.group(1)
+		String remainder = providerMatcher.group(2)
+		String providerColor = datagenProviderColors.getOrDefault(provider, messageWhite)
+
+		return "${bracketGrey}[${datagenColor}Datagen${bracketGrey}/${providerColor}${provider}${bracketGrey}] " +
+				"${messageWhite}${remainder}"
+	}
+
+	def datagenMatcher = message =~ /^\s*\[Datagen]\s*(.*)\u0024/
+
+	if (datagenMatcher.matches()) {
+		return "${bracketGrey}[${datagenColor}Datagen${bracketGrey}] " +
+				"${messageWhite}${datagenMatcher.group(1)}"
+	}
+
+	return "${messageWhite}${message}"
+}
+
+def colorizeExtendedSlabsMessage = { String remainder ->
+	def loggerMatcher = remainder =~ /^\s*(?:\[(?i:(?:co\.bl\.ex\.)?extendedslabs)\/?]|\((?i:(?:co\.bl\.ex\.)?extendedslabs)\))\s*:?\s*(.*)\u0024/
+
+	if (!loggerMatcher.matches()) {
+		return "${messageWhite}${remainder}"
+	}
+
+	String message = colorizeDatagenMessage(loggerMatcher.group(1))
+
+	return " ${bracketGrey}[${extendedSlabsColor}ExtendedSlabs${bracketGrey}] " +
+			"${messageWhite}${message}"
+}
 
 def colorizeMinecraftLogLine = { String line ->
-	String timeGreen = ansiColor('#238636')
-	String infoBlue = ansiColor('#58A6FF')
-	String warningOrange = ansiColor('#FFA845')
-	String errorRed = ansiColor('#F85149')
-
 	def matcher = line =~ /^\[(\d{2}:\d{2}:\d{2})] \[([^]]+)\/(INFO|WARN|ERROR)](.*)\u0024/
 
 	if (!matcher.matches()) {
@@ -50,20 +92,22 @@ def colorizeMinecraftLogLine = { String line ->
 	String level = matcher.group(3)
 	String remainder = matcher.group(4)
 
-	String messageColor = switch (level) {
+	String levelColor = switch (level) {
 		case 'INFO' -> infoBlue
 		case 'WARN' -> warningOrange
 		case 'ERROR' -> errorRed
-		default -> resetColor
+		default -> messageWhite
 	}
 
+	String coloredMessage = colorizeExtendedSlabsMessage(remainder)
+
 	return "${bracketGrey}[${timeGreen}${time}${bracketGrey}] " +
-			"${bracketGrey}[${messageColor}${thread}/${level}${bracketGrey}]" +
-			"${messageWhite}${remainder}${resetColor}"
+			"${bracketGrey}[${levelColor}${thread}/${level}${bracketGrey}]" +
+			"${coloredMessage}${resetColor}"
 }
 
 def colorizePlatformLogLine = { String platform, String line ->
-	String platformColor = platformColors.getOrDefault(platform, '')
+	String platformColor = platformColors.getOrDefault(platform, messageWhite)
 	String coloredLine = colorizeMinecraftLogLine(line)
 
 	return "${bracketGrey}[${platformColor}${platform}${bracketGrey}] " +
@@ -419,7 +463,7 @@ subprojects {
 
 		inputs.properties replaceProperties
 
-		filesMatching(['fabric.mod.json', 'META-INF/neoforge.mods.toml', 'pack.mcmeta']) {
+		filesMatching(['fabric.mod.json', 'META-INF/neoforge.mods.toml', 'pack.mcmeta', 'extendedslabs.properties']) {
 			expand replaceProperties
 		}
 

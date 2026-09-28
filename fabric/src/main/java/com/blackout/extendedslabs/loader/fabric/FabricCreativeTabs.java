@@ -17,7 +17,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class FabricCreativeTabs {
     private static final long ICON_CHANGE_INTERVAL_MS = 3000L;
-    public static final CreativeModeTab EXTENDED_SLABS = FabricCreativeModeTab.builder()
+    public static final CreativeModeTab EXTENDED_SLABS = searchableBuilder()
             .title(Component.translatable("itemGroup.extendedslabs"))
             .icon(FabricCreativeTabs::icon)
             .displayItems((displayContext, entries) -> {
@@ -28,6 +28,10 @@ public class FabricCreativeTabs {
             .build();
     private static ItemStack currentIcon = ItemStack.EMPTY;
     private static long nextIconChangeTime;
+
+    private static CreativeModeTab.Builder searchableBuilder() {
+        return new SearchableCreativeModeTabBuilder().searchable();
+    }
 
     public static void register() {
         Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, Identifier.fromNamespaceAndPath(ExtendedSlabs.MODID, "extended_slabs"), EXTENDED_SLABS);
@@ -51,5 +55,15 @@ public class FabricCreativeTabs {
         }
 
         return currentIcon;
+    }
+
+    private static class SearchableCreativeModeTabBuilder extends CreativeModeTab.Builder {
+        private SearchableCreativeModeTabBuilder() {
+            super(CreativeModeTab.Row.TOP, 0);
+        }
+
+        private CreativeModeTab.Builder searchable() {
+            return type(CreativeModeTab.Type.SEARCH).backgroundTexture(CreativeModeTab.createTextureLocation("item_search"));
+        }
     }
 }

@@ -20,6 +20,7 @@ public class NeoForgeCreativeTabs {
     public static final Supplier<CreativeModeTab> EXTENDED_SLABS = CREATIVE_MODE_TABS.register("extended_slabs", () -> CreativeModeTab.builder()
             .title(Component.translatable("itemGroup.extendedslabs"))
             .icon(NeoForgeCreativeTabs::icon)
+            .withSearchBar()
             .withTabFactory(RandomIconCreativeModeTab::new)
             .displayItems((parameters, output) -> {
                 for (RegistrySupplier<Item> item : ESBlockDefinitions.orderedItems()) {
