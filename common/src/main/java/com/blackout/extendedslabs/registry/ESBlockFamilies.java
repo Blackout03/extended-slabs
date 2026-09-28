@@ -88,7 +88,10 @@ public class ESBlockFamilies {
 			.stairs(Blocks.MUD_BRICK_STAIRS)
 			.corner()
 			.wall(Blocks.MUD_BRICK_WALL)
+			.fence()
+			.fenceGate()
 			.button()
+			.pressurePlate()
 			.build();
 
 	public static List<ESBlockDefinitions.BlockFamily> families() {
