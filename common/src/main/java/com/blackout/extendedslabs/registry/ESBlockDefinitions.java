@@ -3,6 +3,7 @@ package com.blackout.extendedslabs.registry;
 import com.blackout.extendedslabs.ExtendedSlabs;
 import com.blackout.extendedslabs.blocks.ESPButtonBlock;
 import com.blackout.extendedslabs.blocks.ESPCornerBlock;
+import com.blackout.extendedslabs.blocks.ESPPressurePlateBlock;
 import com.blackout.extendedslabs.blocks.ESPStairBlock;
 import com.blackout.extendedslabs.blocks.ESPVerticalSlabBlock;
 import com.blackout.extendedslabs.platform.ModRegistry;
@@ -11,14 +12,18 @@ import com.blackout.extendedslabs.platform.RegistrySupplier;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.FenceBlock;
+import net.minecraft.world.level.block.FenceGateBlock;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.WallBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
+import net.minecraft.world.level.block.state.properties.WoodType;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -60,6 +65,17 @@ public class ESBlockDefinitions {
 	private static BlockBehaviour.Properties blockProperties(Block originalBlock, String id) {
 		ResourceKey<Block> blockKey = ResourceKey.create(Registries.BLOCK, Identifier.fromNamespaceAndPath(ExtendedSlabs.MODID, id));
 		return BlockBehaviour.Properties.ofFullCopy(originalBlock).setId(blockKey);
+	}
+
+	private static WoodType nonWoodFenceGateType(String id, Block originalBlock) {
+		return new WoodType(
+				ExtendedSlabs.MODID + ":" + id,
+				BlockSetType.STONE,
+				originalBlock.defaultBlockState().getSoundType(),
+				originalBlock.defaultBlockState().getSoundType(),
+				SoundEvents.FENCE_GATE_CLOSE,
+				SoundEvents.FENCE_GATE_OPEN
+		);
 	}
 
 	private static RegistrySupplier<Block> existingBlock(String id, Block block) {
@@ -106,10 +122,25 @@ public class ESBlockDefinitions {
 		STAIRS,
 		CORNER,
 		WALL,
-		BUTTON
+		FENCE,
+		FENCE_GATE,
+		BUTTON,
+		PRESSURE_PLATE
 	}
 
-	public record BlockFamily(Block originalBlock, List<TagKey<Block>> tags, RegistrySupplier<Block> slab, RegistrySupplier<Block> verticalSlab, RegistrySupplier<Block> stairs, RegistrySupplier<Block> corner, RegistrySupplier<Block> wall, RegistrySupplier<Block> button) {
+	public record BlockFamily(
+			Block originalBlock,
+			List<TagKey<Block>> tags,
+			RegistrySupplier<Block> slab,
+			RegistrySupplier<Block> verticalSlab,
+			RegistrySupplier<Block> stairs,
+			RegistrySupplier<Block> corner,
+			RegistrySupplier<Block> wall,
+			RegistrySupplier<Block> fence,
+			RegistrySupplier<Block> fenceGate,
+			RegistrySupplier<Block> button,
+			RegistrySupplier<Block> pressurePlate
+	) {
 	}
 
 	public static class FamilyBuilder {
@@ -123,7 +154,10 @@ public class ESBlockDefinitions {
 		private RegistrySupplier<Block> stairs;
 		private RegistrySupplier<Block> corner;
 		private RegistrySupplier<Block> wall;
+		private RegistrySupplier<Block> fence;
+		private RegistrySupplier<Block> fenceGate;
 		private RegistrySupplier<Block> button;
+		private RegistrySupplier<Block> pressurePlate;
 
 		private FamilyBuilder(String idName, String textureName, Block originalBlock, List<TagKey<Block>> tags) {
 			this.idName = idName;
@@ -199,6 +233,41 @@ public class ESBlockDefinitions {
 			return this;
 		}
 
+		public FamilyBuilder fence() {
+			String id = idName + "_fence";
+			BlockDefinition definition = block(id, originalBlock, BlockType.FENCE, tags, textureName, () -> new FenceBlock(blockProperties(originalBlock, id).forceSolidOn()));
+			fence = definition.block();
+			definitions.add(definition);
+			return this;
+		}
+
+		public FamilyBuilder fence(Block existingBlock) {
+			return fence(idName + "_fence", existingBlock);
+		}
+
+		public FamilyBuilder fence(String id, Block existingBlock) {
+			fence = existingBlock(id, existingBlock);
+			return this;
+		}
+
+		public FamilyBuilder fenceGate() {
+			String id = idName + "_fence_gate";
+			WoodType fenceGateType = nonWoodFenceGateType(id, originalBlock);
+			BlockDefinition definition = block(id, originalBlock, BlockType.FENCE_GATE, tags, textureName, () -> new FenceGateBlock(fenceGateType, blockProperties(originalBlock, id).forceSolidOn()));
+			fenceGate = definition.block();
+			definitions.add(definition);
+			return this;
+		}
+
+		public FamilyBuilder fenceGate(Block existingBlock) {
+			return fenceGate(idName + "_fence_gate", existingBlock);
+		}
+
+		public FamilyBuilder fenceGate(String id, Block existingBlock) {
+			fenceGate = existingBlock(id, existingBlock);
+			return this;
+		}
+
 		public FamilyBuilder button() {
 			String id = idName + "_button";
 			BlockDefinition definition = block(id, originalBlock, BlockType.BUTTON, tags, textureName, () -> new ESPButtonBlock(tags, originalBlock, BlockSetType.STONE, 20, blockProperties(originalBlock, id).noCollision().strength(0.5F)));
@@ -216,8 +285,37 @@ public class ESBlockDefinitions {
 			return this;
 		}
 
+		public FamilyBuilder pressurePlate() {
+			String id = idName + "_pressure_plate";
+			BlockDefinition definition = block(id, originalBlock, BlockType.PRESSURE_PLATE, tags, textureName, () -> new ESPPressurePlateBlock(tags, originalBlock, BlockSetType.STONE, blockProperties(originalBlock, id).noCollision().strength(0.5F)));
+			pressurePlate = definition.block();
+			definitions.add(definition);
+			return this;
+		}
+
+		public FamilyBuilder pressurePlate(Block existingBlock) {
+			return pressurePlate(idName + "_pressure_plate", existingBlock);
+		}
+
+		public FamilyBuilder pressurePlate(String id, Block existingBlock) {
+			pressurePlate = existingBlock(id, existingBlock);
+			return this;
+		}
+
 		public BlockFamily build() {
-			BlockFamily family = new BlockFamily(originalBlock, tags, slab, verticalSlab, stairs, corner, wall, button);
+			BlockFamily family = new BlockFamily(
+					originalBlock,
+					tags,
+					slab,
+					verticalSlab,
+					stairs,
+					corner,
+					wall,
+					fence,
+					fenceGate,
+					button,
+					pressurePlate
+			);
 
 			for (BlockDefinition definition : definitions) {
 				definition.bindFamily(family);
@@ -304,8 +402,20 @@ public class ESBlockDefinitions {
 			return family.wall();
 		}
 
+		public RegistrySupplier<Block> fenceVariant() {
+			return family.fence();
+		}
+
+		public RegistrySupplier<Block> fenceGateVariant() {
+			return family.fenceGate();
+		}
+
 		public RegistrySupplier<Block> buttonVariant() {
 			return family.button();
+		}
+
+		public RegistrySupplier<Block> pressurePlateVariant() {
+			return family.pressurePlate();
 		}
 	}
 }

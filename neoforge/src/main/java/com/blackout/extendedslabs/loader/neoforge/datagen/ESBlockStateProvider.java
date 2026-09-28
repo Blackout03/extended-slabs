@@ -21,6 +21,9 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.ButtonBlock;
+import net.minecraft.world.level.block.FenceBlock;
+import net.minecraft.world.level.block.FenceGateBlock;
+import net.minecraft.world.level.block.PressurePlateBlock;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.WallBlock;
@@ -46,7 +49,10 @@ public class ESBlockStateProvider extends ModelProvider {
 				case STAIRS -> createESStairs(blockModels, definition);
 				case CORNER -> createESCorner(blockModels, definition);
 				case WALL -> createESWall(blockModels, definition);
+				case FENCE -> createESFence(blockModels, definition);
+				case FENCE_GATE -> createESFenceGate(blockModels, definition);
 				case BUTTON -> createESButton(blockModels, definition);
+				case PRESSURE_PLATE -> createESPressurePlate(blockModels, definition);
 				default -> {
 				}
 			}
@@ -83,10 +89,28 @@ public class ESBlockStateProvider extends ModelProvider {
 		blockModels.familyWithExistingFullBlock(definition.originalBlock()).wall(wall);
 	}
 
+	private void createESFence(BlockModelGenerators blockModels, ESBlockDefinitions.BlockDefinition definition) {
+		FenceBlock fence = (FenceBlock) definition.block().get();
+
+		blockModels.familyWithExistingFullBlock(definition.originalBlock()).fence(fence);
+	}
+
+	private void createESFenceGate(BlockModelGenerators blockModels, ESBlockDefinitions.BlockDefinition definition) {
+		FenceGateBlock fenceGate = (FenceGateBlock) definition.block().get();
+
+		blockModels.familyWithExistingFullBlock(definition.originalBlock()).fenceGate(fenceGate);
+	}
+
 	private void createESButton(BlockModelGenerators blockModels, ESBlockDefinitions.BlockDefinition definition) {
 		ButtonBlock button = (ButtonBlock) definition.block().get();
 
 		blockModels.familyWithExistingFullBlock(definition.originalBlock()).button(button);
+	}
+
+	private void createESPressurePlate(BlockModelGenerators blockModels, ESBlockDefinitions.BlockDefinition definition) {
+		PressurePlateBlock pressurePlate = (PressurePlateBlock) definition.block().get();
+
+		blockModels.familyWithExistingFullBlock(definition.originalBlock()).pressurePlate(pressurePlate);
 	}
 
 	private void createESVerticalSlab(BlockModelGenerators blockModels, ESBlockDefinitions.BlockDefinition definition) {
