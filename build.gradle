@@ -4,6 +4,52 @@ plugins {
 	id 'maven-publish'
 }
 
+def combinedRunLogDirectory = layout.buildDirectory.dir('runBothClients/logs')
+
+tasks.register('logNeoForge') {
+	group = 'mod development'
+	description = 'Displays the saved NeoForge client output.'
+
+	doLast {
+		File logFile = combinedRunLogDirectory.get().file('neoforge.log').asFile
+
+		if (!logFile.exists()) {
+			logger.lifecycle('No NeoForge log was generated.')
+			return
+		}
+
+		String neoForgeColor = '\u001B[38;5;208m'
+		String resetColor = '\u001B[0m'
+
+		logFile.eachLine('UTF-8') { line ->
+			logger.lifecycle("[${neoForgeColor}NeoForge${resetColor}] ${line}")
+		}
+	}
+}
+
+tasks.register('logFabric') {
+	group = 'mod development'
+	description = 'Displays the saved Fabric client output.'
+
+	mustRunAfter tasks.named('logNeoForge')
+
+	doLast {
+		File logFile = combinedRunLogDirectory.get().file('fabric.log').asFile
+
+		if (!logFile.exists()) {
+			logger.lifecycle('No Fabric log was generated.')
+			return
+		}
+
+		String fabricColor = '\u001B[38;5;51m'
+		String resetColor = '\u001B[0m'
+
+		logFile.eachLine('UTF-8') { line ->
+			logger.lifecycle("[${fabricColor}Fabric${resetColor}] ${line}")
+		}
+	}
+}
+
 tasks.register('runBothClients') {
 	group = 'mod development'
 	description = 'Runs Fabric and NeoForge with combined live console output.'
@@ -14,10 +60,31 @@ tasks.register('runBothClients') {
 				? new File(rootDir, 'gradlew.bat').absolutePath
 				: new File(rootDir, 'gradlew').absolutePath
 
-		List<Map<String, String>> clients = [
-				[name: 'Fabric', task: ':fabric:runClient'],
-				[name: 'NeoForge', task: ':neoforge:runClient']
+		File logDirectory = combinedRunLogDirectory.get().asFile
+		logDirectory.mkdirs()
+
+		List<Map<String, Object>> clients = [
+				[
+						name   : 'Fabric',
+						task   : ':fabric:runClient',
+						logFile: new File(logDirectory, 'fabric.log')
+				],
+				[
+						name   : 'NeoForge',
+						task   : ':neoforge:runClient',
+						logFile: new File(logDirectory, 'neoforge.log')
+				]
 		]
+
+		clients.each { client ->
+			File logFile = client.logFile as File
+
+			if (logFile.exists()) {
+				logFile.delete()
+			}
+
+			logFile.createNewFile()
+		}
 
 		Map<String, String> clientColors = [
 				'Fabric'  : '\u001B[38;5;51m',
@@ -56,21 +123,37 @@ tasks.register('runBothClients') {
 				processes.add(process)
 
 				Thread readerThread = Thread.start("${client.name}-console-reader") {
+					File logFile = client.logFile as File
+
 					try {
-						process.inputStream.withReader { reader ->
-							reader.eachLine { line ->
-								outputQueue.put([
-										name: client.name,
-										line: line
-								])
+						logFile.withWriter('UTF-8') { writer ->
+							process.inputStream.withReader { reader ->
+								reader.eachLine { line ->
+									writer.write(line)
+									writer.newLine()
+									writer.flush()
+
+									outputQueue.put([
+											name: client.name as String,
+											line: line
+									])
+								}
 							}
 						}
 					} catch (InterruptedException ignored) {
 						Thread.currentThread().interrupt()
 					} catch (IOException exception) {
+						String errorMessage = "Console reader failed: ${exception.message}"
+
+						logFile.withWriterAppend('UTF-8') { writer ->
+							writer.write(errorMessage)
+							writer.newLine()
+							writer.flush()
+						}
+
 						outputQueue.offer([
-								name: client.name,
-								line: "Console reader failed: ${exception.message}"
+								name: client.name as String,
+								line: errorMessage
 						])
 					}
 				}
@@ -151,6 +234,11 @@ tasks.register('runBothClients') {
 			}
 		}
 	}
+}
+
+tasks.named('runBothClients') {
+	finalizedBy tasks.named('logNeoForge')
+	finalizedBy tasks.named('logFabric')
 }
 
 subprojects {
