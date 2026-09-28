@@ -108,6 +108,88 @@ tasks.register('logFabric') {
 	}
 }
 
+tasks.register('runNeoForgeData') {
+	group = 'mod development'
+	description = 'Runs NeoForge client data generation with colored console output.'
+
+	doLast {
+		boolean isWindows = System.getProperty('os.name').toLowerCase().contains('windows')
+		String gradleCommand = isWindows
+				? new File(rootDir, 'gradlew.bat').absolutePath
+				: new File(rootDir, 'gradlew').absolutePath
+		String javaHome = System.getProperty('java.home')
+		Process process = null
+
+		try {
+			ProcessBuilder processBuilder = new ProcessBuilder(
+					gradleCommand,
+					':neoforge:runClientData',
+					'--console=plain',
+					'--no-daemon'
+			)
+					.directory(rootDir)
+					.redirectErrorStream(true)
+
+			Map<String, String> environment = processBuilder.environment()
+			environment.put('JAVA_HOME', javaHome)
+			environment.put(
+					'PATH',
+					new File(javaHome, 'bin').absolutePath
+							+ File.pathSeparator
+							+ environment.getOrDefault('PATH', '')
+			)
+
+			process = processBuilder.start()
+
+			process.inputStream.withReader { reader ->
+				reader.eachLine { line ->
+					logger.lifecycle(colorizePlatformLogLine('NeoForge', line))
+				}
+			}
+
+			int exitCode = process.waitFor()
+
+			if (exitCode != 0) {
+				throw new GradleException("NeoForge data generation exited unsuccessfully: ${exitCode}")
+			}
+		} finally {
+			if (process != null && process.isAlive()) {
+				if (isWindows) {
+					Process treeKiller = new ProcessBuilder(
+							'taskkill',
+							'/PID',
+							Long.toString(process.pid()),
+							'/T',
+							'/F'
+					)
+							.redirectErrorStream(true)
+							.start()
+
+					treeKiller.inputStream.transferTo(OutputStream.nullOutputStream())
+					treeKiller.waitFor()
+				} else {
+					List<ProcessHandle> descendants = process.toHandle()
+							.descendants()
+							.toList()
+							.reverse()
+
+					descendants.each { descendant ->
+						descendant.destroy()
+					}
+
+					descendants.findAll { descendant ->
+						descendant.isAlive()
+					}.each { descendant ->
+						descendant.destroyForcibly()
+					}
+
+					process.destroyForcibly()
+				}
+			}
+		}
+	}
+}
+
 tasks.register('runBothClients') {
 	group = 'mod development'
 	description = 'Runs Fabric and NeoForge with combined live console output.'
