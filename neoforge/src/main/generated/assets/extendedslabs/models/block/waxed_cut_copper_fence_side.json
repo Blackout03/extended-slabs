@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/fence_side",
   "textures": {
-    "texture": "minecraft:block/waxed_cut_copper"
+    "texture": "minecraft:block/cut_copper"
   }
 }

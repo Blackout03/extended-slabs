@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/wall_inventory",
   "textures": {
-    "wall": "minecraft:block/waxed_weathered_cut_copper"
+    "wall": "minecraft:block/weathered_cut_copper"
   }
 }

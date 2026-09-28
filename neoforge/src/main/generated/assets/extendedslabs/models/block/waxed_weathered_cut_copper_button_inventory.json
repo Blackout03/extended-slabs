@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/button_inventory",
   "textures": {
-    "texture": "minecraft:block/waxed_weathered_cut_copper"
+    "texture": "minecraft:block/weathered_cut_copper"
   }
 }
