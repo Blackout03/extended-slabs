@@ -20,8 +20,10 @@ import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.ButtonBlock;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.StairBlock;
+import net.minecraft.world.level.block.WallBlock;
 
 import java.util.Optional;
 
@@ -43,6 +45,8 @@ public class ESBlockStateProvider extends ModelProvider {
 				case VERTICAL_SLAB -> createESVerticalSlab(blockModels, definition);
 				case STAIRS -> createESStairs(blockModels, definition);
 				case CORNER -> createESCorner(blockModels, definition);
+				case WALL -> createESWall(blockModels, definition);
+				case BUTTON -> createESButton(blockModels, definition);
 				default -> {
 				}
 			}
@@ -71,6 +75,18 @@ public class ESBlockStateProvider extends ModelProvider {
 		StairBlock stairs = (StairBlock) definition.block().get();
 
 		blockModels.familyWithExistingFullBlock(definition.originalBlock()).stairs(stairs);
+	}
+
+	private void createESWall(BlockModelGenerators blockModels, ESBlockDefinitions.BlockDefinition definition) {
+		WallBlock wall = (WallBlock) definition.block().get();
+
+		blockModels.familyWithExistingFullBlock(definition.originalBlock()).wall(wall);
+	}
+
+	private void createESButton(BlockModelGenerators blockModels, ESBlockDefinitions.BlockDefinition definition) {
+		ButtonBlock button = (ButtonBlock) definition.block().get();
+
+		blockModels.familyWithExistingFullBlock(definition.originalBlock()).button(button);
 	}
 
 	private void createESVerticalSlab(BlockModelGenerators blockModels, ESBlockDefinitions.BlockDefinition definition) {

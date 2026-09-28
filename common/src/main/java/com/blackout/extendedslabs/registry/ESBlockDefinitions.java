@@ -1,6 +1,7 @@
 package com.blackout.extendedslabs.registry;
 
 import com.blackout.extendedslabs.ExtendedSlabs;
+import com.blackout.extendedslabs.blocks.ESPButtonBlock;
 import com.blackout.extendedslabs.blocks.ESPCornerBlock;
 import com.blackout.extendedslabs.blocks.ESPStairBlock;
 import com.blackout.extendedslabs.blocks.ESPVerticalSlabBlock;
@@ -15,7 +16,9 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SlabBlock;
+import net.minecraft.world.level.block.WallBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.properties.BlockSetType;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -27,6 +30,7 @@ public class ESBlockDefinitions {
 	public static final ModRegistry<Item> ITEMS = PlatformRegistry.create(Registries.ITEM);
 	private static final List<BlockDefinition> BLOCK_DEFINITIONS = new ArrayList<>();
 	private static final List<RegistrySupplier<Item>> ORDERED_ITEMS = new ArrayList<>();
+	private static final List<BlockFamily> FAMILIES = new ArrayList<>();
 	private static boolean initialized;
 
 	public static FamilyBuilder family(String name, Block originalBlock, TagKey<Block> tag) {
@@ -80,6 +84,11 @@ public class ESBlockDefinitions {
 	public static Collection<RegistrySupplier<Item>> orderedItems() {
 		init();
 		return ORDERED_ITEMS;
+	}
+
+	public static List<BlockFamily> families() {
+		init();
+		return List.copyOf(FAMILIES);
 	}
 
 	public static void init() {
@@ -174,13 +183,11 @@ public class ESBlockDefinitions {
 		}
 
 		public FamilyBuilder wall() {
-			ExtendedSlabs.LOGGER.warn("Skipping generated wall block for {} because wall models/blockstates are not implemented yet", idName);
+			String id = idName + "_wall";
+			BlockDefinition definition = block(id, originalBlock, BlockType.WALL, tags, textureName, () -> new WallBlock(blockProperties(originalBlock, id).forceSolidOn()));
+			wall = definition.block();
+			definitions.add(definition);
 			return this;
-
-//			BlockDefinition definition = block(idName + "_wall", originalBlock, BlockType.WALL, tags, textureName, () -> new WallBlock(blockProperties(originalBlock, idName + "_wall")));
-//			wall = definition.block();
-//			definitions.add(definition);
-//			return this;
 		}
 
 		public FamilyBuilder wall(Block existingBlock) {
@@ -192,12 +199,13 @@ public class ESBlockDefinitions {
 			return this;
 		}
 
-//		public FamilyBuilder button() {
-//			BlockDefinition definition = block(idName + "_button", originalBlock, BlockType.BUTTON, tags, textureName, () -> new ButtonBlock(BlockSetType.STONE, 20, BlockBehaviour.Properties.ofFullCopy(originalBlock).noCollision().strength(0.5F)));
-//			button = definition.block();
-//			definitions.add(definition);
-//			return this;
-//		}
+		public FamilyBuilder button() {
+			String id = idName + "_button";
+			BlockDefinition definition = block(id, originalBlock, BlockType.BUTTON, tags, textureName, () -> new ESPButtonBlock(tags, originalBlock, BlockSetType.STONE, 20, blockProperties(originalBlock, id).noCollision().strength(0.5F)));
+			button = definition.block();
+			definitions.add(definition);
+			return this;
+		}
 
 		public FamilyBuilder button(Block existingBlock) {
 			return button(idName + "_button", existingBlock);
@@ -215,6 +223,7 @@ public class ESBlockDefinitions {
 				definition.bindFamily(family);
 			}
 
+			FAMILIES.add(family);
 			return family;
 		}
 	}
