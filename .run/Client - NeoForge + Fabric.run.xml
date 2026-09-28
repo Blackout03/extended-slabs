@@ -4,14 +4,13 @@
             <option name="executionName" />
             <option name="externalProjectPath" value="$PROJECT_DIR$" />
             <option name="externalSystemIdString" value="GRADLE" />
-            <option name="scriptParameters" value="--parallel --max-workers=2" />
+            <option name="scriptParameters" />
             <option name="taskDescriptions">
                 <list />
             </option>
             <option name="taskNames">
                 <list>
-                    <option value=":neoforge:runClient" />
-                    <option value=":fabric:runClient" />
+                    <option value="runBothClients" />
                 </list>
             </option>
             <option name="vmOptions" />

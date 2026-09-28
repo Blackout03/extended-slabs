@@ -6,84 +6,130 @@ plugins {
 
 tasks.register('runBothClients') {
 	group = 'mod development'
-	description = 'Runs the Fabric and NeoForge clients with combined console output.'
+	description = 'Runs Fabric and NeoForge with combined live console output.'
 
 	doLast {
-		String gradleCommand = System.getProperty('os.name').toLowerCase().contains('windows')
+		boolean isWindows = System.getProperty('os.name').toLowerCase().contains('windows')
+		String gradleCommand = isWindows
 				? new File(rootDir, 'gradlew.bat').absolutePath
 				: new File(rootDir, 'gradlew').absolutePath
 
-		List<Map<String, Object>> clients = [
+		List<Map<String, String>> clients = [
 				[name: 'Fabric', task: ':fabric:runClient'],
 				[name: 'NeoForge', task: ':neoforge:runClient']
 		]
-
-		List<Process> processes = []
-		List<Thread> outputThreads = []
 
 		Map<String, String> clientColors = [
 				'Fabric'  : '\u001B[38;5;51m',
 				'NeoForge': '\u001B[38;5;208m'
 		]
+
 		String resetColor = '\u001B[0m'
+		String javaHome = System.getProperty('java.home')
+
+		List<Process> processes = []
+		List<Thread> readerThreads = []
+		java.util.concurrent.BlockingQueue<Map<String, String>> outputQueue =
+				new java.util.concurrent.LinkedBlockingQueue<>()
 
 		try {
 			clients.each { client ->
 				ProcessBuilder processBuilder = new ProcessBuilder(
 						gradleCommand,
-						client.task as String,
+						client.task,
 						'--console=plain',
 						'--no-daemon'
 				)
 						.directory(rootDir)
 						.redirectErrorStream(true)
 
-				String javaHome = System.getProperty('java.home')
 				Map<String, String> environment = processBuilder.environment()
 				environment.put('JAVA_HOME', javaHome)
-				environment.put('PATH', new File(javaHome, 'bin').absolutePath + File.pathSeparator + environment.getOrDefault('PATH', ''))
+				environment.put(
+						'PATH',
+						new File(javaHome, 'bin').absolutePath
+								+ File.pathSeparator
+								+ environment.getOrDefault('PATH', '')
+				)
 
 				Process process = processBuilder.start()
-
 				processes.add(process)
-				outputThreads.add(Thread.start {
-					process.inputStream.withReader { reader ->
-						reader.eachLine { line ->
-							String clientColor = clientColors.getOrDefault(client.name as String, '')
-							println "[${clientColor}${client.name}${resetColor}] ${line}"
+
+				Thread readerThread = Thread.start("${client.name}-console-reader") {
+					try {
+						process.inputStream.withReader { reader ->
+							reader.eachLine { line ->
+								outputQueue.put([
+										name: client.name,
+										line: line
+								])
+							}
 						}
+					} catch (InterruptedException ignored) {
+						Thread.currentThread().interrupt()
+					} catch (IOException exception) {
+						outputQueue.offer([
+								name: client.name,
+								line: "Console reader failed: ${exception.message}"
+						])
 					}
-				})
+				}
+
+				readerThreads.add(readerThread)
+			}
+
+			while (processes.any { process -> process.isAlive() } || !outputQueue.isEmpty()) {
+				Map<String, String> message = outputQueue.poll(
+						100,
+						java.util.concurrent.TimeUnit.MILLISECONDS
+				)
+
+				if (message != null) {
+					String clientColor = clientColors.getOrDefault(message.name, '')
+					logger.lifecycle("[${clientColor}${message.name}${resetColor}] ${message.line}")
+				}
+			}
+
+			readerThreads.each { thread ->
+				thread.join()
+			}
+
+			while (!outputQueue.isEmpty()) {
+				Map<String, String> message = outputQueue.poll()
+				String clientColor = clientColors.getOrDefault(message.name, '')
+				logger.lifecycle("[${clientColor}${message.name}${resetColor}] ${message.line}")
 			}
 
 			List<Integer> exitCodes = processes.collect { process ->
-				process.waitFor()
-			}
-
-			outputThreads.each { thread ->
-				thread.join()
+				process.exitValue()
 			}
 
 			if (exitCodes.any { exitCode -> exitCode != 0 }) {
 				throw new GradleException("One or more clients exited unsuccessfully: ${exitCodes}")
 			}
 		} finally {
-			processes.each { process ->
-				if (System.getProperty('os.name').toLowerCase().contains('windows')) {
-					if (process.isAlive()) {
-						Process treeKiller = new ProcessBuilder(
-								'taskkill',
-								'/PID',
-								Long.toString(process.pid()),
-								'/T',
-								'/F'
-						)
-								.redirectErrorStream(true)
-								.start()
+			readerThreads.each { thread ->
+				thread.interrupt()
+			}
 
-						treeKiller.inputStream.transferTo(OutputStream.nullOutputStream())
-						treeKiller.waitFor()
-					}
+			processes.each { process ->
+				if (!process.isAlive()) {
+					return
+				}
+
+				if (isWindows) {
+					Process treeKiller = new ProcessBuilder(
+							'taskkill',
+							'/PID',
+							Long.toString(process.pid()),
+							'/T',
+							'/F'
+					)
+							.redirectErrorStream(true)
+							.start()
+
+					treeKiller.inputStream.transferTo(OutputStream.nullOutputStream())
+					treeKiller.waitFor()
 				} else {
 					List<ProcessHandle> descendants = process.toHandle()
 							.descendants()
@@ -94,13 +140,13 @@ tasks.register('runBothClients') {
 						descendant.destroy()
 					}
 
-					descendants.findAll { descendant -> descendant.isAlive() }.each { descendant ->
+					descendants.findAll { descendant ->
+						descendant.isAlive()
+					}.each { descendant ->
 						descendant.destroyForcibly()
 					}
 
-					if (process.isAlive()) {
-						process.destroyForcibly()
-					}
+					process.destroyForcibly()
 				}
 			}
 		}
