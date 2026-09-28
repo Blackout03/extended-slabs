@@ -23,7 +23,7 @@ public class ExtendedSlabs {
 
 		initialized = true;
 		LOGGER.info("Initializing " + MODNAME + " (" + MODID + ")");
-		LOGGER.info("Mod version: " + MODVERSION);
+		LOGGER.info("Mod version: {}", MODVERSION);
 
 		ESBlockDefinitions.init();
 	}
