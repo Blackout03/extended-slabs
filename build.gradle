@@ -1,3 +1,7 @@
+import java.util.concurrent.BlockingQueue
+import java.util.concurrent.LinkedBlockingQueue
+import java.util.concurrent.TimeUnit
+
 plugins {
 	id 'eclipse'
 	id 'idea'
@@ -5,6 +9,66 @@ plugins {
 }
 
 def combinedRunLogDirectory = layout.buildDirectory.dir('runBothClients/logs')
+
+def ansiColor = { String hex ->
+	String value = hex.startsWith('#') ? hex.substring(1) : hex
+
+	if (!(value ==~ /[0-9A-Fa-f]{6}/)) {
+		throw new GradleException("Invalid RGB hex colour: ${hex}")
+	}
+
+	int red = Integer.parseInt(value.substring(0, 2), 16)
+	int green = Integer.parseInt(value.substring(2, 4), 16)
+	int blue = Integer.parseInt(value.substring(4, 6), 16)
+
+	return "\u001B[38;2;${red};${green};${blue}m"
+}
+
+def platformColors = [
+		'Fabric'  : ansiColor('#00FFFF'),
+		'NeoForge': ansiColor('#FF8800')
+].asImmutable()
+
+def resetColor = '\u001B[0m'
+def bracketGrey = ansiColor('#808080')
+def messageWhite = ansiColor('#FFFFFF')
+
+def colorizeMinecraftLogLine = { String line ->
+	String timeGreen = ansiColor('#238636')
+	String infoBlue = ansiColor('#58A6FF')
+	String warningOrange = ansiColor('#FFA845')
+	String errorRed = ansiColor('#F85149')
+
+	def matcher = line =~ /^\[(\d{2}:\d{2}:\d{2})] \[([^]]+)\/(INFO|WARN|ERROR)](.*)\u0024/
+
+	if (!matcher.matches()) {
+		return line
+	}
+
+	String time = matcher.group(1)
+	String thread = matcher.group(2)
+	String level = matcher.group(3)
+	String remainder = matcher.group(4)
+
+	String messageColor = switch (level) {
+		case 'INFO' -> infoBlue
+		case 'WARN' -> warningOrange
+		case 'ERROR' -> errorRed
+		default -> resetColor
+	}
+
+	return "${bracketGrey}[${timeGreen}${time}${bracketGrey}] " +
+			"${bracketGrey}[${messageColor}${thread}/${level}${bracketGrey}]" +
+			"${messageWhite}${remainder}${resetColor}"
+}
+
+def colorizePlatformLogLine = { String platform, String line ->
+	String platformColor = platformColors.getOrDefault(platform, '')
+	String coloredLine = colorizeMinecraftLogLine(line)
+
+	return "${bracketGrey}[${platformColor}${platform}${bracketGrey}] " +
+			"${messageWhite}${coloredLine}${resetColor}"
+}
 
 tasks.register('logNeoForge') {
 	group = 'mod development'
@@ -18,11 +82,8 @@ tasks.register('logNeoForge') {
 			return
 		}
 
-		String neoForgeColor = '\u001B[38;5;208m'
-		String resetColor = '\u001B[0m'
-
 		logFile.eachLine('UTF-8') { line ->
-			logger.lifecycle("[${neoForgeColor}NeoForge${resetColor}] ${line}")
+			logger.lifecycle(colorizePlatformLogLine('NeoForge', line))
 		}
 	}
 }
@@ -41,11 +102,8 @@ tasks.register('logFabric') {
 			return
 		}
 
-		String fabricColor = '\u001B[38;5;51m'
-		String resetColor = '\u001B[0m'
-
 		logFile.eachLine('UTF-8') { line ->
-			logger.lifecycle("[${fabricColor}Fabric${resetColor}] ${line}")
+			logger.lifecycle(colorizePlatformLogLine('Fabric', line))
 		}
 	}
 }
@@ -86,18 +144,12 @@ tasks.register('runBothClients') {
 			logFile.createNewFile()
 		}
 
-		Map<String, String> clientColors = [
-				'Fabric'  : '\u001B[38;5;51m',
-				'NeoForge': '\u001B[38;5;208m'
-		]
-
-		String resetColor = '\u001B[0m'
 		String javaHome = System.getProperty('java.home')
 
 		List<Process> processes = []
 		List<Thread> readerThreads = []
-		java.util.concurrent.BlockingQueue<Map<String, String>> outputQueue =
-				new java.util.concurrent.LinkedBlockingQueue<>()
+        BlockingQueue<Map<String, String>> outputQueue =
+				new LinkedBlockingQueue<>()
 
 		try {
 			clients.each { client ->
@@ -141,7 +193,7 @@ tasks.register('runBothClients') {
 							}
 						}
 					} catch (InterruptedException ignored) {
-						Thread.currentThread().interrupt()
+						currentThread().interrupt()
 					} catch (IOException exception) {
 						String errorMessage = "Console reader failed: ${exception.message}"
 
@@ -164,12 +216,11 @@ tasks.register('runBothClients') {
 			while (processes.any { process -> process.isAlive() } || !outputQueue.isEmpty()) {
 				Map<String, String> message = outputQueue.poll(
 						100,
-						java.util.concurrent.TimeUnit.MILLISECONDS
+                        TimeUnit.MILLISECONDS
 				)
 
 				if (message != null) {
-					String clientColor = clientColors.getOrDefault(message.name, '')
-					logger.lifecycle("[${clientColor}${message.name}${resetColor}] ${message.line}")
+					logger.lifecycle(colorizePlatformLogLine(message.name, message.line))
 				}
 			}
 
@@ -179,8 +230,7 @@ tasks.register('runBothClients') {
 
 			while (!outputQueue.isEmpty()) {
 				Map<String, String> message = outputQueue.poll()
-				String clientColor = clientColors.getOrDefault(message.name, '')
-				logger.lifecycle("[${clientColor}${message.name}${resetColor}] ${message.line}")
+				logger.lifecycle(colorizePlatformLogLine(message.name, message.line))
 			}
 
 			List<Integer> exitCodes = processes.collect { process ->
