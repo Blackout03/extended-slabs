@@ -1,6 +1,8 @@
 package com.blackout.extendedslabs.registry;
 
 import com.blackout.extendedslabs.ExtendedSlabs;
+import com.blackout.extendedslabs.blocks.ESPCornerBlock;
+import com.blackout.extendedslabs.blocks.ESPStairBlock;
 import com.blackout.extendedslabs.blocks.ESPVerticalSlabBlock;
 import com.blackout.extendedslabs.platform.ModRegistry;
 import com.blackout.extendedslabs.platform.PlatformRegistry;
@@ -53,7 +55,7 @@ public class ESBlockDefinitions {
 
 	private static BlockBehaviour.Properties blockProperties(Block originalBlock, String id) {
 		ResourceKey<Block> blockKey = ResourceKey.create(Registries.BLOCK, Identifier.fromNamespaceAndPath(ExtendedSlabs.MODID, id));
-		return BlockBehaviour.Properties.ofLegacyCopy(originalBlock).setId(blockKey);
+		return BlockBehaviour.Properties.ofFullCopy(originalBlock).setId(blockKey);
 	}
 
 	private static RegistrySupplier<Block> existingBlock(String id, Block block) {
@@ -146,12 +148,13 @@ public class ESBlockDefinitions {
 			return this;
 		}
 
-//		public FamilyBuilder stairs() {
-//			BlockDefinition definition = block(idName + "_stairs", originalBlock, BlockType.STAIRS, tags, textureName, () -> new StairBlock(originalBlock.defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(originalBlock)));
-//			stairs = definition.block();
-//			definitions.add(definition);
-//			return this;
-//		}
+		public FamilyBuilder stairs() {
+			String id = idName + "_stairs";
+			BlockDefinition definition = block(id, originalBlock, BlockType.STAIRS, tags, textureName, () -> new ESPStairBlock(tags, originalBlock, blockProperties(originalBlock, id)));
+			stairs = definition.block();
+			definitions.add(definition);
+			return this;
+		}
 
 		public FamilyBuilder stairs(Block existingBlock) {
 			return stairs(idName + "_stairs", existingBlock);
@@ -162,12 +165,13 @@ public class ESBlockDefinitions {
 			return this;
 		}
 
-//		public FamilyBuilder corner() {
-//			BlockDefinition definition = block(idName + "_corner", originalBlock, BlockType.CORNER, tags, textureName, () -> new ESPCornerBlock(tags, originalBlock, stairs != null ? stairs.get() : originalBlock, BlockBehaviour.Properties.copy(originalBlock)));
-//			corner = definition.block();
-//			definitions.add(definition);
-//			return this;
-//		}
+		public FamilyBuilder corner() {
+			String id = idName + "_corner";
+			BlockDefinition definition = block(id, originalBlock, BlockType.CORNER, tags, textureName, () -> new ESPCornerBlock(tags, originalBlock, stairs != null ? stairs.get() : originalBlock, blockProperties(originalBlock, id)));
+			corner = definition.block();
+			definitions.add(definition);
+			return this;
+		}
 
 		public FamilyBuilder wall() {
 			ExtendedSlabs.LOGGER.warn("Skipping generated wall block for {} because wall models/blockstates are not implemented yet", idName);

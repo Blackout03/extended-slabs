@@ -1,6 +1,7 @@
 package com.blackout.extendedslabs.loader.neoforge.datagen;
 
 import com.blackout.extendedslabs.ExtendedSlabs;
+import com.blackout.extendedslabs.blocks.ESPCornerBlock;
 import com.blackout.extendedslabs.blocks.ESPVerticalSlabBlock;
 import com.blackout.extendedslabs.blocks.shapes.VerticalSlabShape;
 import com.blackout.extendedslabs.registry.ESBlockDefinitions;
@@ -20,6 +21,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SlabBlock;
+import net.minecraft.world.level.block.StairBlock;
 
 import java.util.Optional;
 
@@ -27,6 +29,7 @@ public class ESBlockStateProvider extends ModelProvider {
 	private static final ModelTemplate VERTICAL_SLAB = block("vertical_slab", TextureSlot.BOTTOM, TextureSlot.TOP, TextureSlot.SIDE);
 	private static final ModelTemplate INNER_VERTICAL_SLAB = block("inner_vertical_slab", TextureSlot.BOTTOM, TextureSlot.TOP, TextureSlot.SIDE);
 	private static final ModelTemplate OUTER_VERTICAL_SLAB = block("outer_vertical_slab", TextureSlot.BOTTOM, TextureSlot.TOP, TextureSlot.SIDE);
+	private static final ModelTemplate CORNER = block("corner", TextureSlot.BOTTOM, TextureSlot.TOP, TextureSlot.SIDE);
 
 	public ESBlockStateProvider(PackOutput packOutput) {
 		super(packOutput, ExtendedSlabs.MODID);
@@ -38,6 +41,8 @@ public class ESBlockStateProvider extends ModelProvider {
 			switch (definition.type()) {
 				case SLAB -> createESSlab(blockModels, definition);
 				case VERTICAL_SLAB -> createESVerticalSlab(blockModels, definition);
+				case STAIRS -> createESStairs(blockModels, definition);
+				case CORNER -> createESCorner(blockModels, definition);
 				default -> {
 				}
 			}
@@ -62,6 +67,12 @@ public class ESBlockStateProvider extends ModelProvider {
 		blockModels.familyWithExistingFullBlock(definition.originalBlock()).slab(slab);
 	}
 
+	private void createESStairs(BlockModelGenerators blockModels, ESBlockDefinitions.BlockDefinition definition) {
+		StairBlock stairs = (StairBlock) definition.block().get();
+
+		blockModels.familyWithExistingFullBlock(definition.originalBlock()).stairs(stairs);
+	}
+
 	private void createESVerticalSlab(BlockModelGenerators blockModels, ESBlockDefinitions.BlockDefinition definition) {
 		Block block = definition.block().get();
 		String name = definition.id();
@@ -78,6 +89,28 @@ public class ESBlockStateProvider extends ModelProvider {
 
 		blockModels.blockStateOutput.accept(createVerticalSlabBlockStates(block, verticalSlab, verticalSlabInner, verticalSlabOuter));
 		blockModels.registerSimpleItemModel(block, verticalSlab);
+	}
+
+	private void createESCorner(BlockModelGenerators blockModels, ESBlockDefinitions.BlockDefinition definition) {
+		Block block = definition.block().get();
+		String name = definition.id();
+
+		Material texture = new Material(mcLoc("block/" + definition.textureName()));
+		TextureMapping textures = new TextureMapping()
+				.put(TextureSlot.SIDE, texture)
+				.put(TextureSlot.BOTTOM, texture)
+				.put(TextureSlot.TOP, texture);
+
+		Identifier corner = CORNER.create(modLoc("block/" + name), textures, blockModels.modelOutput);
+		MultiVariant model = BlockModelGenerators.plainVariant(corner);
+
+		blockModels.blockStateOutput.accept(MultiVariantGenerator.dispatch(block)
+				.with(PropertyDispatch.initial(ESPCornerBlock.FACING)
+						.select(Direction.NORTH, model)
+						.select(Direction.EAST, rotate(model, 90))
+						.select(Direction.SOUTH, rotate(model, 180))
+						.select(Direction.WEST, rotate(model, 270))));
+		blockModels.registerSimpleItemModel(block, corner);
 	}
 
 	private static BlockModelDefinitionGenerator createVerticalSlabBlockStates(Block block, Identifier verticalSlab, Identifier verticalSlabInner, Identifier verticalSlabOuter) {
